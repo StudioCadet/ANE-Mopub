@@ -1,12 +1,14 @@
-package com.sticksports.nativeExtensions.mopub;
+package com.sticksports.nativeExtensions.mopub.functions.banner;
 
 import android.util.Log;
+import android.view.ViewGroup;
 
 import com.adobe.fre.FREContext;
 import com.adobe.fre.FREFunction;
 import com.adobe.fre.FREObject;
+import com.sticksports.nativeExtensions.mopub.MoPubBannerContext;
 
-public class MoPubBannerSetAutorefresh implements FREFunction
+public class MoPubBannerRemove implements FREFunction
 {
 
 	@Override
@@ -15,8 +17,11 @@ public class MoPubBannerSetAutorefresh implements FREFunction
 		try
 		{
 			MoPubBannerContext context = (MoPubBannerContext) ctx;
-			boolean autorefresh = args[0].getAsBool();
-			context.getBanner().setAutorefreshEnabled( autorefresh );
+			ViewGroup parent = (ViewGroup) context.getBanner().getParent();
+			if( parent != null )
+			{
+				parent.removeView( context.getBanner() );
+			}
 		}
 		catch ( Exception exception )
 		{

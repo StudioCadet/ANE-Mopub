@@ -7,87 +7,129 @@ import android.view.ViewGroup;
 
 import com.adobe.fre.FREContext;
 import com.adobe.fre.FREFunction;
+import com.mopub.mobileads.MoPubErrorCode;
 import com.mopub.mobileads.MoPubView;
-import com.mopub.mobileads.MoPubView.OnAdClickedListener;
-import com.mopub.mobileads.MoPubView.OnAdFailedListener;
-import com.mopub.mobileads.MoPubView.OnAdLoadedListener;
+import com.mopub.mobileads.MoPubView.BannerAdListener;
+import com.sticksports.nativeExtensions.mopub.functions.banner.MoPubBannerDoNothing;
+import com.sticksports.nativeExtensions.mopub.functions.banner.MoPubBannerGetCreativeHeight;
+import com.sticksports.nativeExtensions.mopub.functions.banner.MoPubBannerGetCreativeWidth;
+import com.sticksports.nativeExtensions.mopub.functions.banner.MoPubBannerGetHeight;
+import com.sticksports.nativeExtensions.mopub.functions.banner.MoPubBannerGetPositionX;
+import com.sticksports.nativeExtensions.mopub.functions.banner.MoPubBannerGetPositionY;
+import com.sticksports.nativeExtensions.mopub.functions.banner.MoPubBannerGetWidth;
+import com.sticksports.nativeExtensions.mopub.functions.banner.MoPubBannerInitialise;
+import com.sticksports.nativeExtensions.mopub.functions.banner.MoPubBannerLoad;
+import com.sticksports.nativeExtensions.mopub.functions.banner.MoPubBannerRemove;
+import com.sticksports.nativeExtensions.mopub.functions.banner.MoPubBannerSetAdUnitId;
+import com.sticksports.nativeExtensions.mopub.functions.banner.MoPubBannerSetAutorefresh;
+import com.sticksports.nativeExtensions.mopub.functions.banner.MoPubBannerSetHeight;
+import com.sticksports.nativeExtensions.mopub.functions.banner.MoPubBannerSetPositionX;
+import com.sticksports.nativeExtensions.mopub.functions.banner.MoPubBannerSetPositionY;
+import com.sticksports.nativeExtensions.mopub.functions.banner.MoPubBannerSetSize;
+import com.sticksports.nativeExtensions.mopub.functions.banner.MoPubBannerSetTestMode;
+import com.sticksports.nativeExtensions.mopub.functions.banner.MoPubBannerSetWidth;
+import com.sticksports.nativeExtensions.mopub.functions.banner.MoPubBannerShow;
 
-public class MoPubBannerContext extends FREContext implements
-	OnAdLoadedListener, OnAdFailedListener, OnAdClickedListener
-{
+public class MoPubBannerContext extends FREContext implements BannerAdListener {
+
+	////////////
+	// BANNER //
+	////////////
+
 	private MoPubBanner banner;
-	
-	public MoPubBanner getBanner()
-	{
-		if( banner == null )
-		{
-			banner = new MoPubBanner( this.getActivity() );
-			banner.setOnAdLoadedListener( this );
-			banner.setOnAdFailedListener( this );
-			banner.setOnAdClickedListener( this );
+
+	/**
+	 * Returns the current banner. If none exists, one is created.
+	 */
+	public MoPubBanner getBanner() {
+		if(banner == null) {
+			banner = new MoPubBanner(this.getActivity());
+			banner.setBannerAdListener(this);
 		}
 		return banner;
 	}
 
+	/**
+	 * Disposes the current banner, if any.
+	 */
+	public void disposeBanner() {
+		if(banner == null) return;
+
+		banner.setBannerAdListener(null);
+		ViewGroup parent = (ViewGroup) banner.getParent();
+		if(parent != null)
+			parent.removeView( banner );
+		banner.destroy();
+	}
+	
+	
+	//////////////////
+	// AD LIFECYCLE //
+	//////////////////
+	
 	@Override
-	public void dispose()
-	{
-		if ( banner != null )
-		{
-			banner.setOnAdLoadedListener( null );
-			banner.setOnAdFailedListener( null );
-			banner.setOnAdClickedListener( null );
-			ViewGroup parent = (ViewGroup) banner.getParent();
-			if ( parent != null )
-			{
-				parent.removeView( banner );
-			}
-			banner.destroy();
-		}
+	public void onBannerLoaded(MoPubView banner) {
+		dispatchStatusEventAsync( "", MoPubMessages.bannerLoaded );
 	}
 
 	@Override
-	public Map<String, FREFunction> getFunctions()
-	{
-		Map<String, FREFunction> functionMap = new HashMap<String, FREFunction>();
-		functionMap.put( "initialiseBanner", new MoPubBannerInitialise() );
-		
-		functionMap.put( "setTestMode", new MoPubBannerSetTestMode() );
-		functionMap.put( "setAdUnitId", new MoPubBannerSetAdUnitId() );
-		functionMap.put( "setAutorefresh", new MoPubBannerSetAutorefresh() );
-		functionMap.put( "lockNativeAdsToOrientation", new MoPubBannerDoNothing() );
-		
-		functionMap.put( "getPositionX", new MoPubBannerGetPositionX() );
-		functionMap.put( "setPositionX", new MoPubBannerSetPositionX() );
-		functionMap.put( "getPositionY", new MoPubBannerGetPositionY() );
-		functionMap.put( "setPositionY", new MoPubBannerSetPositionY() );
-		functionMap.put( "getWidth", new MoPubBannerGetWidth() );
-		functionMap.put( "setWidth", new MoPubBannerSetWidth() );
-		functionMap.put( "getHeight", new MoPubBannerGetHeight() );
-		functionMap.put( "setHeight", new MoPubBannerSetHeight() );
-		
-		functionMap.put( "setSize", new MoPubBannerSetSize() );
-		functionMap.put( "getCreativeWidth", new MoPubBannerGetCreativeWidth() );
-		functionMap.put( "getCreativeHeight", new MoPubBannerGetCreativeHeight() );
-		
-		functionMap.put( "loadBanner", new MoPubBannerLoad() );
-		functionMap.put( "showBanner", new MoPubBannerShow() );
-		functionMap.put( "removeBanner", new MoPubBannerRemove() );
-		return functionMap;
-	}
-	
-	public void OnAdLoaded( MoPubView mpv )
-	{
-		dispatchStatusEventAsync( "", MoPubMessages.bannerLoaded );
-	}
-	
-	public void OnAdFailed( MoPubView mpv )
-	{
+	public void onBannerFailed(MoPubView banner, MoPubErrorCode errorCode) {
 		dispatchStatusEventAsync( "", MoPubMessages.bannerFailedToLoad );
 	}
 
-    public void OnAdClicked(MoPubView m)
-	{
+	@Override
+	public void onBannerClicked(MoPubView banner) {
 		dispatchStatusEventAsync( "", MoPubMessages.bannerAdClicked );
+	}
+
+	@Override
+	public void onBannerExpanded(MoPubView banner) {
+		dispatchStatusEventAsync( "", MoPubMessages.bannerAdExpanded );
+	}
+
+	@Override
+	public void onBannerCollapsed(MoPubView banner) {
+		dispatchStatusEventAsync( "", MoPubMessages.bannerAdCollapsed );
+	}
+	
+	
+	///////////////
+	// EXTENSION //
+	///////////////
+
+	@Override
+	public void dispose() {
+		disposeBanner();
+	}
+
+	@Override
+	public Map<String, FREFunction> getFunctions() {
+		Map<String, FREFunction> functionMap = new HashMap<String, FREFunction>();
+
+		functionMap.put("initialiseBanner", new MoPubBannerInitialise());
+
+		functionMap.put("setTestMode", new MoPubBannerSetTestMode());
+		functionMap.put("setAdUnitId", new MoPubBannerSetAdUnitId());
+		functionMap.put("setAutorefresh", new MoPubBannerSetAutorefresh());
+		functionMap.put("lockNativeAdsToOrientation", new MoPubBannerDoNothing());
+
+		functionMap.put("getPositionX", new MoPubBannerGetPositionX());
+		functionMap.put("setPositionX", new MoPubBannerSetPositionX());
+		functionMap.put("getPositionY", new MoPubBannerGetPositionY());
+		functionMap.put("setPositionY", new MoPubBannerSetPositionY());
+		functionMap.put("getWidth", new MoPubBannerGetWidth());
+		functionMap.put("setWidth", new MoPubBannerSetWidth());
+		functionMap.put("getHeight", new MoPubBannerGetHeight());
+		functionMap.put("setHeight", new MoPubBannerSetHeight());
+
+		functionMap.put("setSize", new MoPubBannerSetSize());
+		functionMap.put("getCreativeWidth", new MoPubBannerGetCreativeWidth());
+		functionMap.put("getCreativeHeight", new MoPubBannerGetCreativeHeight());
+
+		functionMap.put("loadBanner", new MoPubBannerLoad());
+		functionMap.put("showBanner", new MoPubBannerShow());
+		functionMap.put("removeBanner", new MoPubBannerRemove());
+
+		return functionMap;
 	}
 }

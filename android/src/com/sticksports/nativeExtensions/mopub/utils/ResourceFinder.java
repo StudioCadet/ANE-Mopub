@@ -1,4 +1,4 @@
-package com.sticksports.nativeExtensions.mopub;
+package com.sticksports.nativeExtensions.mopub.utils;
 
 import android.content.Context;
 

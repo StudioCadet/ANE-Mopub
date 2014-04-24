@@ -1,4 +1,4 @@
-package com.sticksports.nativeExtensions.mopub;
+package com.sticksports.nativeExtensions.mopub.functions.banner;
 
 import com.adobe.fre.FREContext;
 import com.adobe.fre.FREFunction;

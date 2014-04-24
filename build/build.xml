@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="Air Native Extension Build Scripts" default="all">
 
+	<!-- Config -->
 	<property file="build.config" />
 
+	<!-- All -->
 	<target name="all" depends="ios,android,ios-swc,android-swc,default,package" description="Full build of extension" />
 
+	<!-- iOS -->
 	<target name="ios" description="Build iOS Library">
 		<mkdir dir="../temp/ios/build/" />
 
@@ -37,49 +40,50 @@
 
 		<delete dir="../temp/ios/build/" />
 	</target>
-
+	
+	<!-- Android -->
 	<target name="android" description="Build android Library">
-		<delete dir="../android/temp" />
-		<mkdir dir="../android/temp/classes" />
+		<echo message="Build android library ..."/>
+		
+		<delete dir="../bin/android/temp" />
+		<mkdir dir="../bin/android/temp/classes" />
 
-		<javac destdir="../android/temp/classes" includeantruntime="false">
+		<javac destdir="../bin/android/temp/classes" includeantruntime="false" target="1.6" source="1.6" fork="yes" executable="${javac.dir}/javac${bin.ext}">
 			<src path="../android/src" />
 			<src path="${mopub.android.sdk}/mopub-sdk/src/main/java" />
-			<src path="${mopub.android.sdk}/extras/src" />
-			<exclude name="com/mopub/mobileads/GreystripeBanner.java" />
-			<exclude name="com/mopub/mobileads/GreystripeInterstitial.java" />
-			<exclude name="com/mopub/mobileads/InMobiBanner.java" />
-			<exclude name="com/mopub/mobileads/InMobiInterstitial.java" />
+			<!--<src path="${mopub.android.sdk}/extras/src" />-->
+			<!--<exclude name="com/mopub/mobileads/GreystripeBanner.java" />-->
+			<!--<exclude name="com/mopub/mobileads/GreystripeInterstitial.java" />-->
+			<!--<exclude name="com/mopub/mobileads/InMobiBanner.java" />-->
+			<!--<exclude name="com/mopub/mobileads/InMobiInterstitial.java" />-->
 			<classpath>
 				<pathelement location="${android.sdk}/android.jar" />
-				<pathelement location="../android/libs/FlashRuntimeExtensions.jar" />
-				<pathelement location="${admob.android.jar}" />
-				<pathelement location="${millennial.android.jar}" />
-				<pathelement location="${chartboost.android.jar}" />
+				<pathelement location="${flex.sdk}/lib/android/FlashRuntimeExtensions.jar"/>
 				<pathelement location="${mopub.android.sdk}/mopub-sdk/libs/android-support-v4.jar" />
+				<!--<pathelement location="${admob.android.jar}" />-->
+				<!--<pathelement location="${millennial.android.jar}" />-->
+				<!--<pathelement location="${chartboost.android.jar}" />-->
 			</classpath>
 		</javac>
 
-		<mkdir dir="../android/temp/zip" />
-		<unzip dest="../android/temp/zip" src="${admob.android.jar}" />
-		<unzip dest="../android/temp/zip" src="${millennial.android.jar}" />
-		<unzip dest="../android/temp/zip" src="${chartboost.android.jar}" />
-		<unzip dest="../android/temp/zip" src="${mopub.android.sdk}/mopub-sdk/libs/android-support-v4.jar" />
-		<copy todir="../android/temp/classes/com">
-			<fileset dir="../android/temp/zip/com" />
-		</copy>
-		<copy todir="../android/temp/classes/android">
-			<fileset dir="../android/temp/zip/android" />
+		<mkdir dir="../bin/android/temp/zip" />
+		<!--<unzip dest="../bin/android/temp/zip" src="${admob.android.jar}" />-->
+		<!--<unzip dest="../bin/android/temp/zip" src="${millennial.android.jar}" />-->
+		<!--<unzip dest="../bin/android/temp/zip" src="${chartboost.android.jar}" />-->
+		<unzip dest="../bin/android/temp/zip" src="${mopub.android.sdk}/mopub-sdk/libs/android-support-v4.jar" />
+		<!--<copy todir="../bin/android/temp/classes/com">
+			<fileset dir="../bin/android/temp/zip/com" />
+		</copy>-->
+		<copy todir="../bin/android/temp/classes/android">
+			<fileset dir="../bin/android/temp/zip/android" />
 		</copy>
 
-		<mkdir dir="../temp/android/" />
-		<jar basedir="../android/temp/classes" destfile="../temp/android/${name}AndroidExtension.jar" />
-		<copy todir="../temp/android/res">
-			<fileset dir="../android/temp/zip/res" />
-		</copy>
-		<delete dir="../android/temp" />
+		<jar basedir="../bin/android/temp/classes" destfile="../bin/android/${name}.jar"/>
+        <delete dir="../bin/android/temp"/>
+		<echo message="Done."/>
 	</target>
-
+	
+	<!-- ActionScript iOS -->
 	<target name="ios-swc" description="Build ios swc library">
 		<mkdir dir="../temp/swc/content/" />
 
@@ -106,6 +110,7 @@
 		<delete dir="../temp/swc/content/" />
 	</target>
 
+	<!-- ActionScript Android -->
 	<target name="android-swc" description="Build ios swc library">
 		<mkdir dir="../temp/swc/content/" />
 
@@ -132,6 +137,7 @@
 		<delete dir="../temp/swc/content/" />
 	</target>
 
+	<!-- ActionScript default -->
 	<target name="default" description="Build default swc library">
 		<mkdir dir="../temp/default/" />
 
@@ -158,6 +164,7 @@
 		<delete dir="../temp/default/swc" />
 	</target>
 
+	<!-- Packaging -->
 	<target name="package" description="Create the extension package">
 		<exec executable="${sdk.home}/bin/adt" failonerror="true" dir="../temp">
 			<arg value="-package" />

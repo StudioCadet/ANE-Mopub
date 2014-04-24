@@ -7,7 +7,7 @@
 
 package com.mopub.mobileads;
 
-import com.sticksports.nativeExtensions.mopub.ResourceFinder;
+import com.sticksports.nativeExtensions.mopub.utils.ResourceFinder;
 
 public final class R
 {

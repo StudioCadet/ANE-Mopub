@@ -1,10 +1,11 @@
-package com.sticksports.nativeExtensions.mopub;
+package com.sticksports.nativeExtensions.mopub.functions.interstitial;
 
 import android.util.Log;
 
 import com.adobe.fre.FREContext;
 import com.adobe.fre.FREFunction;
 import com.adobe.fre.FREObject;
+import com.sticksports.nativeExtensions.mopub.MoPubInterstitialContext;
 
 public class MoPubInterstitialLoad implements FREFunction
 {

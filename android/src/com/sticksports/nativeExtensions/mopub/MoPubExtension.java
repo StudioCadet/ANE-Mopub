@@ -6,17 +6,18 @@ import com.adobe.fre.FREExtension;
 public class MoPubExtension implements FREExtension
 {
 	@Override
-	public FREContext createContext( String label )
+	public FREContext createContext(String label)
 	{
-		if( label.equals( "mopub" ) )
-		{
+		if(label.equals("mopub"))
 			return new MoPubExtensionContext();
-		}
-		else if( label.equals( "interstitial" ) )
-		{
+		
+		else if(label.equals("interstitial"))
 			return new MoPubInterstitialContext();
-		}
-		return new MoPubBannerContext();
+		
+		else if(label.equals("banner"))
+			return new MoPubBannerContext();
+		
+		return null;
 	}
 
 	@Override

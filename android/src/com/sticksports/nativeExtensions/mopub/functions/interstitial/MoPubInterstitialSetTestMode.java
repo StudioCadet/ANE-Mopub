@@ -1,12 +1,13 @@
-package com.sticksports.nativeExtensions.mopub;
+package com.sticksports.nativeExtensions.mopub.functions.interstitial;
 
 import android.util.Log;
 
 import com.adobe.fre.FREContext;
 import com.adobe.fre.FREFunction;
 import com.adobe.fre.FREObject;
+import com.sticksports.nativeExtensions.mopub.MoPubInterstitialContext;
 
-public class MoPubInterstitialGetIsReady implements FREFunction
+public class MoPubInterstitialSetTestMode implements FREFunction
 {
 
 	@Override
@@ -15,8 +16,8 @@ public class MoPubInterstitialGetIsReady implements FREFunction
 		try
 		{
 			MoPubInterstitialContext context = (MoPubInterstitialContext) ctx;
-			boolean ready = context.getInterstitial().isReady();
-			return FREObject.newObject( ready );
+			boolean testing = args[0].getAsBool();
+			context.getInterstitial().setTesting( testing );
 		}
 		catch ( Exception exception )
 		{
@@ -24,4 +25,5 @@ public class MoPubInterstitialGetIsReady implements FREFunction
 		}
 		return null;
 	}
+
 }

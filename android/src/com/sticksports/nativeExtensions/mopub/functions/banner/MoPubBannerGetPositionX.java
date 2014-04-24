@@ -1,12 +1,13 @@
-package com.sticksports.nativeExtensions.mopub;
+package com.sticksports.nativeExtensions.mopub.functions.banner;
 
 import android.util.Log;
 
 import com.adobe.fre.FREContext;
 import com.adobe.fre.FREFunction;
 import com.adobe.fre.FREObject;
+import com.sticksports.nativeExtensions.mopub.MoPubBannerContext;
 
-public class MoPubBannerGetPositionY implements FREFunction
+public class MoPubBannerGetPositionX implements FREFunction
 {
 	@Override
 	public FREObject call( FREContext ctx, FREObject[] args )
@@ -14,7 +15,7 @@ public class MoPubBannerGetPositionY implements FREFunction
 		try
 		{
 			MoPubBannerContext context = (MoPubBannerContext) ctx;
-			int width = context.getBanner().getPosY();
+			int width = context.getBanner().getPosX();
 			return FREObject.newObject( width );
 		}
 		catch ( Exception exception )

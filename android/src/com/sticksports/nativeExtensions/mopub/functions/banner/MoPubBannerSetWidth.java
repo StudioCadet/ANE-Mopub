@@ -1,4 +1,4 @@
-package com.sticksports.nativeExtensions.mopub;
+package com.sticksports.nativeExtensions.mopub.functions.banner;
 
 import android.util.Log;
 import android.widget.FrameLayout;
@@ -6,8 +6,9 @@ import android.widget.FrameLayout;
 import com.adobe.fre.FREContext;
 import com.adobe.fre.FREFunction;
 import com.adobe.fre.FREObject;
+import com.sticksports.nativeExtensions.mopub.MoPubBannerContext;
 
-public class MoPubBannerSetPositionX implements FREFunction
+public class MoPubBannerSetWidth implements FREFunction
 {
 
 	@Override
@@ -16,13 +17,13 @@ public class MoPubBannerSetPositionX implements FREFunction
 		try
 		{
 			MoPubBannerContext context = (MoPubBannerContext) ctx;
-			int x = args[0].getAsInt();
-			context.getBanner().setPosX( x );
+			int width = args[0].getAsInt();
+			context.getBanner().setPlannedWidth( width );
 			
-			FrameLayout.LayoutParams params = ( FrameLayout.LayoutParams ) context.getBanner().getLayoutParams();
+		    FrameLayout.LayoutParams params = ( FrameLayout.LayoutParams ) context.getBanner().getLayoutParams();
 		    if( params != null )
 		    {
-		    	params.leftMargin = x;
+		    	params.width = width;
 			   	context.getBanner().setLayoutParams(params);
 		    }
 		}
@@ -32,4 +33,5 @@ public class MoPubBannerSetPositionX implements FREFunction
 		}
 		return null;
 	}
+
 }

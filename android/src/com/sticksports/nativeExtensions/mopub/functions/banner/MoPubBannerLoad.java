@@ -1,12 +1,13 @@
-package com.sticksports.nativeExtensions.mopub;
+package com.sticksports.nativeExtensions.mopub.functions.banner;
 
 import android.util.Log;
 
 import com.adobe.fre.FREContext;
 import com.adobe.fre.FREFunction;
 import com.adobe.fre.FREObject;
+import com.sticksports.nativeExtensions.mopub.MoPubBannerContext;
 
-public class MoPubInterstitialShow implements FREFunction
+public class MoPubBannerLoad implements FREFunction
 {
 
 	@Override
@@ -14,9 +15,8 @@ public class MoPubInterstitialShow implements FREFunction
 	{
 		try
 		{
-			MoPubInterstitialContext context = (MoPubInterstitialContext) ctx;
-			boolean success = context.getInterstitial().show();
-			return FREObject.newObject( success );
+			MoPubBannerContext context = (MoPubBannerContext) ctx;
+			context.getBanner().loadAd();
 		}
 		catch ( Exception exception )
 		{

@@ -1,4 +1,4 @@
-package com.sticksports.nativeExtensions.mopub;
+package com.sticksports.nativeExtensions.mopub.functions.banner;
 
 import android.util.Log;
 import android.widget.FrameLayout;
@@ -6,6 +6,7 @@ import android.widget.FrameLayout;
 import com.adobe.fre.FREContext;
 import com.adobe.fre.FREFunction;
 import com.adobe.fre.FREObject;
+import com.sticksports.nativeExtensions.mopub.MoPubBannerContext;
 
 public class MoPubBannerSetHeight implements FREFunction
 {
