@@ -5,7 +5,6 @@ import java.util.Map;
 
 import com.adobe.fre.FREContext;
 import com.adobe.fre.FREFunction;
-import com.mopub.mobileads.MoPubConversionTracker;
 import com.sticksports.nativeExtensions.mopub.functions.MoPubGetAdScaleFactor;
 
 public class MoPubExtensionContext extends FREContext
@@ -14,9 +13,6 @@ public class MoPubExtensionContext extends FREContext
 	// CONSTRUCTOR :
 	public MoPubExtensionContext() {
 		super();
-		
-		// Conversion tracking call
-	    new MoPubConversionTracker().reportAppOpen(getActivity());
 	}
 	
 	

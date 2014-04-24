@@ -2,22 +2,34 @@ package com.sticksports.nativeExtensions.mopub;
 
 import com.adobe.fre.FREContext;
 import com.adobe.fre.FREExtension;
+import com.mopub.mobileads.MoPubConversionTracker;
 
 public class MoPubExtension implements FREExtension
 {
+	/** Whether the conversion tracking has been called already. */
+	private static boolean conversionTrackingDone = false;
+	
 	@Override
 	public FREContext createContext(String label)
 	{
+		FREContext context = null;
+		
 		if(label.equals("mopub"))
-			return new MoPubExtensionContext();
+			context = new MoPubExtensionContext();
 		
 		else if(label.equals("interstitial"))
-			return new MoPubInterstitialContext();
+			context = new MoPubInterstitialContext();
 		
 		else if(label.equals("banner"))
-			return new MoPubBannerContext();
+			context = new MoPubBannerContext();
 		
-		return null;
+		// Conversion tracking call
+		if(context != null && !conversionTrackingDone) {
+			new MoPubConversionTracker().reportAppOpen(context.getActivity());
+			conversionTrackingDone = true;
+		}
+		
+		return context;
 	}
 
 	@Override
