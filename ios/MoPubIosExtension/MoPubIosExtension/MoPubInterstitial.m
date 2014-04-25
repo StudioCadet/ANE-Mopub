@@ -76,6 +76,11 @@
     FREDispatchStatusEventAsync( context, "", interstitialFailedToLoad );
 }
 
+- (void)interstitialDidAppear:(MPInterstitialAdController *)interstitial
+{
+    FREDispatchStatusEventAsync( context, "", interstitialShown );
+}
+
 - (void)interstitialDidDisappear:(MPInterstitialAdController *)interstitial
 {
     FREDispatchStatusEventAsync( context, "", interstitialClosed );

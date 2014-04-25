@@ -18,7 +18,7 @@
 			<arg line='SYMROOT=../../temp/ios/build/' />
 		</exec>
 
-		<copy file="../temp/ios/build/Release-iphoneos/lib${name}IosExtension.a" todir="../temp/ios" overwrite="true" />
+		<copy file="../temp/ios/build/Release-iphoneos/lib${name}IosExtension.a" todir="../bin/ios" overwrite="true" />
 
 		<exec executable="ibtool" failonerror="true">
 			<arg value="--errors" />
@@ -26,11 +26,11 @@
 			<arg value="--notices" />
 			<arg line="--output-format human-readable-text" />
 			<arg line="--sdk ${ios.sdk}" />
-			<arg line="--compile ../temp/ios/MPAdBrowserController.nib" />
+			<arg line="--compile ../bin/ios/MPAdBrowserController.nib" />
 			<arg value="${mopub.ios.sdk}/MoPubSDK/Internal/Common/MPAdBrowserController.xib" />
 		</exec>
 
-		<copy todir="../temp/ios" flatten="true">
+		<copy todir="../bin/ios" flatten="true">
 			<fileset dir="${mopub.ios.sdk}/MoPubSDK" casesensitive="yes" id="classfiles">
 				<include name="**/*.png" />
 				<include name="**/*.nib" />
@@ -38,7 +38,7 @@
 			</fileset>
 		</copy>
 
-		<delete dir="../temp/ios/build/" />
+		<delete dir="../temp" />
 	</target>
 	
 	<!-- Android -->
@@ -188,7 +188,7 @@
             <arg value="${name}.ane"/>
             <arg value="../build/extension.xml"/>
             <arg line="-swc actionscript/default/${name}.swc"/>
-            <!--<arg line="-platform iPhone-ARM -platformoptions ../build/platform.xml -C ios/ ."/>-->
+            <arg line="-platform iPhone-ARM -platformoptions ../build/platform.xml -C ios/ ."/>
             <arg line="-platform Android-ARM -C android/ ."/>
             <arg line="-platform default -C default/ ."/>
         </exec>

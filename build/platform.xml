@@ -17,7 +17,6 @@
 		<option>-weak_framework PassKit</option>
 		<option>-weak_framework Social</option>
 		<option>-weak_framework StoreKit</option>
-		<option>-weak_framework Twitter</option>
 
 		<option>-lsqlite3</option>
 		<option>-lz</option>

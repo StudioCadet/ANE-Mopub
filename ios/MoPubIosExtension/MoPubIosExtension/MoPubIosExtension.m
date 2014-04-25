@@ -11,7 +11,7 @@
 #import "MoPubTypeConversion.h"
 #import "MoPubBanner.h"
 #import "MoPubInterstitial.h"
-#import "ChartboostInterstitialCustomEvent.h"
+#import "MPAdConversionTracker.h"
 
 #define DEFINE_ANE_FUNCTION(fn) FREObject (fn)(FREContext context, void* functionData, uint32_t argc, FREObject argv[])
 
@@ -376,13 +376,23 @@ DEFINE_ANE_FUNCTION( showInterstitial )
     return NULL;
 }
 
+DEFINE_ANE_FUNCTION( trackConversion )
+{
+    NSString *itunesAppId = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"itunesAppId"];
+    
+    [[MPAdConversionTracker sharedConversionTracker] reportApplicationOpenForApplicationID:itunesAppId];
+    
+    return NULL;
+}
+
 void MoPubContextInitializer( void* extData, const uint8_t* ctxType, FREContext ctx, uint32_t* numFunctionsToSet, const FRENamedFunction** functionsToSet )
 {
     if( strcmp( ctxType, "mopub" ) == 0 )
     {
         static FRENamedFunction mopubFunctionMap[] =
         {
-            MAP_FUNCTION( getAdScaleFactor, NULL )
+            MAP_FUNCTION( getAdScaleFactor, NULL ),
+            MAP_FUNCTION( trackConversion, NULL )
         };
         
         *numFunctionsToSet = sizeof( mopubFunctionMap ) / sizeof( FRENamedFunction );
