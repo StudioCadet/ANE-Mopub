@@ -164,17 +164,16 @@ package com.sticksports.nativeExtensions.mopub
 		
 		private function handleStatusEvent( event : StatusEvent ) : void
 		{
-			trace( "StatusEvent", event.level );
 			switch( event.level )
 			{
 				case InternalMessages.bannerLoaded :
-					dispatchEvent( new MoPubEvent( MoPubEvent.LOADED ) );
+					dispatchEvent( new MoPubEvent( MoPubEvent.AD_LOADED ) );
 					break;
 				case InternalMessages.bannerFailedToLoad :
-					dispatchEvent( new MoPubEvent( MoPubEvent.LOAD_FAILED ) );
+					dispatchEvent( new MoPubEvent( MoPubEvent.AD_FAILED_TO_LOAD ) );
 					break;
 				case InternalMessages.bannerAdClicked :
-					dispatchEvent( new MoPubEvent( MoPubEvent.AD_CLICKED ) );
+					dispatchEvent( new MoPubEvent( MoPubEvent.BANNER_CLICKED ) );
 					break;
 				case InternalMessages.bannerAdClosed :
 					dispatchEvent( new MoPubEvent( MoPubEvent.AD_CLOSED ) );

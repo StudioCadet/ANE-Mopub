@@ -68,12 +68,11 @@ public class MoPubInterstitialContext extends FREContext implements Interstitial
 
 	@Override
 	public void onInterstitialClicked(MoPubInterstitial interstitial) {
-		dispatchStatusEventAsync("", MoPubMessages.interstitialClicked);
 	}
 
 	@Override
 	public void onInterstitialDismissed(MoPubInterstitial interstitial) {
-		dispatchStatusEventAsync("", MoPubMessages.interstitialDismissed);
+		dispatchStatusEventAsync("", MoPubMessages.interstitialClosed);
 	}
 	
 	

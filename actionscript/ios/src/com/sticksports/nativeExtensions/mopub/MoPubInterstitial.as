@@ -55,19 +55,21 @@ package com.sticksports.nativeExtensions.mopub
 		
 		private function handleStatusEvent( event : StatusEvent ) : void
 		{
-			trace( "StatusEvent", event.level );
 			switch( event.level )
 			{
 				case InternalMessages.interstitialLoaded :
-					dispatchEvent( new MoPubEvent( MoPubEvent.LOADED ) );
+					dispatchEvent( new MoPubEvent( MoPubEvent.AD_LOADED ) );
 					break;
 				case InternalMessages.interstitialFailedToLoad :
-					dispatchEvent( new MoPubEvent( MoPubEvent.LOAD_FAILED ) );
-					break;
-				case InternalMessages.interstitialClosed :
-					dispatchEvent( new MoPubEvent( MoPubEvent.AD_CLOSED ) );
+					dispatchEvent( new MoPubEvent( MoPubEvent.AD_FAILED_TO_LOAD ) );
 					break;
 				case InternalMessages.interstitialExpired :
+					dispatchEvent( new MoPubEvent( MoPubEvent.INTERSTITIAL_EXPIRED ) );
+					break;
+				case InternalMessages.interstitialShown :
+					dispatchEvent( new MoPubEvent( MoPubEvent.INTERSTITIAL_SHOWN ) );
+					break;
+				case InternalMessages.interstitialClosed :
 					dispatchEvent( new MoPubEvent( MoPubEvent.AD_CLOSED ) );
 					break;
 			}

@@ -84,12 +84,10 @@ public class MoPubBannerContext extends FREContext implements BannerAdListener {
 
 	@Override
 	public void onBannerExpanded(MoPubView banner) {
-		dispatchStatusEventAsync( "", MoPubMessages.bannerAdExpanded );
 	}
 
 	@Override
 	public void onBannerCollapsed(MoPubView banner) {
-		dispatchStatusEventAsync( "", MoPubMessages.bannerAdCollapsed );
 	}
 	
 	

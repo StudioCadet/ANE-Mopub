@@ -33,3 +33,5 @@ Thumbs.db
 /actionscript/ios/.actionScriptProperties
 /actionscript/ios/.flexLibProperties
 /actionscript/ios/.settings/org.eclipse.core.resources.prefs
+/actionscript/android/bin/ANE-Mopub-Android.swc
+/actionscript/ios/bin/ANE-Mopub-iOS.swc

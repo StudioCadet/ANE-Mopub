@@ -57,22 +57,21 @@ package com.sticksports.nativeExtensions.mopub
 		
 		private function handleStatusEvent( event : StatusEvent ) : void
 		{
-			trace( "StatusEvent", event.level );
 			switch( event.level )
 			{
 				case InternalMessages.interstitialLoaded :
-					dispatchEvent( new MoPubEvent( MoPubEvent.LOADED ) );
+					dispatchEvent( new MoPubEvent( MoPubEvent.AD_LOADED ) );
 					break;
 				case InternalMessages.interstitialFailedToLoad :
-					dispatchEvent( new MoPubEvent( MoPubEvent.LOAD_FAILED ) );
+					dispatchEvent( new MoPubEvent( MoPubEvent.AD_FAILED_TO_LOAD ) );
+					break;
+				case InternalMessages.interstitialShown :
+					dispatchEvent( new MoPubEvent( MoPubEvent.INTERSTITIAL_SHOWN ) );
+					break;
+				case InternalMessages.interstitialClosed :
+					dispatchEvent( new MoPubEvent( MoPubEvent.AD_CLOSED ) );
 					break;
 			}
-		}
-
-		private function dispatchClose( event : Event ) : void
-		{
-			NativeApplication.nativeApplication.removeEventListener( Event.ACTIVATE, dispatchClose );
-			dispatchEvent( new MoPubEvent( MoPubEvent.AD_CLOSED ) );
 		}
 
 		public function load() : void
@@ -82,12 +81,7 @@ package com.sticksports.nativeExtensions.mopub
 
 		public function show() : Boolean
 		{
-			var success : Boolean = extensionContext.call( showInterstitial ) as Boolean;
-			if( success )
-			{
-				NativeApplication.nativeApplication.addEventListener( Event.ACTIVATE, dispatchClose );
-			}
-			return success;
+			return extensionContext.call( showInterstitial ) as Boolean;
 		}
 	}
 }
