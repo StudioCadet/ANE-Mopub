@@ -195,4 +195,12 @@
 		<copy file="../bin/actionscript/default/${name}.swc" todir="../bin" overwrite="true"/>
 		<echo message="Done."/>
 	</target>
+	
+	<!-- Export -->
+	<target name="export" description="Export the compiled ANE">
+		<echo message="Exporting the compiled ANE to ${export.dir} ..."/>
+		<copy file="../bin/${name}.ane" todir="${export.dir}" overwrite="true"/>
+		<echo message="Done."/>
+	</target>
+	
 </project>
