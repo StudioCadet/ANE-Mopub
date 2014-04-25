@@ -6,6 +6,7 @@ import java.util.Map;
 import com.adobe.fre.FREContext;
 import com.adobe.fre.FREFunction;
 import com.sticksports.nativeExtensions.mopub.functions.MoPubGetAdScaleFactor;
+import com.sticksports.nativeExtensions.mopub.functions.MoPubTrackConversion;
 
 public class MoPubExtensionContext extends FREContext
 {
@@ -25,6 +26,7 @@ public class MoPubExtensionContext extends FREContext
 		Map<String, FREFunction> functionMap = new HashMap<String, FREFunction>();
 		
 		functionMap.put("getAdScaleFactor", new MoPubGetAdScaleFactor());
+		functionMap.put("trackConversion", new MoPubTrackConversion());
 		
 		return functionMap;
 	}

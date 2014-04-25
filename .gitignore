@@ -24,3 +24,12 @@ Icon
 Thumbs.db
 .DS_Store
 /android/.settings
+/actionscript/android/.actionScriptProperties
+/actionscript/android/.flexLibProperties
+/actionscript/android/.settings/org.eclipse.core.resources.prefs
+/actionscript/default/.actionScriptProperties
+/actionscript/default/.flexLibProperties
+/actionscript/default/.settings/org.eclipse.core.resources.prefs
+/actionscript/ios/.actionScriptProperties
+/actionscript/ios/.flexLibProperties
+/actionscript/ios/.settings/org.eclipse.core.resources.prefs
