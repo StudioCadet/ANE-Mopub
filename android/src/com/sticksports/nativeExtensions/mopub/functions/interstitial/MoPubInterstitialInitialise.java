@@ -6,17 +6,12 @@ import com.adobe.fre.FREContext;
 import com.adobe.fre.FREFunction;
 import com.adobe.fre.FREObject;
 import com.sticksports.nativeExtensions.mopub.MoPubInterstitialContext;
-import com.sticksports.nativeExtensions.mopub.utils.ResourceFinder;
 
 public class MoPubInterstitialInitialise implements FREFunction
 {
 	@Override
 	public FREObject call( FREContext ctx, FREObject[] args )
 	{
-		if( ResourceFinder.context == null )
-		{
-			ResourceFinder.context = ctx.getActivity();
-		}
 
 		try
 		{
