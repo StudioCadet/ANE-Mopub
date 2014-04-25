@@ -5,7 +5,7 @@
 	<property file="build.config" />
 
 	<!-- All -->
-	<target name="all" depends="ios,android,ios-swc,android-swc,default,package" description="Full build of extension" />
+	<target name="all" depends="ios,android,ios.swc,android.swc,default.swc,swf,package" description="Full build of extension" />
 
 	<!-- iOS -->
 	<target name="ios" description="Build iOS Library">
@@ -84,9 +84,8 @@
 	</target>
 	
 	<!-- ActionScript iOS -->
-	<target name="ios-swc" description="Build ios swc library">
-		<mkdir dir="../temp/swc/content/" />
-
+	<target name="ios.swc" description="Build iOS SWC library">
+		<echo message="Building iOS SWC library ..."/>
 		<fileset dir="../actionscript" casesensitive="yes" id="classfiles.ios">
 			<include name="ios/src/**/*.as" />
 			<include name="common/src/**/*.as" />
@@ -96,24 +95,21 @@
 			<regexpmapper from=".*src.(.*)\.as" to="\1" />
 		</pathconvert>
 
-		<exec executable="${sdk.home}/bin/compc" failonerror="true">
+		<exec executable="${flex.sdk}/bin/compc${bin.ext}" failonerror="true">
+			<env key="AIR_SDK_HOME" value="${flex.sdk}"/>
 			<arg line='-source-path ../actionscript/ios/src' />
 			<arg line='-source-path+=../actionscript/common/src' />
-			<arg line='-output ../temp/swc/${name}.swc' />
+			<arg line='-output ../bin/actionscript/ios/${name}.swc' />
 			<arg line='-swf-version=13' />
-			<arg line='-external-library-path+="${sdk.home}/frameworks/libs/air/airglobal.swc"' />
+			<arg line='-external-library-path+="${flex.sdk}/frameworks/libs/air/airglobal.swc"' />
 			<arg line='-include-classes ${classlist.ios}' />
 		</exec>
-
-		<unzip src="../temp/swc/${name}.swc" dest="../temp/swc/content" overwrite="true" />
-		<copy file="../temp/swc/content/library.swf" todir="../temp/ios" overwrite="true" />
-		<delete dir="../temp/swc/content/" />
+		<echo message="Done."/>
 	</target>
 
 	<!-- ActionScript Android -->
-	<target name="android-swc" description="Build ios swc library">
-		<mkdir dir="../temp/swc/content/" />
-
+	<target name="android.swc" description="Build Android SWC library">
+		<echo message="Building Android SWC library ..."/>
 		<fileset dir="../actionscript" casesensitive="yes" id="classfiles.android">
 			<include name="android/src/**/*.as" />
 			<include name="common/src/**/*.as" />
@@ -123,24 +119,21 @@
 			<regexpmapper from=".*src.(.*)\.as" to="\1" />
 		</pathconvert>
 
-		<exec executable="${sdk.home}/bin/compc" failonerror="true">
+		<exec executable="${flex.sdk}/bin/compc${bin.ext}" failonerror="true">
+			<env key="AIR_SDK_HOME" value="${flex.sdk}"/>
 			<arg line='-source-path ../actionscript/android/src' />
 			<arg line='-source-path+=../actionscript/common/src' />
-			<arg line='-output ../temp/swc/${name}.swc' />
+			<arg line='-output ../bin/actionscript/android/${name}.swc' />
 			<arg line='-swf-version=13' />
-			<arg line='-external-library-path+="${sdk.home}/frameworks/libs/air/airglobal.swc"' />
+			<arg line='-external-library-path+="${flex.sdk}/frameworks/libs/air/airglobal.swc"' />
 			<arg line='-include-classes ${classlist.android}' />
 		</exec>
-
-		<unzip src="../temp/swc/${name}.swc" dest="../temp/swc/content" overwrite="true" />
-		<copy file="../temp/swc/content/library.swf" todir="../temp/android" overwrite="true" />
-		<delete dir="../temp/swc/content/" />
+		<echo message="Done."/>
 	</target>
 
 	<!-- ActionScript default -->
-	<target name="default" description="Build default swc library">
-		<mkdir dir="../temp/default/" />
-
+	<target name="default.swc" description="Build default SWC library">
+		<echo message="Building default SWC library ..."/>
 		<fileset dir="../actionscript" casesensitive="yes" id="classfiles.default">
 			<include name="default/src/**/*.as" />
 			<include name="common/src/**/*.as" />
@@ -150,42 +143,56 @@
 			<regexpmapper from=".*src.(.*)\.as" to="\1" />
 		</pathconvert>
 
-		<exec executable="${sdk.home}/bin/compc" failonerror="true">
+		<exec executable="${flex.sdk}/bin/compc${bin.ext}" failonerror="true">
+			<env key="AIR_SDK_HOME" value="${flex.sdk}"/>
 			<arg line='-source-path ../actionscript/default/src' />
 			<arg line='-source-path+=../actionscript/common/src' />
-			<arg line='-output ../temp/default/${name}.swc' />
+			<arg line='-output ../bin/actionscript/default/${name}.swc' />
 			<arg line='-swf-version=13' />
-			<arg line='-external-library-path+="${sdk.home}/frameworks/libs/air/airglobal.swc"' />
+			<arg line='-external-library-path+="${flex.sdk}/frameworks/libs/air/airglobal.swc"' />
 			<arg line='-include-classes ${classlist.default}' />
 		</exec>
-
-		<unzip src="../temp/default/${name}.swc" dest="../temp/default/swc" overwrite="true" />
-		<copy file="../temp/default/swc/library.swf" todir="../temp/default" overwrite="true" />
-		<delete dir="../temp/default/swc" />
+		<echo message="Done."/>
+	</target>
+	
+	<!-- Propagate library.swf -->
+	<target name="swf" description="Extract and propagate library.swf">
+		<echo message="Extracting library.swf for iOS ..."/>
+		<mkdir dir="../bin/actionscript/ios/content" />
+		<unzip src="../bin/actionscript/ios/${name}.swc" dest="../bin/actionscript/ios/content" overwrite="true" />
+		<copy file="../bin/actionscript/ios/content/library.swf" todir="../bin/ios" overwrite="true" />
+		<delete dir="../bin/actionscript/ios/content"/>
+		
+		<echo message="Extracting library.swf for Android ..."/>
+		<mkdir dir="../bin/actionscript/android/content" />
+		<unzip src="../bin/actionscript/android/${name}.swc" dest="../bin/actionscript/android/content" overwrite="true" />
+		<copy file="../bin/actionscript/android/content/library.swf" todir="../bin/android" overwrite="true" />
+		<delete dir="../bin/actionscript/android/content"/>
+		
+		<echo message="Extracting default library.swf ..."/>
+		<mkdir dir="../bin/actionscript/default/content" />
+		<unzip src="../bin/actionscript/default/${name}.swc" dest="../bin/actionscript/default/content" overwrite="true" />
+		<copy file="../bin/actionscript/default/content/library.swf" todir="../bin/default" overwrite="true" />
+		<delete dir="../bin/actionscript/default/content" />
+		
+		<echo message="Done."/>
 	</target>
 
 	<!-- Packaging -->
 	<target name="package" description="Create the extension package">
-		<exec executable="${sdk.home}/bin/adt" failonerror="true" dir="../temp">
-			<arg value="-package" />
-			<arg value="-storetype" />
-			<arg value="pkcs12" />
-			<arg value="-keystore" />
-			<arg value="${keystore.file}" />
-			<arg value="-storepass" />
-			<arg value="${keystore.password}" />
-			<arg value="-target" />
-			<arg value="ane" />
-			<arg value="${name}.ane" />
-			<arg value="../build/extension.xml" />
-			<arg line="-swc swc/${name}.swc" />
-			<arg line="-platform iPhone-ARM -platformoptions ../build/platform.xml -C ios/ ." />
-			<arg line="-platform Android-ARM -C android/ ." />
-			<arg line="-platform default -C default/ ." />
-		</exec>
-
-		<move file="../temp/${name}.ane" todir="../bin" />
-		<move file="../temp/default/${name}.swc" todir="../bin" />
-		<delete dir="../temp"/>
+		<echo message="Packaging the ANE ..."/>
+		<exec executable="${flex.sdk}/bin/adt${bat.ext}" failonerror="true" dir="../bin">
+            <arg value="-package"/>
+            <arg value="-target"/>
+            <arg value="ane"/>
+            <arg value="${name}.ane"/>
+            <arg value="../build/extension.xml"/>
+            <arg line="-swc actionscript/default/${name}.swc"/>
+            <!--<arg line="-platform iPhone-ARM -platformoptions ../build/platform.xml -C ios/ ."/>-->
+            <arg line="-platform Android-ARM -C android/ ."/>
+            <arg line="-platform default -C default/ ."/>
+        </exec>
+		<copy file="../bin/actionscript/default/${name}.swc" todir="../bin" overwrite="true"/>
+		<echo message="Done."/>
 	</target>
 </project>

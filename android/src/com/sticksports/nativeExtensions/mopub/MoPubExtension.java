@@ -7,7 +7,7 @@ import com.mopub.mobileads.MoPubConversionTracker;
 public class MoPubExtension implements FREExtension
 {
 	/** Whether the conversion tracking has been called already. */
-	private static boolean conversionTrackingDone = false;
+	private static boolean conversionTrackingCalled = false;
 	
 	@Override
 	public FREContext createContext(String label)
@@ -24,9 +24,9 @@ public class MoPubExtension implements FREExtension
 			context = new MoPubBannerContext();
 		
 		// Conversion tracking call
-		if(context != null && !conversionTrackingDone) {
+		if(context != null && !conversionTrackingCalled) {
 			new MoPubConversionTracker().reportAppOpen(context.getActivity());
-			conversionTrackingDone = true;
+			conversionTrackingCalled = true;
 		}
 		
 		return context;

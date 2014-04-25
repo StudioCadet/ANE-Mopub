@@ -2,16 +2,16 @@
 	<id>com.sticksports.nativeExtensions.MoPub</id>
 	<versionNumber>0.7.3</versionNumber>
 	<platforms>
-		<platform name="iPhone-ARM">
+		<!--<platform name="iPhone-ARM">
 			<applicationDeployment>
 				<nativeLibrary>libMoPubIosExtension.a</nativeLibrary>
 				<initializer>MoPubExtensionInitializer</initializer>
 				<finalizer>MoPubExtensionFinalizer</finalizer>
 			</applicationDeployment>
-		</platform>
+		</platform>-->
 		<platform name="Android-ARM">
 			<applicationDeployment>
-				<nativeLibrary>MoPubAndroidExtension.jar</nativeLibrary>
+				<nativeLibrary>MoPub.jar</nativeLibrary>
 				<initializer>com.sticksports.nativeExtensions.mopub.MoPubExtension</initializer>
 				<finalizer>com.sticksports.nativeExtensions.mopub.MoPubExtension</finalizer>
 			</applicationDeployment>
