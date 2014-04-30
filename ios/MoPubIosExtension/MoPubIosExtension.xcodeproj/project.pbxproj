@@ -7,6 +7,22 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		340516411910EF95007B5314 /* Chartboost.h in Headers */ = {isa = PBXBuildFile; fileRef = 3405163F1910EF95007B5314 /* Chartboost.h */; };
+		340516421910EF95007B5314 /* libChartboost.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 340516401910EF95007B5314 /* libChartboost.a */; };
+		34E1A251190E3E57001C491E /* ChartboostInterstitialCustomEvent.h in Headers */ = {isa = PBXBuildFile; fileRef = 34E1A24C190E3E57001C491E /* ChartboostInterstitialCustomEvent.h */; };
+		34E1A252190E3E57001C491E /* ChartboostInterstitialCustomEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 34E1A24D190E3E57001C491E /* ChartboostInterstitialCustomEvent.m */; };
+		34FBB5A4190FE3DD005402C5 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34FBB5A3190FE3DD005402C5 /* CFNetwork.framework */; };
+		34FBB5A6190FE406005402C5 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34FBB5A5190FE405005402C5 /* Security.framework */; };
+		34FBB5C0190FE9AF005402C5 /* libMMSDK_5.1.1.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 34FBB5BA190FE9AF005402C5 /* libMMSDK_5.1.1.a */; };
+		34FBB5C1190FE9AF005402C5 /* MMAdView.h in Headers */ = {isa = PBXBuildFile; fileRef = 34FBB5BB190FE9AF005402C5 /* MMAdView.h */; };
+		34FBB5C2190FE9AF005402C5 /* MMInterstitial.h in Headers */ = {isa = PBXBuildFile; fileRef = 34FBB5BC190FE9AF005402C5 /* MMInterstitial.h */; };
+		34FBB5C3190FE9AF005402C5 /* MMRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 34FBB5BD190FE9AF005402C5 /* MMRequest.h */; };
+		34FBB5C4190FE9AF005402C5 /* MMSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = 34FBB5BE190FE9AF005402C5 /* MMSDK.h */; };
+		34FBB5C5190FE9AF005402C5 /* SpeechKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34FBB5BF190FE9AF005402C5 /* SpeechKit.framework */; };
+		34FBB5CA190FECAE005402C5 /* MPMillennialBannerCustomEvent.h in Headers */ = {isa = PBXBuildFile; fileRef = 34FBB5C6190FECAE005402C5 /* MPMillennialBannerCustomEvent.h */; };
+		34FBB5CB190FECAE005402C5 /* MPMillennialBannerCustomEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 34FBB5C7190FECAE005402C5 /* MPMillennialBannerCustomEvent.m */; };
+		34FBB5CC190FECAE005402C5 /* MPMillennialInterstitialCustomEvent.h in Headers */ = {isa = PBXBuildFile; fileRef = 34FBB5C8190FECAE005402C5 /* MPMillennialInterstitialCustomEvent.h */; };
+		34FBB5CD190FECAE005402C5 /* MPMillennialInterstitialCustomEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 34FBB5C9190FECAE005402C5 /* MPMillennialInterstitialCustomEvent.m */; };
 		34FCEB7F190959FE00A74476 /* MPBannerAdManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 34FCEAD6190959FE00A74476 /* MPBannerAdManager.h */; };
 		34FCEB80190959FE00A74476 /* MPBannerAdManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 34FCEAD7190959FE00A74476 /* MPBannerAdManager.m */; };
 		34FCEB81190959FE00A74476 /* MPBannerAdManagerDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 34FCEAD8190959FE00A74476 /* MPBannerAdManagerDelegate.h */; };
@@ -164,7 +180,6 @@
 		79A6D48C1636C14D009DA60A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79A6D48B1636C14D009DA60A /* Foundation.framework */; };
 		79A6D4931636C14D009DA60A /* MoPubIosExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 79A6D4921636C14D009DA60A /* MoPubIosExtension.m */; };
 		79A6D52E1636DFB1009DA60A /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79A6D52A1636DFB1009DA60A /* CoreLocation.framework */; };
-		79A6D52F1636DFB1009DA60A /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79A6D52B1636DFB1009DA60A /* iAd.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		79A6D5301636DFB1009DA60A /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79A6D52C1636DFB1009DA60A /* StoreKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		79A6D5321636DFE1009DA60A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79A6D52D1636DFB1009DA60A /* UIKit.framework */; };
 		79A6D5351636E4A9009DA60A /* MoPubBanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 79A6D5341636E4A9009DA60A /* MoPubBanner.m */; };
@@ -186,9 +201,6 @@
 		79F87D2F177B41AC0047359B /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79F87D21177B41950047359B /* AddressBookUI.framework */; };
 		79F87D30177B41AC0047359B /* EventKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79F87D22177B41950047359B /* EventKit.framework */; };
 		79F87D31177B41AC0047359B /* EventKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79F87D23177B41950047359B /* EventKitUI.framework */; };
-		79F87D32177B41AC0047359B /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 79F87D24177B41950047359B /* libsqlite3.dylib */; };
-		79F87D33177B41AC0047359B /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 79F87D25177B41950047359B /* libz.dylib */; };
-		79F87D34177B41AC0047359B /* Twitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79F87D26177B41950047359B /* Twitter.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -196,7 +208,7 @@
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "include/${PRODUCT_NAME}";
-			dstSubfolderSpec = 16;
+			dstSubfolderSpec = 7;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -204,6 +216,22 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		3405163F1910EF95007B5314 /* Chartboost.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Chartboost.h; sourceTree = "<group>"; };
+		340516401910EF95007B5314 /* libChartboost.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libChartboost.a; sourceTree = "<group>"; };
+		34E1A24C190E3E57001C491E /* ChartboostInterstitialCustomEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChartboostInterstitialCustomEvent.h; sourceTree = "<group>"; };
+		34E1A24D190E3E57001C491E /* ChartboostInterstitialCustomEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChartboostInterstitialCustomEvent.m; sourceTree = "<group>"; };
+		34FBB5A3190FE3DD005402C5 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		34FBB5A5190FE405005402C5 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		34FBB5BA190FE9AF005402C5 /* libMMSDK_5.1.1.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libMMSDK_5.1.1.a; sourceTree = "<group>"; };
+		34FBB5BB190FE9AF005402C5 /* MMAdView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMAdView.h; sourceTree = "<group>"; };
+		34FBB5BC190FE9AF005402C5 /* MMInterstitial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMInterstitial.h; sourceTree = "<group>"; };
+		34FBB5BD190FE9AF005402C5 /* MMRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMRequest.h; sourceTree = "<group>"; };
+		34FBB5BE190FE9AF005402C5 /* MMSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMSDK.h; sourceTree = "<group>"; };
+		34FBB5BF190FE9AF005402C5 /* SpeechKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SpeechKit.framework; path = SpeechKit/SpeechKit.framework; sourceTree = "<group>"; };
+		34FBB5C6190FECAE005402C5 /* MPMillennialBannerCustomEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPMillennialBannerCustomEvent.h; sourceTree = "<group>"; };
+		34FBB5C7190FECAE005402C5 /* MPMillennialBannerCustomEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPMillennialBannerCustomEvent.m; sourceTree = "<group>"; };
+		34FBB5C8190FECAE005402C5 /* MPMillennialInterstitialCustomEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPMillennialInterstitialCustomEvent.h; sourceTree = "<group>"; };
+		34FBB5C9190FECAE005402C5 /* MPMillennialInterstitialCustomEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPMillennialInterstitialCustomEvent.m; sourceTree = "<group>"; };
 		34FCEAD6190959FE00A74476 /* MPBannerAdManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPBannerAdManager.h; sourceTree = "<group>"; };
 		34FCEAD7190959FE00A74476 /* MPBannerAdManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPBannerAdManager.m; sourceTree = "<group>"; };
 		34FCEAD8190959FE00A74476 /* MPBannerAdManagerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPBannerAdManagerDelegate.h; sourceTree = "<group>"; };
@@ -361,7 +389,6 @@
 		34FCEB7A190959FE00A74476 /* MPTableViewAdManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPTableViewAdManager.m; sourceTree = "<group>"; };
 		34FCEB7C190959FE00A74476 /* MPCloseButtonX.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MPCloseButtonX.png; sourceTree = "<group>"; };
 		34FCEB7D190959FE00A74476 /* MPCloseButtonX@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MPCloseButtonX@2x.png"; sourceTree = "<group>"; };
-		34FCEB7E190959FE00A74476 /* MRAID.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MRAID.bundle; sourceTree = "<group>"; };
 		7914017C163AE16E004D6EE6 /* MoPubTypeConversion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoPubTypeConversion.h; sourceTree = "<group>"; };
 		7914017D163AE16E004D6EE6 /* MoPubTypeConversion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoPubTypeConversion.m; sourceTree = "<group>"; };
 		798280F71638070D00DC7413 /* MoPubInternalMessages.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MoPubInternalMessages.h; sourceTree = "<group>"; };
@@ -370,7 +397,6 @@
 		79A6D4921636C14D009DA60A /* MoPubIosExtension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MoPubIosExtension.m; sourceTree = "<group>"; };
 		79A6D49F1636D8DA009DA60A /* FlashRuntimeExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlashRuntimeExtensions.h; sourceTree = "<group>"; };
 		79A6D52A1636DFB1009DA60A /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
-		79A6D52B1636DFB1009DA60A /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
 		79A6D52C1636DFB1009DA60A /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		79A6D52D1636DFB1009DA60A /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		79A6D5331636E4A9009DA60A /* MoPubBanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoPubBanner.h; sourceTree = "<group>"; };
@@ -395,7 +421,6 @@
 		79F87D23177B41950047359B /* EventKitUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKitUI.framework; path = System/Library/Frameworks/EventKitUI.framework; sourceTree = SDKROOT; };
 		79F87D24177B41950047359B /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		79F87D25177B41950047359B /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
-		79F87D26177B41950047359B /* Twitter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Twitter.framework; path = System/Library/Frameworks/Twitter.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -403,20 +428,21 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				34FBB5A6190FE406005402C5 /* Security.framework in Frameworks */,
 				79F87D2E177B41AC0047359B /* AddressBook.framework in Frameworks */,
 				79F87D2F177B41AC0047359B /* AddressBookUI.framework in Frameworks */,
 				79F66B1B1652882800E917FB /* AdSupport.framework in Frameworks */,
 				79BF9891174A1DB80038F1F1 /* AudioToolbox.framework in Frameworks */,
 				79BF9895174A1DCA0038F1F1 /* AVFoundation.framework in Frameworks */,
+				34FBB5A4190FE3DD005402C5 /* CFNetwork.framework in Frameworks */,
 				79BF9897174A1DD10038F1F1 /* CoreGraphics.framework in Frameworks */,
 				79A6D52E1636DFB1009DA60A /* CoreLocation.framework in Frameworks */,
+				340516421910EF95007B5314 /* libChartboost.a in Frameworks */,
 				79F87A43177B35630047359B /* CoreTelephony.framework in Frameworks */,
 				79F87D30177B41AC0047359B /* EventKit.framework in Frameworks */,
+				34FBB5C5190FE9AF005402C5 /* SpeechKit.framework in Frameworks */,
 				79F87D31177B41AC0047359B /* EventKitUI.framework in Frameworks */,
 				79A6D48C1636C14D009DA60A /* Foundation.framework in Frameworks */,
-				79A6D52F1636DFB1009DA60A /* iAd.framework in Frameworks */,
-				79F87D32177B41AC0047359B /* libsqlite3.dylib in Frameworks */,
-				79F87D33177B41AC0047359B /* libz.dylib in Frameworks */,
 				79BF9899174A1DDA0038F1F1 /* MediaPlayer.framework in Frameworks */,
 				79BF9893174A1DC50038F1F1 /* MessageUI.framework in Frameworks */,
 				79BF989B174A1DE50038F1F1 /* MobileCoreServices.framework in Frameworks */,
@@ -424,8 +450,8 @@
 				79BF989D174A1DEC0038F1F1 /* QuartzCore.framework in Frameworks */,
 				79F87A49177B35DC0047359B /* Social.framework in Frameworks */,
 				79A6D5301636DFB1009DA60A /* StoreKit.framework in Frameworks */,
+				34FBB5C0190FE9AF005402C5 /* libMMSDK_5.1.1.a in Frameworks */,
 				79BF989F174A1DF60038F1F1 /* SystemConfiguration.framework in Frameworks */,
-				79F87D34177B41AC0047359B /* Twitter.framework in Frameworks */,
 				79A6D5321636DFE1009DA60A /* UIKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -433,6 +459,42 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		34E1A24B190E3E57001C491E /* Chartboost */ = {
+			isa = PBXGroup;
+			children = (
+				34E1A24C190E3E57001C491E /* ChartboostInterstitialCustomEvent.h */,
+				34E1A24D190E3E57001C491E /* ChartboostInterstitialCustomEvent.m */,
+				34E1A24E190E3E57001C491E /* SDK */,
+			);
+			path = Chartboost;
+			sourceTree = "<group>";
+		};
+		34E1A24E190E3E57001C491E /* SDK */ = {
+			isa = PBXGroup;
+			children = (
+				3405163F1910EF95007B5314 /* Chartboost.h */,
+				340516401910EF95007B5314 /* libChartboost.a */,
+			);
+			path = SDK;
+			sourceTree = "<group>";
+		};
+		34FBB5A9190FE4CF005402C5 /* MillenialMedia */ = {
+			isa = PBXGroup;
+			children = (
+				34FBB5C6190FECAE005402C5 /* MPMillennialBannerCustomEvent.h */,
+				34FBB5C7190FECAE005402C5 /* MPMillennialBannerCustomEvent.m */,
+				34FBB5C8190FECAE005402C5 /* MPMillennialInterstitialCustomEvent.h */,
+				34FBB5C9190FECAE005402C5 /* MPMillennialInterstitialCustomEvent.m */,
+				34FBB5BA190FE9AF005402C5 /* libMMSDK_5.1.1.a */,
+				34FBB5BB190FE9AF005402C5 /* MMAdView.h */,
+				34FBB5BC190FE9AF005402C5 /* MMInterstitial.h */,
+				34FBB5BD190FE9AF005402C5 /* MMRequest.h */,
+				34FBB5BE190FE9AF005402C5 /* MMSDK.h */,
+				34FBB5BF190FE9AF005402C5 /* SpeechKit.framework */,
+			);
+			path = MillenialMedia;
+			sourceTree = "<group>";
+		};
 		34FCEAD3190959FE00A74476 /* MoPubSDK */ = {
 			isa = PBXGroup;
 			children = (
@@ -697,7 +759,6 @@
 			children = (
 				34FCEB7C190959FE00A74476 /* MPCloseButtonX.png */,
 				34FCEB7D190959FE00A74476 /* MPCloseButtonX@2x.png */,
-				34FCEB7E190959FE00A74476 /* MRAID.bundle */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -705,8 +766,9 @@
 		79A6D47D1636C14C009DA60A = {
 			isa = PBXGroup;
 			children = (
+				34FBB5A9190FE4CF005402C5 /* MillenialMedia */,
+				34E1A24B190E3E57001C491E /* Chartboost */,
 				34FCEAD3190959FE00A74476 /* MoPubSDK */,
-				79F87C52177B3DE90047359B /* Networks */,
 				79F87C15177B38240047359B /* AdNetworkSupport */,
 				79A6D48D1636C14D009DA60A /* MoPubIosExtension */,
 				79A6D48A1636C14D009DA60A /* Frameworks */,
@@ -725,13 +787,14 @@
 		79A6D48A1636C14D009DA60A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				34FBB5A5190FE405005402C5 /* Security.framework */,
+				34FBB5A3190FE3DD005402C5 /* CFNetwork.framework */,
 				79F87D20177B41950047359B /* AddressBook.framework */,
 				79F87D21177B41950047359B /* AddressBookUI.framework */,
 				79F87D22177B41950047359B /* EventKit.framework */,
 				79F87D23177B41950047359B /* EventKitUI.framework */,
 				79F87D24177B41950047359B /* libsqlite3.dylib */,
 				79F87D25177B41950047359B /* libz.dylib */,
-				79F87D26177B41950047359B /* Twitter.framework */,
 				79F66B181652881600E917FB /* AdSupport.framework */,
 				79BF9890174A1DB80038F1F1 /* AudioToolbox.framework */,
 				79BF9894174A1DCA0038F1F1 /* AVFoundation.framework */,
@@ -739,7 +802,6 @@
 				79A6D52A1636DFB1009DA60A /* CoreLocation.framework */,
 				79F87A41177B35580047359B /* CoreTelephony.framework */,
 				79A6D48B1636C14D009DA60A /* Foundation.framework */,
-				79A6D52B1636DFB1009DA60A /* iAd.framework */,
 				79BF9898174A1DDA0038F1F1 /* MediaPlayer.framework */,
 				79BF9892174A1DC50038F1F1 /* MessageUI.framework */,
 				79BF989A174A1DE50038F1F1 /* MobileCoreServices.framework */,
@@ -777,13 +839,6 @@
 			path = "../../gitignore/mopub-ios-sdk/AdNetworkSupport";
 			sourceTree = "<group>";
 		};
-		79F87C52177B3DE90047359B /* Networks */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Networks;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -804,6 +859,7 @@
 				34FCEBAC190959FE00A74476 /* MPBaseInterstitialAdapter.h in Headers */,
 				34FCEBDB190959FE00A74476 /* NSURL+MPAdditions.h in Headers */,
 				34FCEBD5190959FE00A74476 /* MRProperty.h in Headers */,
+				34FBB5CA190FECAE005402C5 /* MPMillennialBannerCustomEvent.h in Headers */,
 				34FCEB88190959FE00A74476 /* MPPrivateBannerCustomEventDelegate.h in Headers */,
 				34FCEC02190959FE00A74476 /* UITableViewCell+MPNativeAd.h in Headers */,
 				34FCEC00190959FE00A74476 /* UIImageView+MPNativeAd.h in Headers */,
@@ -811,12 +867,15 @@
 				34FCEBB3190959FE00A74476 /* MPInterstitialViewController.h in Headers */,
 				34FCEC16190959FE00A74476 /* MPTableViewAdManager.h in Headers */,
 				34FCEBDF190959FE00A74476 /* UIWebView+MPAdditions.h in Headers */,
+				34FBB5C1190FE9AF005402C5 /* MMAdView.h in Headers */,
 				34FCEBFF190959FE00A74476 /* MPInterstitialCustomEventDelegate.h in Headers */,
+				34FBB5C3190FE9AF005402C5 /* MMRequest.h in Headers */,
 				34FCEB97190959FE00A74476 /* MPFacebookKeywordProvider.h in Headers */,
 				34FCEB93190959FE00A74476 /* MPAdServerCommunicator.h in Headers */,
 				34FCEBCF190959FE00A74476 /* MRImageDownloader.h in Headers */,
 				34FCEBC0190959FE00A74476 /* MPMRAIDInterstitialViewController.h in Headers */,
 				34FCEBD9190959FE00A74476 /* NSJSONSerialization+MPAdditions.h in Headers */,
+				34FBB5C2190FE9AF005402C5 /* MMInterstitial.h in Headers */,
 				34FCEB91190959FE00A74476 /* MPAdDestinationDisplayAgent.h in Headers */,
 				34FCEC06190959FE00A74476 /* MPImageDownloadQueue.h in Headers */,
 				34FCEB9C190959FE00A74476 /* MPLastResortDelegate.h in Headers */,
@@ -830,6 +889,7 @@
 				34FCEB9A190959FE00A74476 /* MPLastResortDelegate+EventKit.h in Headers */,
 				34FCEBE9190959FE00A74476 /* MPLogging.h in Headers */,
 				34FCEBE7190959FE00A74476 /* MPIdentityProvider.h in Headers */,
+				340516411910EF95007B5314 /* Chartboost.h in Headers */,
 				34FCEB81190959FE00A74476 /* MPBannerAdManagerDelegate.h in Headers */,
 				34FCEBB0190959FE00A74476 /* MPInterstitialAdManagerDelegate.h in Headers */,
 				34FCEBA6190959FE00A74476 /* MPHTMLBannerCustomEvent.h in Headers */,
@@ -852,6 +912,7 @@
 				34FCEC0B190959FE00A74476 /* MPTableViewCellImpressionTracker.h in Headers */,
 				34FCEBA8190959FE00A74476 /* MPHTMLInterstitialCustomEvent.h in Headers */,
 				34FCEBC9190959FE00A74476 /* MRCalendarManager.h in Headers */,
+				34FBB5CC190FECAE005402C5 /* MPMillennialInterstitialCustomEvent.h in Headers */,
 				34FCEC08190959FE00A74476 /* MPNativeAd+Internal.h in Headers */,
 				34FCEBE1190959FE00A74476 /* MPAnalyticsTracker.h in Headers */,
 				34FCEBF5190959FE00A74476 /* MPAdView.h in Headers */,
@@ -861,7 +922,9 @@
 				34FCEBC3190959FE00A74476 /* MRAdView.h in Headers */,
 				34FCEC12190959FE00A74476 /* MPNativeAdRequest.h in Headers */,
 				34FCEBC2190959FE00A74476 /* MRAdView+Controllers.h in Headers */,
+				34FBB5C4190FE9AF005402C5 /* MMSDK.h in Headers */,
 				34FCEBBE190959FE00A74476 /* MPMRAIDInterstitialCustomEvent.h in Headers */,
+				34E1A251190E3E57001C491E /* ChartboostInterstitialCustomEvent.h in Headers */,
 				34FCEBFB190959FE00A74476 /* MPInterstitialAdController.h in Headers */,
 				34FCEB8B190959FE00A74476 /* MPAdAlertManager.h in Headers */,
 				34FCEBBC190959FE00A74476 /* MPMRAIDBannerCustomEvent.h in Headers */,
@@ -904,7 +967,7 @@
 		79A6D47F1636C14C009DA60A /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0450;
+				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = "Richard Lord";
 			};
 			buildConfigurationList = 79A6D4821636C14C009DA60A /* Build configuration list for PBXProject "MoPubIosExtension" */;
@@ -933,6 +996,7 @@
 				79A6D4931636C14D009DA60A /* MoPubIosExtension.m in Sources */,
 				34FCEC0C190959FE00A74476 /* MPTableViewCellImpressionTracker.m in Sources */,
 				34FCEB94190959FE00A74476 /* MPAdServerCommunicator.m in Sources */,
+				34E1A252190E3E57001C491E /* ChartboostInterstitialCustomEvent.m in Sources */,
 				34FCEBE0190959FE00A74476 /* UIWebView+MPAdditions.m in Sources */,
 				79A6D5351636E4A9009DA60A /* MoPubBanner.m in Sources */,
 				34FCEC0A190959FE00A74476 /* MPNativeCache.m in Sources */,
@@ -941,6 +1005,7 @@
 				34FCEBBF190959FE00A74476 /* MPMRAIDInterstitialCustomEvent.m in Sources */,
 				34FCEBF6190959FE00A74476 /* MPAdView.m in Sources */,
 				34FCEBB9190959FE00A74476 /* MPCoreInstanceProvider.m in Sources */,
+				34FBB5CD190FECAE005402C5 /* MPMillennialInterstitialCustomEvent.m in Sources */,
 				34FCEBAF190959FE00A74476 /* MPInterstitialAdManager.m in Sources */,
 				34FCEC0E190959FE00A74476 /* MPNativeAd.m in Sources */,
 				34FCEBA7190959FE00A74476 /* MPHTMLBannerCustomEvent.m in Sources */,
@@ -963,6 +1028,7 @@
 				34FCEC13190959FE00A74476 /* MPNativeAdRequest.m in Sources */,
 				34FCEBEE190959FE00A74476 /* MPSessionTracker.m in Sources */,
 				34FCEBA9190959FE00A74476 /* MPHTMLInterstitialCustomEvent.m in Sources */,
+				34FBB5CB190FECAE005402C5 /* MPMillennialBannerCustomEvent.m in Sources */,
 				34FCEBD0190959FE00A74476 /* MRImageDownloader.m in Sources */,
 				34FCEB8E190959FE00A74476 /* MPAdBrowserController.m in Sources */,
 				34FCEB8A190959FE00A74476 /* MPAdAlertGestureRecognizer.m in Sources */,
@@ -1033,6 +1099,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				VALID_ARCHS = "armv7 armv7s arm64";
 			};
 			name = Debug;
 		};
@@ -1052,44 +1119,27 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
+				VALID_ARCHS = "armv7 armv7s arm64";
 			};
 			name = Release;
 		};
 		79A6D4971636C14D009DA60A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = armv7;
 				DSTROOT = /tmp/MoPubIosExtension.dst;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/../../gitignore/MillenialMediaSDK/mm_ios_sdk_5.1.1/SampleApp\"",
-					"\"$(SRCROOT)/../../gitignore/MillenialMediaSDK/mm_ios_sdk_5.1.1/SpeechKit\"",
+					"/Users/Toine/Dev/ANE-Mopub/ios/MoPubIosExtension",
+					"/Users/Toine/Dev/ANE-Mopub/ios/MoPubIosExtension/MillenialMedia",
+					"/Users/Toine/Dev/ANE-Mopub/ios/MoPubIosExtension/MillenialMedia/SpeechKit",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "";
 				GCC_WARN_ABOUT_POINTER_SIGNEDNESS = NO;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\\\"$(SRCROOT)/../../gitignore/MillenialMediaSDK\\\"",
-					"\\\"$(SRCROOT)/../../gitignore/MillenialMediaSDK/mmedia_ios_sdk_4-6-1/MMSDK\\\"",
-					"\\\"$(SRCROOT)/../../gitignore/AdMobSDK/GoogleAdMobAdsSdkiOS-6.2.1\\\"",
-					"\\\"$(SRCROOT)/../../gitignore/MillenialMediaSDK/mmedia_ios_sdk_4-6-2/MMSDK\\\"",
-					"\\\"$(SRCROOT)/../../gitignore/AdMobSDK/GoogleAdMobAdsSdkiOS-6.3.0\\\"",
-					"\\\"$(SRCROOT)/../../gitignore/AdMobSDK/GoogleAdMobAdsSdkiOS-6.4.1\\\"",
-					"\\\"$(SRCROOT)/../../gitignore/AdMobSDK/GoogleAdMobAdsSdkiOS-6.4.2/Add-ons/GoogleAnalyticsiOS_2.0beta4/Library\\\"",
-					"\\\"$(SRCROOT)/../../gitignore/AdMobSDK/GoogleAdMobAdsSdkiOS-6.4.2\\\"",
-					"\\\"$(SRCROOT)/../../gitignore/ChartboostSDK/Chartboost-ios-sdk\\\"",
-					"\\\"$(SRCROOT)/../../gitignore/GreystripeSDK/greystripe-ios-sdk/GreystripeSDK\\\"",
-					"\\\"$(SRCROOT)/../../gitignore/InMobiSDK/InMobi_iOS_SDK_3.7.0/Libs\\\"",
-					"\\\"$(SRCROOT)/../../gitignore/MillenialMediaSDK/ios_5_0_1_sdk/MMSDK\\\"",
-					"\\\"$(SRCROOT)/../../gitignore/ChartboostSDK/Chartboost_ios_sdk_3.2.1\\\"",
-					"\\\"$(SRCROOT)/../../gitignore/MillenialMediaSDK/mm_ios_sdk_5.1.1/MMSDK\\\"",
-					"\\\"$(SRCROOT)/../../gitignore/MillenialMediaSDK/mm_ios_sdk_5.1.1/SampleApp/MMSDK\\\"",
-					"\\\"$(SRCROOT)/../../gitignore/AdMobSDK/GoogleAdMobAdsSdkiOS-6.5.1/Add-ons/GoogleAnalyticsServicesiOS_3.0/GoogleAnalytics/Library\\\"",
-					"\\\"$(SRCROOT)/../../gitignore/AdMobSDK/GoogleAdMobAdsSdkiOS-6.5.1/Add-ons/GoogleAnalyticsServicesiOS_3.0\\\"",
-					"\\\"$(SRCROOT)/../../gitignore/AdMobSDK/GoogleAdMobAdsSdkiOS-6.5.1\\\"",
-					/Users/Toine/Desktop/Chartboost/Chartboost,
+					"/Users/Toine/Dev/ANE-Mopub/ios/MoPubIosExtension/Chartboost/SDK",
+					"/Users/Toine/Dev/ANE-Mopub/ios/MoPubIosExtension/MillenialMedia",
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-ObjC";
@@ -1104,38 +1154,20 @@
 		79A6D4981636C14D009DA60A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = armv7;
 				DSTROOT = /tmp/MoPubIosExtension.dst;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/../../gitignore/MillenialMediaSDK/mm_ios_sdk_5.1.1/SampleApp\"",
-					"\"$(SRCROOT)/../../gitignore/MillenialMediaSDK/mm_ios_sdk_5.1.1/SpeechKit\"",
+					"/Users/Toine/Dev/ANE-Mopub/ios/MoPubIosExtension",
+					"/Users/Toine/Dev/ANE-Mopub/ios/MoPubIosExtension/MillenialMedia",
+					"/Users/Toine/Dev/ANE-Mopub/ios/MoPubIosExtension/MillenialMedia/SpeechKit",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "";
 				GCC_WARN_ABOUT_POINTER_SIGNEDNESS = NO;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\\\"$(SRCROOT)/../../gitignore/MillenialMediaSDK\\\"",
-					"\\\"$(SRCROOT)/../../gitignore/MillenialMediaSDK/mmedia_ios_sdk_4-6-1/MMSDK\\\"",
-					"\\\"$(SRCROOT)/../../gitignore/AdMobSDK/GoogleAdMobAdsSdkiOS-6.2.1\\\"",
-					"\\\"$(SRCROOT)/../../gitignore/MillenialMediaSDK/mmedia_ios_sdk_4-6-2/MMSDK\\\"",
-					"\\\"$(SRCROOT)/../../gitignore/AdMobSDK/GoogleAdMobAdsSdkiOS-6.3.0\\\"",
-					"\\\"$(SRCROOT)/../../gitignore/AdMobSDK/GoogleAdMobAdsSdkiOS-6.4.1\\\"",
-					"\\\"$(SRCROOT)/../../gitignore/AdMobSDK/GoogleAdMobAdsSdkiOS-6.4.2/Add-ons/GoogleAnalyticsiOS_2.0beta4/Library\\\"",
-					"\\\"$(SRCROOT)/../../gitignore/AdMobSDK/GoogleAdMobAdsSdkiOS-6.4.2\\\"",
-					"\\\"$(SRCROOT)/../../gitignore/ChartboostSDK/Chartboost-ios-sdk\\\"",
-					"\\\"$(SRCROOT)/../../gitignore/GreystripeSDK/greystripe-ios-sdk/GreystripeSDK\\\"",
-					"\\\"$(SRCROOT)/../../gitignore/InMobiSDK/InMobi_iOS_SDK_3.7.0/Libs\\\"",
-					"\\\"$(SRCROOT)/../../gitignore/MillenialMediaSDK/ios_5_0_1_sdk/MMSDK\\\"",
-					"\\\"$(SRCROOT)/../../gitignore/ChartboostSDK/Chartboost_ios_sdk_3.2.1\\\"",
-					"\\\"$(SRCROOT)/../../gitignore/MillenialMediaSDK/mm_ios_sdk_5.1.1/MMSDK\\\"",
-					"\\\"$(SRCROOT)/../../gitignore/MillenialMediaSDK/mm_ios_sdk_5.1.1/SampleApp/MMSDK\\\"",
-					"\\\"$(SRCROOT)/../../gitignore/AdMobSDK/GoogleAdMobAdsSdkiOS-6.5.1/Add-ons/GoogleAnalyticsServicesiOS_3.0/GoogleAnalytics/Library\\\"",
-					"\\\"$(SRCROOT)/../../gitignore/AdMobSDK/GoogleAdMobAdsSdkiOS-6.5.1/Add-ons/GoogleAnalyticsServicesiOS_3.0\\\"",
-					"\\\"$(SRCROOT)/../../gitignore/AdMobSDK/GoogleAdMobAdsSdkiOS-6.5.1\\\"",
-					/Users/Toine/Desktop/Chartboost/Chartboost,
+					"/Users/Toine/Dev/ANE-Mopub/ios/MoPubIosExtension/Chartboost/SDK",
+					"/Users/Toine/Dev/ANE-Mopub/ios/MoPubIosExtension/MillenialMedia",
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-ObjC";
