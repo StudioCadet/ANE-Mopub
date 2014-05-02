@@ -1,12 +1,12 @@
 package com.sticksports.nativeExtensions.mopub.functions.banner;
 
-import android.util.Log;
 import android.widget.FrameLayout;
 
 import com.adobe.fre.FREContext;
 import com.adobe.fre.FREFunction;
 import com.adobe.fre.FREObject;
 import com.sticksports.nativeExtensions.mopub.MoPubBannerContext;
+import com.sticksports.nativeExtensions.mopub.MoPubExtension;
 
 public class MoPubBannerSetPositionY implements FREFunction
 {
@@ -26,10 +26,12 @@ public class MoPubBannerSetPositionY implements FREFunction
 		    	params.topMargin = y;
 		    	context.getBanner().setLayoutParams(params);
 		    }
+		    MoPubExtension.log("Banner Y position set to " + y);
 		}
 		catch ( Exception exception )
 		{
-			Log.w( "MoPub", exception );
+			MoPubExtension.logW(exception.toString());
+			exception.printStackTrace();
 		}
 		return null;
 	}

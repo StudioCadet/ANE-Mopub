@@ -1,10 +1,9 @@
 package com.sticksports.nativeExtensions.mopub.functions.interstitial;
 
-import android.util.Log;
-
 import com.adobe.fre.FREContext;
 import com.adobe.fre.FREFunction;
 import com.adobe.fre.FREObject;
+import com.sticksports.nativeExtensions.mopub.MoPubExtension;
 import com.sticksports.nativeExtensions.mopub.MoPubInterstitialContext;
 
 public class MoPubInterstitialInitialise implements FREFunction
@@ -18,10 +17,12 @@ public class MoPubInterstitialInitialise implements FREFunction
 			MoPubInterstitialContext context = (MoPubInterstitialContext) ctx;
 			String adUnitId = args[0].getAsString();
 			context.createInterstitial( adUnitId );
+			MoPubExtension.log("Interstitial created for ad unit " + adUnitId);
 		}
 		catch ( Exception exception )
 		{
-			Log.w( "MoPub", exception );
+			MoPubExtension.logW(exception.toString());
+			exception.printStackTrace();
 		}
 		return null;
 	}

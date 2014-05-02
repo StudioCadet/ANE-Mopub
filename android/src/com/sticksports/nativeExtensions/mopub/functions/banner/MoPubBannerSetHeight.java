@@ -1,12 +1,12 @@
 package com.sticksports.nativeExtensions.mopub.functions.banner;
 
-import android.util.Log;
 import android.widget.FrameLayout;
 
 import com.adobe.fre.FREContext;
 import com.adobe.fre.FREFunction;
 import com.adobe.fre.FREObject;
 import com.sticksports.nativeExtensions.mopub.MoPubBannerContext;
+import com.sticksports.nativeExtensions.mopub.MoPubExtension;
 
 public class MoPubBannerSetHeight implements FREFunction
 {
@@ -26,10 +26,13 @@ public class MoPubBannerSetHeight implements FREFunction
 		    	params.height = height;
 			   	context.getBanner().setLayoutParams(params);
 		    }
+		    
+		    MoPubExtension.log("Banner height set to " + height);
 		}
 		catch ( Exception exception )
 		{
-			Log.w( "MoPub", exception );
+			MoPubExtension.logW(exception.toString());
+			exception.printStackTrace();
 		}
 		return null;
 	}

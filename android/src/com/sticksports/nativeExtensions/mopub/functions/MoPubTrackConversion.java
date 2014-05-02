@@ -1,11 +1,10 @@
 package com.sticksports.nativeExtensions.mopub.functions;
 
-import android.util.Log;
-
 import com.adobe.fre.FREContext;
 import com.adobe.fre.FREFunction;
 import com.adobe.fre.FREObject;
 import com.mopub.mobileads.MoPubConversionTracker;
+import com.sticksports.nativeExtensions.mopub.MoPubExtension;
 
 public class MoPubTrackConversion implements FREFunction {
 
@@ -14,9 +13,10 @@ public class MoPubTrackConversion implements FREFunction {
 		
 		try {
 			new MoPubConversionTracker().reportAppOpen(context.getActivity());
+			MoPubExtension.log("Conversion tracked successfully.");
 		}
 		catch (Exception e) {
-			Log.w("MoPub", e);
+			MoPubExtension.logW(e.toString());
 			e.printStackTrace();
 		}
 		return null;
