@@ -23,6 +23,7 @@ import com.sticksports.nativeExtensions.mopub.functions.banner.MoPubBannerRemove
 import com.sticksports.nativeExtensions.mopub.functions.banner.MoPubBannerSetAdUnitId;
 import com.sticksports.nativeExtensions.mopub.functions.banner.MoPubBannerSetAutorefresh;
 import com.sticksports.nativeExtensions.mopub.functions.banner.MoPubBannerSetHeight;
+import com.sticksports.nativeExtensions.mopub.functions.banner.MoPubBannerSetKeywords;
 import com.sticksports.nativeExtensions.mopub.functions.banner.MoPubBannerSetPositionX;
 import com.sticksports.nativeExtensions.mopub.functions.banner.MoPubBannerSetPositionY;
 import com.sticksports.nativeExtensions.mopub.functions.banner.MoPubBannerSetSize;
@@ -124,6 +125,8 @@ public class MoPubBannerContext extends FREContext implements BannerAdListener {
 		functionMap.put("getCreativeWidth", new MoPubBannerGetCreativeWidth());
 		functionMap.put("getCreativeHeight", new MoPubBannerGetCreativeHeight());
 
+		functionMap.put("setBannerKeywords", new MoPubBannerSetKeywords());
+		
 		functionMap.put("loadBanner", new MoPubBannerLoad());
 		functionMap.put("showBanner", new MoPubBannerShow());
 		functionMap.put("removeBanner", new MoPubBannerRemove());

@@ -11,6 +11,7 @@ import com.mopub.mobileads.MoPubInterstitial.InterstitialAdListener;
 import com.sticksports.nativeExtensions.mopub.functions.interstitial.MoPubInterstitialGetIsReady;
 import com.sticksports.nativeExtensions.mopub.functions.interstitial.MoPubInterstitialInitialise;
 import com.sticksports.nativeExtensions.mopub.functions.interstitial.MoPubInterstitialLoad;
+import com.sticksports.nativeExtensions.mopub.functions.interstitial.MoPubInterstitialSetKeywords;
 import com.sticksports.nativeExtensions.mopub.functions.interstitial.MoPubInterstitialSetTestMode;
 import com.sticksports.nativeExtensions.mopub.functions.interstitial.MoPubInterstitialShow;
 
@@ -99,6 +100,8 @@ public class MoPubInterstitialContext extends FREContext implements Interstitial
 		
 		functionMap.put("setInterstitialTestMode", new MoPubInterstitialSetTestMode());
 		functionMap.put("getInterstitialReady", new MoPubInterstitialGetIsReady());
+		
+		functionMap.put("setInterstitialKeywords", new MoPubInterstitialSetKeywords());
 		
 		functionMap.put("loadInterstitial", new MoPubInterstitialLoad());
 		functionMap.put("showInterstitial", new MoPubInterstitialShow());
