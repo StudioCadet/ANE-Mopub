@@ -1,22 +1,16 @@
 package com.sticksports.nativeExtensions.mopub.functions.banner;
 
-import android.util.Log;
-
 import com.adobe.fre.FREContext;
 import com.adobe.fre.FREFunction;
 import com.adobe.fre.FREObject;
 import com.sticksports.nativeExtensions.mopub.MoPubBannerContext;
-import com.sticksports.nativeExtensions.mopub.utils.ResourceFinder;
+import com.sticksports.nativeExtensions.mopub.MoPubExtension;
 
 public class MoPubBannerInitialise implements FREFunction
 {
 	@Override
 	public FREObject call( FREContext ctx, FREObject[] args )
 	{
-		if( ResourceFinder.context == null )
-		{
-			ResourceFinder.context = ctx.getActivity();
-		}
 
 		try
 		{
@@ -45,10 +39,12 @@ public class MoPubBannerInitialise implements FREFunction
 					context.getBanner().setPlannedHeight( (int) Math.ceil( 600 * density ) );
 					break;
 			}
+			MoPubExtension.log("Banner initialized (size set to " + context.getBanner().getPlannedWidth() + "x" + context.getBanner().getPlannedHeight() + ")");
 		}
 		catch ( Exception exception )
 		{
-			Log.w( "MoPub", exception );
+			MoPubExtension.logW(exception.toString());
+			exception.printStackTrace();
 		}
 		return null;
 	}

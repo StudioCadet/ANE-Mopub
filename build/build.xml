@@ -51,35 +51,35 @@
 		<javac destdir="../bin/android/temp/classes" includeantruntime="false" target="1.6" source="1.6" fork="yes" executable="${javac.dir}/javac${bin.ext}">
 			<src path="../android/src" />
 			<src path="${mopub.android.sdk}/mopub-sdk/src/main/java" />
-			<!--<src path="${mopub.android.sdk}/extras/src" />-->
-			<!--<exclude name="com/mopub/mobileads/GreystripeBanner.java" />-->
-			<!--<exclude name="com/mopub/mobileads/GreystripeInterstitial.java" />-->
-			<!--<exclude name="com/mopub/mobileads/InMobiBanner.java" />-->
-			<!--<exclude name="com/mopub/mobileads/InMobiInterstitial.java" />-->
 			<classpath>
 				<pathelement location="${android.sdk}/android.jar" />
 				<pathelement location="${flex.sdk}/lib/android/FlashRuntimeExtensions.jar"/>
 				<pathelement location="${mopub.android.sdk}/mopub-sdk/libs/android-support-v4.jar" />
-				<!--<pathelement location="${admob.android.jar}" />-->
-				<!--<pathelement location="${millennial.android.jar}" />-->
-				<!--<pathelement location="${chartboost.android.jar}" />-->
+				<pathelement location="../android/libs/chartboost.jar"/>
 			</classpath>
 		</javac>
 
 		<mkdir dir="../bin/android/temp/zip" />
-		<!--<unzip dest="../bin/android/temp/zip" src="${admob.android.jar}" />-->
-		<!--<unzip dest="../bin/android/temp/zip" src="${millennial.android.jar}" />-->
-		<!--<unzip dest="../bin/android/temp/zip" src="${chartboost.android.jar}" />-->
 		<unzip dest="../bin/android/temp/zip" src="${mopub.android.sdk}/mopub-sdk/libs/android-support-v4.jar" />
-		<!--<copy todir="../bin/android/temp/classes/com">
+		<unzip dest="../bin/android/temp/zip" src="../android/libs/chartboost.jar" />
+		<copy todir="../bin/android/temp/classes/com">
 			<fileset dir="../bin/android/temp/zip/com" />
-		</copy>-->
+		</copy>
 		<copy todir="../bin/android/temp/classes/android">
 			<fileset dir="../bin/android/temp/zip/android" />
 		</copy>
 
 		<jar basedir="../bin/android/temp/classes" destfile="../bin/android/${name}.jar"/>
-        <delete dir="../bin/android/temp"/>
+		<delete dir="../bin/android/temp"/>
+		
+		<!-- # If there is resources to add, uncomment this -->
+		<!--
+		<delete dir="../bin/android/res"/>
+		<copy todir="../bin/android/res">
+			<fileset dir="../android/res" />
+		</copy>
+		-->
+		
 		<echo message="Done."/>
 	</target>
 	

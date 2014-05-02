@@ -1,10 +1,9 @@
 package com.sticksports.nativeExtensions.mopub.functions.interstitial;
 
-import android.util.Log;
-
 import com.adobe.fre.FREContext;
 import com.adobe.fre.FREFunction;
 import com.adobe.fre.FREObject;
+import com.sticksports.nativeExtensions.mopub.MoPubExtension;
 import com.sticksports.nativeExtensions.mopub.MoPubInterstitialContext;
 
 public class MoPubInterstitialShow implements FREFunction
@@ -17,11 +16,13 @@ public class MoPubInterstitialShow implements FREFunction
 		{
 			MoPubInterstitialContext context = (MoPubInterstitialContext) ctx;
 			boolean success = context.getInterstitial().show();
+			MoPubExtension.log(success ? "Interstitial displayed" : "Interstitial failed to display");
 			return FREObject.newObject( success );
 		}
 		catch ( Exception exception )
 		{
-			Log.w( "MoPub", exception );
+			MoPubExtension.logW(exception.toString());
+			exception.printStackTrace();
 		}
 		return null;
 	}

@@ -1,11 +1,10 @@
 package com.sticksports.nativeExtensions.mopub.functions.banner;
 
-import android.util.Log;
-
 import com.adobe.fre.FREContext;
 import com.adobe.fre.FREFunction;
 import com.adobe.fre.FREObject;
 import com.sticksports.nativeExtensions.mopub.MoPubBannerContext;
+import com.sticksports.nativeExtensions.mopub.MoPubExtension;
 
 public class MoPubBannerGetCreativeHeight implements FREFunction
 {
@@ -22,7 +21,8 @@ public class MoPubBannerGetCreativeHeight implements FREFunction
 		}
 		catch ( Exception exception )
 		{
-			Log.w( "MoPub", exception );
+			MoPubExtension.logW(exception.toString());
+			exception.printStackTrace();
 		}
 		return null;
 	}

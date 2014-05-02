@@ -33,4 +33,18 @@ public class MoPubExtension implements FREExtension
 	@Override
 	public void initialize() {
 	}
+	
+	/**
+	 * Logs the given message at info level.
+	 */
+	public static void log(String message) {
+		Log.i("MoPubExtension", message);
+	}
+	
+	/**
+	 * Logs the given message at warning level.
+	 */
+	public static void logW(String message) {
+		Log.w("MoPubExtension", message);
+	}
 }

@@ -53,25 +53,30 @@ public class MoPubInterstitialContext extends FREContext implements Interstitial
 	
 	@Override
 	public void onInterstitialLoaded(MoPubInterstitial interstitial) {
+		MoPubExtension.log("Interstitial loaded");
 		dispatchStatusEventAsync("", MoPubMessages.interstitialLoaded);
 	}
 
 	@Override
 	public void onInterstitialFailed(MoPubInterstitial interstitial, MoPubErrorCode errorCode) {
+		MoPubExtension.log("Interstitial failed : " + errorCode.toString());
 		dispatchStatusEventAsync(errorCode.toString(), MoPubMessages.interstitialFailedToLoad);
 	}
 
 	@Override
 	public void onInterstitialShown(MoPubInterstitial interstitial) {
+		MoPubExtension.log("Interstitial shown");
 		dispatchStatusEventAsync("", MoPubMessages.interstitialShown);
 	}
 
 	@Override
 	public void onInterstitialClicked(MoPubInterstitial interstitial) {
+		MoPubExtension.log("Interstitial clicked");
 	}
 
 	@Override
 	public void onInterstitialDismissed(MoPubInterstitial interstitial) {
+		MoPubExtension.log("Interstitial dismissed");
 		dispatchStatusEventAsync("", MoPubMessages.interstitialClosed);
 	}
 	
@@ -84,6 +89,7 @@ public class MoPubInterstitialContext extends FREContext implements Interstitial
 	@Override
 	public void dispose() {
 		disposeInterstitial();
+		MoPubExtension.log("Disposed interstitial");
 	}
 
 	@Override
