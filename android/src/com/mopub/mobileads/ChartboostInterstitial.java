@@ -1,15 +1,17 @@
 package com.mopub.mobileads;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import android.app.Activity;
 import android.content.Context;
-import android.util.Log;
+
 import com.chartboost.sdk.Chartboost;
 import com.chartboost.sdk.Chartboost.CBAgeGateConfirmation;
 import com.chartboost.sdk.ChartboostDelegate;
 import com.chartboost.sdk.Model.CBError.CBClickError;
 import com.chartboost.sdk.Model.CBError.CBImpressionError;
-
-import java.util.*;
+import com.sticksports.nativeExtensions.mopub.MoPubExtension;
 
 /*
  * Tested with Chartboost SDK 3.1.5.
@@ -81,13 +83,13 @@ class ChartboostInterstitial extends CustomEventInterstitial {
         chartboost.onCreate(activity, appId, appSignature, getDelegate());
         chartboost.onStart(activity);
         
-        Log.i("MoPub", "Caching Chartboost interstitial ad.");
+        MoPubExtension.log("Caching Chartboost interstitial ad.");
         chartboost.cacheInterstitial(location);
     }
 
     @Override
     protected void showInterstitial() {
-        Log.i("MoPub", "Showing Chartboost interstitial ad.");
+        MoPubExtension.log("Showing Chartboost interstitial ad.");
         Chartboost.sharedChartboost().showInterstitial(location);
     }
 
@@ -157,7 +159,7 @@ class ChartboostInterstitial extends CustomEventInterstitial {
 
         @Override
         public void didCacheInterstitial(String location) {
-            Log.i("MoPub", "Chartboost interstitial loaded successfully.");
+            MoPubExtension.log("Chartboost interstitial loaded successfully.");
             getListener(location).onInterstitialLoaded();
         }
 
@@ -170,7 +172,7 @@ class ChartboostInterstitial extends CustomEventInterstitial {
         @Override
         public void didDismissInterstitial(String location) {
             // Note that this method is fired before didCloseInterstitial and didClickInterstitial.
-            Log.i("MoPub", "Chartboost interstitial ad dismissed.");
+            MoPubExtension.log("Chartboost interstitial ad dismissed.");
             getListener(location).onInterstitialDismissed();
         }
 
@@ -180,13 +182,13 @@ class ChartboostInterstitial extends CustomEventInterstitial {
 
         @Override
         public void didClickInterstitial(String location) {
-            Log.i("MoPub", "Chartboost interstitial ad clicked.");
+            MoPubExtension.log("Chartboost interstitial ad clicked.");
             getListener(location).onInterstitialClicked();
         }
 
         @Override
         public void didShowInterstitial(String location) {
-            Log.i("MoPub", "Chartboost interstitial ad shown.");
+            MoPubExtension.log("Chartboost interstitial ad shown.");
             getListener(location).onInterstitialShown();
         }
 
@@ -243,7 +245,7 @@ class ChartboostInterstitial extends CustomEventInterstitial {
         
         @Override
         public void didFailToLoadInterstitial(String location, CBImpressionError cbError) {
-            Log.i("MoPub", "Chartboost interstitial ad failed to load : " + cbError.toString());
+            MoPubExtension.log("Chartboost interstitial ad failed to load : " + cbError.toString());
             getListener(location).onInterstitialFailed(MoPubErrorCode.NETWORK_NO_FILL);
         }
         
