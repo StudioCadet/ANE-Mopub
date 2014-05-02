@@ -147,6 +147,10 @@ package com.sticksports.nativeExtensions.mopub
 			}
 		}
 		
+		private function setKeywords( keywords : MoPubKeywords ):void
+		{
+		}
+		
 		public function load() : void
 		{
 		}

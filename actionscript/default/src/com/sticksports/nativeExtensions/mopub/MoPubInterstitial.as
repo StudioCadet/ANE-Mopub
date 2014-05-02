@@ -39,6 +39,10 @@ package com.sticksports.nativeExtensions.mopub
 			_adUnitId = adUnitId;
 		}
 		
+		public function setKeywords(keywords:MoPubKeywords):void
+		{
+		}
+		
 		public function load() : void
 		{
 		}

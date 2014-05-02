@@ -30,6 +30,8 @@ package com.sticksports.nativeExtensions.mopub
 		private static const getCreativeWidth : String = "getCreativeWidth";
 		private static const getCreativeHeight : String = "getCreativeHeight";
 		
+		private static const setBannerKeywords : String = "setBannerKeywords";
+		
 		private static const loadBanner : String = "loadBanner";
 		private static const showBanner : String = "showBanner";
 		private static const removeBanner : String = "removeBanner";
@@ -180,6 +182,7 @@ package com.sticksports.nativeExtensions.mopub
 					break;
 			}
 		}
+		
 
 		private function dispatchClose( event : Event ) : void
 		{
@@ -187,6 +190,11 @@ package com.sticksports.nativeExtensions.mopub
 			dispatchEvent( new MoPubEvent( MoPubEvent.AD_CLOSED ) );
 		}
 
+		private function setKeywords( keywords : MoPubKeywords ):void
+		{
+			extensionContext.call( setBannerKeywords, keywords.getAsString() );
+		}
+		
 		public function load() : void
 		{
 			extensionContext.call( loadBanner );
