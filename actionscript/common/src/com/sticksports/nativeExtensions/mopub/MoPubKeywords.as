@@ -20,7 +20,7 @@ package com.sticksports.nativeExtensions.mopub {
 		/**
 		 * Returns the string to give to MoPub for targeting.
 		 */
-		public function toString():String {
+		public function toMoPubString():String {
 			var s:String = "";
 			for(var keyword:String in additionalKeywords) {
 				s += keyword + ":" + additionalKeywords[keyword] + ",";

@@ -185,7 +185,7 @@ package com.sticksports.nativeExtensions.mopub
 		
 		public function setKeywords( keywords : MoPubKeywords ):void
 		{
-			extensionContext.call( setBannerKeywords, keywords.toString() );
+			extensionContext.call( setBannerKeywords, keywords.toMoPubString() );
 		}
 
 		public function load() : void
