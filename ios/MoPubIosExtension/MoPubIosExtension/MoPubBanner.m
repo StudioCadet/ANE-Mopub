@@ -136,6 +136,11 @@
     return (int) round( [self adContentViewSize].height * [self getDisplayDensity] );
 }
 
+- (void) setKeywords:(NSString *)keywords
+{
+    [super setKeywords:keywords];
+}
+
 - (void) loadBanner
 {
     [self loadAd];

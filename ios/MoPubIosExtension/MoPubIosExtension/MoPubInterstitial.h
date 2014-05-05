@@ -17,6 +17,7 @@
 - (id) initWithContext:(FREContext)extensionContext adUnitId:(NSString*)adUnitId;
 - (BOOL) getIsReady;
 - (void) setTesting:(BOOL)value;
+- (void) setKeywords:(NSString *)keywords;
 - (void) loadInterstitial;
 - (BOOL) showInterstitial;
 

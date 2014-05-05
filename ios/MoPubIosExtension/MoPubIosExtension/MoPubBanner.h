@@ -34,6 +34,8 @@
 - (int) getCreativeWidth;
 - (int) getCreativeHeight;
 
+- (void) setKeywords:(NSString *)keywords;
+
 - (void) loadBanner;
 - (void) showBanner;
 - (void) removeBanner;
