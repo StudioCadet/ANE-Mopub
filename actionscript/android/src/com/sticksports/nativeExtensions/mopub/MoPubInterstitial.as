@@ -78,7 +78,7 @@ package com.sticksports.nativeExtensions.mopub
 		
 		public function setKeywords(keywords:MoPubKeywords):void
 		{
-			extensionContext.call( setInterstitialKeywords, keywords.getAsString() );
+			extensionContext.call( setInterstitialKeywords, keywords.toString() );
 		}
 
 		public function load() : void
