@@ -190,7 +190,7 @@ package com.sticksports.nativeExtensions.mopub
 			dispatchEvent( new MoPubEvent( MoPubEvent.AD_CLOSED ) );
 		}
 
-		private function setKeywords( keywords : MoPubKeywords ):void
+		public function setKeywords( keywords : MoPubKeywords ):void
 		{
 			extensionContext.call( setBannerKeywords, keywords.getAsString() );
 		}

@@ -276,6 +276,21 @@ DEFINE_ANE_FUNCTION( getCreativeHeight )
     return NULL;
 }
 
+DEFINE_ANE_FUNCTION(setBannerKeywords)
+{
+    MoPubBanner* banner;
+    FREGetContextNativeData( context, (void**)&banner );
+    
+    if( banner != nil )
+    {
+        NSString* keywords;
+        if( [mopubConverter FREGetObject:argv[0] asString:&keywords] != FRE_OK ) return NULL;
+        [banner setKeywords:keywords];
+    }
+    
+    return NULL;
+}
+
 DEFINE_ANE_FUNCTION( loadBanner )
 {
     MoPubBanner* banner;
@@ -349,12 +364,26 @@ DEFINE_ANE_FUNCTION( getInterstitialReady )
     return NULL;
 }
 
-DEFINE_ANE_FUNCTION( loadInterstitial )
+DEFINE_ANE_FUNCTION( setInterstitialKeywords )
 {
     MoPubInterstitial* interstitial;
     FREGetContextNativeData( context, (void**)&interstitial );
     if( interstitial != nil )
     {
+        NSString* keywords;
+        if( [mopubConverter FREGetObject:argv[0] asString:&keywords] != FRE_OK ) return NULL;
+        [interstitial setKeywords:keywords];
+    }
+    
+    return NULL;
+}
+
+DEFINE_ANE_FUNCTION( loadInterstitial )
+{
+    MoPubInterstitial* interstitial;
+    FREGetContextNativeData( context, (void**)&interstitial );
+    if( interstitial != nil )
+    {        
         [interstitial loadInterstitial];
     }
     return NULL;
@@ -408,7 +437,9 @@ void MoPubContextInitializer( void* extData, const uint8_t* ctxType, FREContext 
             MAP_FUNCTION( getInterstitialReady, NULL ),
             
             MAP_FUNCTION( loadInterstitial, NULL ),
-            MAP_FUNCTION( showInterstitial, NULL )
+            MAP_FUNCTION( showInterstitial, NULL ),
+            
+            MAP_FUNCTION( setInterstitialKeywords, NULL )
         };
         
         *numFunctionsToSet = sizeof( interstitialFunctionMap ) / sizeof( FRENamedFunction );
@@ -440,7 +471,9 @@ void MoPubContextInitializer( void* extData, const uint8_t* ctxType, FREContext 
             
             MAP_FUNCTION( loadBanner, NULL ),
             MAP_FUNCTION( showBanner, NULL ),
-            MAP_FUNCTION( removeBanner, NULL )
+            MAP_FUNCTION( removeBanner, NULL ),
+            
+            MAP_FUNCTION( setBannerKeywords, NULL )
         };
         
         *numFunctionsToSet = sizeof( bannerFunctionMap ) / sizeof( FRENamedFunction );

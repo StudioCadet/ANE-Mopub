@@ -51,6 +51,11 @@
     self.interstitial.testing = value;
 }
 
+- (void) setKeywords:(NSString *)keywords
+{
+    self.interstitial.keywords = keywords;
+}
+
 - (void) loadInterstitial
 {
     [self.interstitial loadAd];
