@@ -70,10 +70,13 @@ package com.sticksports.nativeExtensions.mopub
 				case InternalMessages.interstitialShown :
 					dispatchEvent( new MoPubEvent( MoPubEvent.INTERSTITIAL_SHOWN ) );
 					break;
-				case InternalMessages.interstitialClosed :
-					dispatchEvent( new MoPubEvent( MoPubEvent.AD_CLOSED ) );
-					break;
 			}
+		}
+		
+		private function dispatchClose( event : Event ) : void
+		{
+			NativeApplication.nativeApplication.removeEventListener( Event.ACTIVATE, dispatchClose );
+			dispatchEvent( new MoPubEvent( MoPubEvent.AD_CLOSED ) );
 		}
 		
 		public function setKeywords(keywords:MoPubKeywords):void
@@ -88,7 +91,12 @@ package com.sticksports.nativeExtensions.mopub
 
 		public function show() : Boolean
 		{
-			return extensionContext.call( showInterstitial ) as Boolean;
+			var success : Boolean = extensionContext.call( showInterstitial ) as Boolean;
+			if( success )
+			{
+				NativeApplication.nativeApplication.addEventListener( Event.ACTIVATE, dispatchClose );
+			}
+			return success;
 		}
 	}
 }
