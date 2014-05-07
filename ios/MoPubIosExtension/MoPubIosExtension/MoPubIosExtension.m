@@ -402,6 +402,33 @@ DEFINE_ANE_FUNCTION( showInterstitial )
             return asSuccess;
         }
     }
+
+    return NULL;
+}
+
+DEFINE_ANE_FUNCTION( disposeBanner )
+{
+    MoPubBanner* banner;
+    FREGetContextNativeData( context, (void**)&banner );
+    if( banner != nil )
+    {
+        NSLog(@"Disposing banner...");
+        [banner removeFromSuperview];
+        [banner release];
+    }
+    
+    return NULL;
+}
+
+DEFINE_ANE_FUNCTION( disposeInterstitial )
+{
+    MoPubInterstitial* interstitial;
+    FREGetContextNativeData( context, (void**)&interstitial );
+    if( interstitial != nil )
+    {
+        [interstitial release];
+    }
+    
     return NULL;
 }
 
@@ -439,7 +466,9 @@ void MoPubContextInitializer( void* extData, const uint8_t* ctxType, FREContext 
             MAP_FUNCTION( loadInterstitial, NULL ),
             MAP_FUNCTION( showInterstitial, NULL ),
             
-            MAP_FUNCTION( setInterstitialKeywords, NULL )
+            MAP_FUNCTION( setInterstitialKeywords, NULL ),
+            
+            MAP_FUNCTION( disposeInterstitial, NULL)
         };
         
         *numFunctionsToSet = sizeof( interstitialFunctionMap ) / sizeof( FRENamedFunction );
@@ -473,7 +502,9 @@ void MoPubContextInitializer( void* extData, const uint8_t* ctxType, FREContext 
             MAP_FUNCTION( showBanner, NULL ),
             MAP_FUNCTION( removeBanner, NULL ),
             
-            MAP_FUNCTION( setBannerKeywords, NULL )
+            MAP_FUNCTION( setBannerKeywords, NULL ),
+            
+            MAP_FUNCTION( disposeBanner, NULL)
         };
         
         *numFunctionsToSet = sizeof( bannerFunctionMap ) / sizeof( FRENamedFunction );

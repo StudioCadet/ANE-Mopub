@@ -9,8 +9,6 @@
 /* Begin PBXBuildFile section */
 		340516411910EF95007B5314 /* Chartboost.h in Headers */ = {isa = PBXBuildFile; fileRef = 3405163F1910EF95007B5314 /* Chartboost.h */; };
 		340516421910EF95007B5314 /* libChartboost.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 340516401910EF95007B5314 /* libChartboost.a */; };
-		3405164A19114E94007B5314 /* MPCurrentAdMetadata.h in Headers */ = {isa = PBXBuildFile; fileRef = 3405164819114E94007B5314 /* MPCurrentAdMetadata.h */; };
-		3405164B19114E94007B5314 /* MPCurrentAdMetadata.m in Sources */ = {isa = PBXBuildFile; fileRef = 3405164919114E94007B5314 /* MPCurrentAdMetadata.m */; };
 		34E1A251190E3E57001C491E /* ChartboostInterstitialCustomEvent.h in Headers */ = {isa = PBXBuildFile; fileRef = 34E1A24C190E3E57001C491E /* ChartboostInterstitialCustomEvent.h */; };
 		34E1A252190E3E57001C491E /* ChartboostInterstitialCustomEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 34E1A24D190E3E57001C491E /* ChartboostInterstitialCustomEvent.m */; };
 		34FBB5A4190FE3DD005402C5 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34FBB5A3190FE3DD005402C5 /* CFNetwork.framework */; };
@@ -210,9 +208,6 @@
 /* Begin PBXFileReference section */
 		3405163F1910EF95007B5314 /* Chartboost.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Chartboost.h; sourceTree = "<group>"; };
 		340516401910EF95007B5314 /* libChartboost.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libChartboost.a; sourceTree = "<group>"; };
-		3405164319114A5C007B5314 /* MoPubCustomDef.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MoPubCustomDef.h; sourceTree = "<group>"; };
-		3405164819114E94007B5314 /* MPCurrentAdMetadata.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPCurrentAdMetadata.h; sourceTree = "<group>"; };
-		3405164919114E94007B5314 /* MPCurrentAdMetadata.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPCurrentAdMetadata.m; sourceTree = "<group>"; };
 		34E1A24C190E3E57001C491E /* ChartboostInterstitialCustomEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChartboostInterstitialCustomEvent.h; sourceTree = "<group>"; };
 		34E1A24D190E3E57001C491E /* ChartboostInterstitialCustomEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChartboostInterstitialCustomEvent.m; sourceTree = "<group>"; };
 		34FBB5A3190FE3DD005402C5 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
@@ -792,9 +787,6 @@
 				798280F71638070D00DC7413 /* MoPubInternalMessages.h */,
 				79F66B1C1654051E00E917FB /* MoPubInterstitial.h */,
 				79F66B1D1654051E00E917FB /* MoPubInterstitial.m */,
-				3405164319114A5C007B5314 /* MoPubCustomDef.h */,
-				3405164819114E94007B5314 /* MPCurrentAdMetadata.h */,
-				3405164919114E94007B5314 /* MPCurrentAdMetadata.m */,
 			);
 			path = MoPubIosExtension;
 			sourceTree = "<group>";
@@ -889,7 +881,6 @@
 				34E1A251190E3E57001C491E /* ChartboostInterstitialCustomEvent.h in Headers */,
 				34FCEBFB190959FE00A74476 /* MPInterstitialAdController.h in Headers */,
 				34FCEB8B190959FE00A74476 /* MPAdAlertManager.h in Headers */,
-				3405164A19114E94007B5314 /* MPCurrentAdMetadata.h in Headers */,
 				34FCEBBC190959FE00A74476 /* MPMRAIDBannerCustomEvent.h in Headers */,
 				34FCEBC7190959FE00A74476 /* MRBundleManager.h in Headers */,
 				34FCEBB8190959FE00A74476 /* MPCoreInstanceProvider.h in Headers */,
@@ -976,7 +967,6 @@
 				34FCEBDE190959FE00A74476 /* UIViewController+MPAdditions.m in Sources */,
 				34FCEC17190959FE00A74476 /* MPTableViewAdManager.m in Sources */,
 				34FCEBEC190959FE00A74476 /* MPReachability.m in Sources */,
-				3405164B19114E94007B5314 /* MPCurrentAdMetadata.m in Sources */,
 				34FCEB8C190959FE00A74476 /* MPAdAlertManager.m in Sources */,
 				34FCEBB2190959FE00A74476 /* MPInterstitialCustomEventAdapter.m in Sources */,
 				34FCEBDC190959FE00A74476 /* NSURL+MPAdditions.m in Sources */,
