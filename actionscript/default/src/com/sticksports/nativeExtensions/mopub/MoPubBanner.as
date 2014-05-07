@@ -162,6 +162,10 @@ package com.sticksports.nativeExtensions.mopub
 		public function remove() : void
 		{
 		}
+		
+		public function dispose() : void
+		{
+		}
 	}
 }
 

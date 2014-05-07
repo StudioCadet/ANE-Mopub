@@ -18,12 +18,15 @@ package com.sticksports.nativeExtensions.mopub
 		
 		private static const loadInterstitial : String = "loadInterstitial";
 		private static const showInterstitial : String = "showInterstitial";
+		
+		private static const disposeInterstitial : String = "disposeInterstitial";
 
 // class variables
 
 		private var extensionContext : ExtensionContext = null;
 		private var _adUnitId : String;
 		private var _testing : Boolean = false;
+		private var _isDisplayed : Boolean = false;
 
 // properties
 		public function get adUnitId() : String
@@ -70,13 +73,18 @@ package com.sticksports.nativeExtensions.mopub
 				case InternalMessages.interstitialShown :
 					dispatchEvent( new MoPubEvent( MoPubEvent.INTERSTITIAL_SHOWN ) );
 					break;
+				case InternalMessages.interstitialClosed :
+					dispatchClose( null );
+					break;
 			}
 		}
 		
 		private function dispatchClose( event : Event ) : void
 		{
 			NativeApplication.nativeApplication.removeEventListener( Event.ACTIVATE, dispatchClose );
-			dispatchEvent( new MoPubEvent( MoPubEvent.AD_CLOSED ) );
+			if(_isDisplayed)
+				dispatchEvent( new MoPubEvent( MoPubEvent.AD_CLOSED ) );
+			_isDisplayed = false;
 		}
 		
 		public function setKeywords(keywords:MoPubKeywords):void
@@ -94,9 +102,15 @@ package com.sticksports.nativeExtensions.mopub
 			var success : Boolean = extensionContext.call( showInterstitial ) as Boolean;
 			if( success )
 			{
+				_isDisplayed = true;
 				NativeApplication.nativeApplication.addEventListener( Event.ACTIVATE, dispatchClose );
 			}
 			return success;
+		}
+		
+		public function dispose() : void
+		{
+			extensionContext.call( disposeInterstitial );
 		}
 	}
 }

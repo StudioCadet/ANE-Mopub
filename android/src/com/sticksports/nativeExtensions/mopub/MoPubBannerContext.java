@@ -10,6 +10,7 @@ import com.adobe.fre.FREFunction;
 import com.mopub.mobileads.MoPubErrorCode;
 import com.mopub.mobileads.MoPubView;
 import com.mopub.mobileads.MoPubView.BannerAdListener;
+import com.sticksports.nativeExtensions.mopub.functions.banner.MoPubBannerDispose;
 import com.sticksports.nativeExtensions.mopub.functions.banner.MoPubBannerDoNothing;
 import com.sticksports.nativeExtensions.mopub.functions.banner.MoPubBannerGetCreativeHeight;
 import com.sticksports.nativeExtensions.mopub.functions.banner.MoPubBannerGetCreativeWidth;
@@ -130,6 +131,8 @@ public class MoPubBannerContext extends FREContext implements BannerAdListener {
 		functionMap.put("loadBanner", new MoPubBannerLoad());
 		functionMap.put("showBanner", new MoPubBannerShow());
 		functionMap.put("removeBanner", new MoPubBannerRemove());
+		
+		functionMap.put("disposeBanner", new MoPubBannerDispose());
 
 		return functionMap;
 	}

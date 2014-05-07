@@ -16,7 +16,9 @@ package com.sticksports.nativeExtensions.mopub
 		
 		private static const loadInterstitial : String = "loadInterstitial";
 		private static const showInterstitial : String = "showInterstitial";
-
+		
+		private static const disposeInterstitial : String = "disposeInterstitial";
+		
 // class variables
 
 		private var extensionContext : ExtensionContext = null;
@@ -90,6 +92,11 @@ package com.sticksports.nativeExtensions.mopub
 		public function show() : Boolean
 		{
 			return extensionContext.call( showInterstitial ) as Boolean;
+		}
+		
+		public function dispose() : void
+		{
+			extensionContext.call( disposeInterstitial );
 		}
 	}
 }

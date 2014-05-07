@@ -35,6 +35,8 @@ package com.sticksports.nativeExtensions.mopub
 		private static const loadBanner : String = "loadBanner";
 		private static const showBanner : String = "showBanner";
 		private static const removeBanner : String = "removeBanner";
+		
+		private static const disposeBanner : String = "disposeBanner";
 
 // class variables
 
@@ -208,6 +210,11 @@ package com.sticksports.nativeExtensions.mopub
 		public function remove() : void
 		{
 			extensionContext.call( removeBanner );
+		}
+		
+		public function dispose() : void
+		{
+			extensionContext.call( disposeBanner );
 		}
 	}
 }

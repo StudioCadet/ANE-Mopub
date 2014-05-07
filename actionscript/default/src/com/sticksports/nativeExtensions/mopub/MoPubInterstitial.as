@@ -51,6 +51,10 @@ package com.sticksports.nativeExtensions.mopub
 		{
 			return false;
 		}
+		
+		public function dispose() : void
+		{
+		}
 	}
 }
 

@@ -8,6 +8,7 @@ import com.adobe.fre.FREFunction;
 import com.mopub.mobileads.MoPubErrorCode;
 import com.mopub.mobileads.MoPubInterstitial;
 import com.mopub.mobileads.MoPubInterstitial.InterstitialAdListener;
+import com.sticksports.nativeExtensions.mopub.functions.interstitial.MoPubInterstitialDispose;
 import com.sticksports.nativeExtensions.mopub.functions.interstitial.MoPubInterstitialGetIsReady;
 import com.sticksports.nativeExtensions.mopub.functions.interstitial.MoPubInterstitialInitialise;
 import com.sticksports.nativeExtensions.mopub.functions.interstitial.MoPubInterstitialLoad;
@@ -105,6 +106,9 @@ public class MoPubInterstitialContext extends FREContext implements Interstitial
 		
 		functionMap.put("loadInterstitial", new MoPubInterstitialLoad());
 		functionMap.put("showInterstitial", new MoPubInterstitialShow());
+		
+		functionMap.put("disposeInterstitial", new MoPubInterstitialDispose());
+		
 		return functionMap;
 	}
 }
