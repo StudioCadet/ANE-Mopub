@@ -6,6 +6,7 @@ import java.util.Map;
 import android.app.Activity;
 import android.content.Context;
 
+import com.inmobi.commons.AnimationType;
 import com.inmobi.commons.InMobi;
 import com.inmobi.commons.InMobi.LOG_LEVEL;
 import com.inmobi.monetization.IMBanner;
@@ -55,6 +56,7 @@ public class InMobiBanner extends CustomEventBanner implements IMBannerListener 
 		InMobi.setLogLevel(LOG_LEVEL.VERBOSE);
 		iMBanner.setIMBannerListener(this);
 		iMBanner.setRefreshInterval(-1);
+		iMBanner.setAnimationType(AnimationType.ANIMATION_ALPHA);
 		
 		MoPubExtension.log("Loading InMobi banner ...");
 		iMBanner.loadBanner();
@@ -125,5 +127,4 @@ public class InMobiBanner extends CustomEventBanner implements IMBannerListener 
 		MoPubExtension.log("InMobi banner expanded.");
 		mBannerListener.onBannerExpanded();
 	}
-
 }
