@@ -47,4 +47,11 @@ public class MoPubExtension implements FREExtension
 	public static void logW(String message) {
 		Log.w("MoPubExtension", message);
 	}
+	
+	/**
+	 * Logs the given message at error level.
+	 */
+	public static void logE(String message) {
+		Log.e("MoPubExtension", message);
+	}
 }
