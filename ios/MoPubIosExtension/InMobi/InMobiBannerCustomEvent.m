@@ -44,6 +44,7 @@
 
 - (void)requestAdWithSize:(CGSize)size customEventInfo:(NSDictionary *)info
 {
+    [InMobi initialize:kInMobiAppID]; // won't do anything if already initialized
     MPLogInfo(@"Requesting InMobi banner");
     int imAdSizeConstant = [self imAdSizeConstantForCGSize:size];
     if (imAdSizeConstant == INVALID_INMOBI_AD_SIZE) {

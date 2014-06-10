@@ -44,6 +44,7 @@
 
 - (void)requestInterstitialWithCustomEventInfo:(NSDictionary *)info
 {
+    [InMobi initialize:kInMobiAppID]; // won't do anything if already initialized
     MPLogInfo(@"Requesting InMobi interstitial");
     self.inMobiInterstitial = [[MPInstanceProvider sharedProvider] buildIMInterstitialWithDelegate:self appId:kInMobiAppID];
     NSMutableDictionary *paramsDict = [[NSMutableDictionary alloc] init];
@@ -55,6 +56,7 @@
                                longitude:self.delegate.location.coordinate.longitude
                                 accuracy:self.delegate.location.horizontalAccuracy];
     }
+
     [self.inMobiInterstitial loadInterstitial];
 }
 
