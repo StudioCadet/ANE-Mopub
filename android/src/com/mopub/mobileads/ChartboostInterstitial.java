@@ -78,8 +78,8 @@ class ChartboostInterstitial extends CustomEventInterstitial {
             return;
         }
         
-        Activity activity = (Activity) context;
-        Chartboost chartboost = Chartboost.sharedChartboost();
+        final Activity activity = (Activity) context;
+        final Chartboost chartboost = Chartboost.sharedChartboost();
         
         this.appId = serverExtras.get(APP_ID_KEY);
         this.appSignature = serverExtras.get(APP_SIGNATURE_KEY);
@@ -94,12 +94,16 @@ class ChartboostInterstitial extends CustomEventInterstitial {
         }
 
         getDelegate().registerListener(location, interstitialListener);
-        chartboost.onCreate(activity, appId, appSignature, getDelegate());
-        chartboost.onStart(activity);
-        initChartboost();
-        
-        MoPubExtension.log("Caching Chartboost interstitial ad for location " + location + ".");
-        chartboost.cacheInterstitial(location);
+        activity.runOnUiThread(new Runnable() {
+			@Override public void run() {
+				chartboost.onCreate(activity, appId, appSignature, getDelegate());
+				chartboost.onStart(activity);
+				initChartboost();
+				
+				MoPubExtension.log("Caching Chartboost interstitial ad for location " + location + ".");
+				chartboost.cacheInterstitial(location);
+			}
+		});
     }
 
     @Override

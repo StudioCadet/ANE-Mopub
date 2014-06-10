@@ -58,10 +58,14 @@ public class MoPubBannerContext extends FREContext implements BannerAdListener {
 		if(banner == null) return;
 
 		banner.setBannerAdListener(null);
-		ViewGroup parent = (ViewGroup) banner.getParent();
-		if(parent != null)
-			parent.removeView( banner );
-		banner.destroy();
+		this.getActivity().runOnUiThread(new Runnable() {
+			@Override public void run() {
+				ViewGroup parent = (ViewGroup) banner.getParent();
+				if(parent != null)
+					parent.removeView( banner );
+				banner.destroy();
+			}
+		});
 	}
 	
 	
