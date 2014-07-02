@@ -1,16 +1,14 @@
 package com.sticksports.nativeExtensions.mopub.functions.banner;
 
 import com.adobe.fre.FREContext;
-import com.adobe.fre.FREFunction;
 import com.adobe.fre.FREObject;
 import com.sticksports.nativeExtensions.mopub.MoPubBannerContext;
 import com.sticksports.nativeExtensions.mopub.MoPubExtension;
+import com.sticksports.nativeExtensions.mopub.functions.UIThreadSafeFREFunction;
 
-public class MoPubBannerLoad implements FREFunction
-{
+public class MoPubBannerLoad extends UIThreadSafeFREFunction {
 
-	@Override
-	public FREObject call( FREContext ctx, FREObject[] args )
+	public FREObject safeCall( FREContext ctx, FREObject[] args )
 	{
 		try
 		{

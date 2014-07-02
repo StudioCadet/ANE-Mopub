@@ -1,15 +1,13 @@
 package com.sticksports.nativeExtensions.mopub.functions;
 
 import com.adobe.fre.FREContext;
-import com.adobe.fre.FREFunction;
 import com.adobe.fre.FREObject;
 import com.mopub.mobileads.MoPubConversionTracker;
 import com.sticksports.nativeExtensions.mopub.MoPubExtension;
 
-public class MoPubTrackConversion implements FREFunction {
+public class MoPubTrackConversion extends UIThreadSafeFREFunction {
 
-	@Override
-	public FREObject call(FREContext context, FREObject[] args) {
+	public FREObject safeCall(FREContext context, FREObject[] args) {
 		
 		try {
 			new MoPubConversionTracker().reportAppOpen(context.getActivity());

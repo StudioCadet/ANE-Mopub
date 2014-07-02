@@ -3,16 +3,14 @@ package com.sticksports.nativeExtensions.mopub.functions.banner;
 import android.widget.FrameLayout;
 
 import com.adobe.fre.FREContext;
-import com.adobe.fre.FREFunction;
 import com.adobe.fre.FREObject;
 import com.sticksports.nativeExtensions.mopub.MoPubBannerContext;
 import com.sticksports.nativeExtensions.mopub.MoPubExtension;
+import com.sticksports.nativeExtensions.mopub.functions.UIThreadSafeFREFunction;
 
-public class MoPubBannerSetSize implements FREFunction
-{
+public class MoPubBannerSetSize extends UIThreadSafeFREFunction {
 
-	@Override
-	public FREObject call( FREContext ctx, FREObject[] args )
+	public FREObject safeCall( FREContext ctx, FREObject[] args )
 	{
 		try
 		{

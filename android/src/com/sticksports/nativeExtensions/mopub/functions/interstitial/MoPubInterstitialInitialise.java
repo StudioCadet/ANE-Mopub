@@ -1,15 +1,14 @@
 package com.sticksports.nativeExtensions.mopub.functions.interstitial;
 
 import com.adobe.fre.FREContext;
-import com.adobe.fre.FREFunction;
 import com.adobe.fre.FREObject;
 import com.sticksports.nativeExtensions.mopub.MoPubExtension;
 import com.sticksports.nativeExtensions.mopub.MoPubInterstitialContext;
+import com.sticksports.nativeExtensions.mopub.functions.UIThreadSafeFREFunction;
 
-public class MoPubInterstitialInitialise implements FREFunction
-{
-	@Override
-	public FREObject call( FREContext ctx, FREObject[] args )
+public class MoPubInterstitialInitialise extends UIThreadSafeFREFunction {
+
+	public FREObject safeCall( FREContext ctx, FREObject[] args )
 	{
 
 		try
