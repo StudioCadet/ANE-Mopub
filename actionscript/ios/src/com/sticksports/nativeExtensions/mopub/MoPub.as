@@ -6,6 +6,8 @@ package com.sticksports.nativeExtensions.mopub
 		
 		private static var extensionContext:ExtensionContext;
 		private static var scaleFactor:Number;
+		private static var _nativeScreenWidth:Number;
+		private static var _nativeScreenHeight:Number;
 		private static var conversionTracked:Boolean;
 		
 		public static function get adScaleFactor():Number {
@@ -18,6 +20,31 @@ package com.sticksports.nativeExtensions.mopub
 			}
 			
 			return scaleFactor;
+		}
+		
+		
+		public static function get nativeScreenWidth():Number {
+			if(!_nativeScreenWidth) {
+				
+				if(!extensionContext)
+					extensionContext = ExtensionContext.createExtensionContext("com.sticksports.nativeExtensions.MoPub", "mopub");
+				
+				_nativeScreenWidth = extensionContext.call("getNativeScreenWidth") as Number;
+			}
+			
+			return _nativeScreenWidth;
+		}
+		
+		public static function get nativeScreenHeight():Number {
+			if(!_nativeScreenHeight) {
+				
+				if(!extensionContext)
+					extensionContext = ExtensionContext.createExtensionContext("com.sticksports.nativeExtensions.MoPub", "mopub");
+				
+				_nativeScreenHeight = extensionContext.call("getNativeScreenHeight") as Number;
+			}
+			
+			return _nativeScreenHeight;
 		}
 		
 		public static function trackConversion():void {

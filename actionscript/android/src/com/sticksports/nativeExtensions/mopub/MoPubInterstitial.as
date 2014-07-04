@@ -111,6 +111,9 @@ package com.sticksports.nativeExtensions.mopub
 		public function dispose() : void
 		{
 			extensionContext.call( disposeInterstitial );
+			extensionContext.removeEventListener( StatusEvent.STATUS, handleStatusEvent );
+			extensionContext = null;
+			_adUnitId = null;
 		}
 	}
 }

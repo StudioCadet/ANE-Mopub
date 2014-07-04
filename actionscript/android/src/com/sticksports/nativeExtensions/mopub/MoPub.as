@@ -1,6 +1,7 @@
 package com.sticksports.nativeExtensions.mopub
 {
 	import flash.external.ExtensionContext;
+	import flash.system.Capabilities;
 	
 	public class MoPub {
 		
@@ -18,6 +19,14 @@ package com.sticksports.nativeExtensions.mopub
 			}
 			
 			return scaleFactor;
+		}
+		
+		public static function get nativeScreenWidth():Number {
+			return Capabilities.screenResolutionX;
+		}
+		
+		public static function get nativeScreenHeight():Number {
+			return Capabilities.screenResolutionY;
 		}
 		
 		public static function trackConversion():void {

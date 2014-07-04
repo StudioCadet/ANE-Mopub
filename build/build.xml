@@ -97,7 +97,7 @@
 			<regexpmapper from=".*src.(.*)\.as" to="\1" />
 		</pathconvert>
 
-		<exec executable="${flex.sdk}/bin/compc${bin.ext}" failonerror="true">
+		<exec executable="${flex.sdk}/bin/compc${bat.ext}" failonerror="true">
 			<env key="AIR_SDK_HOME" value="${flex.sdk}"/>
 			<arg line='-source-path ../actionscript/ios/src' />
 			<arg line='-source-path+=../actionscript/common/src' />
@@ -121,7 +121,7 @@
 			<regexpmapper from=".*src.(.*)\.as" to="\1" />
 		</pathconvert>
 
-		<exec executable="${flex.sdk}/bin/compc${bin.ext}" failonerror="true">
+		<exec executable="${flex.sdk}/bin/compc${bat.ext}" failonerror="true">
 			<env key="AIR_SDK_HOME" value="${flex.sdk}"/>
 			<arg line='-source-path ../actionscript/android/src' />
 			<arg line='-source-path+=../actionscript/common/src' />
@@ -145,7 +145,7 @@
 			<regexpmapper from=".*src.(.*)\.as" to="\1" />
 		</pathconvert>
 
-		<exec executable="${flex.sdk}/bin/compc${bin.ext}" failonerror="true">
+		<exec executable="${flex.sdk}/bin/compc${bat.ext}" failonerror="true">
 			<env key="AIR_SDK_HOME" value="${flex.sdk}"/>
 			<arg line='-source-path ../actionscript/default/src' />
 			<arg line='-source-path+=../actionscript/common/src' />
