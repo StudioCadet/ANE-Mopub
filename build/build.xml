@@ -57,7 +57,6 @@
 				<pathelement location="${mopub.android.sdk}/mopub-sdk/libs/android-support-v4.jar" />
 				<pathelement location="../android/libs/chartboost.jar"/>
 				<pathelement location="../android/libs/inmobi.jar"/>
-				<pathelement location="../android/libs/adcolony.jar"/>
 			</classpath>
 		</javac>
 
@@ -65,7 +64,6 @@
 		<unzip dest="../bin/android/temp/zip" src="${mopub.android.sdk}/mopub-sdk/libs/android-support-v4.jar" />
 		<unzip dest="../bin/android/temp/zip" src="../android/libs/chartboost.jar" />
 		<unzip dest="../bin/android/temp/zip" src="../android/libs/inmobi.jar" />
-		<unzip dest="../bin/android/temp/zip" src="../android/libs/adcolony.jar" />
 		<copy todir="../bin/android/temp/classes/com">
 			<fileset dir="../bin/android/temp/zip/com" />
 		</copy>

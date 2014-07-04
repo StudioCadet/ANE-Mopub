@@ -30,6 +30,28 @@ DEFINE_ANE_FUNCTION( getAdScaleFactor )
     return NULL;
 }
 
+DEFINE_ANE_FUNCTION( getNativeScreenWidth )
+{
+    double width = [UIScreen mainScreen].bounds.size.width;
+    FREObject asWidth;
+    if( [mopubConverter FREGetDouble:width asObject:&asWidth] == FRE_OK )
+    {
+        return asWidth;
+    }
+    return NULL;
+}
+
+DEFINE_ANE_FUNCTION( getNativeScreenHeight )
+{
+    double height = [UIScreen mainScreen].bounds.size.height;
+    FREObject asHeight;
+    if( [mopubConverter FREGetDouble:height asObject:&asHeight] == FRE_OK )
+    {
+        return asHeight;
+    }
+    return NULL;
+}
+
 DEFINE_ANE_FUNCTION( initialiseBanner )
 {
     NSString* adUnitId;
@@ -448,6 +470,10 @@ void MoPubContextInitializer( void* extData, const uint8_t* ctxType, FREContext 
         static FRENamedFunction mopubFunctionMap[] =
         {
             MAP_FUNCTION( getAdScaleFactor, NULL ),
+            
+            MAP_FUNCTION( getNativeScreenWidth, NULL ),
+            MAP_FUNCTION( getNativeScreenHeight, NULL ),
+            
             MAP_FUNCTION( trackConversion, NULL )
         };
         

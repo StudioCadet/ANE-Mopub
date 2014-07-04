@@ -1149,18 +1149,15 @@
 				DSTROOT = /tmp/MoPubIosExtension.dst;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"/Users/Toine/Dev/ANE-Mopub/ios/MoPubIosExtension",
-					"/Users/Toine/Dev/ANE-Mopub/ios/MoPubIosExtension/MillenialMedia",
-					"/Users/Toine/Dev/ANE-Mopub/ios/MoPubIosExtension/MillenialMedia/SpeechKit",
+					"$(PROJECT_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "";
 				GCC_WARN_ABOUT_POINTER_SIGNEDNESS = NO;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				LIBRARY_SEARCH_PATHS = (
-					"/Users/Toine/Dev/ANE-Mopub/ios/MoPubIosExtension/Chartboost/SDK",
-					"/Users/Toine/Dev/ANE-Mopub/ios/MoPubIosExtension/MillenialMedia",
-					"/Users/Toine/Dev/ANE-Mopub/ios/MoPubIosExtension/InMobi/SDK",
+					"$(PROJECT_DIR)/Chartboost/SDK",
+					"$(PROJECT_DIR)/InMobi/SDK",
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-ObjC";
@@ -1178,18 +1175,15 @@
 				DSTROOT = /tmp/MoPubIosExtension.dst;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"/Users/Toine/Dev/ANE-Mopub/ios/MoPubIosExtension",
-					"/Users/Toine/Dev/ANE-Mopub/ios/MoPubIosExtension/MillenialMedia",
-					"/Users/Toine/Dev/ANE-Mopub/ios/MoPubIosExtension/MillenialMedia/SpeechKit",
+					"$(PROJECT_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "";
 				GCC_WARN_ABOUT_POINTER_SIGNEDNESS = NO;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				LIBRARY_SEARCH_PATHS = (
-					"/Users/Toine/Dev/ANE-Mopub/ios/MoPubIosExtension/Chartboost/SDK",
-					"/Users/Toine/Dev/ANE-Mopub/ios/MoPubIosExtension/MillenialMedia",
-					"/Users/Toine/Dev/ANE-Mopub/ios/MoPubIosExtension/InMobi/SDK",
+					"$(PROJECT_DIR)/Chartboost/SDK",
+					"$(PROJECT_DIR)/InMobi/SDK",
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-ObjC";
