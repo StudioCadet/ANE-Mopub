@@ -32,7 +32,7 @@ DEFINE_ANE_FUNCTION( getAdScaleFactor )
 
 DEFINE_ANE_FUNCTION( getNativeScreenWidth )
 {
-    double width = [UIScreen mainScreen].bounds.size.width;
+    double width = [UIScreen mainScreen].bounds.size.width * [UIScreen mainScreen].scale;
     FREObject asWidth;
     if( [mopubConverter FREGetDouble:width asObject:&asWidth] == FRE_OK )
     {
@@ -43,7 +43,7 @@ DEFINE_ANE_FUNCTION( getNativeScreenWidth )
 
 DEFINE_ANE_FUNCTION( getNativeScreenHeight )
 {
-    double height = [UIScreen mainScreen].bounds.size.height;
+    double height = [UIScreen mainScreen].bounds.size.height * [UIScreen mainScreen].scale;
     FREObject asHeight;
     if( [mopubConverter FREGetDouble:height asObject:&asHeight] == FRE_OK )
     {
