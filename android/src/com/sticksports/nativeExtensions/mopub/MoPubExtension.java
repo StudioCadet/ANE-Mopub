@@ -23,6 +23,14 @@ public class MoPubExtension implements FREExtension
 		else if(label.equals("banner"))
 			context = new MoPubBannerContext();
 		
+		// Trying to fix the CalledFromWrongThread exception
+		// see: http://stackoverflow.com/questions/10426120/android-got-calledfromwrongthreadexception-in-onpostexecute-how-could-it-be
+		try {
+			Class.forName("android.os.AsyncTask");
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		
 		return context;
 	}
 

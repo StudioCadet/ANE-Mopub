@@ -32,24 +32,22 @@
 
 package com.mopub.mobileads;
 
+import static com.mopub.mobileads.MoPubErrorCode.ADAPTER_CONFIGURATION_ERROR;
+
+import java.util.Map;
+import java.util.concurrent.ScheduledThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
+
 import android.app.Activity;
 import android.content.Context;
 import android.os.Handler;
 import android.util.Log;
 
-import com.inmobi.monetization.IMInterstitial;
 import com.jirbo.adcolony.AdColony;
 import com.jirbo.adcolony.AdColonyAd;
-import com.jirbo.adcolony.AdColonyAdAvailabilityListener;
 import com.jirbo.adcolony.AdColonyAdListener;
 import com.jirbo.adcolony.AdColonyVideoAd;
 import com.mopub.common.util.Json;
-import com.sticksports.nativeExtensions.mopub.MoPubExtension;
-
-import java.util.*;
-import java.util.concurrent.*;
-
-import static com.mopub.mobileads.MoPubErrorCode.ADAPTER_CONFIGURATION_ERROR;
 
 /*
 * Tested with AdColony SDK 2.0.3.
