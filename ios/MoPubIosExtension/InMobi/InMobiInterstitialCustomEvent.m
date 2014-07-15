@@ -45,7 +45,15 @@
     NSString *inMobiPropertyId = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"IN_MOBI_PROPERTY_ID"];
     [InMobi initialize:inMobiPropertyId]; // won't do anything if already initialized
     MPLogInfo(@"Requesting InMobi interstitial");
-    self.inMobiInterstitial = [[MPInstanceProvider sharedProvider] buildIMInterstitialWithDelegate:self appId:inMobiPropertyId];
+    if ([info objectForKey:@"inMobiSlotID"]) {
+        NSLog(@"Using parameters defined by the InMobi slot ID ");
+        NSString *sid = [[info objectForKey:@"inMobiSlotID"] stringValue];
+        NSLog(@"%@", [NSString stringWithFormat:@"%@", sid]);
+        self.inMobiInterstitial = [[IMInterstitial alloc] initWithSlotId:[[info objectForKey:@"inMobiSlotID"] stringValue]];
+    } else {
+        NSLog(@"No InMobi slot ID, using default parameters...");
+        self.inMobiInterstitial = [[MPInstanceProvider sharedProvider] buildIMInterstitialWithDelegate:self appId:inMobiPropertyId];
+    }
     NSMutableDictionary *paramsDict = [[NSMutableDictionary alloc] init];
     [paramsDict setObject:@"c_mopub" forKey:@"tp"];
 	[paramsDict setObject:MP_SDK_VERSION forKey:@"tp-ver"];

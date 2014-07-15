@@ -54,7 +54,15 @@
         return;
     }
     
-    self.inMobiBanner = [[MPInstanceProvider sharedProvider] buildIMBannerWithFrame:CGRectMake(0, 0, size.width, size.height) appId:inMobiPropertyId adSize:imAdSizeConstant];
+    if ([info objectForKey:@"inMobiSlotID"]) {
+        NSLog(@"Using parameters defined by the InMobi slot ID ");
+        NSString *sid = [[info objectForKey:@"inMobiSlotID"] stringValue];
+        NSLog(@"%@", [NSString stringWithFormat:@"%@", sid]);
+        self.inMobiBanner = [[IMBanner alloc] initWithFrame:CGRectMake(0, 0, size.width, size.height) slotId:[[info objectForKey:@"inMobiSlotID"] longLongValue]];
+    } else {
+        NSLog(@"No InMobi slot ID, using default parameters...");
+        self.inMobiBanner = [[MPInstanceProvider sharedProvider] buildIMBannerWithFrame:CGRectMake(0, 0, size.width, size.height) appId:inMobiPropertyId adSize:imAdSizeConstant];
+    }
     self.inMobiBanner.delegate = self;
     self.inMobiBanner.refreshInterval = REFRESH_INTERVAL_OFF;
     NSMutableDictionary *paramsDict = [[NSMutableDictionary alloc] init];
