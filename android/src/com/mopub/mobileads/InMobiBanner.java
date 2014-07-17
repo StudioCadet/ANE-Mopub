@@ -23,7 +23,7 @@ public class InMobiBanner extends CustomEventBanner implements IMBannerListener 
 
 	private CustomEventBannerListener mBannerListener;
 	private IMBanner iMBanner;
-	
+	private Activity activity;
 	
 	@Override
 	protected void loadBanner(Context context, CustomEventBannerListener bannerListener, Map<String, Object> localExtras, Map<String, String> serverExtras) {
@@ -31,7 +31,7 @@ public class InMobiBanner extends CustomEventBanner implements IMBannerListener 
 		MoPubExtension.log("Creating an InMobi banner ...");
 		mBannerListener = bannerListener;
 
-		Activity activity = null;
+		activity = null;
 		if (context instanceof Activity) {
 			activity = (Activity) context;
 		} else {
@@ -65,15 +65,28 @@ public class InMobiBanner extends CustomEventBanner implements IMBannerListener 
 	/*
 	 * Abstract methods from CustomEventBanner
 	 */
-
+	
 	@Override
 	public void onInvalidate() {
-		if (iMBanner != null) {
-			MoPubExtension.log("Removing InMobi banner ...");
-            iMBanner.setIMBannerListener(null);
-            Views.removeFromParent(iMBanner);
-            iMBanner.destroy();
-            MoPubExtension.log("InMobi banner removed.");
+		if (iMBanner != null && activity != null) {
+			activity.runOnUiThread(new Runnable() {
+				@Override public void run() {
+					
+					MoPubExtension.log("Removing InMobi banner ...");
+					iMBanner.setIMBannerListener(null);
+					try {
+		            	Views.removeFromParent(iMBanner);
+		            }
+		            catch(Exception e) {
+		            	MoPubExtension.log("Exception while trying to remove an InMobiBanner : " + e);
+		            }
+					finally {
+		            	iMBanner.destroy();
+		            	iMBanner = null;
+		            	MoPubExtension.log("InMobi banner removed.");
+		            }
+				}
+			});
 		}
 	}
 
