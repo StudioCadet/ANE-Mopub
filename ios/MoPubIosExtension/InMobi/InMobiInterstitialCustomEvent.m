@@ -49,7 +49,7 @@
         NSLog(@"Using parameters defined by the InMobi slot ID ");
         NSString *sid = [[info objectForKey:@"inMobiSlotID"] stringValue];
         NSLog(@"%@", [NSString stringWithFormat:@"%@", sid]);
-        self.inMobiInterstitial = [[IMInterstitial alloc] initWithSlotId:[[info objectForKey:@"inMobiSlotID"] stringValue]];
+        self.inMobiInterstitial = [[[IMInterstitial alloc] initWithSlotId:[[info objectForKey:@"inMobiSlotID"] stringValue]] autorelease];
         self.inMobiInterstitial.delegate = self;
     } else {
         NSLog(@"No InMobi slot ID, using default parameters...");
