@@ -98,3 +98,18 @@ typedef NSUInteger MPInterstitialOrientationType;
 - (void)processAdAlertOnce;
 
 @end
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+// Small alert wrapper class to handle telephone protocol prompting
+////////////////////////////////////////////////////////////////////////////////////////////////////
+
+@class MPTelephoneConfirmationController;
+
+typedef void (^MPTelephoneConfirmationControllerClickHandler)(NSURL *targetTelephoneURL, BOOL confirmed);
+
+@interface MPTelephoneConfirmationController : NSObject <UIAlertViewDelegate>
+
+- (id)initWithURL:(NSURL *)url clickHandler:(MPTelephoneConfirmationControllerClickHandler)clickHandler;
+- (void)show;
+
+@end

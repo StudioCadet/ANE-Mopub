@@ -86,6 +86,7 @@
 
 - (void)didPresentInterstitial
 {
+    [self.interstitialView enableRequestHandling];
     if ([self.delegate respondsToSelector:@selector(interstitialDidAppear:)]) {
         [self.delegate interstitialDidAppear:self];
     }
@@ -93,6 +94,7 @@
 
 - (void)willDismissInterstitial
 {
+    [self.interstitialView disableRequestHandling];
     if ([self.delegate respondsToSelector:@selector(interstitialWillDisappear:)]) {
         [self.delegate interstitialWillDisappear:self];
     }

@@ -44,12 +44,12 @@ typedef enum {
 {
     self = [super init];
     if (self != nil) {
-        self.memoryCache = [[NSCache alloc] init];
-        self.memoryCache.delegate = self;
+        _memoryCache = [[NSCache alloc] init];
+        _memoryCache.delegate = self;
         
-        self.diskCache = [[MPDiskLRUCache alloc] init];
+        _diskCache = [[MPDiskLRUCache alloc] init];
         
-        self.cacheMethod = MPNativeCacheMethodDiskAndMemory;
+        _cacheMethod = MPNativeCacheMethodDiskAndMemory;
         
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveMemoryWarning:) name:UIApplicationDidReceiveMemoryWarningNotification object:[UIApplication sharedApplication]];
     }

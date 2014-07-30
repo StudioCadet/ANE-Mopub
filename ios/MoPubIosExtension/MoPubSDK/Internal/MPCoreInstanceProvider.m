@@ -52,7 +52,7 @@ static MPCoreInstanceProvider *sharedProvider = nil;
     dispatch_once(&once, ^{
         sharedProvider = [[self alloc] init];
     });
-
+    
     return sharedProvider;
 }
 
@@ -61,7 +61,7 @@ static MPCoreInstanceProvider *sharedProvider = nil;
     self = [super init];
     if (self) {
         self.singletons = [NSMutableDictionary dictionary];
-
+        
         [self initializeCarrierInfo];
     }
     return self;
@@ -89,13 +89,13 @@ static MPCoreInstanceProvider *sharedProvider = nil;
 - (void)initializeCarrierInfo
 {
     self.carrierInfo = [NSMutableDictionary dictionary];
-
+    
     // check if we have a saved copy
     NSDictionary *saved = [[NSUserDefaults standardUserDefaults] dictionaryForKey:MOPUB_CARRIER_INFO_DEFAULTS_KEY];
     if(saved != nil) {
         [self.carrierInfo addEntriesFromDictionary:saved];
     }
-
+    
     // now asynchronously load a fresh copy
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         CTTelephonyNetworkInfo *networkInfo = [[[CTTelephonyNetworkInfo alloc] init] autorelease];
@@ -110,7 +110,7 @@ static MPCoreInstanceProvider *sharedProvider = nil;
     [self.carrierInfo setValue:ctCarrier.isoCountryCode forKey:@"isoCountryCode"];
     [self.carrierInfo setValue:ctCarrier.mobileCountryCode forKey:@"mobileCountryCode"];
     [self.carrierInfo setValue:ctCarrier.mobileNetworkCode forKey:@"mobileNetworkCode"];
-
+    
     [[NSUserDefaults standardUserDefaults] setObject:self.carrierInfo forKey:MOPUB_CARRIER_INFO_DEFAULTS_KEY];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
@@ -129,7 +129,7 @@ static MPCoreInstanceProvider *sharedProvider = nil;
     if (!_userAgent) {
         self.userAgent = [[[[UIWebView alloc] init] autorelease] stringByEvaluatingJavaScriptFromString:@"navigator.userAgent"];
     }
-
+    
     return _userAgent;
 }
 
@@ -156,27 +156,27 @@ static MPCoreInstanceProvider *sharedProvider = nil;
 - (id<MPAdAlertManagerProtocol>)buildMPAdAlertManagerWithDelegate:(id)delegate
 {
     id<MPAdAlertManagerProtocol> adAlertManager = nil;
-
+    
     Class adAlertManagerClass = NSClassFromString(@"MPAdAlertManager");
     if(adAlertManagerClass != nil)
     {
         adAlertManager = [[[adAlertManagerClass alloc] init] autorelease];
         [adAlertManager performSelector:@selector(setDelegate:) withObject:delegate];
     }
-
+    
     return adAlertManager;
 }
 
 - (MPAdAlertGestureRecognizer *)buildMPAdAlertGestureRecognizerWithTarget:(id)target action:(SEL)action
 {
     MPAdAlertGestureRecognizer *gestureRecognizer = nil;
-
+    
     Class gestureRecognizerClass = NSClassFromString(@"MPAdAlertGestureRecognizer");
     if(gestureRecognizerClass != nil)
     {
         gestureRecognizer = [[[gestureRecognizerClass alloc] initWithTarget:target action:action] autorelease];
     }
-
+    
     return gestureRecognizer;
 }
 
@@ -184,11 +184,11 @@ static MPCoreInstanceProvider *sharedProvider = nil;
 {
     static NSOperationQueue *sharedOperationQueue = nil;
     static dispatch_once_t pred;
-
+    
     dispatch_once(&pred, ^{
         sharedOperationQueue = [[NSOperationQueue alloc] init];
     });
-
+    
     return sharedOperationQueue;
 }
 
@@ -225,7 +225,7 @@ static MPCoreInstanceProvider *sharedProvider = nil;
 
 - (BOOL)isTwitterInstalled
 {
-
+    
     if (self.twitterDeepLinkStatus == MPTwitterDeepLinkNotChecked)
     {
         BOOL twitterDeepLinkEnabled = [[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"twitter://timeline"]];
@@ -238,7 +238,7 @@ static MPCoreInstanceProvider *sharedProvider = nil;
             self.twitterDeepLinkStatus = MPTwitterDeepLinkDisabled;
         }
     }
-
+    
     return (self.twitterDeepLinkStatus == MPTwitterDeepLinkEnabled);
 }
 
@@ -259,24 +259,24 @@ static MPCoreInstanceProvider *sharedProvider = nil;
     {
         nativeTwitterAccountPresent = (BOOL)[[MPCoreInstanceProvider tweetComposeVCClass] performSelector:@selector(canSendTweet)];
     }
-
+    
     return nativeTwitterAccountPresent;
 }
 
 - (MPTwitterAvailability)twitterAvailabilityOnDevice
 {
     MPTwitterAvailability twitterAvailability = MPTwitterAvailabilityNone;
-
+    
     if ([self isTwitterInstalled])
     {
         twitterAvailability |= MPTwitterAvailabilityApp;
     }
-
+    
     if ([self isNativeTwitterAccountPresent])
     {
         twitterAvailability |= MPTwitterAvailabilityNative;
     }
-
+    
     return twitterAvailability;
 }
 

@@ -26,6 +26,7 @@
 @property (nonatomic, retain) MPTimer *refreshTimer;
 @property (nonatomic, assign) BOOL adActionInProgress;
 @property (nonatomic, assign) BOOL automaticallyRefreshesContents;
+@property (nonatomic, assign) BOOL hasRequestedAtLeastOneAd;
 @property (nonatomic, assign) UIInterfaceOrientation currentOrientation;
 
 - (void)loadAdWithURL:(NSURL *)URL;
@@ -93,6 +94,10 @@
 
 - (void)loadAd
 {
+    if (!self.hasRequestedAtLeastOneAd) {
+        self.hasRequestedAtLeastOneAd = YES;
+    }
+
     if (self.loading) {
         MPLogWarn(@"Banner view (%@) is already loading an ad. Wait for previous load to finish.", [self.delegate adUnitId]);
         return;
@@ -108,7 +113,7 @@
 
 - (void)applicationWillEnterForeground
 {
-    if (self.automaticallyRefreshesContents) {
+    if (self.automaticallyRefreshesContents && self.hasRequestedAtLeastOneAd) {
         [self loadAdWithURL:nil];
     }
 }

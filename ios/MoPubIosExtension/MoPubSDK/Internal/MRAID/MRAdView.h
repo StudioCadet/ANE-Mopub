@@ -97,6 +97,8 @@ typedef NSUInteger MRAdViewAdType;
 - (BOOL)isViewable;
 - (void)rotateToOrientation:(UIInterfaceOrientation)newOrientation;
 - (void)handleMRAIDOpenCallForURL:(NSURL *)URL;
+- (void)enableRequestHandling;
+- (void)disableRequestHandling;
 
 @end
 

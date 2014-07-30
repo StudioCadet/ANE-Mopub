@@ -20,7 +20,6 @@
 static NSString * const kAnimationKeyExpand = @"expand";
 static NSString * const kAnimationKeyCloseExpanded = @"closeExpanded";
 static NSString * const kAnimationKeyRotateExpanded = @"rotateExpanded";
-static NSString * const kViewabilityTimerNotificationName = @"Viewability";
 static const NSTimeInterval kViewabilityTimerInterval = 1.0;
 
 static NSString *const kMovieDidEnterNotification43 =

@@ -53,17 +53,22 @@
         [self.delegate bannerCustomEvent:self didFailToLoadAdWithError:nil];
         return;
     }
-
-// This code don't work, but in theory, it should allow to set the InMobi slot ID for an ad.
-/*    if ([info objectForKey:@"inMobiSlotID"]) {
-        NSLog(@"Using parameters defined by the InMobi slot ID ");
-        NSString *sid = [[info objectForKey:@"inMobiSlotID"] stringValue];
-        NSLog(@"%@", [NSString stringWithFormat:@"%@", sid]);
-        self.inMobiBanner = [[IMBanner alloc] initWithFrame:CGRectMake(0, 0, size.width, size.height) slotId:[[info objectForKey:@"inMobiSlotID"] longLongValue]];
-    } else {
-        NSLog(@"No InMobi slot ID, using default parameters...");*/
-        self.inMobiBanner = [[MPInstanceProvider sharedProvider] buildIMBannerWithFrame:CGRectMake(0, 0, size.width, size.height) appId:inMobiPropertyId adSize:imAdSizeConstant];
-//    }
+    
+    // Create the InMobi banner :
+    NSLog(@"Creating an InMobi banner ...");
+    self.inMobiBanner = [[MPInstanceProvider sharedProvider] buildIMBannerWithFrame:CGRectMake(0, 0, size.width, size.height) appId:inMobiPropertyId adSize:imAdSizeConstant];
+    
+    // Set the SlotID if defined in MoPub :
+    if ([info objectForKey:@"inMobiSlotID"]) {
+        long long slotId = [[info objectForKey:@"inMobiSlotID"] longLongValue];
+        NSLog(@"Setting banner's Slot ID to %lld.", slotId);
+        self.inMobiBanner.slotId = slotId;
+    }
+    else {
+        NSLog(@"Using default Slot ID.");
+    }
+        
+    
     self.inMobiBanner.delegate = self;
     self.inMobiBanner.refreshInterval = REFRESH_INTERVAL_OFF;
     NSMutableDictionary *paramsDict = [[NSMutableDictionary alloc] init];

@@ -38,6 +38,7 @@ NSString * const kAdTypeHtml = @"html";
 NSString * const kAdTypeInterstitial = @"interstitial";
 NSString * const kAdTypeMraid = @"mraid";
 NSString * const kAdTypeClear = @"clear";
+NSString * const kAdTypeNative = @"json";
 
 @interface MPAdConfiguration ()
 

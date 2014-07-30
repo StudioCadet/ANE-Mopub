@@ -44,18 +44,21 @@
 {
     NSString *inMobiPropertyId = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"IN_MOBI_PROPERTY_ID"];
     [InMobi initialize:inMobiPropertyId]; // won't do anything if already initialized
-// This code don't work, but in theory, it should allow to set the InMobi slot ID for an ad.
-/*    MPLogInfo(@"Requesting InMobi interstitial");
+    
+    // Creating the InMobi interstitial :
+    NSLog(@"Creating InMobi interstitial ...");
+    self.inMobiInterstitial = [[MPInstanceProvider sharedProvider] buildIMInterstitialWithDelegate:self appId:inMobiPropertyId];
+    
+    // Set the SlotID if defined in MoPub :
     if ([info objectForKey:@"inMobiSlotID"]) {
-        NSLog(@"Using parameters defined by the InMobi slot ID ");
-        NSString *sid = [[info objectForKey:@"inMobiSlotID"] stringValue];
-        NSLog(@"%@", [NSString stringWithFormat:@"%@", sid]);
-        self.inMobiInterstitial = [[[IMInterstitial alloc] initWithSlotId:[[info objectForKey:@"inMobiSlotID"] stringValue]] autorelease];
-        self.inMobiInterstitial.delegate = self;
-    } else {
-        NSLog(@"No InMobi slot ID, using default parameters...");*/
-        self.inMobiInterstitial = [[MPInstanceProvider sharedProvider] buildIMInterstitialWithDelegate:self appId:inMobiPropertyId];
-//    }
+        long long slotId = [[info objectForKey:@"inMobiSlotID"] longLongValue];
+        NSLog(@"Setting interstitial's Slot ID to %lld.", slotId);
+        self.inMobiInterstitial.slotId = slotId;
+    }
+    else {
+        NSLog(@"Using default Slot ID.");
+    }
+    
     NSMutableDictionary *paramsDict = [[NSMutableDictionary alloc] init];
     [paramsDict setObject:@"c_mopub" forKey:@"tp"];
 	[paramsDict setObject:MP_SDK_VERSION forKey:@"tp-ver"];

@@ -19,7 +19,9 @@
 		</exec>
 
 		<copy file="../temp/ios/build/Release-iphoneos/lib${name}IosExtension.a" todir="../bin/ios" overwrite="true" />
-		<copydir src="../ios/MoPubIosExtension/AdColony/SDK/AdColony.framework" dest="../bin/ios/AdColony.framework" />
+		<copy todir="../bin/ios/AdColony.framework">
+			<fileset dir="../ios/MoPubIosExtension/AdColony/SDK/AdColony.framework" />
+		</copy>
 
 		<exec executable="ibtool" failonerror="true">
 			<arg value="--errors" />

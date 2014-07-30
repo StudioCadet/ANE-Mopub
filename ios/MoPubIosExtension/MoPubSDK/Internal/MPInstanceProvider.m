@@ -29,6 +29,7 @@
 #import <EventKit/EventKit.h>
 #import <EventKitUI/EventKitUI.h>
 #import <MediaPlayer/MediaPlayer.h>
+#import "MPNativeCustomEvent.h"
 
 
 
@@ -249,7 +250,19 @@ static MPInstanceProvider *sharedAdProvider = nil;
     return playerViewController;
 }
 
+#pragma mark - Native
 
+- (MPNativeCustomEvent *)buildNativeCustomEventFromCustomClass:(Class)customClass
+                                                      delegate:(id<MPNativeCustomEventDelegate>)delegate
+{
+    MPNativeCustomEvent *customEvent = [[[customClass alloc] init] autorelease];
+    if (![customEvent isKindOfClass:[MPNativeCustomEvent class]]) {
+        MPLogError(@"**** Custom Event Class: %@ does not extend MPNativeCustomEvent ****", NSStringFromClass(customClass));
+        return nil;
+    }
+    customEvent.delegate = delegate;
+    return customEvent;
+}
 
 
 @end

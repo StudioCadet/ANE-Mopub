@@ -10,5 +10,8 @@
 @interface NSURL (MPAdditions)
 
 - (NSDictionary *)mp_queryAsDictionary;
+- (BOOL)mp_hasTelephoneScheme;
+- (BOOL)mp_hasTelephonePromptScheme;
+- (BOOL)mp_isSafeForLoadingWithoutUserAction;
 
 @end
