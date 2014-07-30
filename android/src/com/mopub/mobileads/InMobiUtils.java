@@ -1,5 +1,7 @@
 package com.mopub.mobileads;
 
+import java.util.Map;
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.pm.PackageManager;
@@ -17,6 +19,10 @@ import com.sticksports.nativeExtensions.mopub.MoPubExtension;
  */
 public class InMobiUtils {
 	
+	/** The name of the custom network data used on MoPub to pass a SlotID to a particular AdUnit. */
+	private static final String SERVER_CUSTOM_DATA_SLOT_ID_KEY = "inMobiSlotID";
+	
+	
 	/** The property catched from the Android manifest. */
 	public static String inMobiPropertyId;
 	private static Boolean isAppInitialized = false;
@@ -33,6 +39,9 @@ public class InMobiUtils {
 				MoPubExtension.log("Initializing InMobi with property ID : " + inMobiPropertyId);
 				InMobi.initialize(activity, inMobiPropertyId);
 	            isAppInitialized = true;
+	            
+	            InMobi.setLogLevel(InMobi.LOG_LEVEL.DEBUG);
+	            
 	            MoPubExtension.log("InMobi initialized.");
 			}
 			catch (NameNotFoundException e) {
@@ -64,6 +73,18 @@ public class InMobiUtils {
 			}
 		}
 		return IMBanner.INMOBI_AD_UNIT_320X50;
+	}
+	
+	/**
+	 * Returns an eventual Slot ID defined on MoPub.
+	 */
+	public static Long getSlotIdFromServerExtras(Map<String, String> serverExtras) {
+		if(serverExtras == null)
+			return null;
+		if(!serverExtras.containsKey(SERVER_CUSTOM_DATA_SLOT_ID_KEY))
+			return null;
+		
+		return Long.parseLong(serverExtras.get(SERVER_CUSTOM_DATA_SLOT_ID_KEY));
 	}
 
 }

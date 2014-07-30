@@ -20,7 +20,7 @@ import com.sticksports.nativeExtensions.mopub.MoPubExtension;
  * Tested with InMobi SDK 4.1.1
  */
 public class InMobiBanner extends CustomEventBanner implements IMBannerListener {
-
+	
 	private CustomEventBannerListener mBannerListener;
 	private IMBanner iMBanner;
 	private Activity activity;
@@ -48,8 +48,8 @@ public class InMobiBanner extends CustomEventBanner implements IMBannerListener 
 		Integer slotSize = InMobiUtils.getOptimalSlotSize(activity);
 		MoPubExtension.log("Creating banner with slot size " + slotSize + " ...");
 		iMBanner = new IMBanner(activity, InMobiUtils.inMobiPropertyId, slotSize);
-
-        Map<String, String> map = new HashMap<String, String>();
+		
+		Map<String, String> map = new HashMap<String, String>();
         map.put("tp", "c_mopub");
         map.put("tp-ver", MoPub.SDK_VERSION);
         iMBanner.setRequestParams(map);
@@ -57,6 +57,12 @@ public class InMobiBanner extends CustomEventBanner implements IMBannerListener 
 		iMBanner.setIMBannerListener(this);
 		iMBanner.setRefreshInterval(-1);
 		iMBanner.setAnimationType(AnimationType.ANIMATION_ALPHA);
+		
+		Long slotID = InMobiUtils.getSlotIdFromServerExtras(serverExtras);
+		if(slotID != null) {
+			MoPubExtension.log("Setting banner slot ID to " + slotID);
+			iMBanner.setSlotId(slotID);
+		}
 		
 		MoPubExtension.log("Loading InMobi banner ...");
 		iMBanner.loadBanner();

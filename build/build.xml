@@ -55,7 +55,7 @@
 			<classpath>
 				<pathelement location="${android.sdk}/android.jar" />
 				<pathelement location="${flex.sdk}/lib/android/FlashRuntimeExtensions.jar"/>
-				<pathelement location="${mopub.android.sdk}/mopub-sdk/libs/android-support-v4.jar" />
+				<pathelement location="${android.supportV4}/android-support-v4.jar" />
 				<pathelement location="../android/libs/chartboost.jar"/>
 				<pathelement location="../android/libs/inmobi.jar"/>
 				<pathelement location="../android/libs/adcolony.jar"/>
@@ -63,7 +63,7 @@
 		</javac>
 
 		<mkdir dir="../bin/android/temp/zip" />
-		<unzip dest="../bin/android/temp/zip" src="${mopub.android.sdk}/mopub-sdk/libs/android-support-v4.jar" />
+		<unzip dest="../bin/android/temp/zip" src="${android.supportV4}/android-support-v4.jar" />
 		<unzip dest="../bin/android/temp/zip" src="../android/libs/chartboost.jar" />
 		<unzip dest="../bin/android/temp/zip" src="../android/libs/inmobi.jar" />
 		<unzip dest="../bin/android/temp/zip" src="../android/libs/adcolony.jar" />

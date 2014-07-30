@@ -50,6 +50,12 @@ public class InMobiInterstitial extends CustomEventInterstitial implements IMInt
         iMInterstitial.setRequestParams(map);
 		iMInterstitial.setIMInterstitialListener(this);
 		
+		Long slotID = InMobiUtils.getSlotIdFromServerExtras(serverExtras);
+		if(slotID != null) {
+			MoPubExtension.log("Setting interstitial slot ID to " + slotID);
+			iMInterstitial.setSlotId(slotID);
+		}
+		
 		MoPubExtension.log("Loading an InMobi interstitial ...");
 		iMInterstitial.loadInterstitial();
 	}
