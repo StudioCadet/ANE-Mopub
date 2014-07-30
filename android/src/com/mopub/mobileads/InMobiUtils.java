@@ -39,9 +39,6 @@ public class InMobiUtils {
 				MoPubExtension.log("Initializing InMobi with property ID : " + inMobiPropertyId);
 				InMobi.initialize(activity, inMobiPropertyId);
 	            isAppInitialized = true;
-	            
-	            InMobi.setLogLevel(InMobi.LOG_LEVEL.DEBUG);
-	            
 	            MoPubExtension.log("InMobi initialized.");
 			}
 			catch (NameNotFoundException e) {
