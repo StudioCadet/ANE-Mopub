@@ -39,7 +39,6 @@ class ChartboostInterstitial extends CustomEventInterstitial {
     private static void initChartboost() {
     	if(initialized) return;
 //    	Chartboost.sharedChartboost().getPreferences().setImpressionsUseActivities(false);
-    	Chartboost.sharedChartboost().startSession();
         initialized = true;
     }
     
