@@ -7,8 +7,6 @@ import android.app.Activity;
 import android.content.Context;
 
 import com.inmobi.commons.AnimationType;
-import com.inmobi.commons.InMobi;
-import com.inmobi.commons.InMobi.LOG_LEVEL;
 import com.inmobi.monetization.IMBanner;
 import com.inmobi.monetization.IMBannerListener;
 import com.inmobi.monetization.IMErrorCode;
@@ -61,9 +59,11 @@ public class InMobiBanner extends CustomEventBanner implements IMBannerListener 
         map.put("tp", "c_mopub");
         map.put("tp-ver", MoPub.SDK_VERSION);
         iMBanner.setRequestParams(map);
-		InMobi.setLogLevel(LOG_LEVEL.VERBOSE);
 		iMBanner.setIMBannerListener(this);
 		iMBanner.setRefreshInterval(-1);
+		
+		iMBanner.setRefTagParam("AndroidBanner", "AndroidBanner");
+		
 		iMBanner.setAnimationType(AnimationType.ANIMATION_ALPHA);
 		MoPubExtension.log("Loading InMobi banner ...");
 		iMBanner.loadBanner();
@@ -83,6 +83,7 @@ public class InMobiBanner extends CustomEventBanner implements IMBannerListener 
 					iMBanner.setIMBannerListener(null);
 					try {
 		            	Views.removeFromParent(iMBanner);
+		            	MoPubExtension.log("InMobi banner view removed.");
 		            }
 		            catch(Exception e) {
 		            	MoPubExtension.log("Exception while trying to remove an InMobiBanner : " + e);
