@@ -42,20 +42,21 @@ public class InMobiInterstitial extends CustomEventInterstitial implements IMInt
 
 		InMobiUtils.init(context, activity);
 		
-		this.iMInterstitial = new IMInterstitial(activity, InMobiUtils.inMobiPropertyId);
+		Long slotID = InMobiUtils.getSlotIdFromServerExtras(serverExtras);
+		if(slotID != null) {
+			MoPubExtension.log("Creating an InMobi interstitial with Slot ID " + slotID + " ...");
+			this.iMInterstitial = new IMInterstitial(activity, slotID);
+		}
+		else {
+			MoPubExtension.log("Creating an InMobi interstitial with Property ID " + InMobiUtils.inMobiPropertyId + " ...");
+			this.iMInterstitial = new IMInterstitial(activity, InMobiUtils.inMobiPropertyId);
+		}
 
         Map<String, String> map = new HashMap<String, String>();
         map.put("tp", "c_mopub");
         map.put("tp-ver", MoPub.SDK_VERSION);
         iMInterstitial.setRequestParams(map);
 		iMInterstitial.setIMInterstitialListener(this);
-		
-		Long slotID = InMobiUtils.getSlotIdFromServerExtras(serverExtras);
-		if(slotID != null) {
-			MoPubExtension.log("Setting interstitial slot ID to " + slotID);
-			iMInterstitial.setSlotId(slotID);
-		}
-		
 		MoPubExtension.log("Loading an InMobi interstitial ...");
 		iMInterstitial.loadInterstitial();
 	}
@@ -91,7 +92,7 @@ public class InMobiInterstitial extends CustomEventInterstitial implements IMInt
 
 	@Override
 	public void onInterstitialFailed(IMInterstitial imInterstitial, IMErrorCode imErrorCode) {
-		MoPubExtension.log("InMobi interstitial failed to load : " + imErrorCode);
+		MoPubExtension.logW("InMobi interstitial failed to load : " + imErrorCode);
 		if (imErrorCode == IMErrorCode.INTERNAL_ERROR) {
 			mInterstitialListener.onInterstitialFailed(MoPubErrorCode.INTERNAL_ERROR);
 		} else if (imErrorCode == IMErrorCode.INVALID_REQUEST) {

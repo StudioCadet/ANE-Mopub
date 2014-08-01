@@ -45,9 +45,17 @@ public class InMobiBanner extends CustomEventBanner implements IMBannerListener 
 		
 		InMobiUtils.init(context, activity);
 
-		Integer slotSize = InMobiUtils.getOptimalSlotSize(activity);
-		MoPubExtension.log("Creating banner with slot size " + slotSize + " ...");
-		iMBanner = new IMBanner(activity, InMobiUtils.inMobiPropertyId, slotSize);
+		Long slotID = InMobiUtils.getSlotIdFromServerExtras(serverExtras);
+		
+		if(slotID != null) {
+			MoPubExtension.log("Creating banner with slot ID " + slotID + " ...");
+			iMBanner = new IMBanner(activity, slotID);
+		}
+		else {
+			Integer slotSize = InMobiUtils.getOptimalSlotSize(activity);
+			MoPubExtension.log("Creating banner with slot size " + slotSize + " ...");
+			iMBanner = new IMBanner(activity, InMobiUtils.inMobiPropertyId, slotSize);
+		}
 		
 		Map<String, String> map = new HashMap<String, String>();
         map.put("tp", "c_mopub");
@@ -57,13 +65,6 @@ public class InMobiBanner extends CustomEventBanner implements IMBannerListener 
 		iMBanner.setIMBannerListener(this);
 		iMBanner.setRefreshInterval(-1);
 		iMBanner.setAnimationType(AnimationType.ANIMATION_ALPHA);
-		
-		Long slotID = InMobiUtils.getSlotIdFromServerExtras(serverExtras);
-		if(slotID != null) {
-			MoPubExtension.log("Setting banner slot ID to " + slotID);
-			iMBanner.setSlotId(slotID);
-		}
-		
 		MoPubExtension.log("Loading InMobi banner ...");
 		iMBanner.loadBanner();
 	}
