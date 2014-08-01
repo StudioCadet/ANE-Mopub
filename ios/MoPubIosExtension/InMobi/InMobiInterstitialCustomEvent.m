@@ -12,6 +12,7 @@
 @interface MPInstanceProvider (InMobiInterstitials)
 
 - (IMInterstitial *)buildIMInterstitialWithDelegate:(id<IMInterstitialDelegate>)delegate appId:(NSString *)appId;
+- (IMInterstitial *)buildIMInterstitialWithSlotIdAndDelegate:(id<IMInterstitialDelegate>)delegate slotId:(long long)slotId;
 
 @end
 
@@ -19,6 +20,11 @@
 
 - (IMInterstitial *)buildIMInterstitialWithDelegate:(id<IMInterstitialDelegate>)delegate appId:(NSString *)appId {
     IMInterstitial *inMobiInterstitial = [[[IMInterstitial alloc] initWithAppId:appId] autorelease];
+    inMobiInterstitial.delegate = delegate;
+    return inMobiInterstitial;
+}
+- (IMInterstitial *)buildIMInterstitialWithSlotIdAndDelegate:(id<IMInterstitialDelegate>)delegate slotId:(long long) slotId {
+    IMInterstitial *inMobiInterstitial = [[[IMInterstitial alloc] initWithSlotId:slotId] autorelease];
     inMobiInterstitial.delegate = delegate;
     return inMobiInterstitial;
 }
@@ -46,17 +52,18 @@
     [InMobi initialize:inMobiPropertyId]; // won't do anything if already initialized
     
     // Creating the InMobi interstitial :
-    NSLog(@"Creating InMobi interstitial ...");
+    NSLog(@"Creating InMobi interstitial with Property ID %@ ...", inMobiPropertyId);
     self.inMobiInterstitial = [[MPInstanceProvider sharedProvider] buildIMInterstitialWithDelegate:self appId:inMobiPropertyId];
     
     // Set the SlotID if defined in MoPub :
     if ([info objectForKey:@"inMobiSlotID"]) {
         long long slotId = [[info objectForKey:@"inMobiSlotID"] longLongValue];
-        NSLog(@"Setting interstitial's Slot ID to %lld.", slotId);
-        self.inMobiInterstitial.slotId = slotId;
+        NSLog(@"Creating InMobi interstitial with Slot ID %lld ...", slotId);
+        self.inMobiInterstitial = [[MPInstanceProvider sharedProvider] buildIMInterstitialWithSlotIdAndDelegate:self slotId:slotId];
     }
     else {
-        NSLog(@"Using default Slot ID.");
+        NSLog(@"Creating InMobi interstitial with Property ID %@ ...", inMobiPropertyId);
+        self.inMobiInterstitial = [[MPInstanceProvider sharedProvider] buildIMInterstitialWithDelegate:self appId:inMobiPropertyId];
     }
     
     NSMutableDictionary *paramsDict = [[NSMutableDictionary alloc] init];

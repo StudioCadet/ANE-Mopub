@@ -15,6 +15,7 @@
 @interface MPInstanceProvider (InMobiBanners)
 
 - (IMBanner *)buildIMBannerWithFrame:(CGRect)frame appId:(NSString *)appId adSize:(int)adSize;
+- (IMBanner *)buildIMBannerWithSlotIdAndFrame:(CGRect)frame slotId:(long long)slotId;
 
 @end
 
@@ -23,6 +24,11 @@
 - (IMBanner *)buildIMBannerWithFrame:(CGRect)frame appId:(NSString *)appId adSize:(int)adSize
 {
     return [[[IMBanner alloc] initWithFrame:frame appId:appId adSize:adSize] autorelease];
+}
+
+- (IMBanner *)buildIMBannerWithSlotIdAndFrame:(CGRect)frame slotId:(long long)slotId
+{
+    return [[[IMBanner alloc] initWithFrame:frame slotId:slotId] autorelease];
 }
 
 @end
@@ -54,18 +60,15 @@
         return;
     }
     
-    // Create the InMobi banner :
-    NSLog(@"Creating an InMobi banner ...");
-    self.inMobiBanner = [[MPInstanceProvider sharedProvider] buildIMBannerWithFrame:CGRectMake(0, 0, size.width, size.height) appId:inMobiPropertyId adSize:imAdSizeConstant];
-    
-    // Set the SlotID if defined in MoPub :
+    // Create the banner :
     if ([info objectForKey:@"inMobiSlotID"]) {
         long long slotId = [[info objectForKey:@"inMobiSlotID"] longLongValue];
-        NSLog(@"Setting banner's Slot ID to %lld.", slotId);
-        self.inMobiBanner.slotId = slotId;
+        NSLog(@"Creating an InMobi banner with Slot ID %lld ...", slotId);
+        self.inMobiBanner = [[MPInstanceProvider sharedProvider] buildIMBannerWithSlotIdAndFrame:CGRectMake(0, 0, size.width, size.height) slotId:slotId];
     }
     else {
-        NSLog(@"Using default Slot ID.");
+        NSLog(@"Creating an InMobi banner with Property ID %@ and size %i ...", inMobiPropertyId, imAdSizeConstant);
+        self.inMobiBanner = [[MPInstanceProvider sharedProvider] buildIMBannerWithFrame:CGRectMake(0, 0, size.width, size.height) appId:inMobiPropertyId adSize:imAdSizeConstant];
     }
         
     
@@ -81,6 +84,10 @@
                                longitude:self.delegate.location.coordinate.longitude
                                 accuracy:self.delegate.location.horizontalAccuracy];
     }
+    
+    self.inMobiBanner.refTagKey = @"IosBanner";
+    self.inMobiBanner.refTagValue = @"IosBanner";
+    
     [self.inMobiBanner loadBanner];
     
 }
