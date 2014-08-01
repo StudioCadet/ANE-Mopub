@@ -60,7 +60,9 @@
 				<pathelement location="${android.supportV4}/android-support-v4.jar" />
 				<pathelement location="../android/libs/chartboost.jar"/>
 				<pathelement location="../android/libs/inmobi.jar"/>
-				<pathelement location="../android/libs/adcolony.jar"/>
+				<pathelement location="../android/libs/google-play-services.jar"/>
+				<pathelement location="../android/libs/google-play-services.jar"/>
+				
 			</classpath>
 		</javac>
 
@@ -68,6 +70,7 @@
 		<unzip dest="../bin/android/temp/zip" src="${android.supportV4}/android-support-v4.jar" />
 		<unzip dest="../bin/android/temp/zip" src="../android/libs/chartboost.jar" />
 		<unzip dest="../bin/android/temp/zip" src="../android/libs/inmobi.jar" />
+		<unzip dest="../bin/android/temp/zip" src="../android/libs/google-play-services.jar" />
 		<unzip dest="../bin/android/temp/zip" src="../android/libs/adcolony.jar" />
 		<copy todir="../bin/android/temp/classes/com">
 			<fileset dir="../bin/android/temp/zip/com" />
