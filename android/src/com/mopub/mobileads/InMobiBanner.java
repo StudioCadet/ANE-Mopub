@@ -6,7 +6,6 @@ import java.util.Map;
 import android.app.Activity;
 import android.content.Context;
 
-import com.inmobi.commons.AnimationType;
 import com.inmobi.monetization.IMBanner;
 import com.inmobi.monetization.IMBannerListener;
 import com.inmobi.monetization.IMErrorCode;
@@ -58,13 +57,12 @@ public class InMobiBanner extends CustomEventBanner implements IMBannerListener 
 		Map<String, String> map = new HashMap<String, String>();
         map.put("tp", "c_mopub");
         map.put("tp-ver", MoPub.SDK_VERSION);
+        map.put("reftag", "AndroidBanner");
+        map.put("ref-tag", "AndroidBanner");
         iMBanner.setRequestParams(map);
 		iMBanner.setIMBannerListener(this);
-		iMBanner.setRefreshInterval(-1);
-		
+		iMBanner.setRefreshInterval(IMBanner.REFRESH_INTERVAL_OFF);
 		iMBanner.setRefTagParam("AndroidBanner", "AndroidBanner");
-		
-		iMBanner.setAnimationType(AnimationType.ANIMATION_ALPHA);
 		MoPubExtension.log("Loading InMobi banner ...");
 		iMBanner.loadBanner();
 	}
