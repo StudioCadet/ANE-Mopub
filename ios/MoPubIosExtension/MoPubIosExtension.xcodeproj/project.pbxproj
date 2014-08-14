@@ -32,6 +32,22 @@
 		48A468C11975573D00171565 /* InMobi.h in Headers */ = {isa = PBXBuildFile; fileRef = 48A468B51975573D00171565 /* InMobi.h */; };
 		48A468C21975573D00171565 /* InMobiAnalytics.h in Headers */ = {isa = PBXBuildFile; fileRef = 48A468B61975573D00171565 /* InMobiAnalytics.h */; };
 		48A468C31975573D00171565 /* libInMobi-4.4.1.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 48A468B71975573D00171565 /* libInMobi-4.4.1.a */; };
+		48E89AFA199CD6B0007C857D /* AFMoPubInterstitialCustomEvent.h in Headers */ = {isa = PBXBuildFile; fileRef = 48E89AE7199CD6B0007C857D /* AFMoPubInterstitialCustomEvent.h */; };
+		48E89AFB199CD6B0007C857D /* AFMoPubInterstitialCustomEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 48E89AE8199CD6B0007C857D /* AFMoPubInterstitialCustomEvent.m */; };
+		48E89AFC199CD6B0007C857D /* AppsfireAdTimerView.h in Headers */ = {isa = PBXBuildFile; fileRef = 48E89AE9199CD6B0007C857D /* AppsfireAdTimerView.h */; };
+		48E89AFD199CD6B0007C857D /* AppsfireAdTimerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 48E89AEA199CD6B0007C857D /* AppsfireAdTimerView.m */; };
+		48E89AFE199CD6B0007C857D /* AppsfireAdSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = 48E89AEC199CD6B0007C857D /* AppsfireAdSDK.h */; };
+		48E89AFF199CD6B0007C857D /* AppsfireEngageSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = 48E89AED199CD6B0007C857D /* AppsfireEngageSDK.h */; };
+		48E89B00199CD6B0007C857D /* AppsfireSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = 48E89AEE199CD6B0007C857D /* AppsfireSDK.h */; };
+		48E89B01199CD6B0007C857D /* AppsfireSDKConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 48E89AEF199CD6B0007C857D /* AppsfireSDKConstants.h */; };
+		48E89B02199CD6B0007C857D /* AFAdSDKIAP.h in Headers */ = {isa = PBXBuildFile; fileRef = 48E89AF1199CD6B0007C857D /* AFAdSDKIAP.h */; };
+		48E89B03199CD6B0007C857D /* AFAdSDKIAPProperty.h in Headers */ = {isa = PBXBuildFile; fileRef = 48E89AF2199CD6B0007C857D /* AFAdSDKIAPProperty.h */; };
+		48E89B04199CD6B0007C857D /* libAppsfireSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 48E89AF3199CD6B0007C857D /* libAppsfireSDK.a */; };
+		48E89B05199CD6B0007C857D /* AFAdSDKAdBadgeView.h in Headers */ = {isa = PBXBuildFile; fileRef = 48E89AF5199CD6B0007C857D /* AFAdSDKAdBadgeView.h */; };
+		48E89B06199CD6B0007C857D /* AFAdSDKSashimiExtendedView.h in Headers */ = {isa = PBXBuildFile; fileRef = 48E89AF6199CD6B0007C857D /* AFAdSDKSashimiExtendedView.h */; };
+		48E89B07199CD6B0007C857D /* AFAdSDKSashimiMinimalView.h in Headers */ = {isa = PBXBuildFile; fileRef = 48E89AF7199CD6B0007C857D /* AFAdSDKSashimiMinimalView.h */; };
+		48E89B08199CD6B0007C857D /* AFAdSDKSashimiView.h in Headers */ = {isa = PBXBuildFile; fileRef = 48E89AF8199CD6B0007C857D /* AFAdSDKSashimiView.h */; };
+		48E89B09199CD6B0007C857D /* AFAdSDKUdonNoodleControl.h in Headers */ = {isa = PBXBuildFile; fileRef = 48E89AF9199CD6B0007C857D /* AFAdSDKUdonNoodleControl.h */; };
 		6DC53B6C198929F9005D7103 /* MPBannerAdManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 6DC53AB7198929F9005D7103 /* MPBannerAdManager.h */; };
 		6DC53B6D198929F9005D7103 /* MPBannerAdManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DC53AB8198929F9005D7103 /* MPBannerAdManager.m */; };
 		6DC53B6E198929F9005D7103 /* MPBannerAdManagerDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 6DC53AB9198929F9005D7103 /* MPBannerAdManagerDelegate.h */; };
@@ -262,6 +278,22 @@
 		48A468B51975573D00171565 /* InMobi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InMobi.h; sourceTree = "<group>"; };
 		48A468B61975573D00171565 /* InMobiAnalytics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InMobiAnalytics.h; sourceTree = "<group>"; };
 		48A468B71975573D00171565 /* libInMobi-4.4.1.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libInMobi-4.4.1.a"; sourceTree = "<group>"; };
+		48E89AE7199CD6B0007C857D /* AFMoPubInterstitialCustomEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFMoPubInterstitialCustomEvent.h; sourceTree = "<group>"; };
+		48E89AE8199CD6B0007C857D /* AFMoPubInterstitialCustomEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFMoPubInterstitialCustomEvent.m; sourceTree = "<group>"; };
+		48E89AE9199CD6B0007C857D /* AppsfireAdTimerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppsfireAdTimerView.h; sourceTree = "<group>"; };
+		48E89AEA199CD6B0007C857D /* AppsfireAdTimerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppsfireAdTimerView.m; sourceTree = "<group>"; };
+		48E89AEC199CD6B0007C857D /* AppsfireAdSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppsfireAdSDK.h; sourceTree = "<group>"; };
+		48E89AED199CD6B0007C857D /* AppsfireEngageSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppsfireEngageSDK.h; sourceTree = "<group>"; };
+		48E89AEE199CD6B0007C857D /* AppsfireSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppsfireSDK.h; sourceTree = "<group>"; };
+		48E89AEF199CD6B0007C857D /* AppsfireSDKConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppsfireSDKConstants.h; sourceTree = "<group>"; };
+		48E89AF1199CD6B0007C857D /* AFAdSDKIAP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFAdSDKIAP.h; sourceTree = "<group>"; };
+		48E89AF2199CD6B0007C857D /* AFAdSDKIAPProperty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFAdSDKIAPProperty.h; sourceTree = "<group>"; };
+		48E89AF3199CD6B0007C857D /* libAppsfireSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libAppsfireSDK.a; sourceTree = "<group>"; };
+		48E89AF5199CD6B0007C857D /* AFAdSDKAdBadgeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFAdSDKAdBadgeView.h; sourceTree = "<group>"; };
+		48E89AF6199CD6B0007C857D /* AFAdSDKSashimiExtendedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFAdSDKSashimiExtendedView.h; sourceTree = "<group>"; };
+		48E89AF7199CD6B0007C857D /* AFAdSDKSashimiMinimalView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFAdSDKSashimiMinimalView.h; sourceTree = "<group>"; };
+		48E89AF8199CD6B0007C857D /* AFAdSDKSashimiView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFAdSDKSashimiView.h; sourceTree = "<group>"; };
+		48E89AF9199CD6B0007C857D /* AFAdSDKUdonNoodleControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFAdSDKUdonNoodleControl.h; sourceTree = "<group>"; };
 		6DC53AB7198929F9005D7103 /* MPBannerAdManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPBannerAdManager.h; sourceTree = "<group>"; };
 		6DC53AB8198929F9005D7103 /* MPBannerAdManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPBannerAdManager.m; sourceTree = "<group>"; };
 		6DC53AB9198929F9005D7103 /* MPBannerAdManagerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPBannerAdManagerDelegate.h; sourceTree = "<group>"; };
@@ -485,6 +517,7 @@
 				79F87A43177B35630047359B /* CoreTelephony.framework in Frameworks */,
 				79F87D30177B41AC0047359B /* EventKit.framework in Frameworks */,
 				79F87D31177B41AC0047359B /* EventKitUI.framework in Frameworks */,
+				48E89B04199CD6B0007C857D /* libAppsfireSDK.a in Frameworks */,
 				79A6D48C1636C14D009DA60A /* Foundation.framework in Frameworks */,
 				79BF9899174A1DDA0038F1F1 /* MediaPlayer.framework in Frameworks */,
 				79BF9893174A1DC50038F1F1 /* MessageUI.framework in Frameworks */,
@@ -568,6 +601,53 @@
 				48A468B71975573D00171565 /* libInMobi-4.4.1.a */,
 			);
 			path = SDK;
+			sourceTree = "<group>";
+		};
+		48E89AE6199CD6B0007C857D /* AppsFire */ = {
+			isa = PBXGroup;
+			children = (
+				48E89AE7199CD6B0007C857D /* AFMoPubInterstitialCustomEvent.h */,
+				48E89AE8199CD6B0007C857D /* AFMoPubInterstitialCustomEvent.m */,
+				48E89AE9199CD6B0007C857D /* AppsfireAdTimerView.h */,
+				48E89AEA199CD6B0007C857D /* AppsfireAdTimerView.m */,
+				48E89AEB199CD6B0007C857D /* SDK */,
+			);
+			path = AppsFire;
+			sourceTree = "<group>";
+		};
+		48E89AEB199CD6B0007C857D /* SDK */ = {
+			isa = PBXGroup;
+			children = (
+				48E89AEC199CD6B0007C857D /* AppsfireAdSDK.h */,
+				48E89AED199CD6B0007C857D /* AppsfireEngageSDK.h */,
+				48E89AEE199CD6B0007C857D /* AppsfireSDK.h */,
+				48E89AEF199CD6B0007C857D /* AppsfireSDKConstants.h */,
+				48E89AF0199CD6B0007C857D /* iap */,
+				48E89AF3199CD6B0007C857D /* libAppsfireSDK.a */,
+				48E89AF4199CD6B0007C857D /* sashimi */,
+			);
+			path = SDK;
+			sourceTree = "<group>";
+		};
+		48E89AF0199CD6B0007C857D /* iap */ = {
+			isa = PBXGroup;
+			children = (
+				48E89AF1199CD6B0007C857D /* AFAdSDKIAP.h */,
+				48E89AF2199CD6B0007C857D /* AFAdSDKIAPProperty.h */,
+			);
+			path = iap;
+			sourceTree = "<group>";
+		};
+		48E89AF4199CD6B0007C857D /* sashimi */ = {
+			isa = PBXGroup;
+			children = (
+				48E89AF5199CD6B0007C857D /* AFAdSDKAdBadgeView.h */,
+				48E89AF6199CD6B0007C857D /* AFAdSDKSashimiExtendedView.h */,
+				48E89AF7199CD6B0007C857D /* AFAdSDKSashimiMinimalView.h */,
+				48E89AF8199CD6B0007C857D /* AFAdSDKSashimiView.h */,
+				48E89AF9199CD6B0007C857D /* AFAdSDKUdonNoodleControl.h */,
+			);
+			path = sashimi;
 			sourceTree = "<group>";
 		};
 		6DC53AB4198929F9005D7103 /* MoPubSDK */ = {
@@ -854,6 +934,7 @@
 		79A6D47D1636C14C009DA60A = {
 			isa = PBXGroup;
 			children = (
+				48E89AE6199CD6B0007C857D /* AppsFire */,
 				6DC53AB4198929F9005D7103 /* MoPubSDK */,
 				48A468A31966C60600171565 /* AdColony */,
 				349B4DB81946F1CE00184794 /* InMobi */,
@@ -937,6 +1018,7 @@
 			files = (
 				6DC53BEA198929F9005D7103 /* MPInterstitialAdController.h in Headers */,
 				6DC53BFE198929FA005D7103 /* MPTableViewCellImpressionTracker.h in Headers */,
+				48E89AFC199CD6B0007C857D /* AppsfireAdTimerView.h in Headers */,
 				6DC53BF3198929F9005D7103 /* MPDiskLRUCache.h in Headers */,
 				79F66B1E1654051E00E917FB /* MoPubInterstitial.h in Headers */,
 				6DC53B8F198929F9005D7103 /* MPAdWebView.h in Headers */,
@@ -956,6 +1038,7 @@
 				6DC53B95198929F9005D7103 /* MPHTMLInterstitialCustomEvent.h in Headers */,
 				6DC53BCA198929F9005D7103 /* UIViewController+MPAdditions.h in Headers */,
 				6DC53B9D198929F9005D7103 /* MPInterstitialAdManagerDelegate.h in Headers */,
+				48E89AFF199CD6B0007C857D /* AppsfireEngageSDK.h in Headers */,
 				6DC53BD2198929F9005D7103 /* MPGlobal.h in Headers */,
 				6DC53BDC198929F9005D7103 /* MPStoreKitProvider.h in Headers */,
 				6DC53BA5198929F9005D7103 /* MPCoreInstanceProvider.h in Headers */,
@@ -963,15 +1046,19 @@
 				6DC53B9E198929F9005D7103 /* MPInterstitialCustomEventAdapter.h in Headers */,
 				6DC53BDA198929F9005D7103 /* MPSessionTracker.h in Headers */,
 				6DC53BDE198929F9005D7103 /* MPTimer.h in Headers */,
+				48E89AFA199CD6B0007C857D /* AFMoPubInterstitialCustomEvent.h in Headers */,
+				48E89B03199CD6B0007C857D /* AFAdSDKIAPProperty.h in Headers */,
 				6DC53B6C198929F9005D7103 /* MPBannerAdManager.h in Headers */,
 				6DC53B84198929F9005D7103 /* MPFacebookKeywordProvider.h in Headers */,
 				48A468C21975573D00171565 /* InMobiAnalytics.h in Headers */,
 				6DC53BA0198929F9005D7103 /* MPInterstitialViewController.h in Headers */,
+				48E89B02199CD6B0007C857D /* AFAdSDKIAP.h in Headers */,
 				6DC53C05198929FA005D7103 /* MPNativeAdError.h in Headers */,
 				6DC53BC4198929F9005D7103 /* MRVideoPlayerManager.h in Headers */,
 				6DC53B87198929F9005D7103 /* MPLastResortDelegate+EventKit.h in Headers */,
 				6DC53BD8198929F9005D7103 /* MPReachability.h in Headers */,
 				6DC53C02198929FA005D7103 /* MPNativeAdAdapter.h in Headers */,
+				48E89B06199CD6B0007C857D /* AFAdSDKSashimiExtendedView.h in Headers */,
 				6DC53C00198929FA005D7103 /* MPNativeAd.h in Headers */,
 				6DC53BC0198929F9005D7103 /* MRPictureManager.h in Headers */,
 				6DC53BCC198929F9005D7103 /* UIWebView+MPAdditions.h in Headers */,
@@ -985,16 +1072,20 @@
 				6DC53B7E198929F9005D7103 /* MPAdDestinationDisplayAgent.h in Headers */,
 				48A468BD1975573D00171565 /* IMInterstitial.h in Headers */,
 				6DC53BE0198929F9005D7103 /* MPUserInteractionGestureRecognizer.h in Headers */,
+				48E89AFE199CD6B0007C857D /* AppsfireAdSDK.h in Headers */,
 				6DC53BB2198929F9005D7103 /* MRAdViewDisplayController.h in Headers */,
 				6DC53B91198929F9005D7103 /* MPAdWebViewAgent.h in Headers */,
 				6DC53B73198929F9005D7103 /* MPLegacyBannerCustomEventAdapter.h in Headers */,
+				48E89B00199CD6B0007C857D /* AppsfireSDK.h in Headers */,
 				6DC53B6F198929F9005D7103 /* MPBannerCustomEventAdapter.h in Headers */,
 				6DC53BEF198929F9005D7103 /* UIImageView+MPNativeAd.h in Headers */,
 				6DC53BAD198929F9005D7103 /* MPMRAIDInterstitialViewController.h in Headers */,
 				6DC53B89198929F9005D7103 /* MPLastResortDelegate.h in Headers */,
+				48E89B05199CD6B0007C857D /* AFAdSDKAdBadgeView.h in Headers */,
 				6DC53BAF198929F9005D7103 /* MRAdView+Controllers.h in Headers */,
 				48A468A81966C60600171565 /* AdColonyInterstitialCustomEvent.h in Headers */,
 				6DC53BC8198929F9005D7103 /* NSURL+MPAdditions.h in Headers */,
+				48E89B07199CD6B0007C857D /* AFAdSDKSashimiMinimalView.h in Headers */,
 				6DC53BF9198929FA005D7103 /* MPMoPubNativeCustomEvent.h in Headers */,
 				6DC53C0A198929FA005D7103 /* MPNativeAdRequestTargeting.h in Headers */,
 				6DC53B7C198929F9005D7103 /* MPAdConfiguration.h in Headers */,
@@ -1031,14 +1122,17 @@
 				6DC53B99198929F9005D7103 /* MPBaseInterstitialAdapter.h in Headers */,
 				6DC53BAB198929F9005D7103 /* MPMRAIDInterstitialCustomEvent.h in Headers */,
 				6DC53BA4198929F9005D7103 /* MPPrivateInterstitialCustomEventDelegate.h in Headers */,
+				48E89B01199CD6B0007C857D /* AppsfireSDKConstants.h in Headers */,
 				6DC53BD6198929F9005D7103 /* MPLogging.h in Headers */,
 				6DC53BD0198929F9005D7103 /* MPError.h in Headers */,
 				48A468BE1975573D00171565 /* IMInterstitialDelegate.h in Headers */,
 				6DC53BA9198929F9005D7103 /* MPMRAIDBannerCustomEvent.h in Headers */,
 				349B4DBE1946F1CE00184794 /* InMobiBannerCustomEvent.h in Headers */,
 				6DC53BE8198929F9005D7103 /* MPBannerCustomEventDelegate.h in Headers */,
+				48E89B09199CD6B0007C857D /* AFAdSDKUdonNoodleControl.h in Headers */,
 				6DC53BF5198929FA005D7103 /* MPImageDownloadQueue.h in Headers */,
 				6DC53BB0198929F9005D7103 /* MRAdView.h in Headers */,
+				48E89B08199CD6B0007C857D /* AFAdSDKSashimiView.h in Headers */,
 				6DC53BEE198929F9005D7103 /* MPInterstitialCustomEventDelegate.h in Headers */,
 				48A468B91975573D00171565 /* IMBannerDelegate.h in Headers */,
 			);
@@ -1137,6 +1231,8 @@
 				6DC53BCF198929F9005D7103 /* MPAnalyticsTracker.m in Sources */,
 				6DC53B79198929F9005D7103 /* MPAdAlertManager.m in Sources */,
 				6DC53C0B198929FA005D7103 /* MPNativeAdRequestTargeting.m in Sources */,
+				48E89AFD199CD6B0007C857D /* AppsfireAdTimerView.m in Sources */,
+				48E89AFB199CD6B0007C857D /* AFMoPubInterstitialCustomEvent.m in Sources */,
 				6DC53BF0198929F9005D7103 /* UIImageView+MPNativeAd.m in Sources */,
 				6DC53BB5198929F9005D7103 /* MRBundleManager.m in Sources */,
 				349B4DBF1946F1CE00184794 /* InMobiBannerCustomEvent.m in Sources */,
@@ -1249,6 +1345,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/Chartboost/SDK",
 					"$(PROJECT_DIR)/InMobi/SDK",
+					"$(PROJECT_DIR)/AppsFire/SDK",
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-ObjC";
@@ -1276,6 +1373,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/Chartboost/SDK",
 					"$(PROJECT_DIR)/InMobi/SDK",
+					"$(PROJECT_DIR)/AppsFire/SDK",
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-ObjC";
