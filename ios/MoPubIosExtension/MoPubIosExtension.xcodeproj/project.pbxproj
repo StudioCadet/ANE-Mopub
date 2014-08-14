@@ -48,6 +48,7 @@
 		48E89B07199CD6B0007C857D /* AFAdSDKSashimiMinimalView.h in Headers */ = {isa = PBXBuildFile; fileRef = 48E89AF7199CD6B0007C857D /* AFAdSDKSashimiMinimalView.h */; };
 		48E89B08199CD6B0007C857D /* AFAdSDKSashimiView.h in Headers */ = {isa = PBXBuildFile; fileRef = 48E89AF8199CD6B0007C857D /* AFAdSDKSashimiView.h */; };
 		48E89B09199CD6B0007C857D /* AFAdSDKUdonNoodleControl.h in Headers */ = {isa = PBXBuildFile; fileRef = 48E89AF9199CD6B0007C857D /* AFAdSDKUdonNoodleControl.h */; };
+		48E89B0B199CEC68007C857D /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48E89B0A199CEC68007C857D /* Accelerate.framework */; };
 		6DC53B6C198929F9005D7103 /* MPBannerAdManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 6DC53AB7198929F9005D7103 /* MPBannerAdManager.h */; };
 		6DC53B6D198929F9005D7103 /* MPBannerAdManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DC53AB8198929F9005D7103 /* MPBannerAdManager.m */; };
 		6DC53B6E198929F9005D7103 /* MPBannerAdManagerDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 6DC53AB9198929F9005D7103 /* MPBannerAdManagerDelegate.h */; };
@@ -294,6 +295,7 @@
 		48E89AF7199CD6B0007C857D /* AFAdSDKSashimiMinimalView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFAdSDKSashimiMinimalView.h; sourceTree = "<group>"; };
 		48E89AF8199CD6B0007C857D /* AFAdSDKSashimiView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFAdSDKSashimiView.h; sourceTree = "<group>"; };
 		48E89AF9199CD6B0007C857D /* AFAdSDKUdonNoodleControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFAdSDKUdonNoodleControl.h; sourceTree = "<group>"; };
+		48E89B0A199CEC68007C857D /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		6DC53AB7198929F9005D7103 /* MPBannerAdManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPBannerAdManager.h; sourceTree = "<group>"; };
 		6DC53AB8198929F9005D7103 /* MPBannerAdManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPBannerAdManager.m; sourceTree = "<group>"; };
 		6DC53AB9198929F9005D7103 /* MPBannerAdManagerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPBannerAdManagerDelegate.h; sourceTree = "<group>"; };
@@ -503,6 +505,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				48E89B0B199CEC68007C857D /* Accelerate.framework in Frameworks */,
 				34FBB5A6190FE406005402C5 /* Security.framework in Frameworks */,
 				79F87D2E177B41AC0047359B /* AddressBook.framework in Frameworks */,
 				79F87D2F177B41AC0047359B /* AddressBookUI.framework in Frameworks */,
@@ -957,6 +960,7 @@
 		79A6D48A1636C14D009DA60A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				48E89B0A199CEC68007C857D /* Accelerate.framework */,
 				34FBB5A5190FE405005402C5 /* Security.framework */,
 				34FBB5A3190FE3DD005402C5 /* CFNetwork.framework */,
 				79F87D20177B41950047359B /* AddressBook.framework */,
