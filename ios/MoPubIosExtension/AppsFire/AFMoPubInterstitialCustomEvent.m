@@ -36,8 +36,11 @@ static BOOL isInitialized = false;
 #pragma mark - Ad Request
 
 - (void)requestInterstitialWithCustomEventInfo:(NSDictionary *)info {
-    if (!isInitialized)
+    if (isInitialized == false) {
+        NSLog(@"Connecting to AppsFire...");
         [AppsfireSDK connectWithSDKToken:@"374142F1BD3FA5EC160349FE208BE778" features:AFSDKFeatureMonetization parameters:nil];
+        isInitialized = true;
+    }
     
     
     // Variable init.
