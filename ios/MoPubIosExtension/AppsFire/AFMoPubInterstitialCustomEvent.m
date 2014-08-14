@@ -7,10 +7,12 @@
 #import "AFMoPubInterstitialCustomEvent.h"
 
 // Appsfire SDK
+#import "AppsfireSDK.h"
 #import "AppsfireAdSDK.h"
 #import "AppsfireAdTimerView.h"
 
 static NSTimeInterval const AFMoPubInterstitialCustomEventTimerInterval = 3.0;
+static BOOL isInitialized = false;
 
 @interface AFMoPubInterstitialCustomEvent () <AppsfireAdSDKDelegate, AFAdSDKModalDelegate>
 
@@ -34,6 +36,9 @@ static NSTimeInterval const AFMoPubInterstitialCustomEventTimerInterval = 3.0;
 #pragma mark - Ad Request
 
 - (void)requestInterstitialWithCustomEventInfo:(NSDictionary *)info {
+    if (!isInitialized)
+        [AppsfireSDK connectWithSDKToken:@"374142F1BD3FA5EC160349FE208BE778" features:AFSDKFeatureMonetization parameters:nil];
+    
     
     // Variable init.
     _delegateAlreadyNotified = NO;
