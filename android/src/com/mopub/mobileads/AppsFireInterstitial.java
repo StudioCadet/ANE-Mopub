@@ -77,6 +77,17 @@ public class AppsFireInterstitial extends CustomEventInterstitial implements AFA
 		        	setDebugModeEnabled(isDebug);
         	adSdk.prepare(context);
         }
+        else {
+        	// Check if a modal ad of type Sushi is available
+    		if (adSdk.isAModalAdOfTypeAvailable(AFAdSDKModalType.AFAdSDKModalTypeSushi)) {
+    			Log.i(CLASS_TAG, "A Sushi ad is ready.");
+    			mCustomEventInterstitialListener.onInterstitialLoaded();
+    		}
+    		else {
+    			Log.i(CLASS_TAG, "No Sushi ad available !");
+    			mCustomEventInterstitialListener.onInterstitialFailed(MoPubErrorCode.NO_FILL);
+    		}
+        }
     }
 
     @Override
