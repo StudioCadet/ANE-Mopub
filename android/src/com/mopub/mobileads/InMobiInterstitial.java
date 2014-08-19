@@ -5,6 +5,7 @@ import java.util.Map;
 
 import android.app.Activity;
 import android.content.Context;
+import android.util.Log;
 
 import com.inmobi.monetization.IMErrorCode;
 import com.inmobi.monetization.IMInterstitial;
@@ -36,6 +37,7 @@ public class InMobiInterstitial extends CustomEventInterstitial implements IMInt
 		}
 
 		if (activity == null) {
+			MoPubExtension.logE("No activity found for InMobi interstitial !");
 			mInterstitialListener.onInterstitialFailed(MoPubErrorCode.UNSPECIFIED);
 			return;
 		}
