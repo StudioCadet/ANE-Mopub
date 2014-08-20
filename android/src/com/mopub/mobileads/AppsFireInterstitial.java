@@ -78,6 +78,8 @@ public class AppsFireInterstitial extends CustomEventInterstitial implements AFA
         	adSdk.prepare(context);
         }
         else {
+        	adSdk.setEventsDelegate(this);
+        	
         	// Check if a modal ad of type Sushi is available
     		if (adSdk.isAModalAdOfTypeAvailable(AFAdSDKModalType.AFAdSDKModalTypeSushi)) {
     			Log.i(CLASS_TAG, "A Sushi ad is ready.");
@@ -113,6 +115,7 @@ public class AppsFireInterstitial extends CustomEventInterstitial implements AFA
     @Override
     protected void onInvalidate() {
     	Log.i(CLASS_TAG, "onInvalidate");
+    	adSdk.setEventsDelegate(null);
     }
 
     /*
