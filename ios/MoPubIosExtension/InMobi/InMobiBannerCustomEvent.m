@@ -77,6 +77,8 @@
     NSMutableDictionary *paramsDict = [[NSMutableDictionary alloc] init];
     [paramsDict setObject:@"c_mopub" forKey:@"tp"];
 	[paramsDict setObject:MP_SDK_VERSION forKey:@"tp-ver"];
+    [paramsDict setObject:@"IosBanner" forKey:@"ref-tag"];
+    [paramsDict setObject:@"IosBanner" forKey:@"reftag"];
     self.inMobiBanner.additionaParameters = paramsDict; // For supply source identification
 
     if (self.delegate.location) {

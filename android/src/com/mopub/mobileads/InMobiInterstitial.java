@@ -36,6 +36,7 @@ public class InMobiInterstitial extends CustomEventInterstitial implements IMInt
 		}
 
 		if (activity == null) {
+			MoPubExtension.logE("No activity found for InMobi interstitial !");
 			mInterstitialListener.onInterstitialFailed(MoPubErrorCode.UNSPECIFIED);
 			return;
 		}

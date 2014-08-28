@@ -38,6 +38,7 @@ public class InMobiUtils {
 						.metaData.get("IN_MOBI_PROPERTY_ID");
 				MoPubExtension.log("Initializing InMobi with property ID : " + inMobiPropertyId);
 				InMobi.initialize(activity, inMobiPropertyId);
+				InMobi.setLogLevel(InMobi.LOG_LEVEL.DEBUG);
 	            isAppInitialized = true;
 	            MoPubExtension.log("InMobi initialized.");
 			}

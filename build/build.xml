@@ -63,6 +63,7 @@
 				<pathelement location="../android/libs/google-play-services.jar"/>
 				<pathelement location="../android/libs/google-play-services.jar"/>
 				
+				<pathelement location="../android/libs/appsfire.jar"/>
 			</classpath>
 		</javac>
 
@@ -72,23 +73,16 @@
 		<unzip dest="../bin/android/temp/zip" src="../android/libs/inmobi.jar" />
 		<unzip dest="../bin/android/temp/zip" src="../android/libs/google-play-services.jar" />
 		<unzip dest="../bin/android/temp/zip" src="../android/libs/adcolony.jar" />
+		
 		<copy todir="../bin/android/temp/classes/com">
 			<fileset dir="../bin/android/temp/zip/com" />
 		</copy>
 		<copy todir="../bin/android/temp/classes/android">
 			<fileset dir="../bin/android/temp/zip/android" />
 		</copy>
-
+		
 		<jar basedir="../bin/android/temp/classes" destfile="../bin/android/${name}.jar"/>
 		<delete dir="../bin/android/temp"/>
-		
-		<!-- # If there is resources to add, uncomment this -->
-		<!--
-		<delete dir="../bin/android/res"/>
-		<copy todir="../bin/android/res">
-			<fileset dir="../android/res" />
-		</copy>
-		-->
 		
 		<echo message="Done."/>
 	</target>

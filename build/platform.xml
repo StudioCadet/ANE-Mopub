@@ -5,6 +5,7 @@
 
 		<option>-ios_version_min 6.0</option>
 
+        <option>-framework Accelerate</option>
 		<option>-framework AddressBook</option>
 		<option>-framework AddressBookUI</option>
 		<option>-weak_framework AdSupport</option>

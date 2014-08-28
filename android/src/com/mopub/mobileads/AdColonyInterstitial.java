@@ -60,7 +60,7 @@ public class AdColonyInterstitial extends CustomEventInterstitial implements AdC
 * Please see AdColony's documentation for more information:
 * https://github.com/AdColony/AdColony-Android-SDK/wiki/API-Details#configure-activity-activity-string-client_options-string-app_id-string-zone_ids-
 */
-    private static final String DEFAULT_CLIENT_OPTIONS = "version:1.17,store:google";
+    private static final String DEFAULT_CLIENT_OPTIONS = "version:1.21,store:google";
     private static final String DEFAULT_APP_ID = "appd1be74c48c1b4ff28d";
     private static final String[] DEFAULT_ALL_ZONE_IDS = {"vz8efc58bf67ea42e3a7"};
     private static final String DEFAULT_ZONE_ID = "vz8efc58bf67ea42e3a7";
@@ -111,6 +111,9 @@ public class AdColonyInterstitial extends CustomEventInterstitial implements AdC
         }
 
         if (!isAdColonyConfigured) {
+        	Log.d("MoPub", "AdColony not configured yet... configuring ...");
+        	System.loadLibrary("Handler");
+        	System.loadLibrary("AsyncTask");
             AdColony.configure((Activity)context, clientOptions, appId, allZoneIds);
             isAdColonyConfigured = true;
         }
