@@ -35,22 +35,22 @@ package com.mopub.mobileads;
 import static com.mopub.mobileads.MoPubErrorCode.ADAPTER_CONFIGURATION_ERROR;
 
 import java.util.Map;
+import java.util.concurrent.Executor;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
 import android.app.Activity;
 import android.content.Context;
 import android.os.Handler;
+import android.os.AsyncTask;
 import android.util.Log;
 
-import com.jirbo.adcolony.AdColony;
-import com.jirbo.adcolony.AdColonyAd;
-import com.jirbo.adcolony.AdColonyAdListener;
-import com.jirbo.adcolony.AdColonyVideoAd;
+import com.jirbo.adcolony.*;
 import com.mopub.common.util.Json;
 
-/*
+/* 
 * Tested with AdColony SDK 2.0.3.
+* Currently installed SDK : 2.1.1
 */
 public class AdColonyInterstitial extends CustomEventInterstitial implements AdColonyAdListener {
     /*
@@ -111,10 +111,26 @@ public class AdColonyInterstitial extends CustomEventInterstitial implements AdC
         }
 
         if (!isAdColonyConfigured) {
+        	
+        	// Note : tries to instantiate the native libraries needed in AdColony.configure() to avoid crashes inside the SDK.
+        	// If one of this libraries is unavailable, a UnsatisfiedLinkError will be thrown and caught
+        	Log.d("MoPub", "Trying to initialize native libraries ...");
+        	try {
+	        	new Handler();
+	        	Executor test = AsyncTask.THREAD_POOL_EXECUTOR;
+	        	test.getClass();
+        	}
+        	catch(Error e) {
+        		Log.d("MoPub", "Failed to load native libraries! aborting ...");
+        		Log.d("MoPub", e.toString());
+        		mCustomEventInterstitialListener.onInterstitialFailed(ADAPTER_CONFIGURATION_ERROR);
+        		return;
+        	}
+        	Log.d("MoPub", "Native libraries successfully initialized!");
+        	
         	Log.d("MoPub", "AdColony not configured yet... configuring ...");
-        	System.loadLibrary("Handler");
-        	System.loadLibrary("AsyncTask");
-            AdColony.configure((Activity)context, clientOptions, appId, allZoneIds);
+        	AdColony.configure((Activity)context, clientOptions, appId, allZoneIds);
+            Log.d("MoPub", "AdColony successfully configured!");
             isAdColonyConfigured = true;
         }
 
