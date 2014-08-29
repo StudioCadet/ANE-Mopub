@@ -119,6 +119,12 @@ public class AdColonyInterstitial extends CustomEventInterstitial implements AdC
 	        	new Handler();
 	        	Executor test = AsyncTask.THREAD_POOL_EXECUTOR;
 	        	test.getClass();
+	        	Log.d("MoPub", "Native libraries successfully initialized!");
+	        	
+	        	Log.d("MoPub", "AdColony not configured yet... configuring ...");
+	        	AdColony.configure((Activity)context, clientOptions, appId, allZoneIds);
+	            Log.d("MoPub", "AdColony successfully configured!");
+	            isAdColonyConfigured = true;
         	}
         	catch(Error e) {
         		Log.d("MoPub", "Failed to load native libraries! aborting ...");
@@ -126,12 +132,6 @@ public class AdColonyInterstitial extends CustomEventInterstitial implements AdC
         		mCustomEventInterstitialListener.onInterstitialFailed(ADAPTER_CONFIGURATION_ERROR);
         		return;
         	}
-        	Log.d("MoPub", "Native libraries successfully initialized!");
-        	
-        	Log.d("MoPub", "AdColony not configured yet... configuring ...");
-        	AdColony.configure((Activity)context, clientOptions, appId, allZoneIds);
-            Log.d("MoPub", "AdColony successfully configured!");
-            isAdColonyConfigured = true;
         }
 
         mAdColonyVideoAd = new AdColonyVideoAd(zoneId);
