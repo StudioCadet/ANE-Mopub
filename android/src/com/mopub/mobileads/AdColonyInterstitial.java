@@ -64,6 +64,8 @@ public class AdColonyInterstitial extends CustomEventInterstitial implements AdC
     private static final String DEFAULT_APP_ID = "appd1be74c48c1b4ff28d";
     private static final String[] DEFAULT_ALL_ZONE_IDS = {"vz8efc58bf67ea42e3a7"};
     private static final String DEFAULT_ZONE_ID = "vz8efc58bf67ea42e3a7";
+    private static final int MAX_RETRY_ATTEMPTS = 3;
+    private static final int ATTEMPT_DELAY = 200;
 
     /*
 * These keys are intended for MoPub internal use. Do not modify.
@@ -80,6 +82,8 @@ public class AdColonyInterstitial extends CustomEventInterstitial implements AdC
     private AdColonyVideoAd mAdColonyVideoAd;
     private final ScheduledThreadPoolExecutor mScheduledThreadPoolExecutor;
     private boolean mIsLoading;
+    /** A count of the attempts to show an add when calling showInterstitial(). */
+    private int retryCount = 0;
 
     public AdColonyInterstitial() {
         mScheduledThreadPoolExecutor = new ScheduledThreadPoolExecutor(10);
@@ -146,6 +150,27 @@ public class AdColonyInterstitial extends CustomEventInterstitial implements AdC
             mAdColonyVideoAd.show();
         } else {
             Log.d("MoPub", "Tried to show a AdColony interstitial ad before it finished loading. Please try again.");
+            
+            if(retryCount < MAX_RETRY_ATTEMPTS) {
+            	retryCount++;
+            	Log.d("MoPub", "Retrying, attempt " + retryCount + " ...");
+            	
+            	Runnable showAttempt = new Runnable() {
+					@Override
+					public void run() {
+						showInterstitial();
+					}
+				};
+				
+				Handler delayedCall = new Handler();
+				delayedCall.postDelayed(showAttempt, ATTEMPT_DELAY);
+            }
+            else {
+            	Log.d("MoPub", "Too many attempts have failed, aborting");
+            	retryCount = 0;
+            	// Aborting the video by dissmissing the interstitial. This will trigger onComplete() even if we don't have watched a video.
+            	mCustomEventInterstitialListener.onInterstitialDismissed();
+            }
         }
     }
 
