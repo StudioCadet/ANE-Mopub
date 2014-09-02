@@ -70,6 +70,7 @@
 		<unzip dest="../bin/android/temp/zip" src="../android/libs/chartboost.jar" />
 		<unzip dest="../bin/android/temp/zip" src="../android/libs/inmobi.jar" />
 		<unzip dest="../bin/android/temp/zip" src="../android/libs/adcolony.jar" />
+		<!--<unzip dest="../bin/android/temp/zip" src="../android/libs/appsfire.jar"/>-->
 		
 		<copy todir="../bin/android/temp/classes/com">
 			<fileset dir="../bin/android/temp/zip/com" />
@@ -80,6 +81,13 @@
 		
 		<jar basedir="../bin/android/temp/classes" destfile="../bin/android/${name}.jar"/>
 		<delete dir="../bin/android/temp"/>
+		
+		<!--
+		<delete dir="../bin/android/resources"/>
+		<copy todir="../bin/android/resources">
+			<fileset dir="../android/resources"/>
+		</copy>
+		-->
 		
 		<echo message="Done."/>
 	</target>
@@ -204,4 +212,26 @@
 		<echo message="Done."/>
 	</target>
 	
+	<!-- Extract AppsFire resources from JAR -->
+	<target name="appsfire" description="Prepares AppsFire SDK : extract AppsFire resources and strip conflicting resource : GCM">
+		<echo message="Extracting resources and stripping GCM from AppsFire SDK ..." />
+		<unzip src="../android/libs/afAdSdk.jar" dest="../android/libs/temp" />
+		
+		<!-- Extract resources -->
+		<delete dir="../android/resources"/>
+		<move todir="../android/resources">
+			<fileset file="../android/libs/temp/com/appsfire/adUnitJAR/resources/*" />
+		</move>
+		<delete dir="../android/libs/temp/com/appsfire/adUnitJAR/resources" />
+		
+		<!-- Strip GCM. Comment this if GCM is not conflicting with your other ANEs -->
+		<delete dir="../android/libs/temp/com/google/android/" />
+		
+		<!-- Repackage the SDK -->
+		<jar basedir="../android/libs/temp" destfile="../android/libs/appsfire.jar" />
+		<delete dir="../android/libs/temp" />
+		<delete file="../android/libs/afAdSdk.jar" />
+		
+		<echo message="Done."/>
+	</target>
 </project>

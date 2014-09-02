@@ -12,7 +12,7 @@ h1. Air Native Extension for MoPub Advertising on iOS and Android
 - InMobi Android SDK version : 4.4.3
 - InMobi iOS SDK version : 4.4.1
 
-- AppsFire Android SDK version : 2.0 (AppsFire SDK is NOT included in the packaged ANE, you MUST include the AppsFire Android ANE in your projects for AppsFire ads to work)
+- AppsFire Android SDK version : 2.0.1 (AppsFire SDK is NOT included in the packaged ANE, you MUST include the AppsFire Android ANE in your projects for AppsFire ads to work)
 - AppsFire iOS SDK version : 2.4.0
 
 This is an "Air native extension":http://www.adobe.com/devnet/air/native-extensions-for-air.html for the "MoPub":http://www.mopub.com/ advertising platform on iOS and Android.
