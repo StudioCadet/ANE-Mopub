@@ -143,7 +143,7 @@
 - (void)zoneDidExpire
 {
     self.zoneAvailable = NO;
-    [self.delegate interstitialCustomEventDidExpire:self];
+//    [self.delegate interstitialCustomEventDidExpire:self];
 }
 
 #pragma mark - AdColonyAdDelegate
