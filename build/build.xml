@@ -61,7 +61,6 @@
 				<pathelement location="../android/libs/chartboost.jar"/>
 				<pathelement location="../android/libs/inmobi.jar"/>
 				<pathelement location="../android/libs/adcolony.jar"/>
-				<pathelement location="../android/libs/appsfire.jar"/>
 			</classpath>
 		</javac>
 
@@ -70,7 +69,6 @@
 		<unzip dest="../bin/android/temp/zip" src="../android/libs/chartboost.jar" />
 		<unzip dest="../bin/android/temp/zip" src="../android/libs/inmobi.jar" />
 		<unzip dest="../bin/android/temp/zip" src="../android/libs/adcolony.jar" />
-		<!--<unzip dest="../bin/android/temp/zip" src="../android/libs/appsfire.jar"/>-->
 		
 		<copy todir="../bin/android/temp/classes/com">
 			<fileset dir="../bin/android/temp/zip/com" />
@@ -199,6 +197,7 @@
             <arg line="-swc actionscript/default/${name}.swc"/>
             <arg line="-platform iPhone-ARM -platformoptions ../build/platform.xml -C ios/ ."/>
             <arg line="-platform Android-ARM -C android/ ."/>
+			<arg line="-platform Android-x86 -C android/ ."/>
             <arg line="-platform default -C default/ ."/>
         </exec>
 		<copy file="../bin/actionscript/default/${name}.swc" todir="../bin" overwrite="true"/>
