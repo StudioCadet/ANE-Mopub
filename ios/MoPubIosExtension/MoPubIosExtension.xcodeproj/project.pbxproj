@@ -17,6 +17,9 @@
 		34E1A252190E3E57001C491E /* ChartboostInterstitialCustomEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 34E1A24D190E3E57001C491E /* ChartboostInterstitialCustomEvent.m */; };
 		34FBB5A4190FE3DD005402C5 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34FBB5A3190FE3DD005402C5 /* CFNetwork.framework */; };
 		34FBB5A6190FE406005402C5 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34FBB5A5190FE405005402C5 /* Security.framework */; };
+		48927F5E19BEE01100059A88 /* VidCoin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48927F5B19BEE01100059A88 /* VidCoin.framework */; };
+		48927F5F19BEE01100059A88 /* VidCoinInterstitialCustomEvent.h in Headers */ = {isa = PBXBuildFile; fileRef = 48927F5C19BEE01100059A88 /* VidCoinInterstitialCustomEvent.h */; };
+		48927F6019BEE01100059A88 /* VidCoinInterstitialCustomEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 48927F5D19BEE01100059A88 /* VidCoinInterstitialCustomEvent.m */; };
 		48A468A81966C60600171565 /* AdColonyInterstitialCustomEvent.h in Headers */ = {isa = PBXBuildFile; fileRef = 48A468A41966C60600171565 /* AdColonyInterstitialCustomEvent.h */; };
 		48A468A91966C60600171565 /* AdColonyInterstitialCustomEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 48A468A51966C60600171565 /* AdColonyInterstitialCustomEvent.m */; };
 		48A468AA1966C60600171565 /* AdColony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48A468A71966C60600171565 /* AdColony.framework */; };
@@ -264,6 +267,10 @@
 		34E1A24D190E3E57001C491E /* ChartboostInterstitialCustomEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChartboostInterstitialCustomEvent.m; sourceTree = "<group>"; };
 		34FBB5A3190FE3DD005402C5 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		34FBB5A5190FE405005402C5 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		48927F5A19BEE01100059A88 /* VidCoin.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = VidCoin.bundle; sourceTree = "<group>"; };
+		48927F5B19BEE01100059A88 /* VidCoin.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = VidCoin.framework; sourceTree = "<group>"; };
+		48927F5C19BEE01100059A88 /* VidCoinInterstitialCustomEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VidCoinInterstitialCustomEvent.h; sourceTree = "<group>"; };
+		48927F5D19BEE01100059A88 /* VidCoinInterstitialCustomEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VidCoinInterstitialCustomEvent.m; sourceTree = "<group>"; };
 		48A468A41966C60600171565 /* AdColonyInterstitialCustomEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdColonyInterstitialCustomEvent.h; sourceTree = "<group>"; };
 		48A468A51966C60600171565 /* AdColonyInterstitialCustomEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdColonyInterstitialCustomEvent.m; sourceTree = "<group>"; };
 		48A468A71966C60600171565 /* AdColony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AdColony.framework; sourceTree = "<group>"; };
@@ -506,6 +513,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				48E89B0B199CEC68007C857D /* Accelerate.framework in Frameworks */,
+				48927F5E19BEE01100059A88 /* VidCoin.framework in Frameworks */,
 				34FBB5A6190FE406005402C5 /* Security.framework in Frameworks */,
 				79F87D2E177B41AC0047359B /* AddressBook.framework in Frameworks */,
 				79F87D2F177B41AC0047359B /* AddressBookUI.framework in Frameworks */,
@@ -565,6 +573,25 @@
 			children = (
 				3405163F1910EF95007B5314 /* Chartboost.h */,
 				340516401910EF95007B5314 /* libChartboost.a */,
+			);
+			path = SDK;
+			sourceTree = "<group>";
+		};
+		48927F5819BEE01100059A88 /* VidCoin */ = {
+			isa = PBXGroup;
+			children = (
+				48927F5C19BEE01100059A88 /* VidCoinInterstitialCustomEvent.h */,
+				48927F5D19BEE01100059A88 /* VidCoinInterstitialCustomEvent.m */,
+				48927F5919BEE01100059A88 /* SDK */,
+			);
+			path = VidCoin;
+			sourceTree = "<group>";
+		};
+		48927F5919BEE01100059A88 /* SDK */ = {
+			isa = PBXGroup;
+			children = (
+				48927F5A19BEE01100059A88 /* VidCoin.bundle */,
+				48927F5B19BEE01100059A88 /* VidCoin.framework */,
 			);
 			path = SDK;
 			sourceTree = "<group>";
@@ -937,6 +964,7 @@
 		79A6D47D1636C14C009DA60A = {
 			isa = PBXGroup;
 			children = (
+				48927F5819BEE01100059A88 /* VidCoin */,
 				48E89AE6199CD6B0007C857D /* AppsFire */,
 				6DC53AB4198929F9005D7103 /* MoPubSDK */,
 				48A468A31966C60600171565 /* AdColony */,
@@ -1082,6 +1110,7 @@
 				6DC53B73198929F9005D7103 /* MPLegacyBannerCustomEventAdapter.h in Headers */,
 				48E89B00199CD6B0007C857D /* AppsfireSDK.h in Headers */,
 				6DC53B6F198929F9005D7103 /* MPBannerCustomEventAdapter.h in Headers */,
+				48927F5F19BEE01100059A88 /* VidCoinInterstitialCustomEvent.h in Headers */,
 				6DC53BEF198929F9005D7103 /* UIImageView+MPNativeAd.h in Headers */,
 				6DC53BAD198929F9005D7103 /* MPMRAIDInterstitialViewController.h in Headers */,
 				6DC53B89198929F9005D7103 /* MPLastResortDelegate.h in Headers */,
@@ -1212,6 +1241,7 @@
 				6DC53C06198929FA005D7103 /* MPNativeAdError.m in Sources */,
 				7914017E163AE16E004D6EE6 /* MoPubTypeConversion.m in Sources */,
 				6DC53BAA198929F9005D7103 /* MPMRAIDBannerCustomEvent.m in Sources */,
+				48927F6019BEE01100059A88 /* VidCoinInterstitialCustomEvent.m in Sources */,
 				6DC53B83198929F9005D7103 /* MPAdServerURLBuilder.m in Sources */,
 				6DC53BEB198929F9005D7103 /* MPInterstitialAdController.m in Sources */,
 				6DC53BBB198929F9005D7103 /* MRDimmingView.m in Sources */,
@@ -1341,6 +1371,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/AdColony/SDK",
+					"$(PROJECT_DIR)/VidCoin/SDK",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "";
@@ -1369,6 +1400,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/AdColony/SDK",
+					"$(PROJECT_DIR)/VidCoin/SDK",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "";

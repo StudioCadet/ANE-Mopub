@@ -22,6 +22,9 @@
 		<copy todir="../bin/ios/AdColony.framework">
 			<fileset dir="../ios/MoPubIosExtension/AdColony/SDK/AdColony.framework" />
 		</copy>
+		<copy todir="../bin/ios">
+			<fileset dir="../ios/MoPubIosExtension/VidCoin/SDK" />
+		</copy>
 
 		<exec executable="ibtool" failonerror="true">
 			<arg value="--errors" />

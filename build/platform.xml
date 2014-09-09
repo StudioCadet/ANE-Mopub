@@ -19,6 +19,7 @@
 		<option>-weak_framework Social</option>
 		<option>-weak_framework StoreKit</option>
         <option>-framework AdColony</option>
+        <option>-framework VidCoin</option>
 
 		<option>-lsqlite3</option>
 		<option>-lz</option>
@@ -27,6 +28,7 @@
 
     <packagedDependencies>
         <packagedDependency>AdColony.framework</packagedDependency>
+        <packagedDependency>VidCoin.framework</packagedDependency>		
     </packagedDependencies>
 
 </platform>
