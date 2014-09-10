@@ -28,7 +28,7 @@
 
     <packagedDependencies>
         <packagedDependency>AdColony.framework</packagedDependency>
-        <packagedDependency>VidCoin.framework</packagedDependency>		
+        <packagedDependency>VidCoin.framework</packagedDependency>
     </packagedDependencies>
 
 </platform>

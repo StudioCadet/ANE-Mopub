@@ -1,14 +1,17 @@
 //
-//  UIImageView+MPNativeAd.m
+//  UIView+MPNativeAd.m
+//  MoPubSDK
+//
 //  Copyright (c) 2014 MoPub. All rights reserved.
 //
 
-#import "UIImageView+MPNativeAd.h"
+#import "UIView+MPNativeAd.h"
+
 #import <objc/runtime.h>
 
 static char MPNativeAdKey;
 
-@implementation UIImageView (MPNativeAd)
+@implementation UIView (MPNativeAd)
 
 - (void)mp_removeNativeAd
 {

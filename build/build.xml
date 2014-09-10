@@ -19,10 +19,8 @@
 		</exec>
 
 		<copy file="../temp/ios/build/Release-iphoneos/lib${name}IosExtension.a" todir="../bin/ios" overwrite="true" />
-		<copy todir="../bin/ios/AdColony.framework">
-			<fileset dir="../ios/MoPubIosExtension/AdColony/SDK/AdColony.framework" />
-		</copy>
 		<copy todir="../bin/ios">
+            <fileset dir="../ios/MoPubIosExtension/AdColony/SDK" />
 			<fileset dir="../ios/MoPubIosExtension/VidCoin/SDK" />
 		</copy>
 
