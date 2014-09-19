@@ -7,8 +7,8 @@ import android.app.Activity;
 import android.content.Context;
 
 import com.chartboost.sdk.Chartboost;
-import com.chartboost.sdk.Chartboost.CBAgeGateConfirmation;
 import com.chartboost.sdk.ChartboostDelegate;
+import com.chartboost.sdk.a;
 import com.chartboost.sdk.Model.CBError.CBClickError;
 import com.chartboost.sdk.Model.CBError.CBImpressionError;
 import com.sticksports.nativeExtensions.mopub.MoPubExtension;
@@ -39,6 +39,7 @@ class ChartboostInterstitial extends CustomEventInterstitial {
     private static void initChartboost() {
     	if(initialized) return;
 //    	Chartboost.sharedChartboost().getPreferences().setImpressionsUseActivities(false);
+        Chartboost.setShouldRequestInterstitialsInFirstSession(true);
         initialized = true;
     }
     
@@ -78,7 +79,6 @@ class ChartboostInterstitial extends CustomEventInterstitial {
         }
         
         final Activity activity = (Activity) context;
-        final Chartboost chartboost = Chartboost.sharedChartboost();
         
         this.appId = serverExtras.get(APP_ID_KEY);
         this.appSignature = serverExtras.get(APP_SIGNATURE_KEY);
@@ -95,12 +95,13 @@ class ChartboostInterstitial extends CustomEventInterstitial {
         getDelegate().registerListener(location, interstitialListener);
         activity.runOnUiThread(new Runnable() {
 			@Override public void run() {
-				chartboost.onCreate(activity, appId, appSignature, getDelegate());
-				chartboost.onStart(activity);
+				Chartboost.onCreate(activity);
+				Chartboost.startWithAppId(activity, appId, appSignature);
+				Chartboost.onStart(activity);
 				initChartboost();
 				
 				MoPubExtension.log("Caching Chartboost interstitial ad for location " + location + ".");
-				chartboost.cacheInterstitial(location);
+				Chartboost.cacheInterstitial(location);
 			}
 		});
     }
@@ -108,7 +109,7 @@ class ChartboostInterstitial extends CustomEventInterstitial {
     @Override
     protected void showInterstitial() {
         MoPubExtension.log("Showing Chartboost interstitial ad for location " + location + ".");
-        Chartboost.sharedChartboost().showInterstitial(location);
+        Chartboost.showInterstitial(location);
     }
 
     @Override
@@ -126,7 +127,7 @@ class ChartboostInterstitial extends CustomEventInterstitial {
     // CHARTBOOST DELEGATES //
     //////////////////////////
     
-    private static class SingletonChartboostDelegate implements ChartboostDelegate {
+    private static class SingletonChartboostDelegate extends ChartboostDelegate {
         
     	
     	///////////////
@@ -181,11 +182,6 @@ class ChartboostInterstitial extends CustomEventInterstitial {
         }
 
         @Override
-        public boolean shouldRequestInterstitialsInFirstSession() {
-            return true;
-        }
-
-        @Override
         public void didCacheInterstitial(String location) {
             MoPubExtension.log("Chartboost interstitial ad for location " + location + " loaded successfully.");
             getListener(location).onInterstitialLoaded();
@@ -208,12 +204,6 @@ class ChartboostInterstitial extends CustomEventInterstitial {
             MoPubExtension.log("Chartboost interstitial ad for location " + location + " clicked.");
             getListener(location).onInterstitialClicked();
         }
-
-        @Override
-        public void didShowInterstitial(String location) {
-            MoPubExtension.log("Chartboost interstitial ad for location " + location + " shown.");
-            getListener(location).onInterstitialShown();
-        }
         
         @Override
         public void didFailToLoadInterstitial(String location, CBImpressionError cbError) {
@@ -226,52 +216,19 @@ class ChartboostInterstitial extends CustomEventInterstitial {
         	MoPubExtension.log("Chartboost interstitial ad for location " + location + " failed to receive click : " + clickError.toString());
 		}
 
-		@Override
-		public boolean shouldPauseClickForConfirmation(CBAgeGateConfirmation arg0) {
-			return false;
-		}
-
         
         /*
          * More Apps delegate methods
          */
+
         @Override
-        public boolean shouldDisplayLoadingViewForMoreApps() {
+        public boolean shouldRequestMoreApps(String arg0) {
             return false;
         }
 
         @Override
-        public boolean shouldRequestMoreApps() {
+        public boolean shouldDisplayMoreApps(String arg0) {
             return false;
         }
-
-        @Override
-        public boolean shouldDisplayMoreApps() {
-            return false;
-        }
-
-        @Override
-        public void didCacheMoreApps() {
-        }
-
-        @Override
-        public void didDismissMoreApps() {
-        }
-
-        @Override
-        public void didCloseMoreApps() {
-        }
-
-        @Override
-        public void didClickMoreApps() {
-        }
-
-        @Override
-        public void didShowMoreApps() {
-        }
-
-        @Override
-		public void didFailToLoadMoreApps(CBImpressionError error) {
-		}
     }
 }
