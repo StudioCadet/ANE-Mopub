@@ -118,7 +118,7 @@
  * to nil and remove it from its superview to prevent any chance of your
  * application crashing.
  */
-@property (nonatomic, unsafe_unretained) IBOutlet NSObject<IMBannerDelegate> *delegate;
+@property (nonatomic, weak) IBOutlet NSObject<IMBannerDelegate> *delegate;
 /**
  * Starts or stops the auto refresh of ads.
  * The refresh interval is measured between the completion(success or failure)

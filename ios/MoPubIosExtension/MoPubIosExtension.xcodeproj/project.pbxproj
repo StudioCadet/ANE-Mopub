@@ -207,6 +207,7 @@
 		489280EA19BEF2D500059A88 /* MPTableViewAdPlacer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4892802A19BEF2D500059A88 /* MPTableViewAdPlacer.m */; };
 		489280EF19C03E2500059A88 /* Chartboost.h in Headers */ = {isa = PBXBuildFile; fileRef = 489280ED19C03E2500059A88 /* Chartboost.h */; };
 		489280F019C03E2500059A88 /* libChartboost.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 489280EE19C03E2500059A88 /* libChartboost.a */; };
+		48A15D4E19DD437700E725A7 /* libInMobi-4.5.1.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 48A15D4D19DD437700E725A7 /* libInMobi-4.5.1.a */; };
 		48A468A81966C60600171565 /* AdColonyInterstitialCustomEvent.h in Headers */ = {isa = PBXBuildFile; fileRef = 48A468A41966C60600171565 /* AdColonyInterstitialCustomEvent.h */; };
 		48A468A91966C60600171565 /* AdColonyInterstitialCustomEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 48A468A51966C60600171565 /* AdColonyInterstitialCustomEvent.m */; };
 		48A468AA1966C60600171565 /* AdColony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48A468A71966C60600171565 /* AdColony.framework */; };
@@ -221,7 +222,6 @@
 		48A468C01975573D00171565 /* IMNativeDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 48A468B41975573D00171565 /* IMNativeDelegate.h */; };
 		48A468C11975573D00171565 /* InMobi.h in Headers */ = {isa = PBXBuildFile; fileRef = 48A468B51975573D00171565 /* InMobi.h */; };
 		48A468C21975573D00171565 /* InMobiAnalytics.h in Headers */ = {isa = PBXBuildFile; fileRef = 48A468B61975573D00171565 /* InMobiAnalytics.h */; };
-		48A468C31975573D00171565 /* libInMobi-4.4.1.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 48A468B71975573D00171565 /* libInMobi-4.4.1.a */; };
 		48E89AFA199CD6B0007C857D /* AFMoPubInterstitialCustomEvent.h in Headers */ = {isa = PBXBuildFile; fileRef = 48E89AE7199CD6B0007C857D /* AFMoPubInterstitialCustomEvent.h */; };
 		48E89AFB199CD6B0007C857D /* AFMoPubInterstitialCustomEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 48E89AE8199CD6B0007C857D /* AFMoPubInterstitialCustomEvent.m */; };
 		48E89AFC199CD6B0007C857D /* AppsfireAdTimerView.h in Headers */ = {isa = PBXBuildFile; fileRef = 48E89AE9199CD6B0007C857D /* AppsfireAdTimerView.h */; };
@@ -486,6 +486,7 @@
 		4892802F19BEF2D500059A88 /* MRAID.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MRAID.bundle; sourceTree = "<group>"; };
 		489280ED19C03E2500059A88 /* Chartboost.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Chartboost.h; sourceTree = "<group>"; };
 		489280EE19C03E2500059A88 /* libChartboost.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libChartboost.a; sourceTree = "<group>"; };
+		48A15D4D19DD437700E725A7 /* libInMobi-4.5.1.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libInMobi-4.5.1.a"; sourceTree = "<group>"; };
 		48A468A41966C60600171565 /* AdColonyInterstitialCustomEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdColonyInterstitialCustomEvent.h; sourceTree = "<group>"; };
 		48A468A51966C60600171565 /* AdColonyInterstitialCustomEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdColonyInterstitialCustomEvent.m; sourceTree = "<group>"; };
 		48A468A71966C60600171565 /* AdColony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AdColony.framework; sourceTree = "<group>"; };
@@ -500,7 +501,6 @@
 		48A468B41975573D00171565 /* IMNativeDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMNativeDelegate.h; sourceTree = "<group>"; };
 		48A468B51975573D00171565 /* InMobi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InMobi.h; sourceTree = "<group>"; };
 		48A468B61975573D00171565 /* InMobiAnalytics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InMobiAnalytics.h; sourceTree = "<group>"; };
-		48A468B71975573D00171565 /* libInMobi-4.4.1.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libInMobi-4.4.1.a"; sourceTree = "<group>"; };
 		48E89AE7199CD6B0007C857D /* AFMoPubInterstitialCustomEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFMoPubInterstitialCustomEvent.h; sourceTree = "<group>"; };
 		48E89AE8199CD6B0007C857D /* AFMoPubInterstitialCustomEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFMoPubInterstitialCustomEvent.m; sourceTree = "<group>"; };
 		48E89AE9199CD6B0007C857D /* AppsfireAdTimerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppsfireAdTimerView.h; sourceTree = "<group>"; };
@@ -557,6 +557,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				48A15D4E19DD437700E725A7 /* libInMobi-4.5.1.a in Frameworks */,
 				48E89B0B199CEC68007C857D /* Accelerate.framework in Frameworks */,
 				48927F5E19BEE01100059A88 /* VidCoin.framework in Frameworks */,
 				34FBB5A6190FE406005402C5 /* Security.framework in Frameworks */,
@@ -581,7 +582,6 @@
 				79F87A48177B35DA0047359B /* PassKit.framework in Frameworks */,
 				79BF989D174A1DEC0038F1F1 /* QuartzCore.framework in Frameworks */,
 				79F87A49177B35DC0047359B /* Social.framework in Frameworks */,
-				48A468C31975573D00171565 /* libInMobi-4.4.1.a in Frameworks */,
 				79A6D5301636DFB1009DA60A /* StoreKit.framework in Frameworks */,
 				79BF989F174A1DF60038F1F1 /* SystemConfiguration.framework in Frameworks */,
 				79A6D5321636DFE1009DA60A /* UIKit.framework in Frameworks */,
@@ -966,6 +966,7 @@
 		48A468AB1975573D00171565 /* SDK */ = {
 			isa = PBXGroup;
 			children = (
+				48A15D4D19DD437700E725A7 /* libInMobi-4.5.1.a */,
 				48A468AC1975573D00171565 /* IMBanner.h */,
 				48A468AD1975573D00171565 /* IMBannerDelegate.h */,
 				48A468AE1975573D00171565 /* IMConstants.h */,
@@ -977,7 +978,6 @@
 				48A468B41975573D00171565 /* IMNativeDelegate.h */,
 				48A468B51975573D00171565 /* InMobi.h */,
 				48A468B61975573D00171565 /* InMobiAnalytics.h */,
-				48A468B71975573D00171565 /* libInMobi-4.4.1.a */,
 			);
 			path = SDK;
 			sourceTree = "<group>";

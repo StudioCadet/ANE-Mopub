@@ -117,18 +117,6 @@ typedef enum {
     kIMInterstitialStateActive
 
 } IMInterstitialState;
-
-/**
- * Interstitial ad mode
- */
-typedef enum  {
-    // Interstitial for AdNetwork.
-    IMAdModeNetwork,
-
-    // Interstitial for App Gallery.
-    IMAdModeAppGallery
-} IMAdMode;
-
 /**
  * User HasChildren
  */
