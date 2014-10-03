@@ -286,10 +286,13 @@
 					<meta-data android:name="IN_MOBI_PROPERTY_ID" android:value="eea9feccefe944e9859b03c6b82e9f76" />
 					<activity android:name="com.inmobi.androidsdk.IMBrowserActivity"
 							  android:configChanges="keyboardHidden|orientation|keyboard|smallestScreenSize|screenSize"
+							  android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen"
 							  android:hardwareAccelerated="true"/>
-					<receiver android:name="com.inmobi.commons.analytics.androidsdk.IMAdTrackerReceiver" android:enabled="true" android:exported="true">
+					<receiver android:name="com.inmobi.commons.analytics.androidsdk.IMAdTrackerReceiver" android:enabled="true" android:exported="true" >
 						<intent-filter>
 							<action android:name="com.android.vending.INSTALL_REFERRER" />
+							<action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+							<action android:name="com.inmobi.share.id" />
 						</intent-filter>
 					</receiver>
 							  

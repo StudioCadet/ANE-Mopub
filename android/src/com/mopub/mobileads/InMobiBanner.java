@@ -63,7 +63,6 @@ public class InMobiBanner extends CustomEventBanner implements IMBannerListener 
         iMBanner.setRequestParams(map);
 		iMBanner.setIMBannerListener(this);
 		iMBanner.setRefreshInterval(IMBanner.REFRESH_INTERVAL_OFF);
-		iMBanner.setRefTagParam("AndroidBanner", "AndroidBanner");
 		MoPubExtension.log("Loading InMobi banner ...");
 		iMBanner.loadBanner();
 	}
@@ -88,7 +87,6 @@ public class InMobiBanner extends CustomEventBanner implements IMBannerListener 
 		            	MoPubExtension.log("Exception while trying to remove an InMobiBanner : " + e);
 		            }
 					finally {
-		            	iMBanner.destroy();
 		            	iMBanner = null;
 		            	MoPubExtension.log("InMobi banner removed.");
 		            }

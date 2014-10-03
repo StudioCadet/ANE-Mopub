@@ -82,7 +82,6 @@ public class InMobiInterstitial extends CustomEventInterstitial implements IMInt
 		if (iMInterstitial != null) {
 			MoPubExtension.log("Removing an InMobi interstitial ...");
             iMInterstitial.setIMInterstitialListener(null);
-			iMInterstitial.destroy();
 			MoPubExtension.log("InMobi interstitial removed.");
 		}
 	}
