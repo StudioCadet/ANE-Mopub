@@ -77,12 +77,7 @@ public class InMobiUtils {
 	 * Returns an eventual Slot ID defined on MoPub.
 	 */
 	public static Long getSlotIdFromServerExtras(Map<String, String> serverExtras) {
-		if(serverExtras == null)
-			return null;
-		if(!serverExtras.containsKey(SERVER_CUSTOM_DATA_SLOT_ID_KEY))
-			return null;
-		
-		return Long.parseLong(serverExtras.get(SERVER_CUSTOM_DATA_SLOT_ID_KEY));
+		return ExtraUtils.getLong(serverExtras, SERVER_CUSTOM_DATA_SLOT_ID_KEY);
 	}
 
 }

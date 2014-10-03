@@ -36,3 +36,6 @@ Thumbs.db
 /actionscript/android/bin/ANE-Mopub-Android.swc
 /actionscript/ios/bin/ANE-Mopub-iOS.swc
 /actionscript/default/bin/ANE-Mopub-Default.swc
+/test/.actionScriptProperties
+/test/.settings/org.eclipse.core.resources.prefs
+/test/bin-debug
