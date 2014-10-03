@@ -9,7 +9,6 @@ import com.smartadserver.android.library.SASInterstitialView;
 import com.smartadserver.android.library.model.SASAdElement;
 import com.smartadserver.android.library.ui.SASAdView;
 import com.smartadserver.android.library.ui.SASAdView.StateChangeEvent;
-import com.smartadserver.android.library.util.SASUtil;
 import com.sticksports.nativeExtensions.mopub.MoPubExtension;
 
 public class SASInterstitial extends CustomEventInterstitial implements SASAdView.AdResponseHandler, SASAdView.OnStateChangeListener, View.OnClickListener {

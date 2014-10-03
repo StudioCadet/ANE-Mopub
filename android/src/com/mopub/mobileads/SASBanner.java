@@ -9,7 +9,6 @@ import com.smartadserver.android.library.SASBannerView;
 import com.smartadserver.android.library.model.SASAdElement;
 import com.smartadserver.android.library.ui.SASAdView;
 import com.smartadserver.android.library.ui.SASAdView.StateChangeEvent;
-import com.smartadserver.android.library.util.SASUtil;
 import com.sticksports.nativeExtensions.mopub.MoPubExtension;
 
 public class SASBanner extends CustomEventBanner implements View.OnClickListener, SASAdView.AdResponseHandler, SASAdView.OnStateChangeListener {
