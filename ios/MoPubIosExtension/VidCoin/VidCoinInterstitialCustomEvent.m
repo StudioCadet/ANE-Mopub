@@ -58,7 +58,7 @@ static BOOL isInitialized = false;
         [self.delegate interstitialCustomEvent:self didFailToLoadAdWithError:nil];
     }
 }
-
+ 
 - (void)showInterstitialFromRootViewController:(UIViewController *)rootViewController {
     if (self.placementCode == NULL) {
         NSLog(@"VidCoinPlacementCode not set, aborting...");
