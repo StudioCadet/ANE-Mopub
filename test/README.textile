@@ -1,7 +1,0 @@
-h1. Air Native Extension for MoPub Advertising on iOS and Android - Test project
-
-Two simple test projects are included here for testing the extension. To build these Air projects
-
-* Create a copy of the test/build/example.build.config file in the test/build folder, calling it build.config and change the properties in this file to match your system.
-* Add your ad unit id in the MoPubBannerTest.as and MopUbInterstitialTest.as files.
-* Run the ant build script test/build.xml selecting either the build.banner or build.interstitial script. This creates the test ipa and apk inside the test/bin folder.
