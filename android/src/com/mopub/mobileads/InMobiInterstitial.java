@@ -43,15 +43,17 @@ public class InMobiInterstitial extends CustomEventInterstitial implements IMInt
 
 		InMobiUtils.init(context, activity);
 		
-		Long slotID = InMobiUtils.getSlotIdFromServerExtras(serverExtras);
-		if(slotID != null) {
-			MoPubExtension.log("Creating an InMobi interstitial with Slot ID " + slotID + " ...");
-			this.iMInterstitial = new IMInterstitial(activity, slotID);
+		String propertyID = InMobiUtils.getPropertyIdFromServerExtras(serverExtras);
+		
+		if(propertyID == null) {
+			propertyID = InMobiUtils.inMobiPropertyId;
+			MoPubExtension.log("Using default property ID : " + propertyID + " ...");
 		}
-		else {
-			MoPubExtension.log("Creating an InMobi interstitial with Property ID " + InMobiUtils.inMobiPropertyId + " ...");
-			this.iMInterstitial = new IMInterstitial(activity, InMobiUtils.inMobiPropertyId);
-		}
+		else 
+			MoPubExtension.log("Using custom property ID : " + propertyID + " ...");
+		
+		MoPubExtension.log("Creating an InMobi interstitial with Property ID " + propertyID + " ...");
+		this.iMInterstitial = new IMInterstitial(activity, propertyID);
 
         Map<String, String> map = new HashMap<String, String>();
         map.put("tp", "c_mopub");

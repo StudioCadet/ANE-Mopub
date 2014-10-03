@@ -20,7 +20,7 @@ import com.sticksports.nativeExtensions.mopub.MoPubExtension;
 public class InMobiUtils {
 	
 	/** The name of the custom network data used on MoPub to pass a SlotID to a particular AdUnit. */
-	private static final String SERVER_CUSTOM_DATA_SLOT_ID_KEY = "inMobiSlotID";
+	private static final String SERVER_CUSTOM_DATA_PROPERTY_ID_KEY = "property";
 	
 	
 	/** The property catched from the Android manifest. */
@@ -74,10 +74,10 @@ public class InMobiUtils {
 	}
 	
 	/**
-	 * Returns an eventual Slot ID defined on MoPub.
+	 * Returns an eventual Property ID defined on MoPub.
 	 */
-	public static Long getSlotIdFromServerExtras(Map<String, String> serverExtras) {
-		return ExtraUtils.getLong(serverExtras, SERVER_CUSTOM_DATA_SLOT_ID_KEY);
+	public static String getPropertyIdFromServerExtras(Map<String, String> serverExtras) {
+		return ExtraUtils.getString(serverExtras, SERVER_CUSTOM_DATA_PROPERTY_ID_KEY);
 	}
-
+	
 }

@@ -1,6 +1,9 @@
 package com.mopub.mobileads;
 
 import java.util.Map;
+import java.util.Map.Entry;
+
+import com.sticksports.nativeExtensions.mopub.MoPubExtension;
 
 public class ExtraUtils {
 	
@@ -47,5 +50,19 @@ public class ExtraUtils {
 		}
 		catch(Exception e) {}
 		return null;
+	}
+	
+	/**
+	 * Prints the given extras to the logs. 
+	 */
+	public static void print(Map<String, ?> extras) {
+		if(extras != null) {
+			String printableExtras = "Extras : {";
+			for(Entry<String, ?> extra : extras.entrySet())
+				printableExtras += extra.getKey() + ":" + extra.getValue() + ", ";
+			if(extras.entrySet().size() > 0)
+				printableExtras = printableExtras.substring(0, printableExtras.length() - 2);
+			MoPubExtension.log(printableExtras + "}");
+		}
 	}
 }

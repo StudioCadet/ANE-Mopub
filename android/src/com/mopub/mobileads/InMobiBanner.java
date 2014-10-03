@@ -42,17 +42,18 @@ public class InMobiBanner extends CustomEventBanner implements IMBannerListener 
 		
 		InMobiUtils.init(context, activity);
 
-		Long slotID = InMobiUtils.getSlotIdFromServerExtras(serverExtras);
+		String propertyID = InMobiUtils.getPropertyIdFromServerExtras(serverExtras);
+		Integer slotSize = InMobiUtils.getOptimalSlotSize(activity);
 		
-		if(slotID != null) {
-			MoPubExtension.log("Creating banner with slot ID " + slotID + " ...");
-			iMBanner = new IMBanner(activity, slotID);
+		if(propertyID == null) {
+			propertyID = InMobiUtils.inMobiPropertyId;
+			MoPubExtension.log("Using default property ID : " + propertyID);
 		}
-		else {
-			Integer slotSize = InMobiUtils.getOptimalSlotSize(activity);
-			MoPubExtension.log("Creating banner with slot size " + slotSize + " ...");
-			iMBanner = new IMBanner(activity, InMobiUtils.inMobiPropertyId, slotSize);
-		}
+		else
+			MoPubExtension.log("Using custom property ID : " + propertyID);
+		
+		MoPubExtension.log("Creating banner with property ID " + propertyID + " and slot size " + slotSize + " ...");
+		iMBanner = new IMBanner(activity, propertyID, slotSize);
 		
 		Map<String, String> map = new HashMap<String, String>();
         map.put("tp", "c_mopub");
