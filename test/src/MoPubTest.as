@@ -78,6 +78,7 @@ package {
 		 */
 		private function initMoPub():void {
 			trace("Initializing MoPub ...");
+			MoPub.init();
 			AdUnit.init();
 			banner = new MpBanner(stage, AdUnit.getId(AdUnit.MP_BANNER), AdUnit.isTablet);
 			interstitial = new MpInterstitial(AdUnit.getId(AdUnit.MP_INTERSTITIAL));

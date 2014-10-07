@@ -8,6 +8,7 @@ import com.adobe.fre.FREObject;
 import com.mopub.mobileads.ChartboostUtils;
 import com.mopub.mobileads.InMobiUtils;
 import com.smartadserver.android.library.ui.SASAdView;
+import com.sticksports.nativeExtensions.mopub.MoPubExtension;
 
 /**
  * A method used to initialize MoPub and 3rd party SDKs.
@@ -16,6 +17,8 @@ public class MoPubInitFunction implements FREFunction {
 
 	@Override
 	public FREObject call(FREContext context, FREObject[] args) {
+		
+		MoPubExtension.log("Initializing MoPub extension ...");
 		
 		// Get the main activity, once :
 		Activity activity = context.getActivity();
@@ -29,15 +32,16 @@ public class MoPubInitFunction implements FREFunction {
 			e.printStackTrace();
 		}
 		
-		
 		// InMobi :
 		InMobiUtils.init(activity, activity);
+		
+		// Chartboost :
+		ChartboostUtils.init(activity);
 		
 		// SmartAdServer :
 		SASAdView.enableLogging();
 		
-		// Chartboost :
-		ChartboostUtils.init(activity);
+		MoPubExtension.log("MoPub extension initialized successfully.");
 		
 		return null;
 	}

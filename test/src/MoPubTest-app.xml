@@ -284,7 +284,6 @@
 					
 					<!-- MoPub : InMobi mediation -->
 					<meta-data android:name="IN_MOBI_PROPERTY_ID" android:value="eea9feccefe944e9859b03c6b82e9f76" />
-					<meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version" />
 					<activity android:name="com.inmobi.androidsdk.IMBrowserActivity"
 							  android:configChanges="keyboardHidden|orientation|keyboard|smallestScreenSize|screenSize"
 							  android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen"
@@ -309,6 +308,11 @@
 					<activity android:name="com.jirbo.adcolony.AdColonyBrowser"
 							  android:configChanges="keyboardHidden|orientation|screenSize"
 							  android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen" />
+					
+					<!-- MoPub : Chartboost mediation -->
+					<meta-data android:name="CHARTBOOST_APP_ID" android:value="530f1a622d42da3e6d6af64e" />
+					<meta-data android:name="CHARTBOOST_APP_SIGNATURE" android:value="a277d4207d27188961c65b3af98000a610888d45" />
+					
 			    </application>
 			    
 			</manifest>

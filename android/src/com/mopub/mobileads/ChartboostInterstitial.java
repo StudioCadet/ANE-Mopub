@@ -5,7 +5,6 @@ import java.util.Map;
 import android.app.Activity;
 import android.content.Context;
 
-import com.chartboost.sdk.CBPreferences;
 import com.chartboost.sdk.Chartboost;
 import com.sticksports.nativeExtensions.mopub.MoPubExtension;
 
@@ -31,21 +30,12 @@ class ChartboostInterstitial extends CustomEventInterstitial {
 
 		// Check context :
 		if (!(context instanceof Activity)) {
-			MoPubExtension.log("Chartboost loadInterstitial() : the given context must be an instance of Activity ! (cotext:" + context + ")");
-			interstitialListener.onInterstitialFailed(MoPubErrorCode.ADAPTER_CONFIGURATION_ERROR);
-			return;
-		}
-
-		// Check server extras :
-		if (!ChartboostUtils.extrasAreValid(serverExtras)) {
-			MoPubExtension.log("Chartboost loadInterstitial() : server extras are invalid !");
+			MoPubExtension.log("Chartboost loadInterstitial() : the given context must be an instance of Activity ! (context:" + context + ")");
 			interstitialListener.onInterstitialFailed(MoPubErrorCode.ADAPTER_CONFIGURATION_ERROR);
 			return;
 		}
 
 		// Get server extra data :
-		String appId = ChartboostUtils.getAppIdFromServerExtras(serverExtras);
-		String appSignature = ChartboostUtils.getAppSignatureFromServerExtras(serverExtras);
 		this.location = ChartboostUtils.getLocationFromServerExtras(serverExtras);
 
 		// Register the MoPub listener :
@@ -56,15 +46,8 @@ class ChartboostInterstitial extends CustomEventInterstitial {
 		}
 
 		// Load the interstitial :
-		MoPubExtension.log("Chartboost loadInterstitial() : appID=" + appId + " ; appSignature=" + appSignature + " ; location=" + location);
-
 		final Activity activity = (Activity) context;
 		final Chartboost chartboost = Chartboost.sharedChartboost();
-
-		CBPreferences prefs = chartboost.getPreferences();
-		prefs.setAppID(appId);
-		prefs.setAppSignature(appSignature);
-
 		activity.runOnUiThread(new Runnable() {
 			@Override public void run() {
 				MoPubExtension.log("Caching Chartboost interstitial ad for location " + location + ".");
