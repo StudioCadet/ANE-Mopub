@@ -9,17 +9,17 @@ package com.sticksports.nativeExtensions.mopub
 	public class MoPubInterstitial extends EventDispatcher
 	{
 // native method names
-		private static const initialiseInterstitial : String = "initialiseInterstitial";
+		private static const initialiseInterstitial : String = "mopub_initialiseInterstitial";
 		
-		private static const setTestMode : String = "setInterstitialTestMode";
-		private static const getIsReady : String = "getInterstitialReady";
+		private static const setTestMode : String = "mopub_setInterstitialTestMode";
+		private static const getIsReady : String = "mopub_getInterstitialReady";
 		
-		private static const setInterstitialKeywords : String = "setInterstitialKeywords";
+		private static const setInterstitialKeywords : String = "mopub_setInterstitialKeywords";
 		
-		private static const loadInterstitial : String = "loadInterstitial";
-		private static const showInterstitial : String = "showInterstitial";
+		private static const loadInterstitial : String = "mopub_loadInterstitial";
+		private static const showInterstitial : String = "mopub_showInterstitial";
 		
-		private static const disposeInterstitial : String = "disposeInterstitial";
+		private static const disposeInterstitial : String = "mopub_disposeInterstitial";
 
 // class variables
 
