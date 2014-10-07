@@ -36,7 +36,6 @@ public class SASInterstitial extends CustomEventInterstitial implements SASAdVie
 	@Override
 	protected void loadInterstitial(Context context, CustomEventInterstitialListener listener, Map<String, Object> localExtras, Map<String, String> serverExtras) {
 		
-		SASAdView.enableLogging();
 		this.listener = listener;
 		
 		MoPubExtension.log("Creating a SAS interstitial ...");

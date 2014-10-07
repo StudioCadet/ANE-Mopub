@@ -39,8 +39,6 @@ public class InMobiBanner extends CustomEventBanner implements IMBannerListener 
 			mBannerListener.onBannerFailed(null);
 			return;
 		}
-		
-		InMobiUtils.init(context, activity);
 
 		String propertyID = InMobiUtils.getPropertyIdFromServerExtras(serverExtras);
 		Integer slotSize = InMobiUtils.getOptimalSlotSize(activity);

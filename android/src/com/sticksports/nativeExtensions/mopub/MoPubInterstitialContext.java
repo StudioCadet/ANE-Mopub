@@ -97,17 +97,18 @@ public class MoPubInterstitialContext extends FREContext implements Interstitial
 	@Override
 	public Map<String, FREFunction> getFunctions() {
 		Map<String, FREFunction> functionMap = new HashMap<String, FREFunction>();
-		functionMap.put("initialiseInterstitial", new MoPubInterstitialInitialise());
 		
-		functionMap.put("setInterstitialTestMode", new MoPubInterstitialSetTestMode());
-		functionMap.put("getInterstitialReady", new MoPubInterstitialGetIsReady());
+		functionMap.put("mopub_initialiseInterstitial", new MoPubInterstitialInitialise());
 		
-		functionMap.put("setInterstitialKeywords", new MoPubInterstitialSetKeywords());
+		functionMap.put("mopub_setInterstitialTestMode", new MoPubInterstitialSetTestMode());
+		functionMap.put("mopub_getInterstitialReady", new MoPubInterstitialGetIsReady());
 		
-		functionMap.put("loadInterstitial", new MoPubInterstitialLoad());
-		functionMap.put("showInterstitial", new MoPubInterstitialShow());
+		functionMap.put("mopub_setInterstitialKeywords", new MoPubInterstitialSetKeywords());
 		
-		functionMap.put("disposeInterstitial", new MoPubInterstitialDispose());
+		functionMap.put("mopub_loadInterstitial", new MoPubInterstitialLoad());
+		functionMap.put("mopub_showInterstitial", new MoPubInterstitialShow());
+		
+		functionMap.put("mopub_disposeInterstitial", new MoPubInterstitialDispose());
 		
 		return functionMap;
 	}

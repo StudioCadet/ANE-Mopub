@@ -1,4 +1,4 @@
-package com.sticksports.nativeExtensions.mopub.functions;
+package com.sticksports.nativeExtensions.utils;
 
 import com.adobe.fre.FREContext;
 import com.adobe.fre.FREFunction;

@@ -1,4 +1,4 @@
-package com.mopub.mobileads;
+package com.sticksports.nativeExtensions.utils;
 
 import java.util.Map;
 import java.util.Map.Entry;
