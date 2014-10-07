@@ -8,6 +8,7 @@ package com.sticksports.nativeExtensions.mopub
 		private static var extensionContext:ExtensionContext;
 		private static var scaleFactor:Number;
 		private static var conversionTracked:Boolean;
+		private static var initialized:Boolean;
 		
 		public static function get adScaleFactor():Number {
 			if(!scaleFactor) {
@@ -15,7 +16,7 @@ package com.sticksports.nativeExtensions.mopub
 				if(!extensionContext)
 					extensionContext = ExtensionContext.createExtensionContext("com.sticksports.nativeExtensions.MoPub", "mopub");
 				
-				scaleFactor = extensionContext.call("getAdScaleFactor") as Number;
+				scaleFactor = extensionContext.call("mopub_getAdScaleFactor") as Number;
 			}
 			
 			return scaleFactor;
@@ -36,8 +37,19 @@ package com.sticksports.nativeExtensions.mopub
 			if(!extensionContext)
 				extensionContext = ExtensionContext.createExtensionContext("com.sticksports.nativeExtensions.MoPub", "mopub");
 			
-			extensionContext.call("trackConversion");
+			extensionContext.call("mopub_trackConversion");
 			conversionTracked = true;
+		}
+		
+		public static function init():void {
+			if(initialized)
+				return;
+			
+			if(!extensionContext)
+				extensionContext = ExtensionContext.createExtensionContext("com.sticksports.nativeExtensions.MoPub", "mopub");
+			
+			extensionContext.call("mopub_init");
+			initialized = true;
 		}
 	}
 }
