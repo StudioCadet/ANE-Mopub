@@ -77,13 +77,6 @@ public class ChartboostUtils {
 	///////////////////////
 
 	/**
-	 * Returns true when the server extras contains valid custom event data.
-	 */
-	public static boolean extrasAreValid(Map<String, String> serverExtras) {
-		return serverExtras != null && serverExtras.containsKey(APP_ID_KEY) && serverExtras.containsKey(APP_SIGNATURE_KEY);
-	}
-
-	/**
 	 * Returns the ad location from MoPub's custom event data, or the default location if none is provided.
 	 */
 	public static String getLocationFromServerExtras(Map<String, String> extras) {
