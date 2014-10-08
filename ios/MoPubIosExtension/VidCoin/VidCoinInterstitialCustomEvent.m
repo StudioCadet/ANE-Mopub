@@ -58,7 +58,7 @@ static BOOL isInitialized = false;
         [self.delegate interstitialCustomEvent:self didFailToLoadAdWithError:nil];
     }
 }
-
+ 
 - (void)showInterstitialFromRootViewController:(UIViewController *)rootViewController {
     if (self.placementCode == NULL) {
         NSLog(@"VidCoinPlacementCode not set, aborting...");
@@ -93,17 +93,18 @@ static BOOL isInitialized = false;
         NSLog(@"Something went wrong or the user cancelled the VidCoin video...");
     }
     
-    NSLog(@"VidCoin video will disappear...");
+    NSLog(@"VidCoin video disappear...");
     [self.delegate interstitialCustomEventWillDisappear: self];
+    [self.delegate interstitialCustomEventDidDisappear: self];
 }
 
 -(void)vidcoinDidValidateView:(NSDictionary *)viewInfo {
     if ([[viewInfo objectForKey: @"statusCode"] integerValue] != VCStatusCodeSuccess) {
         NSLog(@"The server didn't validate the view.");
+        return;
     }
 
-    NSLog(@"VidCoin video did disappear.");
-    [self.delegate interstitialCustomEventDidDisappear: self];
+    NSLog(@"VidCoin server validate the view.");
 }
 
 -(void)dealloc {

@@ -16,6 +16,9 @@ package com.sticksports.nativeExtensions.mopub
 			return Capabilities.screenResolutionY;
 		}
 		
+		public static function init():void {
+		}
+		
 		public static function trackConversion():void {
 		}
 		

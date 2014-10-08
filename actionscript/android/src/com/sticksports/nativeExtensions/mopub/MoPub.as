@@ -1,5 +1,6 @@
 package com.sticksports.nativeExtensions.mopub
 {
+	import flash.desktop.NativeApplication;
 	import flash.external.ExtensionContext;
 	import flash.system.Capabilities;
 	
@@ -8,6 +9,7 @@ package com.sticksports.nativeExtensions.mopub
 		private static var extensionContext:ExtensionContext;
 		private static var scaleFactor:Number;
 		private static var conversionTracked:Boolean;
+		private static var initialized:Boolean;
 		
 		public static function get adScaleFactor():Number {
 			if(!scaleFactor) {
@@ -15,7 +17,7 @@ package com.sticksports.nativeExtensions.mopub
 				if(!extensionContext)
 					extensionContext = ExtensionContext.createExtensionContext("com.sticksports.nativeExtensions.MoPub", "mopub");
 				
-				scaleFactor = extensionContext.call("getAdScaleFactor") as Number;
+				scaleFactor = extensionContext.call("mopub_getAdScaleFactor") as Number;
 			}
 			
 			return scaleFactor;
@@ -36,8 +38,22 @@ package com.sticksports.nativeExtensions.mopub
 			if(!extensionContext)
 				extensionContext = ExtensionContext.createExtensionContext("com.sticksports.nativeExtensions.MoPub", "mopub");
 			
-			extensionContext.call("trackConversion");
+			extensionContext.call("mopub_trackConversion");
 			conversionTracked = true;
+		}
+		
+		public static function init():void {
+			if(initialized)
+				return;
+			
+			if(!extensionContext) 
+				extensionContext = ExtensionContext.createExtensionContext("com.sticksports.nativeExtensions.MoPub", "mopub");
+			
+			const descriptor:XML = NativeApplication.nativeApplication.applicationDescriptor;
+			const ns:Namespace = descriptor.namespace();
+			const versionNumber:String = descriptor.ns::versionNumber.toString();
+			extensionContext.call("mopub_init", versionNumber);
+			initialized = true;
 		}
 	}
 }

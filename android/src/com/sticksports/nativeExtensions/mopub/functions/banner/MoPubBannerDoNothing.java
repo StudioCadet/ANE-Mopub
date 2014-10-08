@@ -2,7 +2,7 @@ package com.sticksports.nativeExtensions.mopub.functions.banner;
 
 import com.adobe.fre.FREContext;
 import com.adobe.fre.FREObject;
-import com.sticksports.nativeExtensions.mopub.functions.UIThreadSafeFREFunction;
+import com.sticksports.nativeExtensions.utils.UIThreadSafeFREFunction;
 
 public class MoPubBannerDoNothing extends UIThreadSafeFREFunction {
 	

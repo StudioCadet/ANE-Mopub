@@ -8,33 +8,33 @@ package com.sticksports.nativeExtensions.mopub
 	{
 // native method names
 
-		private static const initialiseBanner : String = "initialiseBanner";
+		private static const initialiseBanner : String = "mopub_initialiseBanner";
 		
-		private static const setAdUnitId : String = "setAdUnitId";
-		private static const setAutorefresh : String = "setAutorefresh";
-		private static const setTestMode : String = "setTestMode";
-		private static const setLockNativeAdsToOrientation : String = "lockNativeAdsToOrientation";
+		private static const setAdUnitId : String = "mopub_setAdUnitId";
+		private static const setAutorefresh : String = "mopub_setAutorefresh";
+		private static const setTestMode : String = "mopub_setTestMode";
+		private static const setLockNativeAdsToOrientation : String = "mopub_lockNativeAdsToOrientation";
 		
-		private static const getPositionX : String = "getPositionX";
-		private static const setPositionX : String = "setPositionX";
-		private static const getPositionY : String = "getPositionY";
-		private static const setPositionY : String = "setPositionY";
-		private static const getWidth : String = "getWidth";
-		private static const setWidth : String = "setWidth";
-		private static const getHeight : String = "getHeight";
-		private static const setHeight : String = "setHeight";
+		private static const getPositionX : String = "mopub_getPositionX";
+		private static const setPositionX : String = "mopub_setPositionX";
+		private static const getPositionY : String = "mopub_getPositionY";
+		private static const setPositionY : String = "mopub_setPositionY";
+		private static const getWidth : String = "mopub_getWidth";
+		private static const setWidth : String = "mopub_setWidth";
+		private static const getHeight : String = "mopub_getHeight";
+		private static const setHeight : String = "mopub_setHeight";
 		
-		private static const setSize : String = "setSize";
-		private static const getCreativeWidth : String = "getCreativeWidth";
-		private static const getCreativeHeight : String = "getCreativeHeight";
+		private static const setSize : String = "mopub_setSize";
+		private static const getCreativeWidth : String = "mopub_getCreativeWidth";
+		private static const getCreativeHeight : String = "mopub_getCreativeHeight";
 		
-		private static const setBannerKeywords : String = "setBannerKeywords";
+		private static const setBannerKeywords : String = "mopub_setBannerKeywords";
 		
-		private static const loadBanner : String = "loadBanner";
-		private static const showBanner : String = "showBanner";
-		private static const removeBanner : String = "removeBanner";
+		private static const loadBanner : String = "mopub_loadBanner";
+		private static const showBanner : String = "mopub_showBanner";
+		private static const removeBanner : String = "mopub_removeBanner";
 		
-		private static const disposeBanner : String = "disposeBanner";
+		private static const disposeBanner : String = "mopub_disposeBanner";
 
 // class variables
 

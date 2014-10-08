@@ -22,6 +22,7 @@
 		<copy todir="../bin/ios">
             <fileset dir="../ios/MoPubIosExtension/AdColony/SDK" />
 			<fileset dir="../ios/MoPubIosExtension/VidCoin/SDK" />
+            <fileset dir="../ios/MoPubIosExtension/Mobvious/SDK" />
 		</copy>
 
 		<exec executable="ibtool" failonerror="true">
@@ -62,6 +63,7 @@
 				<pathelement location="../android/libs/chartboost.jar"/>
 				<pathelement location="../android/libs/inmobi.jar"/>
 				<pathelement location="../android/libs/adcolony.jar"/>
+				<pathelement location="../android/libs/smartadserver.jar"/>
 			</classpath>
 		</javac>
 
@@ -70,6 +72,7 @@
 		<unzip dest="../bin/android/temp/zip" src="../android/libs/chartboost.jar" />
 		<unzip dest="../bin/android/temp/zip" src="../android/libs/inmobi.jar" />
 		<unzip dest="../bin/android/temp/zip" src="../android/libs/adcolony.jar" />
+		<unzip dest="../bin/android/temp/zip" src="../android/libs/smartadserver.jar" />
 		
 		<copy todir="../bin/android/temp/classes/com">
 			<fileset dir="../bin/android/temp/zip/com" />

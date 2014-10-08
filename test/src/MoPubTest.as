@@ -1,0 +1,122 @@
+package {
+	import com.sticksports.nativeExtensions.mopub.MoPub;
+	import com.sticksports.nativeExtensions.mopub.MoPubBanner;
+	
+	import flash.display.Sprite;
+	import flash.events.MouseEvent;
+	import flash.text.TextField;
+	import flash.text.TextFormat;
+	import flash.text.TextFormatAlign;
+	
+	
+	/**
+	 *
+	 */
+	public class MoPubTest extends Sprite {
+		
+		// PROPERTIES :
+		private var banner:MpBanner;
+		private var interstitial:MpInterstitial;
+		
+		private var dy:Number;
+		
+		// CONSTRUCTOR
+		public function MoPubTest() {
+			super();
+			
+			initDisplay();
+			initMoPub();
+		}
+		
+		
+		/////////////
+		// DISPLAY //
+		/////////////
+		
+		private function initDisplay():void {
+			dy = 30;
+			
+			addButton("Track conversion", trackConversion);
+			addButton("Show banner", showBanner);
+			addButton("Remove banner", removeBanner);
+			addButton("Fetch interstitial", fetchInterstitial);
+			addButton("Interstitial is fetched ?", interstitialIsReady);
+			addButton("Show interstitial", showInterstitial);
+		}
+		
+		private function addButton(label:String, onClick:Function):void {
+			var b:Sprite = new Sprite();
+			b.graphics.beginFill(0xbbbbbb);
+			b.graphics.lineStyle(1, 0x222222, 1, true);
+			b.graphics.drawRect(0, 0, stage.stageWidth - 20, 40);
+			b.graphics.endFill();
+			b.x = 10;
+			b.y = dy;
+			dy += 70;
+			
+			var tf:TextField = new TextField();
+			tf.defaultTextFormat = new TextFormat("Arial", 14, 0, true, null, null, null, null, TextFormatAlign.CENTER);
+			tf.text = label;
+			tf.x = 10;
+			tf.y = 10;
+			tf.selectable = false;
+			tf.width = stage.stageWidth - 40;
+			tf.height = 20;
+			b.addChild(tf);
+			
+			b.addEventListener(MouseEvent.CLICK, function(ev:MouseEvent):void { onClick(); });
+			
+			addChild(b);
+		}
+		
+		///////////
+		// MOPUB //
+		///////////
+		
+		/**
+		 * Initializes MoPub ANE.
+		 */
+		private function initMoPub():void {
+			trace("Initializing MoPub ...");
+			MoPub.init();
+			AdUnit.init();
+			banner = new MpBanner(stage, AdUnit.getId(AdUnit.MP_BANNER), AdUnit.isTablet);
+			interstitial = new MpInterstitial(AdUnit.getId(AdUnit.MP_INTERSTITIAL));
+			trace("MoPub initialized.");
+		}
+		
+		private function trackConversion():void {
+			trace("Tracking install conversion for MoPub ...");
+			MoPub.trackConversion();
+			trace("Done.");
+		}
+		
+		private function showBanner():void {
+			trace("Showing banner ...");
+			banner.display(
+				function():void { trace("Banner displayed."); },
+				function():void { trace("Banner removed."); }
+			);
+		}
+		
+		private function removeBanner():void {
+			trace("Removing banner ...");
+			banner.remove();
+			trace("Done.");
+		}
+		
+		private function fetchInterstitial():void {
+			trace("Fetching an interstitial ...");
+			interstitial.fetch(function():void { trace("Interstitial fetched."); });
+		}
+		
+		private function interstitialIsReady():void {
+			trace("Intersitital is ready ? " + interstitial.isFetched);
+		}
+		
+		private function showInterstitial():void {
+			trace("Showing interstitial ...");
+			interstitial.show(function():void { trace("Interstitial shown."); });
+		}
+	}
+}

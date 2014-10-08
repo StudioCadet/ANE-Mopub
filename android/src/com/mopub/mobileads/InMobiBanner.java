@@ -39,20 +39,19 @@ public class InMobiBanner extends CustomEventBanner implements IMBannerListener 
 			mBannerListener.onBannerFailed(null);
 			return;
 		}
-		
-		InMobiUtils.init(context, activity);
 
-		Long slotID = InMobiUtils.getSlotIdFromServerExtras(serverExtras);
+		String propertyID = InMobiUtils.getPropertyIdFromServerExtras(serverExtras);
+		Integer slotSize = InMobiUtils.getOptimalSlotSize(activity);
 		
-		if(slotID != null) {
-			MoPubExtension.log("Creating banner with slot ID " + slotID + " ...");
-			iMBanner = new IMBanner(activity, slotID);
+		if(propertyID == null) {
+			propertyID = InMobiUtils.inMobiPropertyId;
+			MoPubExtension.log("Using default property ID : " + propertyID);
 		}
-		else {
-			Integer slotSize = InMobiUtils.getOptimalSlotSize(activity);
-			MoPubExtension.log("Creating banner with slot size " + slotSize + " ...");
-			iMBanner = new IMBanner(activity, InMobiUtils.inMobiPropertyId, slotSize);
-		}
+		else
+			MoPubExtension.log("Using custom property ID : " + propertyID);
+		
+		MoPubExtension.log("Creating banner with property ID " + propertyID + " and slot size " + slotSize + " ...");
+		iMBanner = new IMBanner(activity, propertyID, slotSize);
 		
 		Map<String, String> map = new HashMap<String, String>();
         map.put("tp", "c_mopub");
@@ -62,7 +61,6 @@ public class InMobiBanner extends CustomEventBanner implements IMBannerListener 
         iMBanner.setRequestParams(map);
 		iMBanner.setIMBannerListener(this);
 		iMBanner.setRefreshInterval(IMBanner.REFRESH_INTERVAL_OFF);
-		iMBanner.setRefTagParam("AndroidBanner", "AndroidBanner");
 		MoPubExtension.log("Loading InMobi banner ...");
 		iMBanner.loadBanner();
 	}
@@ -87,7 +85,6 @@ public class InMobiBanner extends CustomEventBanner implements IMBannerListener 
 		            	MoPubExtension.log("Exception while trying to remove an InMobiBanner : " + e);
 		            }
 					finally {
-		            	iMBanner.destroy();
 		            	iMBanner = null;
 		            	MoPubExtension.log("InMobi banner removed.");
 		            }

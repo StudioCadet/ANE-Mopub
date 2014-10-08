@@ -4,8 +4,6 @@ import java.util.Map;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.pm.PackageManager;
-import android.content.pm.PackageManager.NameNotFoundException;
 import android.util.DisplayMetrics;
 import android.view.Display;
 import android.view.WindowManager;
@@ -13,14 +11,19 @@ import android.view.WindowManager;
 import com.inmobi.commons.InMobi;
 import com.inmobi.monetization.IMBanner;
 import com.sticksports.nativeExtensions.mopub.MoPubExtension;
+import com.sticksports.nativeExtensions.utils.ExtraUtils;
+import com.sticksports.nativeExtensions.utils.PackageUtils;
 
 /**
  * Common tools to ease working with InMobi.
  */
 public class InMobiUtils {
 	
+	/** The meta-data entry key that should contain the default property ID. */
+	private static final String META_DATA_PROPERTY_ID_KEY = "IN_MOBI_PROPERTY_ID";
+	
 	/** The name of the custom network data used on MoPub to pass a SlotID to a particular AdUnit. */
-	private static final String SERVER_CUSTOM_DATA_SLOT_ID_KEY = "inMobiSlotID";
+	private static final String CUSTOM_DATA_PROPERTY_ID_KEY = "property";
 	
 	
 	/** The property catched from the Android manifest. */
@@ -33,18 +36,17 @@ public class InMobiUtils {
 	public static void init(Context context, Activity activity) {
 		if (!isAppInitialized) {
 			
-			try {
-				inMobiPropertyId = (String) context.getPackageManager().getApplicationInfo(context.getPackageName(), PackageManager.GET_META_DATA)
-						.metaData.get("IN_MOBI_PROPERTY_ID");
-				MoPubExtension.log("Initializing InMobi with property ID : " + inMobiPropertyId);
-				InMobi.initialize(activity, inMobiPropertyId);
-				InMobi.setLogLevel(InMobi.LOG_LEVEL.DEBUG);
-	            isAppInitialized = true;
-	            MoPubExtension.log("InMobi initialized.");
+			inMobiPropertyId = (String) PackageUtils.getMetaData(context, META_DATA_PROPERTY_ID_KEY);
+			if(inMobiPropertyId == null) {
+				MoPubExtension.logE("The manifest is missing the InMobi needed property : \"" + META_DATA_PROPERTY_ID_KEY + "\" ! Aborting InMobi SDK initializing.");
+				return;
 			}
-			catch (NameNotFoundException e) {
-				MoPubExtension.logE("The manifest is missing the InMobi needed property : \"IN_MOBI_PROPERTY_ID\" !");
-			}
+			
+			MoPubExtension.log("Initializing InMobi with property ID : " + inMobiPropertyId);
+			InMobi.initialize(activity, inMobiPropertyId);
+			InMobi.setLogLevel(InMobi.LOG_LEVEL.DEBUG);
+            isAppInitialized = true;
+            MoPubExtension.log("InMobi initialized.");
 		}
 	}
 	
@@ -74,15 +76,10 @@ public class InMobiUtils {
 	}
 	
 	/**
-	 * Returns an eventual Slot ID defined on MoPub.
+	 * Returns an eventual Property ID defined on MoPub.
 	 */
-	public static Long getSlotIdFromServerExtras(Map<String, String> serverExtras) {
-		if(serverExtras == null)
-			return null;
-		if(!serverExtras.containsKey(SERVER_CUSTOM_DATA_SLOT_ID_KEY))
-			return null;
-		
-		return Long.parseLong(serverExtras.get(SERVER_CUSTOM_DATA_SLOT_ID_KEY));
+	public static String getPropertyIdFromServerExtras(Map<String, String> serverExtras) {
+		return ExtraUtils.getString(serverExtras, CUSTOM_DATA_PROPERTY_ID_KEY);
 	}
-
+	
 }
