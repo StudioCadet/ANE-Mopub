@@ -20,10 +20,10 @@ import com.sticksports.nativeExtensions.utils.PackageUtils;
 public class InMobiUtils {
 	
 	/** The meta-data entry key that should contain the default property ID. */
-	private static final String META_DATA_ENTRY_KEY = "IN_MOBI_PROPERTY_ID";
+	private static final String META_DATA_PROPERTY_ID_KEY = "IN_MOBI_PROPERTY_ID";
 	
 	/** The name of the custom network data used on MoPub to pass a SlotID to a particular AdUnit. */
-	private static final String SERVER_CUSTOM_DATA_PROPERTY_ID_KEY = "property";
+	private static final String CUSTOM_DATA_PROPERTY_ID_KEY = "property";
 	
 	
 	/** The property catched from the Android manifest. */
@@ -36,9 +36,9 @@ public class InMobiUtils {
 	public static void init(Context context, Activity activity) {
 		if (!isAppInitialized) {
 			
-			inMobiPropertyId = (String) PackageUtils.getMetaData(context, META_DATA_ENTRY_KEY);
+			inMobiPropertyId = (String) PackageUtils.getMetaData(context, META_DATA_PROPERTY_ID_KEY);
 			if(inMobiPropertyId == null) {
-				MoPubExtension.logE("The manifest is missing the InMobi needed property : \"IN_MOBI_PROPERTY_ID\" ! Aborting InMobi SDK initializing.");
+				MoPubExtension.logE("The manifest is missing the InMobi needed property : \"" + META_DATA_PROPERTY_ID_KEY + "\" ! Aborting InMobi SDK initializing.");
 				return;
 			}
 			
@@ -79,7 +79,7 @@ public class InMobiUtils {
 	 * Returns an eventual Property ID defined on MoPub.
 	 */
 	public static String getPropertyIdFromServerExtras(Map<String, String> serverExtras) {
-		return ExtraUtils.getString(serverExtras, SERVER_CUSTOM_DATA_PROPERTY_ID_KEY);
+		return ExtraUtils.getString(serverExtras, CUSTOM_DATA_PROPERTY_ID_KEY);
 	}
 	
 }

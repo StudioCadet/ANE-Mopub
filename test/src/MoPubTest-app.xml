@@ -297,6 +297,8 @@
 					</receiver>
 							  
 					<!-- MoPub : Adcolony mediation -->
+					<meta-data android:name="AD_COLONY_APP_ID" android:value="appd1be74c48c1b4ff28d" />
+					<meta-data android:name="AD_COLONY_ZONE_IDS" android:value="vz8efc58bf67ea42e3a7,vz2c92a67b1cd9427f81" />
 					<activity android:name="com.jirbo.adcolony.AdColonyOverlay"
 							  android:configChanges="keyboardHidden|orientation|screenSize"
 							  android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen" />
@@ -332,7 +334,8 @@
 		]]></InfoAdditions>
         <requestedDisplayResolution>high</requestedDisplayResolution>
     </iPhone>
-    <extensions>
+    
+<extensions>
         <extensionID>com.sticksports.nativeExtensions.MoPub</extensionID>
     </extensions>
 </application>

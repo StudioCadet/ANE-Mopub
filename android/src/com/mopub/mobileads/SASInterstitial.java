@@ -78,9 +78,14 @@ public class SASInterstitial extends CustomEventInterstitial implements SASAdVie
 	@Override
 	protected void showInterstitial() {
 		MoPubExtension.log("Showing SAS interstitial ...");
-		interstitial.setVisibility(View.VISIBLE);
-		interstitial.setAlpha(1.0f);
-		interstitial.invalidate();
+		interstitial.executeOnUIThread(new Runnable() {
+			@Override public void run() {
+				interstitial.setVisibility(View.VISIBLE);
+				interstitial.setAlpha(1.0f);
+				interstitial.invalidate();
+				listener.onInterstitialShown();
+			}
+		});
 	}
 	
 

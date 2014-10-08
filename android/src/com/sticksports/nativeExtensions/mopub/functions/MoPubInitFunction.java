@@ -5,6 +5,7 @@ import android.app.Activity;
 import com.adobe.fre.FREContext;
 import com.adobe.fre.FREFunction;
 import com.adobe.fre.FREObject;
+import com.mopub.mobileads.AdColonyUtils;
 import com.mopub.mobileads.ChartboostUtils;
 import com.mopub.mobileads.InMobiUtils;
 import com.smartadserver.android.library.ui.SASAdView;
@@ -20,16 +21,13 @@ public class MoPubInitFunction implements FREFunction {
 		
 		MoPubExtension.log("Initializing MoPub extension ...");
 		
-		// Get the main activity, once :
+		// Gather usefull infos :
 		Activity activity = context.getActivity();
-		
-		
-		// Trying to fix the CalledFromWrongThread exception
-		// see: http://stackoverflow.com/questions/10426120/android-got-calledfromwrongthreadexception-in-onpostexecute-how-could-it-be
+		String appVersion = null;
 		try {
-			Class.forName("android.os.AsyncTask");
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
+			appVersion = args[0].getAsString();
+		} catch (Exception e) {
+			MoPubExtension.logE("AppVersion argument missing from init() call !");
 		}
 		
 		// InMobi :
@@ -40,6 +38,9 @@ public class MoPubInitFunction implements FREFunction {
 		
 		// SmartAdServer :
 		SASAdView.enableLogging();
+		
+		// AdColony :
+		AdColonyUtils.init(activity, appVersion);
 		
 		MoPubExtension.log("MoPub extension initialized successfully.");
 		

@@ -1,5 +1,6 @@
 package com.sticksports.nativeExtensions.mopub
 {
+	import flash.desktop.NativeApplication;
 	import flash.external.ExtensionContext;
 	import flash.system.Capabilities;
 	
@@ -45,10 +46,13 @@ package com.sticksports.nativeExtensions.mopub
 			if(initialized)
 				return;
 			
-			if(!extensionContext)
+			if(!extensionContext) 
 				extensionContext = ExtensionContext.createExtensionContext("com.sticksports.nativeExtensions.MoPub", "mopub");
 			
-			extensionContext.call("mopub_init");
+			const descriptor:XML = NativeApplication.nativeApplication.applicationDescriptor;
+			const ns:Namespace = descriptor.namespace();
+			const versionNumber:String = descriptor.ns::versionNumber.toString();
+			extensionContext.call("mopub_init", versionNumber);
 			initialized = true;
 		}
 	}
