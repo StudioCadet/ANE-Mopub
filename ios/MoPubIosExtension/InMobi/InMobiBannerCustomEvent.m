@@ -61,10 +61,10 @@
     }
     
     // Create the banner :
-    if ([info objectForKey:@"inMobiSlotID"]) {
-        long long slotId = [[info objectForKey:@"inMobiSlotID"] longLongValue];
-        NSLog(@"Creating an InMobi banner with Slot ID %lld ...", slotId);
-        self.inMobiBanner = [[MPInstanceProvider sharedProvider] buildIMBannerWithSlotIdAndFrame:CGRectMake(0, 0, size.width, size.height) slotId:slotId];
+    if ([info objectForKey:@"property"]) {
+        NSString *propertyId = [[info objectForKey:@"property"] stringValue];
+        NSLog(@"Creating InMobi interstitial with custom property ID %@ ...", propertyId);
+        self.inMobiBanner = [[MPInstanceProvider sharedProvider] buildIMBannerWithFrame:CGRectMake(0, 0, size.width, size.height) appId:propertyId adSize:imAdSizeConstant];
     }
     else {
         NSLog(@"Creating an InMobi banner with Property ID %@ and size %i ...", inMobiPropertyId, imAdSizeConstant);
