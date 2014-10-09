@@ -63,6 +63,7 @@
 				<pathelement location="../android/libs/inmobi.jar"/>
 				<pathelement location="../android/libs/adcolony.jar"/>
 				<pathelement location="../android/libs/smartadserver.jar"/>
+				<pathelement location="../android/libs/google-play-services.jar"/>
 			</classpath>
 		</javac>
 

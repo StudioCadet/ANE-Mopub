@@ -1,27 +1,33 @@
 package com.sticksports.nativeExtensions.mopub
 {
 	import flash.desktop.NativeApplication;
+	import flash.events.StatusEvent;
 	import flash.external.ExtensionContext;
 	import flash.system.Capabilities;
 	
 	public class MoPub {
 		
 		private static var extensionContext:ExtensionContext;
+		
+		/** The logging function you want to use. Defaults to trace. */
+		public static var logger:Function = trace;
+		/** The prefix appended to every log message. Defaults to "[MoPub]". */
+		public static var logPrefix:String = "[MoPub]";
+		
 		private static var scaleFactor:Number;
 		private static var conversionTracked:Boolean;
 		private static var initialized:Boolean;
 		
 		private static function createExtensionContextIfNull():void {
-			if(!extensionContext)
-				extensionContext = ExtensionContext.createExtensionContext("com.sticksports.nativeExtensions.MoPub", "mopub");
+			if(extensionContext)
+				return;
+			extensionContext = ExtensionContext.createExtensionContext("com.sticksports.nativeExtensions.MoPub", "mopub");
+			extensionContext.addEventListener(StatusEvent.STATUS, onStatusEvent);
 		}
 		
 		public static function get adScaleFactor():Number {
 			if(!scaleFactor) {
-				
-				if(!extensionContext)
-					extensionContext = ExtensionContext.createExtensionContext("com.sticksports.nativeExtensions.MoPub", "mopub");
-				
+				createExtensionContextIfNull();
 				scaleFactor = extensionContext.call("mopub_getAdScaleFactor") as Number;
 			}
 			
@@ -40,8 +46,7 @@ package com.sticksports.nativeExtensions.mopub
 			if(conversionTracked)
 				return;
 			
-			if(!extensionContext)
-				extensionContext = ExtensionContext.createExtensionContext("com.sticksports.nativeExtensions.MoPub", "mopub");
+			createExtensionContextIfNull();
 			
 			extensionContext.call("mopub_trackConversion");
 			conversionTracked = true;
@@ -51,8 +56,7 @@ package com.sticksports.nativeExtensions.mopub
 			if(initialized)
 				return;
 			
-			if(!extensionContext) 
-				extensionContext = ExtensionContext.createExtensionContext("com.sticksports.nativeExtensions.MoPub", "mopub");
+			createExtensionContextIfNull();
 			
 			const descriptor:XML = NativeApplication.nativeApplication.applicationDescriptor;
 			const ns:Namespace = descriptor.namespace();
@@ -78,6 +82,24 @@ package com.sticksports.nativeExtensions.mopub
 		public static function getAndroidAdvertisingId():String {					
 			createExtensionContextIfNull();			
 			return extensionContext.call("mopub_getAndroidAdvertisingId") as String;
+		}
+		
+		
+		private static function onStatusEvent(ev:StatusEvent):void {
+			if(ev.code == InternalMessages.log)
+				log(ev.level);
+		}
+		
+		/**
+		 * Outputs the given message(s) using the provided logger function, or using trace.
+		 */
+		private static function log(message:String, ... additionnalMessages):void {
+			if(logger == null) return;
+			
+			if(!additionnalMessages)
+				additionnalMessages = [];
+			
+			logger((logPrefix && logPrefix.length > 0 ? logPrefix + " " : "") + message + " " + additionnalMessages.join(" "));
 		}
 	}
 }

@@ -42,6 +42,11 @@ package {
 			addButton("Fetch interstitial", fetchInterstitial);
 			addButton("Interstitial is fetched ?", interstitialIsReady);
 			addButton("Show interstitial", showInterstitial);
+			addButton("Apple IDFA", appleIDFA);
+			addButton("Android AdvertisingID", androidAdvertisingId);
+			addButton("Android IMEI", androidIMEI);
+			addButton("Android ID", androidId);
+			
 		}
 		
 		private function addButton(label:String, onClick:Function):void {
@@ -117,6 +122,22 @@ package {
 		private function showInterstitial():void {
 			trace("Showing interstitial ...");
 			interstitial.show(function():void { trace("Interstitial shown."); });
+		}
+		
+		private function appleIDFA():void {
+			trace("Apple IDFA : " + MoPub.getAppleIDFA());
+		}
+		
+		private function androidAdvertisingId():void {
+			trace("Android Advertising ID : " + MoPub.getAndroidAdvertisingId());
+		}
+		
+		private function androidIMEI():void {
+			trace("Android IMEI : " + MoPub.getAndroidIMEI());
+		}
+		
+		private function androidId():void {
+			trace("Android ID : " + MoPub.getAndroidId());
 		}
 	}
 }

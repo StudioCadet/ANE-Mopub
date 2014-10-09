@@ -4,6 +4,12 @@ package com.sticksports.nativeExtensions.mopub
 
 	public class MoPub {
 		
+		/** The logging function you want to use. Defaults to trace. */
+		public static var logger:Function = trace;
+		/** The prefix appended to every log message. Defaults to "[MoPub]". */
+		public static var logPrefix:String = "[MoPub]";
+		
+		
 		public static function get adScaleFactor():Number {
 			return 1;
 		}

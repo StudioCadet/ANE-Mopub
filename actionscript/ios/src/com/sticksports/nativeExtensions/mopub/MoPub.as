@@ -4,6 +4,12 @@ package com.sticksports.nativeExtensions.mopub
 	
 	public class MoPub {
 		
+		
+		/** The logging function you want to use. Defaults to trace. */
+		public static var logger:Function = trace;
+		/** The prefix appended to every log message. Defaults to "[MoPub]". */
+		public static var logPrefix:String = "[MoPub]";
+		
 		private static var extensionContext:ExtensionContext;
 		private static var scaleFactor:Number;
 		private static var _nativeScreenWidth:Number;
@@ -19,8 +25,7 @@ package com.sticksports.nativeExtensions.mopub
 		public static function get adScaleFactor():Number {
 			if(!scaleFactor) {
 				
-				if(!extensionContext)
-					extensionContext = ExtensionContext.createExtensionContext("com.sticksports.nativeExtensions.MoPub", "mopub");
+				createExtensionContextIfNull();
 				
 				scaleFactor = extensionContext.call("mopub_getAdScaleFactor") as Number;
 			}
@@ -32,8 +37,7 @@ package com.sticksports.nativeExtensions.mopub
 		public static function get nativeScreenWidth():Number {
 			if(!_nativeScreenWidth) {
 				
-				if(!extensionContext)
-					extensionContext = ExtensionContext.createExtensionContext("com.sticksports.nativeExtensions.MoPub", "mopub");
+				createExtensionContextIfNull();
 				
 				_nativeScreenWidth = extensionContext.call("mopub_getNativeScreenWidth") as Number;
 			}
@@ -44,8 +48,7 @@ package com.sticksports.nativeExtensions.mopub
 		public static function get nativeScreenHeight():Number {
 			if(!_nativeScreenHeight) {
 				
-				if(!extensionContext)
-					extensionContext = ExtensionContext.createExtensionContext("com.sticksports.nativeExtensions.MoPub", "mopub");
+				createExtensionContextIfNull();
 				
 				_nativeScreenHeight = extensionContext.call("mopub_getNativeScreenHeight") as Number;
 			}
@@ -57,8 +60,7 @@ package com.sticksports.nativeExtensions.mopub
 			if(conversionTracked)
 				return;
 			
-			if(!extensionContext)
-				extensionContext = ExtensionContext.createExtensionContext("com.sticksports.nativeExtensions.MoPub", "mopub");
+			createExtensionContextIfNull();
 			
 			extensionContext.call("mopub_trackConversion");
 			conversionTracked = true;
@@ -68,8 +70,7 @@ package com.sticksports.nativeExtensions.mopub
 			if(initialized)
 				return;
 			
-			if(!extensionContext)
-				extensionContext = ExtensionContext.createExtensionContext("com.sticksports.nativeExtensions.MoPub", "mopub");
+			createExtensionContextIfNull();
 			
 			extensionContext.call("mopub_init");
 			initialized = true;
@@ -89,7 +90,7 @@ package com.sticksports.nativeExtensions.mopub
 		}
 		
 		public static function getAndroidAdvertisingId():String {
-			return null;		
+			return null;
 		}
 	}
 }
