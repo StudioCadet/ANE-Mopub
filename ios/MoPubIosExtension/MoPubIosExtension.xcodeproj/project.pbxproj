@@ -242,6 +242,7 @@
 		48E89B0B199CEC68007C857D /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48E89B0A199CEC68007C857D /* Accelerate.framework */; };
 		6D247CC719E6630500F579CB /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D247CC619E6630500F579CB /* CoreMedia.framework */; };
 		6D5AFBD719E6846900D5C9A2 /* libz.1.2.5.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D247CC819E6634000F579CB /* libz.1.2.5.dylib */; settings = {ATTRIBUTES = (Required, ); }; };
+		6D5AFBD819E6B87000D5C9A2 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79A6D52A1636DFB1009DA60A /* CoreLocation.framework */; };
 		7914017E163AE16E004D6EE6 /* MoPubTypeConversion.m in Sources */ = {isa = PBXBuildFile; fileRef = 7914017D163AE16E004D6EE6 /* MoPubTypeConversion.m */; };
 		79A6D48C1636C14D009DA60A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79A6D48B1636C14D009DA60A /* Foundation.framework */; };
 		79A6D4931636C14D009DA60A /* MoPubIosExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 79A6D4921636C14D009DA60A /* MoPubIosExtension.m */; };
@@ -562,6 +563,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6D5AFBD819E6B87000D5C9A2 /* CoreLocation.framework in Frameworks */,
 				6D5AFBD719E6846900D5C9A2 /* libz.1.2.5.dylib in Frameworks */,
 				6D247CC719E6630500F579CB /* CoreMedia.framework in Frameworks */,
 				48A15D6119E3CF6000E725A7 /* CoreMotion.framework in Frameworks */,
@@ -1269,8 +1271,8 @@
 			buildConfigurationList = 79A6D4961636C14D009DA60A /* Build configuration list for PBXNativeTarget "MoPubIosExtension" */;
 			buildPhases = (
 				79A6D4841636C14C009DA60A /* Sources */,
-				79A6D4851636C14C009DA60A /* Frameworks */,
 				79A6D4861636C14C009DA60A /* CopyFiles */,
+				79A6D4851636C14C009DA60A /* Frameworks */,
 				7914021F163AFA98004D6EE6 /* Headers */,
 			);
 			buildRules = (
