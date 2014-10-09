@@ -245,7 +245,6 @@
 		7914017E163AE16E004D6EE6 /* MoPubTypeConversion.m in Sources */ = {isa = PBXBuildFile; fileRef = 7914017D163AE16E004D6EE6 /* MoPubTypeConversion.m */; };
 		79A6D48C1636C14D009DA60A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79A6D48B1636C14D009DA60A /* Foundation.framework */; };
 		79A6D4931636C14D009DA60A /* MoPubIosExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 79A6D4921636C14D009DA60A /* MoPubIosExtension.m */; };
-		79A6D52E1636DFB1009DA60A /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79A6D52A1636DFB1009DA60A /* CoreLocation.framework */; };
 		79A6D5301636DFB1009DA60A /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79A6D52C1636DFB1009DA60A /* StoreKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		79A6D5321636DFE1009DA60A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79A6D52D1636DFB1009DA60A /* UIKit.framework */; };
 		79A6D5351636E4A9009DA60A /* MoPubBanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 79A6D5341636E4A9009DA60A /* MoPubBanner.m */; };
@@ -579,7 +578,6 @@
 				79BF9895174A1DCA0038F1F1 /* AVFoundation.framework in Frameworks */,
 				34FBB5A4190FE3DD005402C5 /* CFNetwork.framework in Frameworks */,
 				79BF9897174A1DD10038F1F1 /* CoreGraphics.framework in Frameworks */,
-				79A6D52E1636DFB1009DA60A /* CoreLocation.framework in Frameworks */,
 				79F87A43177B35630047359B /* CoreTelephony.framework in Frameworks */,
 				79F87D30177B41AC0047359B /* EventKit.framework in Frameworks */,
 				79F87D31177B41AC0047359B /* EventKitUI.framework in Frameworks */,

@@ -49,9 +49,6 @@
 
 - (void)requestAdWithSize:(CGSize)size customEventInfo:(NSDictionary *)info
 {
-    NSString *inMobiPropertyId = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"IN_MOBI_PROPERTY_ID"];
-
-    [InMobi initialize:inMobiPropertyId]; // won't do anything if already initialized
     MPLogInfo(@"Requesting InMobi banner");
     int imAdSizeConstant = [self imAdSizeConstantForCGSize:size];
     if (imAdSizeConstant == INVALID_INMOBI_AD_SIZE) {
@@ -60,25 +57,22 @@
         return;
     }
     
-    // Create the banner :
-    if ([info objectForKey:@"property"]) {
-        NSString *propertyId = [[info objectForKey:@"property"] stringValue];
-        NSLog(@"Creating InMobi interstitial with custom property ID %@ ...", propertyId);
-        self.inMobiBanner = [[MPInstanceProvider sharedProvider] buildIMBannerWithFrame:CGRectMake(0, 0, size.width, size.height) appId:propertyId adSize:imAdSizeConstant];
+    // Get the property ID to use :
+    NSString *propertyId = [info objectForKey:@"property"];
+    if(!propertyId) {
+        propertyId = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"IN_MOBI_PROPERTY_ID"];
+        NSLog(@"No property ID specified through MoPub custom network, using default property ID.");
     }
-    else {
-        NSLog(@"Creating an InMobi banner with Property ID %@ and size %i ...", inMobiPropertyId, imAdSizeConstant);
-        self.inMobiBanner = [[MPInstanceProvider sharedProvider] buildIMBannerWithFrame:CGRectMake(0, 0, size.width, size.height) appId:inMobiPropertyId adSize:imAdSizeConstant];
-    }
-        
     
+    // Create the banner :
+    NSLog(@"Creating InMobi banner with the property ID %@ (size:%i) ...", propertyId, imAdSizeConstant);
+    self.inMobiBanner = [[MPInstanceProvider sharedProvider] buildIMBannerWithFrame:CGRectMake(0, 0, size.width, size.height) appId:propertyId adSize:imAdSizeConstant];
     self.inMobiBanner.delegate = self;
     self.inMobiBanner.refreshInterval = REFRESH_INTERVAL_OFF;
+    
     NSMutableDictionary *paramsDict = [[NSMutableDictionary alloc] init];
     [paramsDict setObject:@"c_mopub" forKey:@"tp"];
 	[paramsDict setObject:MP_SDK_VERSION forKey:@"tp-ver"];
-    [paramsDict setObject:@"IosBanner" forKey:@"ref-tag"];
-    [paramsDict setObject:@"IosBanner" forKey:@"reftag"];
     self.inMobiBanner.additionaParameters = paramsDict; // For supply source identification
 
     if (self.delegate.location) {
@@ -86,9 +80,6 @@
                                longitude:self.delegate.location.coordinate.longitude
                                 accuracy:self.delegate.location.horizontalAccuracy];
     }
-    
-    self.inMobiBanner.refTagKey = @"IosBanner";
-    self.inMobiBanner.refTagValue = @"IosBanner";
     
     [self.inMobiBanner loadBanner];
     

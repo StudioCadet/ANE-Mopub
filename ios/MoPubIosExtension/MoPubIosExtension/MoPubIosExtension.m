@@ -12,6 +12,7 @@
 #import "MoPubBanner.h"
 #import "MoPubInterstitial.h"
 #import "MPAdConversionTracker.h"
+#import "InMobi.h"
 
 #define DEFINE_ANE_FUNCTION(fn) FREObject (fn)(FREContext context, void* functionData, uint32_t argc, FREObject argv[])
 
@@ -465,7 +466,20 @@ DEFINE_ANE_FUNCTION( mopub_trackConversion )
 
 DEFINE_ANE_FUNCTION( mopub_init )
 {
-    // TODO : initialise 3rd party SDKs once and for all in here !
+    NSLog(@"Initializing MoPub extension ...");
+    
+    // InMobi :
+    NSString *inMobiPropertyId = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"IN_MOBI_PROPERTY_ID"];
+    if(inMobiPropertyId == NULL) {
+        NSLog(@"Your app descriptor is missing the required parameters \"IN_MOBI_PROPERTY_ID\".");
+    }
+    else {
+        NSLog(@"Initializing InMobi SDK with property ID %@", inMobiPropertyId);
+        [InMobi initialize:inMobiPropertyId];
+        NSLog(@"InMobi initialized successfully.");
+    }
+    
+    NSLog(@"MoPub extension initialized.");
     
     return NULL;
 }
