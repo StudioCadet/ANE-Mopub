@@ -463,6 +463,14 @@ DEFINE_ANE_FUNCTION( mopub_trackConversion )
     return NULL;
 }
 
+DEFINE_ANE_FUNCTION( mopub_init )
+{
+    // TODO : initialise 3rd party SDKs once and for all in here !
+    
+    return NULL;
+}
+
+
 void MoPubContextInitializer( void* extData, const uint8_t* ctxType, FREContext ctx, uint32_t* numFunctionsToSet, const FRENamedFunction** functionsToSet )
 {
     if( strcmp( ctxType, "mopub" ) == 0 )
@@ -474,7 +482,8 @@ void MoPubContextInitializer( void* extData, const uint8_t* ctxType, FREContext 
             MAP_FUNCTION( mopub_getNativeScreenWidth, NULL ),
             MAP_FUNCTION( mopub_getNativeScreenHeight, NULL ),
             
-            MAP_FUNCTION( mopub_trackConversion, NULL )
+            MAP_FUNCTION( mopub_trackConversion, NULL ),
+            MAP_FUNCTION( mopub_init, NULL )
         };
         
         *numFunctionsToSet = sizeof( mopubFunctionMap ) / sizeof( FRENamedFunction );
