@@ -12,12 +12,32 @@
 #import "MoPubBanner.h"
 #import "MoPubInterstitial.h"
 #import "MPAdConversionTracker.h"
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= MP_IOS_6_0
+#import <AdSupport/AdSupport.h>
+#endif
 
 #define DEFINE_ANE_FUNCTION(fn) FREObject (fn)(FREContext context, void* functionData, uint32_t argc, FREObject argv[])
 
 #define MAP_FUNCTION(fn, data) { (const uint8_t*)(#fn), (data), &(fn) }
 
 MoPub_TypeConversion* mopubConverter;
+
+DEFINE_ANE_FUNCTION( mopub_getAppleIDFA )
+{
+	if (NSClassFromString(@"ASIdentifierManager")) {
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= MP_IOS_6_0
+        NSString *idfa =[[ASIdentifierManager sharedManager].advertisingIdentifier UUIDString];
+        
+        FREObject returnedObject;
+        if( [mopubConverter FREGetString:idfa asObject:&returnedObject] == FRE_OK )
+        {
+            return returnedObject;
+        }
+#endif
+    }
+	
+	return NULL;
+}
 
 DEFINE_ANE_FUNCTION( mopub_getAdScaleFactor )
 {
@@ -477,6 +497,8 @@ void MoPubContextInitializer( void* extData, const uint8_t* ctxType, FREContext 
     {
         static FRENamedFunction mopubFunctionMap[] =
         {
+            MAP_FUNCTION( mopub_getAppleIDFA, NULL ),
+            
             MAP_FUNCTION( mopub_getAdScaleFactor, NULL ),
             
             MAP_FUNCTION( mopub_getNativeScreenWidth, NULL ),

@@ -11,6 +11,11 @@ package com.sticksports.nativeExtensions.mopub
 		private static var conversionTracked:Boolean;
 		private static var initialized:Boolean;
 		
+		private static function createExtensionContextIfNull():void {
+			if(!extensionContext)
+				extensionContext = ExtensionContext.createExtensionContext("com.sticksports.nativeExtensions.MoPub", "mopub");
+		}
+
 		public static function get adScaleFactor():Number {
 			if(!scaleFactor) {
 				
@@ -58,7 +63,7 @@ package com.sticksports.nativeExtensions.mopub
 			extensionContext.call("mopub_trackConversion");
 			conversionTracked = true;
 		}
-		
+
 		public static function init():void {
 			if(initialized)
 				return;
@@ -68,6 +73,23 @@ package com.sticksports.nativeExtensions.mopub
 			
 			extensionContext.call("mopub_init");
 			initialized = true;
+		}
+
+		public static function getAppleIDFA():String {				
+			createExtensionContextIfNull();
+			return extensionContext.call("mopub_getAppleIDFA") as String;
+		}
+		
+		public static function getAndroidId():String {				
+			return null;
+		}
+		
+		public static function getAndroidIMEI():String {				
+			return null;
+		}
+		
+		public static function getAndroidAdvertisingId():String {
+			return null;		
 		}
 	}
 }
