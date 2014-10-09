@@ -51,15 +51,11 @@
     NSString *inMobiPropertyId = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"IN_MOBI_PROPERTY_ID"];
     [InMobi initialize:inMobiPropertyId]; // won't do anything if already initialized
     
-    // Creating the InMobi interstitial :
-    NSLog(@"Creating InMobi interstitial with Property ID %@ ...", inMobiPropertyId);
-    self.inMobiInterstitial = [[MPInstanceProvider sharedProvider] buildIMInterstitialWithDelegate:self appId:inMobiPropertyId];
-    
-    // Set the SlotID if defined in MoPub :
-    if ([info objectForKey:@"inMobiSlotID"]) {
-        long long slotId = [[info objectForKey:@"inMobiSlotID"] longLongValue];
-        NSLog(@"Creating InMobi interstitial with Slot ID %lld ...", slotId);
-        self.inMobiInterstitial = [[MPInstanceProvider sharedProvider] buildIMInterstitialWithSlotIdAndDelegate:self slotId:slotId];
+    // Set the PropertyID if defined in MoPub :
+    if ([info objectForKey:@"property"]) {
+        NSString *propertyId = [[info objectForKey:@"property"] stringValue];
+        NSLog(@"Creating InMobi interstitial with custom property ID %@ ...", propertyId);
+        self.inMobiInterstitial = [[MPInstanceProvider sharedProvider] buildIMInterstitialWithDelegate:self appId:propertyId];
     }
     else {
         NSLog(@"Creating InMobi interstitial with Property ID %@ ...", inMobiPropertyId);
