@@ -59,8 +59,8 @@ static BOOL isInitialized = false;
     NSLog(@"Fetching MoPub configs...");
     if ([info objectForKey:@"MobviousFormatId"] && [info objectForKey:@"MobviousPageId"]) {
         NSLog(@"Setting the MobviousFormatId and the MobviousPageId.");
-        self.formatId = [[info objectForKey:@"MobviousFormatId"] intValue];
-        self.pageId = [[info objectForKey:@"MobviousPageId"] intValue];
+        self.formatId = (NSInteger)[[info objectForKey:@"MobviousFormatId"] intValue];
+        self.pageId = [[info objectForKey:@"MobviousPageId"] stringValue];
     } else {
         NSLog(@"No MobviousFormatId or MobviousPageId to set, aborting...");
         [self.delegate interstitialCustomEvent:self didFailToLoadAdWithError:nil];

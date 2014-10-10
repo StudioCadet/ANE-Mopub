@@ -45,8 +45,8 @@ static BOOL isInitialized = false;
     [banner release];
 
     if ([info objectForKey:@"MobviousFormatId"] && [info objectForKey:@"MobviousPageId"]) {
-        self.formatId = [[info objectForKey:@"MobviousFormatId"] intValue];
-        self.pageId = [[info objectForKey:@"MobviousPageId"] intValue];
+        self.formatId = (NSInteger)[[info objectForKey:@"MobviousFormatId"] intValue];
+        self.pageId = [[info objectForKey:@"MobviousPageId"] stringValue];
         NSLog(@"Setting the MobviousFormatId and the MobviousPageId.");
     } else {
         NSLog(@"No MobviousFormatId or MobviousPageId to set, aborting...");
