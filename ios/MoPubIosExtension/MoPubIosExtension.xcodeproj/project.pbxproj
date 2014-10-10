@@ -210,7 +210,10 @@
 		48A15D4E19DD437700E725A7 /* libInMobi-4.5.1.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 48A15D4D19DD437700E725A7 /* libInMobi-4.5.1.a */; };
 		48A15D6119E3CF6000E725A7 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48A15D6019E3CF6000E725A7 /* CoreMotion.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> parent of 9b7b579... Revert "Added mobvious support"
 		48A15D6E19E3D09900E725A7 /* SASAd.h in Headers */ = {isa = PBXBuildFile; fileRef = 48A15D6419E3D09900E725A7 /* SASAd.h */; };
 		48A15D6F19E3D09900E725A7 /* SASAdView.h in Headers */ = {isa = PBXBuildFile; fileRef = 48A15D6519E3D09900E725A7 /* SASAdView.h */; };
 		48A15D7019E3D09900E725A7 /* SASAdViewDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 48A15D6619E3D09900E725A7 /* SASAdViewDelegate.h */; };
@@ -220,6 +223,9 @@
 		48A15D7419E3D09900E725A7 /* libSmartAdServer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 48A15D6A19E3D09900E725A7 /* libSmartAdServer.a */; };
 		48A15D7519E3D09900E725A7 /* MobviousInterstitialCustomEvent.h in Headers */ = {isa = PBXBuildFile; fileRef = 48A15D6C19E3D09900E725A7 /* MobviousInterstitialCustomEvent.h */; };
 		48A15D7619E3D09900E725A7 /* MobviousInterstitialCustomEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 48A15D6D19E3D09900E725A7 /* MobviousInterstitialCustomEvent.m */; };
+<<<<<<< HEAD
+>>>>>>> parent of 9b7b579... Revert "Added mobvious support"
+=======
 >>>>>>> parent of 9b7b579... Revert "Added mobvious support"
 		48A468A81966C60600171565 /* AdColonyInterstitialCustomEvent.h in Headers */ = {isa = PBXBuildFile; fileRef = 48A468A41966C60600171565 /* AdColonyInterstitialCustomEvent.h */; };
 		48A468A91966C60600171565 /* AdColonyInterstitialCustomEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 48A468A51966C60600171565 /* AdColonyInterstitialCustomEvent.m */; };
@@ -506,7 +512,10 @@
 		48A15D4D19DD437700E725A7 /* libInMobi-4.5.1.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libInMobi-4.5.1.a"; sourceTree = "<group>"; };
 		48A15D6019E3CF6000E725A7 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> parent of 9b7b579... Revert "Added mobvious support"
 		48A15D6419E3D09900E725A7 /* SASAd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SASAd.h; sourceTree = "<group>"; };
 		48A15D6519E3D09900E725A7 /* SASAdView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SASAdView.h; sourceTree = "<group>"; };
 		48A15D6619E3D09900E725A7 /* SASAdViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SASAdViewDelegate.h; sourceTree = "<group>"; };
@@ -517,6 +526,9 @@
 		48A15D6B19E3D09900E725A7 /* sas.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = sas.bundle; sourceTree = "<group>"; };
 		48A15D6C19E3D09900E725A7 /* MobviousInterstitialCustomEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobviousInterstitialCustomEvent.h; sourceTree = "<group>"; };
 		48A15D6D19E3D09900E725A7 /* MobviousInterstitialCustomEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MobviousInterstitialCustomEvent.m; sourceTree = "<group>"; };
+<<<<<<< HEAD
+>>>>>>> parent of 9b7b579... Revert "Added mobvious support"
+=======
 >>>>>>> parent of 9b7b579... Revert "Added mobvious support"
 		48A468A41966C60600171565 /* AdColonyInterstitialCustomEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdColonyInterstitialCustomEvent.h; sourceTree = "<group>"; };
 		48A468A51966C60600171565 /* AdColonyInterstitialCustomEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdColonyInterstitialCustomEvent.m; sourceTree = "<group>"; };
@@ -593,9 +605,12 @@
 			buildActionMask = 2147483647;
 			files = (
 <<<<<<< HEAD
+<<<<<<< HEAD
 				6D5AFBD819E6B87000D5C9A2 /* CoreLocation.framework in Frameworks */,
 				6D5AFBD719E6846900D5C9A2 /* libz.1.2.5.dylib in Frameworks */,
 				6D247CC719E6630500F579CB /* CoreMedia.framework in Frameworks */,
+=======
+>>>>>>> parent of 9b7b579... Revert "Added mobvious support"
 =======
 >>>>>>> parent of 9b7b579... Revert "Added mobvious support"
 				48A15D6119E3CF6000E725A7 /* CoreMotion.framework in Frameworks */,
@@ -1135,8 +1150,11 @@
 			isa = PBXGroup;
 			children = (
 <<<<<<< HEAD
+<<<<<<< HEAD
 				6D247CC819E6634000F579CB /* libz.1.2.5.dylib */,
 				6D247CC619E6630500F579CB /* CoreMedia.framework */,
+=======
+>>>>>>> parent of 9b7b579... Revert "Added mobvious support"
 =======
 >>>>>>> parent of 9b7b579... Revert "Added mobvious support"
 				48A15D6019E3CF6000E725A7 /* CoreMotion.framework */,
