@@ -76,8 +76,8 @@ static BOOL isInitialized = false;
         self.timeOut = [[info objectForKey:@"MobviousTimeOut"] intValue];
     }
     
-    NSLog(@"Fetching next interstitial...");
     [_interstitial loadFormatId:self.formatId pageId:self.pageId master:YES target:self.timeOut];
+    NSLog(@"Fetching next interstitial...");
 }
  
 - (void)showInterstitialFromRootViewController:(UIViewController *)rootViewController {
