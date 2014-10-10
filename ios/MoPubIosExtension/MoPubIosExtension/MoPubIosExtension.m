@@ -13,6 +13,7 @@
 #import "MoPubInterstitial.h"
 #import "MPAdConversionTracker.h"
 #import "InMobi.h"
+#import "Chartboost.h"
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= MP_IOS_6_0
 #import <AdSupport/AdSupport.h>
 #endif
@@ -497,6 +498,21 @@ DEFINE_ANE_FUNCTION( mopub_init )
         NSLog(@"Initializing InMobi SDK with property ID %@", inMobiPropertyId);
         [InMobi initialize:inMobiPropertyId];
         NSLog(@"InMobi initialized successfully.");
+    }
+    
+    // Chartboost :
+    NSString *chartboostAppId = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CHARTBOOST_APP_ID"];
+    NSString *chartboostAppSignature = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CHARTBOOST_APP_SIGNATURE"];
+    if(chartboostAppId == NULL || chartboostAppSignature == NULL) {
+        NSLog(@"Your app descriptor is missing one of the required parameters : \"CHARTBOOST_APP_ID\", \"CHARTBOOST_APP_SIGNATURE\".");
+    }
+    else {
+        NSLog(@"Initializing Chartboost SDK with app ID : %@ (signature:%@) ...", chartboostAppId, chartboostAppSignature);
+        Chartboost *chartboost = [Chartboost sharedChartboost];
+        chartboost.appId = chartboostAppId;
+        chartboost.appSignature = chartboostAppSignature;
+        [chartboost startSession];
+        NSLog(@"Charboost initialized successfully.");
     }
     
     NSLog(@"MoPub extension initialized.");
