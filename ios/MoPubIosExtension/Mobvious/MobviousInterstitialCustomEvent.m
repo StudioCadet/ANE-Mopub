@@ -59,8 +59,10 @@ static BOOL isInitialized = false;
     NSLog(@"Fetching MoPub configs...");
     if ([info objectForKey:@"MobviousFormatId"] && [info objectForKey:@"MobviousPageId"]) {
         NSLog(@"Setting the MobviousFormatId and the MobviousPageId.");
+        NSLog(@"Format ID: %@", [info objectForKey:@"MobviousFormatId"]);
         self.formatId = (NSInteger)[[info objectForKey:@"MobviousFormatId"] intValue];
-        self.pageId = [[info objectForKey:@"MobviousPageId"] stringValue];
+        NSLog(@"Page ID: %@", [info objectForKey:@"MobviousPageId"]);
+        self.pageId = [info objectForKey:@"MobviousPageId"];
     } else {
         NSLog(@"No MobviousFormatId or MobviousPageId to set, aborting...");
         [self.delegate interstitialCustomEvent:self didFailToLoadAdWithError:nil];
@@ -70,6 +72,7 @@ static BOOL isInitialized = false;
     NSLog(@"Setting time out...");
     self.timeOut = kDefaultTimeOut;
     if ([info objectForKey:@"MobviousTimeOut"]) {
+        NSLog(@"Time out: %@", [info objectForKey:@"MobviousTimeOut"]);
         self.timeOut = [[info objectForKey:@"MobviousTimeOut"] intValue];
     }
     
