@@ -23,6 +23,7 @@
 
 MoPub_TypeConversion* mopubConverter;
 
+<<<<<<< HEAD
 DEFINE_ANE_FUNCTION( mopub_getAppleIDFA )
 {
 	if (NSClassFromString(@"ASIdentifierManager")) {
@@ -40,6 +41,8 @@ DEFINE_ANE_FUNCTION( mopub_getAppleIDFA )
 	return NULL;
 }
 
+=======
+>>>>>>> parent of 9b7b579... Revert "Added mobvious support"
 DEFINE_ANE_FUNCTION( mopub_getAdScaleFactor )
 {
     double scale = [UIScreen mainScreen].scale;
@@ -511,15 +514,22 @@ void MoPubContextInitializer( void* extData, const uint8_t* ctxType, FREContext 
     {
         static FRENamedFunction mopubFunctionMap[] =
         {
+<<<<<<< HEAD
             MAP_FUNCTION( mopub_getAppleIDFA, NULL ),
             
+=======
+>>>>>>> parent of 9b7b579... Revert "Added mobvious support"
             MAP_FUNCTION( mopub_getAdScaleFactor, NULL ),
             
             MAP_FUNCTION( mopub_getNativeScreenWidth, NULL ),
             MAP_FUNCTION( mopub_getNativeScreenHeight, NULL ),
             
+<<<<<<< HEAD
             MAP_FUNCTION( mopub_trackConversion, NULL ),
             MAP_FUNCTION( mopub_init, NULL )
+=======
+            MAP_FUNCTION( mopub_trackConversion, NULL )
+>>>>>>> parent of 9b7b579... Revert "Added mobvious support"
         };
         
         *numFunctionsToSet = sizeof( mopubFunctionMap ) / sizeof( FRENamedFunction );
