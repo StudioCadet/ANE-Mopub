@@ -657,8 +657,8 @@
 			isa = PBXGroup;
 			children = (
 				483B14A019E7D05A00660DCC /* MobviousBannerCustomEvent.h */,
-				483B14A119E7D05A00660DCC /* MobviousBannerCustomEvent.m */,
 				483B14A219E7D05A00660DCC /* MobviousInterstitialCustomEvent.h */,
+				483B14A119E7D05A00660DCC /* MobviousBannerCustomEvent.m */,
 				483B14A319E7D05A00660DCC /* MobviousInterstitialCustomEvent.m */,
 				483B14A419E7D05A00660DCC /* SDK */,
 			);

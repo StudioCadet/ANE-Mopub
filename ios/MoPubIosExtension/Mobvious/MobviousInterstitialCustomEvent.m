@@ -38,21 +38,25 @@ static BOOL isInitialized = false;
         [SASAdView setSiteID:self.siteId baseURL:self.baseUrl];
         isInitialized = true;
     }
-    
+    NSLog(@"Mobvious initialized.");
     self.isFetch = false;
 
+    NSLog(@"Setting navigation controller to current window...");
     _window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 	self.controller = [[RootViewController alloc] initWithNibName:nil bundle:nil];
 	_navigationController = [[UINavigationController alloc] initWithRootViewController:_controller];
     
     _window.rootViewController = _navigationController;
     
+    NSLog(@"Preparing next interstitial...");
     SASInterstitialView *interstitial = [[SASInterstitialView alloc] initWithFrame:[[UIScreen mainScreen] bounds] loader:SASLoaderNone];
     self.interstitial = interstitial;
     [interstitial release];
 
+    NSLog(@"Setting interstitial delegate...");
     _interstitial.delegate = _controller;
-    
+
+    NSLog(@"Fetching MoPub configs...");
     if ([info objectForKey:@"MobviousFormatId"] && [info objectForKey:@"MobviousPageId"]) {
         self.formatId = [[info objectForKey:@"MobviousFormatId"] intValue];
         self.pageId = [[info objectForKey:@"MobviousPageId"] intValue];
@@ -63,11 +67,13 @@ static BOOL isInitialized = false;
         return ;
     }
 
+    NSLog(@"Setting time out...");
     self.timeOut = kDefaultTimeOut;
     if ([info objectForKey:@"MobviousTimeOut"]) {
         self.timeOut = [[info objectForKey:@"MobviousTimeOut"] intValue];
     }
     
+    NSLog(@"Fetching next interstitial...");
     [_interstitial loadFormatId:self.formatId pageId:self.pageId master:YES target:self.timeOut];
 }
  
