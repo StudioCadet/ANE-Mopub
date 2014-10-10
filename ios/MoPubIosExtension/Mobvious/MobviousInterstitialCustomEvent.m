@@ -75,8 +75,8 @@ static BOOL isInitialized = false;
         NSLog(@"Time out: %@", [info objectForKey:@"MobviousTimeOut"]);
         self.timeOut = [[info objectForKey:@"MobviousTimeOut"] intValue];
     }
-    
-    [_interstitial loadFormatId:self.formatId pageId:self.pageId master:YES target:self.timeOut];
+
+    [_interstitial loadFormatId:self.formatId pageId:self.pageId master:YES target:nil timeout:self.timeOut];
     NSLog(@"Fetching next interstitial...");
 }
  
