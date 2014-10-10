@@ -44,6 +44,21 @@ static BOOL isInitialized = false;
     self.banner = banner;
     [banner release];
 
+    if ([info objectForKey:@"MobviousFormatId"] && [info objectForKey:@"MobviousPageId"]) {
+        self.formatId = [[info objectForKey:@"MobviousFormatId"] intValue];
+        self.pageId = [[info objectForKey:@"MobviousPageId"] intValue];
+        NSLog(@"Setting the MobviousFormatId and the MobviousPageId.");
+    } else {
+        NSLog(@"No MobviousFormatId or MobviousPageId to set, aborting...");
+        [self.delegate bannerCustomEvent:self didFailToLoadAdWithError:nil];
+        return ;
+    }
+    
+    self.timeOut = kDefaultTimeOut;
+    if ([info objectForKey:@"MobviousTimeOut"]) {
+        self.timeOut = [[info objectForKey:@"MobviousTimeOut"] intValue];
+    }
+
     _banner.delegate = _controller;
     
     [_banner loadFormatId:self.formatId pageId:self.pageId master:YES target:nil];

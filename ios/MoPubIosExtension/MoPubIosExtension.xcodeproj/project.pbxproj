@@ -15,6 +15,17 @@
 		34E1A252190E3E57001C491E /* ChartboostInterstitialCustomEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 34E1A24D190E3E57001C491E /* ChartboostInterstitialCustomEvent.m */; };
 		34FBB5A4190FE3DD005402C5 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34FBB5A3190FE3DD005402C5 /* CFNetwork.framework */; };
 		34FBB5A6190FE406005402C5 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34FBB5A5190FE405005402C5 /* Security.framework */; };
+		483B14AE19E7D05A00660DCC /* MobviousBannerCustomEvent.h in Headers */ = {isa = PBXBuildFile; fileRef = 483B14A019E7D05A00660DCC /* MobviousBannerCustomEvent.h */; };
+		483B14AF19E7D05A00660DCC /* MobviousBannerCustomEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 483B14A119E7D05A00660DCC /* MobviousBannerCustomEvent.m */; };
+		483B14B019E7D05A00660DCC /* MobviousInterstitialCustomEvent.h in Headers */ = {isa = PBXBuildFile; fileRef = 483B14A219E7D05A00660DCC /* MobviousInterstitialCustomEvent.h */; };
+		483B14B119E7D05A00660DCC /* MobviousInterstitialCustomEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 483B14A319E7D05A00660DCC /* MobviousInterstitialCustomEvent.m */; };
+		483B14B219E7D05A00660DCC /* SASAd.h in Headers */ = {isa = PBXBuildFile; fileRef = 483B14A619E7D05A00660DCC /* SASAd.h */; };
+		483B14B319E7D05A00660DCC /* SASAdView.h in Headers */ = {isa = PBXBuildFile; fileRef = 483B14A719E7D05A00660DCC /* SASAdView.h */; };
+		483B14B419E7D05A00660DCC /* SASAdViewDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 483B14A819E7D05A00660DCC /* SASAdViewDelegate.h */; };
+		483B14B519E7D05A00660DCC /* SASBannerView.h in Headers */ = {isa = PBXBuildFile; fileRef = 483B14A919E7D05A00660DCC /* SASBannerView.h */; };
+		483B14B619E7D05A00660DCC /* SASInterstitialView.h in Headers */ = {isa = PBXBuildFile; fileRef = 483B14AA19E7D05A00660DCC /* SASInterstitialView.h */; };
+		483B14B719E7D05A00660DCC /* SmartAdServerAd.h in Headers */ = {isa = PBXBuildFile; fileRef = 483B14AB19E7D05A00660DCC /* SmartAdServerAd.h */; };
+		483B14B819E7D05A00660DCC /* libSmartAdServer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 483B14AC19E7D05A00660DCC /* libSmartAdServer.a */; };
 		48927F5E19BEE01100059A88 /* VidCoin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48927F5B19BEE01100059A88 /* VidCoin.framework */; };
 		48927F5F19BEE01100059A88 /* VidCoinInterstitialCustomEvent.h in Headers */ = {isa = PBXBuildFile; fileRef = 48927F5C19BEE01100059A88 /* VidCoinInterstitialCustomEvent.h */; };
 		48927F6019BEE01100059A88 /* VidCoinInterstitialCustomEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 48927F5D19BEE01100059A88 /* VidCoinInterstitialCustomEvent.m */; };
@@ -289,6 +300,18 @@
 		34E1A24D190E3E57001C491E /* ChartboostInterstitialCustomEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChartboostInterstitialCustomEvent.m; sourceTree = "<group>"; };
 		34FBB5A3190FE3DD005402C5 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		34FBB5A5190FE405005402C5 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		483B14A019E7D05A00660DCC /* MobviousBannerCustomEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobviousBannerCustomEvent.h; sourceTree = "<group>"; };
+		483B14A119E7D05A00660DCC /* MobviousBannerCustomEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MobviousBannerCustomEvent.m; sourceTree = "<group>"; };
+		483B14A219E7D05A00660DCC /* MobviousInterstitialCustomEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobviousInterstitialCustomEvent.h; sourceTree = "<group>"; };
+		483B14A319E7D05A00660DCC /* MobviousInterstitialCustomEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MobviousInterstitialCustomEvent.m; sourceTree = "<group>"; };
+		483B14A619E7D05A00660DCC /* SASAd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SASAd.h; sourceTree = "<group>"; };
+		483B14A719E7D05A00660DCC /* SASAdView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SASAdView.h; sourceTree = "<group>"; };
+		483B14A819E7D05A00660DCC /* SASAdViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SASAdViewDelegate.h; sourceTree = "<group>"; };
+		483B14A919E7D05A00660DCC /* SASBannerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SASBannerView.h; sourceTree = "<group>"; };
+		483B14AA19E7D05A00660DCC /* SASInterstitialView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SASInterstitialView.h; sourceTree = "<group>"; };
+		483B14AB19E7D05A00660DCC /* SmartAdServerAd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SmartAdServerAd.h; sourceTree = "<group>"; };
+		483B14AC19E7D05A00660DCC /* libSmartAdServer.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libSmartAdServer.a; sourceTree = "<group>"; };
+		483B14AD19E7D05A00660DCC /* sas.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = sas.bundle; sourceTree = "<group>"; };
 		48927F5A19BEE01100059A88 /* VidCoin.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = VidCoin.bundle; sourceTree = "<group>"; };
 		48927F5B19BEE01100059A88 /* VidCoin.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = VidCoin.framework; sourceTree = "<group>"; };
 		48927F5C19BEE01100059A88 /* VidCoinInterstitialCustomEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VidCoinInterstitialCustomEvent.h; sourceTree = "<group>"; };
@@ -570,6 +593,7 @@
 				48927F5E19BEE01100059A88 /* VidCoin.framework in Frameworks */,
 				34FBB5A6190FE406005402C5 /* Security.framework in Frameworks */,
 				79F87D2E177B41AC0047359B /* AddressBook.framework in Frameworks */,
+				483B14B819E7D05A00660DCC /* libSmartAdServer.a in Frameworks */,
 				79F87D2F177B41AC0047359B /* AddressBookUI.framework in Frameworks */,
 				48A468AA1966C60600171565 /* AdColony.framework in Frameworks */,
 				489280F019C03E2500059A88 /* libChartboost.a in Frameworks */,
@@ -627,6 +651,41 @@
 				489280EE19C03E2500059A88 /* libChartboost.a */,
 			);
 			path = SDK;
+			sourceTree = "<group>";
+		};
+		483B149F19E7D05A00660DCC /* Mobvious */ = {
+			isa = PBXGroup;
+			children = (
+				483B14A019E7D05A00660DCC /* MobviousBannerCustomEvent.h */,
+				483B14A119E7D05A00660DCC /* MobviousBannerCustomEvent.m */,
+				483B14A219E7D05A00660DCC /* MobviousInterstitialCustomEvent.h */,
+				483B14A319E7D05A00660DCC /* MobviousInterstitialCustomEvent.m */,
+				483B14A419E7D05A00660DCC /* SDK */,
+			);
+			path = Mobvious;
+			sourceTree = "<group>";
+		};
+		483B14A419E7D05A00660DCC /* SDK */ = {
+			isa = PBXGroup;
+			children = (
+				483B14A519E7D05A00660DCC /* headers */,
+				483B14AC19E7D05A00660DCC /* libSmartAdServer.a */,
+				483B14AD19E7D05A00660DCC /* sas.bundle */,
+			);
+			path = SDK;
+			sourceTree = "<group>";
+		};
+		483B14A519E7D05A00660DCC /* headers */ = {
+			isa = PBXGroup;
+			children = (
+				483B14A619E7D05A00660DCC /* SASAd.h */,
+				483B14A719E7D05A00660DCC /* SASAdView.h */,
+				483B14A819E7D05A00660DCC /* SASAdViewDelegate.h */,
+				483B14A919E7D05A00660DCC /* SASBannerView.h */,
+				483B14AA19E7D05A00660DCC /* SASInterstitialView.h */,
+				483B14AB19E7D05A00660DCC /* SmartAdServerAd.h */,
+			);
+			path = headers;
 			sourceTree = "<group>";
 		};
 		48927F5819BEE01100059A88 /* VidCoin */ = {
@@ -1039,6 +1098,7 @@
 		79A6D47D1636C14C009DA60A = {
 			isa = PBXGroup;
 			children = (
+				483B149F19E7D05A00660DCC /* Mobvious */,
 				48927F6119BEF2D400059A88 /* MoPubSDK */,
 				48927F5819BEE01100059A88 /* VidCoin */,
 				48E89AE6199CD6B0007C857D /* AppsFire */,
@@ -1133,6 +1193,7 @@
 				489280CD19BEF2D500059A88 /* MPCollectionViewAdPlacer.h in Headers */,
 				489280D619BEF2D500059A88 /* MPNativeAdError.h in Headers */,
 				79F66B1E1654051E00E917FB /* MoPubInterstitial.h in Headers */,
+				483B14B719E7D05A00660DCC /* SmartAdServerAd.h in Headers */,
 				48A468BB1975573D00171565 /* IMError.h in Headers */,
 				4892808A19BEF2D500059A88 /* NSJSONSerialization+MPAdditions.h in Headers */,
 				4892806119BEF2D500059A88 /* MPInterstitialAdManagerDelegate.h in Headers */,
@@ -1166,8 +1227,10 @@
 				489280C719BEF2D500059A88 /* MPTableViewCellImpressionTracker.h in Headers */,
 				489280CF19BEF2D500059A88 /* MPNativeAd.h in Headers */,
 				489280D419BEF2D500059A88 /* MPNativeAdData.h in Headers */,
+				483B14B319E7D05A00660DCC /* SASAdView.h in Headers */,
 				4892803C19BEF2D500059A88 /* MPAdAlertManager.h in Headers */,
 				489280A619BEF2D500059A88 /* MPAdConversionTracker.h in Headers */,
+				483B14B519E7D05A00660DCC /* SASBannerView.h in Headers */,
 				48A468C21975573D00171565 /* InMobiAnalytics.h in Headers */,
 				4892804219BEF2D500059A88 /* MPAdDestinationDisplayAgent.h in Headers */,
 				4892803219BEF2D500059A88 /* MPBannerAdManagerDelegate.h in Headers */,
@@ -1195,6 +1258,7 @@
 				48E89AFE199CD6B0007C857D /* AppsfireAdSDK.h in Headers */,
 				489280E319BEF2D500059A88 /* MPStreamAdPlacementData.h in Headers */,
 				4892808E19BEF2D500059A88 /* UIViewController+MPAdditions.h in Headers */,
+				483B14B219E7D05A00660DCC /* SASAd.h in Headers */,
 				489280E519BEF2D500059A88 /* MPStreamAdPlacer.h in Headers */,
 				48E89B00199CD6B0007C857D /* AppsfireSDK.h in Headers */,
 				489280AC19BEF2D500059A88 /* MPBannerCustomEventDelegate.h in Headers */,
@@ -1206,6 +1270,7 @@
 				48A468A81966C60600171565 /* AdColonyInterstitialCustomEvent.h in Headers */,
 				4892807C19BEF2D500059A88 /* MRCommand.h in Headers */,
 				489280AA19BEF2D500059A88 /* MPBannerCustomEvent.h in Headers */,
+				483B14B419E7D05A00660DCC /* SASAdViewDelegate.h in Headers */,
 				4892806619BEF2D500059A88 /* MPLegacyInterstitialCustomEventAdapter.h in Headers */,
 				4892807119BEF2D500059A88 /* MPMRAIDInterstitialViewController.h in Headers */,
 				489280BC19BEF2D500059A88 /* MPMoPubNativeAdAdapter.h in Headers */,
@@ -1244,9 +1309,11 @@
 				4892804419BEF2D500059A88 /* MPAdServerCommunicator.h in Headers */,
 				349B4DBE1946F1CE00184794 /* InMobiBannerCustomEvent.h in Headers */,
 				4892808019BEF2D500059A88 /* MRImageDownloader.h in Headers */,
+				483B14AE19E7D05A00660DCC /* MobviousBannerCustomEvent.h in Headers */,
 				4892809219BEF2D500059A88 /* MPAnalyticsTracker.h in Headers */,
 				489280CB19BEF2D500059A88 /* MPClientAdPositioning.h in Headers */,
 				4892803019BEF2D500059A88 /* MPBannerAdManager.h in Headers */,
+				483B14B019E7D05A00660DCC /* MobviousInterstitialCustomEvent.h in Headers */,
 				48E89B09199CD6B0007C857D /* AFAdSDKUdonNoodleControl.h in Headers */,
 				4892803919BEF2D500059A88 /* MPPrivateBannerCustomEventDelegate.h in Headers */,
 				48E89B08199CD6B0007C857D /* AFAdSDKSashimiView.h in Headers */,
@@ -1255,6 +1322,7 @@
 				4892806819BEF2D500059A88 /* MPPrivateInterstitialCustomEventDelegate.h in Headers */,
 				489280C019BEF2D500059A88 /* MPNativeAd+Internal.h in Headers */,
 				489280B419BEF2D500059A88 /* UIView+MPNativeAd.h in Headers */,
+				483B14B619E7D05A00660DCC /* SASInterstitialView.h in Headers */,
 				489280C919BEF2D500059A88 /* MPAdPositioning.h in Headers */,
 				4892804619BEF2D500059A88 /* MPAdServerURLBuilder.h in Headers */,
 				489280DF19BEF2D500059A88 /* MPNativeAdSourceDelegate.h in Headers */,
@@ -1336,6 +1404,7 @@
 				489280A519BEF2D500059A88 /* MPUserInteractionGestureRecognizer.m in Sources */,
 				79A6D5351636E4A9009DA60A /* MoPubBanner.m in Sources */,
 				4892803F19BEF2D500059A88 /* MPAdBrowserController.m in Sources */,
+				483B14AF19E7D05A00660DCC /* MobviousBannerCustomEvent.m in Sources */,
 				489280C819BEF2D500059A88 /* MPTableViewCellImpressionTracker.m in Sources */,
 				4892809719BEF2D500059A88 /* MPGlobal.m in Sources */,
 				4892809B19BEF2D500059A88 /* MPLogging.m in Sources */,
@@ -1381,6 +1450,7 @@
 				4892806E19BEF2D500059A88 /* MPMRAIDBannerCustomEvent.m in Sources */,
 				4892808F19BEF2D500059A88 /* UIViewController+MPAdditions.m in Sources */,
 				4892806C19BEF2D500059A88 /* MPInstanceProvider.m in Sources */,
+				483B14B119E7D05A00660DCC /* MobviousInterstitialCustomEvent.m in Sources */,
 				489280CE19BEF2D500059A88 /* MPCollectionViewAdPlacer.m in Sources */,
 				48E89AFD199CD6B0007C857D /* AppsfireAdTimerView.m in Sources */,
 				48E89AFB199CD6B0007C857D /* AFMoPubInterstitialCustomEvent.m in Sources */,
