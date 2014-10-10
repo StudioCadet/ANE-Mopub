@@ -59,6 +59,7 @@ public class SASBanner extends CustomEventBanner implements View.OnClickListener
 		if(banner != null) {
 			MoPubExtension.log("Destroying SAS banner ...");
 			banner.removeStateChangeListener(this);
+			banner.setOnClickListener(null);
 			banner.onDestroy();
 		}
 		banner = null;
@@ -73,13 +74,17 @@ public class SASBanner extends CustomEventBanner implements View.OnClickListener
 	@Override
 	public void adLoadingCompleted(SASAdElement adElement) {
 		MoPubExtension.log("SAS banner loaded.");
-		banner.setOnClickListener(this);
-		banner.executeOnUIThread(new Runnable() {
-			@Override public void run() {
-				banner.setVisibility(View.VISIBLE);
-				listener.onBannerLoaded(banner);
-			}
-		});
+		if(banner != null) {
+			banner.setOnClickListener(this);
+			banner.executeOnUIThread(new Runnable() {
+				@Override public void run() {
+					if(banner != null)
+						banner.setVisibility(View.VISIBLE);
+					if(listener != null && banner != null)
+						listener.onBannerLoaded(banner);
+				}
+			});
+		}
 	}
 
 	@Override
@@ -88,7 +93,8 @@ public class SASBanner extends CustomEventBanner implements View.OnClickListener
 		if(banner != null) {
 			banner.executeOnUIThread(new Runnable() {
 				@Override public void run() {
-					banner.setVisibility(View.GONE);
+					if(banner != null)
+						banner.setVisibility(View.GONE);
 					if(listener != null)
 						listener.onBannerFailed(MoPubErrorCode.NETWORK_NO_FILL);
 				}
@@ -105,6 +111,9 @@ public class SASBanner extends CustomEventBanner implements View.OnClickListener
 
 	@Override
 	public void onStateChanged(StateChangeEvent event) {
+		if(banner == null || listener == null)
+			return;
+		
 		if(event.getType() == StateChangeEvent.VIEW_EXPANDED) {
 			MoPubExtension.log("SAS banner expanded.");
 			banner.executeOnUIThread(new Runnable() {
@@ -131,6 +140,9 @@ public class SASBanner extends CustomEventBanner implements View.OnClickListener
 	
 	@Override
 	public void onClick(View v) {
+		if(listener == null)
+			return;
+		
 		MoPubExtension.log("SAS banner clicked.");
 		listener.onBannerClicked();
 	}
