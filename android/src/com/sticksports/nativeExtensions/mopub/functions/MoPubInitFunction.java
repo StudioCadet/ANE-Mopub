@@ -1,7 +1,5 @@
 package com.sticksports.nativeExtensions.mopub.functions;
 
-import java.io.IOException;
-
 import android.app.Activity;
 import android.os.AsyncTask;
 
@@ -9,8 +7,6 @@ import com.adobe.fre.FREContext;
 import com.adobe.fre.FREFunction;
 import com.adobe.fre.FREObject;
 import com.google.android.gms.ads.identifier.AdvertisingIdClient;
-import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
-import com.google.android.gms.common.GooglePlayServicesRepairableException;
 import com.mopub.mobileads.AdColonyUtils;
 import com.mopub.mobileads.ChartboostUtils;
 import com.mopub.mobileads.InMobiUtils;
