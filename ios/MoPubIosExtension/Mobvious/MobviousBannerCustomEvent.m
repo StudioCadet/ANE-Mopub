@@ -53,11 +53,6 @@ static BOOL isInitialized = false;
         [self.delegate bannerCustomEvent:self didFailToLoadAdWithError:nil];
         return ;
     }
-    
-    self.timeOut = kDefaultTimeOut;
-    if ([info objectForKey:@"MobviousTimeOut"]) {
-        self.timeOut = [[info objectForKey:@"MobviousTimeOut"] intValue];
-    }
 
     _banner.delegate = _controller;
     

@@ -73,13 +73,13 @@ static BOOL isInitialized = false;
     self.timeOut = kDefaultTimeOut;
     if ([info objectForKey:@"MobviousTimeOut"]) {
         NSLog(@"Time out: %@", [info objectForKey:@"MobviousTimeOut"]);
-        self.timeOut = [[info objectForKey:@"MobviousTimeOut"] intValue];
+        self.timeOut = [[info objectForKey:@"MobviousTimeOut"] floatValue];
     }
 
     [_interstitial loadFormatId:self.formatId pageId:self.pageId master:YES target:nil timeout:self.timeOut];
     NSLog(@"Fetching next interstitial...");
 }
- 
+
 - (void)showInterstitialFromRootViewController:(UIViewController *)rootViewController {
     if (self.isFetch) {
         NSLog(@"Displaying interstitial...");
@@ -124,7 +124,6 @@ static BOOL isInitialized = false;
 -(void)dealloc {
     self.formatId = nil;
     self.pageId = nil;
-    self.timeOut = nil;
     self.isFetch = false;
     
     self.interstitial.delegate = nil;

@@ -26,7 +26,7 @@
 
     @property NSInteger formatId;
     @property (nonatomic, copy) NSString* pageId;
-    @property NSInteger timeOut;
+    @property (nonatomic) float timeOut;
 
     @property (nonatomic, retain) SASInterstitialView *interstitial;
     @property Boolean isFetch;

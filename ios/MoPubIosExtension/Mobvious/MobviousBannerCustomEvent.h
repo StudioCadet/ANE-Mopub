@@ -20,7 +20,7 @@
 
     @property NSInteger formatId;
     @property (nonatomic, copy) NSString* pageId;
-    @property NSInteger timeOut;
+    @property float timeOut;
 
     @property (nonatomic, retain) SASBannerView *banner;
     @property (nonatomic) Boolean isFetch;
