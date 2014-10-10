@@ -27,7 +27,6 @@ public class SASBanner extends CustomEventBanner implements View.OnClickListener
 	@Override
 	protected void loadBanner(Context context, CustomEventBannerListener listener, Map<String, Object> localExtras, Map<String, String> serverExtras) {
 		
-		SASAdView.enableLogging();
 		this.listener = listener;
 		
 		MoPubExtension.log("Creating a SAS banner ...");

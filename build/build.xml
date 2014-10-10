@@ -22,9 +22,6 @@
 		<copy todir="../bin/ios">
             <fileset dir="../ios/MoPubIosExtension/AdColony/SDK" />
 			<fileset dir="../ios/MoPubIosExtension/VidCoin/SDK" />
-            <fileset dir="../ios/MoPubIosExtension/Mobvious/SDK">
-                <include name="sas.bundle" />
-            </fileset>
 		</copy>
 
 		<exec executable="ibtool" failonerror="true">
@@ -66,6 +63,7 @@
 				<pathelement location="../android/libs/inmobi.jar"/>
 				<pathelement location="../android/libs/adcolony.jar"/>
 				<pathelement location="../android/libs/smartadserver.jar"/>
+				<pathelement location="../android/libs/google-play-services.jar"/>
 			</classpath>
 		</javac>
 

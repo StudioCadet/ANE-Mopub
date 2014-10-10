@@ -4,6 +4,7 @@ import com.adobe.fre.FREContext;
 import com.adobe.fre.FREObject;
 import com.mopub.mobileads.MoPubConversionTracker;
 import com.sticksports.nativeExtensions.mopub.MoPubExtension;
+import com.sticksports.nativeExtensions.utils.UIThreadSafeFREFunction;
 
 public class MoPubTrackConversion extends UIThreadSafeFREFunction {
 

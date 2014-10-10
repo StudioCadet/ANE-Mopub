@@ -2,6 +2,8 @@ package com.mopub.mobileads;
 
 import java.util.Map;
 
+import com.sticksports.nativeExtensions.utils.ExtraUtils;
+
 /**
  * An utility class to ease working with SmartAdServer on MoPub.
  */

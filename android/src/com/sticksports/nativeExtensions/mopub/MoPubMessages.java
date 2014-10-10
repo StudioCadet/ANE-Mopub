@@ -2,6 +2,8 @@ package com.sticksports.nativeExtensions.mopub;
 
 public class MoPubMessages {
 	
+	static String log = "log";
+	
 	static String bannerLoaded = "bannerLoaded";
 	static String bannerFailedToLoad = "bannerFailedToLoad";
 	static String bannerAdClicked = "bannerAdClicked";

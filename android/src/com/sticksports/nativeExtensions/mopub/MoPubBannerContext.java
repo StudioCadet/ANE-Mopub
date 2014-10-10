@@ -110,33 +110,33 @@ public class MoPubBannerContext extends FREContext implements BannerAdListener {
 	public Map<String, FREFunction> getFunctions() {
 		Map<String, FREFunction> functionMap = new HashMap<String, FREFunction>();
 
-		functionMap.put("initialiseBanner", new MoPubBannerInitialise());
+		functionMap.put("mopub_initialiseBanner", new MoPubBannerInitialise());
 
-		functionMap.put("setTestMode", new MoPubBannerSetTestMode());
-		functionMap.put("setAdUnitId", new MoPubBannerSetAdUnitId());
-		functionMap.put("setAutorefresh", new MoPubBannerSetAutorefresh());
-		functionMap.put("lockNativeAdsToOrientation", new MoPubBannerDoNothing());
+		functionMap.put("mopub_setTestMode", new MoPubBannerSetTestMode());
+		functionMap.put("mopub_setAdUnitId", new MoPubBannerSetAdUnitId());
+		functionMap.put("mopub_setAutorefresh", new MoPubBannerSetAutorefresh());
+		functionMap.put("mopub_lockNativeAdsToOrientation", new MoPubBannerDoNothing());
 
-		functionMap.put("getPositionX", new MoPubBannerGetPositionX());
-		functionMap.put("setPositionX", new MoPubBannerSetPositionX());
-		functionMap.put("getPositionY", new MoPubBannerGetPositionY());
-		functionMap.put("setPositionY", new MoPubBannerSetPositionY());
-		functionMap.put("getWidth", new MoPubBannerGetWidth());
-		functionMap.put("setWidth", new MoPubBannerSetWidth());
-		functionMap.put("getHeight", new MoPubBannerGetHeight());
-		functionMap.put("setHeight", new MoPubBannerSetHeight());
+		functionMap.put("mopub_getPositionX", new MoPubBannerGetPositionX());
+		functionMap.put("mopub_setPositionX", new MoPubBannerSetPositionX());
+		functionMap.put("mopub_getPositionY", new MoPubBannerGetPositionY());
+		functionMap.put("mopub_setPositionY", new MoPubBannerSetPositionY());
+		functionMap.put("mopub_getWidth", new MoPubBannerGetWidth());
+		functionMap.put("mopub_setWidth", new MoPubBannerSetWidth());
+		functionMap.put("mopub_getHeight", new MoPubBannerGetHeight());
+		functionMap.put("mopub_setHeight", new MoPubBannerSetHeight());
 
-		functionMap.put("setSize", new MoPubBannerSetSize());
-		functionMap.put("getCreativeWidth", new MoPubBannerGetCreativeWidth());
-		functionMap.put("getCreativeHeight", new MoPubBannerGetCreativeHeight());
+		functionMap.put("mopub_setSize", new MoPubBannerSetSize());
+		functionMap.put("mopub_getCreativeWidth", new MoPubBannerGetCreativeWidth());
+		functionMap.put("mopub_getCreativeHeight", new MoPubBannerGetCreativeHeight());
 
-		functionMap.put("setBannerKeywords", new MoPubBannerSetKeywords());
+		functionMap.put("mopub_setBannerKeywords", new MoPubBannerSetKeywords());
 		
-		functionMap.put("loadBanner", new MoPubBannerLoad());
-		functionMap.put("showBanner", new MoPubBannerShow());
-		functionMap.put("removeBanner", new MoPubBannerRemove());
+		functionMap.put("mopub_loadBanner", new MoPubBannerLoad());
+		functionMap.put("mopub_showBanner", new MoPubBannerShow());
+		functionMap.put("mopub_removeBanner", new MoPubBannerRemove());
 		
-		functionMap.put("disposeBanner", new MoPubBannerDispose());
+		functionMap.put("mopub_disposeBanner", new MoPubBannerDispose());
 
 		return functionMap;
 	}

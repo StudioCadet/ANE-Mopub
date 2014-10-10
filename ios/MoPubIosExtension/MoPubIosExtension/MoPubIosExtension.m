@@ -12,12 +12,33 @@
 #import "MoPubBanner.h"
 #import "MoPubInterstitial.h"
 #import "MPAdConversionTracker.h"
+#import "InMobi.h"
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= MP_IOS_6_0
+#import <AdSupport/AdSupport.h>
+#endif
 
 #define DEFINE_ANE_FUNCTION(fn) FREObject (fn)(FREContext context, void* functionData, uint32_t argc, FREObject argv[])
 
 #define MAP_FUNCTION(fn, data) { (const uint8_t*)(#fn), (data), &(fn) }
 
 MoPub_TypeConversion* mopubConverter;
+
+DEFINE_ANE_FUNCTION( mopub_getAppleIDFA )
+{
+	if (NSClassFromString(@"ASIdentifierManager")) {
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= MP_IOS_6_0
+        NSString *idfa =[[ASIdentifierManager sharedManager].advertisingIdentifier UUIDString];
+        
+        FREObject returnedObject;
+        if( [mopubConverter FREGetString:idfa asObject:&returnedObject] == FRE_OK )
+        {
+            return returnedObject;
+        }
+#endif
+    }
+	
+	return NULL;
+}
 
 DEFINE_ANE_FUNCTION( mopub_getAdScaleFactor )
 {
@@ -463,18 +484,42 @@ DEFINE_ANE_FUNCTION( mopub_trackConversion )
     return NULL;
 }
 
+DEFINE_ANE_FUNCTION( mopub_init )
+{
+    NSLog(@"Initializing MoPub extension ...");
+    
+    // InMobi :
+    NSString *inMobiPropertyId = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"IN_MOBI_PROPERTY_ID"];
+    if(inMobiPropertyId == NULL) {
+        NSLog(@"Your app descriptor is missing the required parameters \"IN_MOBI_PROPERTY_ID\".");
+    }
+    else {
+        NSLog(@"Initializing InMobi SDK with property ID %@", inMobiPropertyId);
+        [InMobi initialize:inMobiPropertyId];
+        NSLog(@"InMobi initialized successfully.");
+    }
+    
+    NSLog(@"MoPub extension initialized.");
+    
+    return NULL;
+}
+
+
 void MoPubContextInitializer( void* extData, const uint8_t* ctxType, FREContext ctx, uint32_t* numFunctionsToSet, const FRENamedFunction** functionsToSet )
 {
     if( strcmp( ctxType, "mopub" ) == 0 )
     {
         static FRENamedFunction mopubFunctionMap[] =
         {
+            MAP_FUNCTION( mopub_getAppleIDFA, NULL ),
+            
             MAP_FUNCTION( mopub_getAdScaleFactor, NULL ),
             
             MAP_FUNCTION( mopub_getNativeScreenWidth, NULL ),
             MAP_FUNCTION( mopub_getNativeScreenHeight, NULL ),
             
-            MAP_FUNCTION( mopub_trackConversion, NULL )
+            MAP_FUNCTION( mopub_trackConversion, NULL ),
+            MAP_FUNCTION( mopub_init, NULL )
         };
         
         *numFunctionsToSet = sizeof( mopubFunctionMap ) / sizeof( FRENamedFunction );

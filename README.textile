@@ -1,10 +1,10 @@
 h1. Air Native Extension for MoPub Advertising on iOS and Android (ARM and x86)
 
-- MoPub Android SDK version : 2.4.0 (forked by StudioCadet)
+- MoPub Android SDK version : 3.0.0 (forked by StudioCadet)
 - MoPub iOS SDK version : 2.4.0
 
-- AdColony Android SDK version : 2.1.1
-- AdColony iOS SDK version : 2.2.4
+- AdColony Android SDK version : 2.1.3
+- AdColony iOS SDK version : 2.4.12
 
 - Chartboost Android SDK version : 4.1.1
 - Chartboost iOS SDK version : 4.0

@@ -4,7 +4,7 @@ import com.adobe.fre.FREContext;
 import com.adobe.fre.FREObject;
 import com.sticksports.nativeExtensions.mopub.MoPubExtension;
 import com.sticksports.nativeExtensions.mopub.MoPubInterstitialContext;
-import com.sticksports.nativeExtensions.mopub.functions.UIThreadSafeFREFunction;
+import com.sticksports.nativeExtensions.utils.UIThreadSafeFREFunction;
 
 public class MoPubInterstitialSetTestMode extends UIThreadSafeFREFunction {
 

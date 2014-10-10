@@ -274,6 +274,7 @@
 				<uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 				<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 				<uses-permission android:name="android.permission.VIBRATE"/>
+				<uses-permission android:name="android.permission.READ_PHONE_STATE"/>
 			    
 			    <application>
 			    	<!-- MoPub -->
@@ -284,7 +285,6 @@
 					
 					<!-- MoPub : InMobi mediation -->
 					<meta-data android:name="IN_MOBI_PROPERTY_ID" android:value="eea9feccefe944e9859b03c6b82e9f76" />
-					<meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version" />
 					<activity android:name="com.inmobi.androidsdk.IMBrowserActivity"
 							  android:configChanges="keyboardHidden|orientation|keyboard|smallestScreenSize|screenSize"
 							  android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen"
@@ -298,6 +298,8 @@
 					</receiver>
 							  
 					<!-- MoPub : Adcolony mediation -->
+					<meta-data android:name="AD_COLONY_APP_ID" android:value="appd1be74c48c1b4ff28d" />
+					<meta-data android:name="AD_COLONY_ZONE_IDS" android:value="vz8efc58bf67ea42e3a7,vz2c92a67b1cd9427f81" />
 					<activity android:name="com.jirbo.adcolony.AdColonyOverlay"
 							  android:configChanges="keyboardHidden|orientation|screenSize"
 							  android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen" />
@@ -309,6 +311,11 @@
 					<activity android:name="com.jirbo.adcolony.AdColonyBrowser"
 							  android:configChanges="keyboardHidden|orientation|screenSize"
 							  android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen" />
+					
+					<!-- MoPub : Chartboost mediation -->
+					<meta-data android:name="CHARTBOOST_APP_ID" android:value="530f1a622d42da3e6d6af64e" />
+					<meta-data android:name="CHARTBOOST_APP_SIGNATURE" android:value="a277d4207d27188961c65b3af98000a610888d45" />
+					
 			    </application>
 			    
 			</manifest>
@@ -328,7 +335,8 @@
 		]]></InfoAdditions>
         <requestedDisplayResolution>high</requestedDisplayResolution>
     </iPhone>
-    <extensions>
+    
+<extensions>
         <extensionID>com.sticksports.nativeExtensions.MoPub</extensionID>
     </extensions>
 </application>

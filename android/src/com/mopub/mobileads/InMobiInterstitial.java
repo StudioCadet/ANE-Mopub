@@ -40,8 +40,6 @@ public class InMobiInterstitial extends CustomEventInterstitial implements IMInt
 			mInterstitialListener.onInterstitialFailed(MoPubErrorCode.UNSPECIFIED);
 			return;
 		}
-
-		InMobiUtils.init(context, activity);
 		
 		String propertyID = InMobiUtils.getPropertyIdFromServerExtras(serverExtras);
 		

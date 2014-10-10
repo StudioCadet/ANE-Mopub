@@ -6,16 +6,23 @@ import java.util.Map;
 import com.adobe.fre.FREContext;
 import com.adobe.fre.FREFunction;
 import com.sticksports.nativeExtensions.mopub.functions.MoPubGetAdScaleFactor;
+import com.sticksports.nativeExtensions.mopub.functions.MoPubGetAndroidAdvertisingId;
+import com.sticksports.nativeExtensions.mopub.functions.MoPubGetAndroidIMEI;
+import com.sticksports.nativeExtensions.mopub.functions.MoPubGetAndroidId;
+import com.sticksports.nativeExtensions.mopub.functions.MoPubInitFunction;
 import com.sticksports.nativeExtensions.mopub.functions.MoPubTrackConversion;
 
 public class MoPubExtensionContext extends FREContext
 {
 	
+	/** The Google advertising ID. */
+	public static String advertisingId = null;
+	
+	
 	// CONSTRUCTOR :
 	public MoPubExtensionContext() {
 		super();
 	}
-	
 	
 	@Override
 	public void dispose() {
@@ -25,8 +32,12 @@ public class MoPubExtensionContext extends FREContext
 	public Map<String, FREFunction> getFunctions() {
 		Map<String, FREFunction> functionMap = new HashMap<String, FREFunction>();
 		
-		functionMap.put("getAdScaleFactor", new MoPubGetAdScaleFactor());
-		functionMap.put("trackConversion", new MoPubTrackConversion());
+		functionMap.put("mopub_init", new MoPubInitFunction());
+		functionMap.put("mopub_getAdScaleFactor", new MoPubGetAdScaleFactor());
+		functionMap.put("mopub_trackConversion", new MoPubTrackConversion());
+		functionMap.put("mopub_getAndroidId", new MoPubGetAndroidId());
+		functionMap.put("mopub_getAndroidIMEI", new MoPubGetAndroidIMEI());
+		functionMap.put("mopub_getAndroidAdvertisingId", new MoPubGetAndroidAdvertisingId());
 		
 		return functionMap;
 	}

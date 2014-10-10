@@ -48,28 +48,20 @@
 
 - (void)requestInterstitialWithCustomEventInfo:(NSDictionary *)info
 {
-    NSString *inMobiPropertyId = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"IN_MOBI_PROPERTY_ID"];
-    [InMobi initialize:inMobiPropertyId]; // won't do anything if already initialized
-    
-    // Creating the InMobi interstitial :
-    NSLog(@"Creating InMobi interstitial with Property ID %@ ...", inMobiPropertyId);
-    self.inMobiInterstitial = [[MPInstanceProvider sharedProvider] buildIMInterstitialWithDelegate:self appId:inMobiPropertyId];
-    
-    // Set the SlotID if defined in MoPub :
-    if ([info objectForKey:@"inMobiSlotID"]) {
-        long long slotId = [[info objectForKey:@"inMobiSlotID"] longLongValue];
-        NSLog(@"Creating InMobi interstitial with Slot ID %lld ...", slotId);
-        self.inMobiInterstitial = [[MPInstanceProvider sharedProvider] buildIMInterstitialWithSlotIdAndDelegate:self slotId:slotId];
+    NSString *propertyId = [info objectForKey:@"property"];
+    if(!propertyId) {
+        propertyId = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"IN_MOBI_PROPERTY_ID"];
+        NSLog(@"No property ID specified through MoPub custom network, using default property ID.");
     }
-    else {
-        NSLog(@"Creating InMobi interstitial with Property ID %@ ...", inMobiPropertyId);
-        self.inMobiInterstitial = [[MPInstanceProvider sharedProvider] buildIMInterstitialWithDelegate:self appId:inMobiPropertyId];
-    }
+    
+    NSLog(@"Creating InMobi interstitial with the property ID %@ ...", propertyId);
+    self.inMobiInterstitial = [[MPInstanceProvider sharedProvider] buildIMInterstitialWithDelegate:self appId:propertyId];
     
     NSMutableDictionary *paramsDict = [[NSMutableDictionary alloc] init];
     [paramsDict setObject:@"c_mopub" forKey:@"tp"];
 	[paramsDict setObject:MP_SDK_VERSION forKey:@"tp-ver"];
     self.inMobiInterstitial.additionaParameters = paramsDict; // For supply source identification
+    
     if (self.delegate.location) {
         [InMobi setLocationWithLatitude:self.delegate.location.coordinate.latitude
                                longitude:self.delegate.location.coordinate.longitude
