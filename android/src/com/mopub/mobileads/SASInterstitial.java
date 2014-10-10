@@ -4,6 +4,11 @@ import java.util.Map;
 
 import android.content.Context;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.ViewParent;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
+import android.view.animation.Animation.AnimationListener;
 
 import com.smartadserver.android.library.SASInterstitialView;
 import com.smartadserver.android.library.model.SASAdElement;
@@ -18,6 +23,8 @@ public class SASInterstitial extends CustomEventInterstitial implements SASAdVie
 	private CustomEventInterstitialListener listener;
 	/** The interstitial ad view. */
 	private SASInterstitialView interstitial;
+	/** The interstitial ad view parent. */
+	private ViewGroup interstitialParent;
 	
 	/** The Site ID got from MoPub server. */
 	private Integer siteId;
@@ -58,8 +65,7 @@ public class SASInterstitial extends CustomEventInterstitial implements SASAdVie
 		interstitial.addStateChangeListener(this);
 		interstitial.setOnClickListener(this);
 		interstitial.loadAd(siteId, pageId, formatId, true, target, this);
-		interstitial.setVisibility(View.GONE);
-		interstitial.setAlpha(0);
+		setInterstitialAlpha(0.0f);
 	}
 
 	@Override
@@ -80,9 +86,11 @@ public class SASInterstitial extends CustomEventInterstitial implements SASAdVie
 		MoPubExtension.log("Showing SAS interstitial ...");
 		interstitial.executeOnUIThread(new Runnable() {
 			@Override public void run() {
-				interstitial.setVisibility(View.VISIBLE);
-				interstitial.setAlpha(1.0f);
-				interstitial.invalidate();
+				if(interstitialParent != null) {
+					interstitialParent.addView(interstitial);
+					MoPubExtension.log("SAS interstitial unshown.");
+				}
+				setInterstitialAlpha(1.0f);
 				listener.onInterstitialShown();
 			}
 		});
@@ -98,8 +106,13 @@ public class SASInterstitial extends CustomEventInterstitial implements SASAdVie
 		MoPubExtension.log("SAS interstitial loaded.");
 		interstitial.executeOnUIThread(new Runnable() {
 			@Override public void run() {
-				interstitial.setVisibility(View.GONE);
-				interstitial.setAlpha(0); // -> to avoid the flickering effect
+				setInterstitialAlpha(0.0f); // -> to avoid the flickering effect
+				ViewParent parent = interstitial.getParent();
+				if(parent != null && parent instanceof ViewGroup) {
+					interstitialParent = (ViewGroup) parent;
+					interstitialParent.removeView(interstitial);
+					MoPubExtension.log("SAS interstitial hidden until an explicit show request.");
+				}
 				listener.onInterstitialLoaded();
 			}
 		});
@@ -141,5 +154,61 @@ public class SASInterstitial extends CustomEventInterstitial implements SASAdVie
 	public void onClick(View v) {
 		MoPubExtension.log("SAS interstitial clicked.");
 		listener.onInterstitialClicked();
+	}
+	
+	
+	///////////
+	// ALPHA //
+	///////////
+	
+	/**
+	 * View.setAlpha() using only level 1 APIs (setAlpha() is level 11).
+	 */
+	public void setInterstitialAlpha(Float alphaValue) {
+		
+		// Since Android 3.0, setAlpha() is available, make use of it : 
+		if(android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.HONEYCOMB) {
+			interstitial.setAlpha(alphaValue);
+			if(alphaValue == 0.0f)
+				interstitial.setVisibility(View.GONE);
+			else
+				interstitial.setVisibility(View.VISIBLE);
+			interstitial.invalidate();
+			return;
+		}
+		
+		// Set alpha is not available, use the animation workaround :
+		AlphaAnimation alpha = new AlphaAnimation(alphaValue, alphaValue);
+		alpha.setDuration(0); // Make animation instant
+		alpha.setFillAfter(true); // Tell it to persist after the animation ends
+		if(alphaValue == 0.0f) {
+			alpha.setAnimationListener(new AnimationListener() {
+				@Override public void onAnimationStart(Animation animation) {}
+				@Override public void onAnimationRepeat(Animation animation) {}
+				@Override public void onAnimationEnd(Animation animation) {
+					interstitial.executeOnUIThread(new Runnable() {
+						@Override public void run() {
+							interstitial.setVisibility(View.GONE);
+							interstitial.invalidate();
+						}
+					});
+				}
+			});
+		}
+		else {
+			alpha.setAnimationListener(new AnimationListener() {
+				@Override public void onAnimationStart(Animation animation) {
+					interstitial.executeOnUIThread(new Runnable() {
+						@Override public void run() {
+							interstitial.setVisibility(View.VISIBLE);
+							interstitial.invalidate();
+						}
+					});
+				}
+				@Override public void onAnimationRepeat(Animation animation) {}
+				@Override public void onAnimationEnd(Animation animation) {}
+			});
+		}
+		interstitial.startAnimation(alpha);
 	}
 }

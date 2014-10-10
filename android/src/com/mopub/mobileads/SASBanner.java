@@ -84,13 +84,18 @@ public class SASBanner extends CustomEventBanner implements View.OnClickListener
 
 	@Override
 	public void adLoadingFailed(Exception e) {
-		MoPubExtension.logW("SAS banner failed to load : " + e.toString());
-		banner.executeOnUIThread(new Runnable() {
-			@Override public void run() {
-				banner.setVisibility(View.GONE);
-				listener.onBannerFailed(MoPubErrorCode.NETWORK_NO_FILL);
-			}
-		});
+		MoPubExtension.logW("SAS banner failed to load : " + e);
+		if(banner != null) {
+			banner.executeOnUIThread(new Runnable() {
+				@Override public void run() {
+					banner.setVisibility(View.GONE);
+					if(listener != null)
+						listener.onBannerFailed(MoPubErrorCode.NETWORK_NO_FILL);
+				}
+			});
+		}
+		else if(listener != null)
+			listener.onBannerFailed(MoPubErrorCode.NETWORK_NO_FILL);
 	}
 	
 	
