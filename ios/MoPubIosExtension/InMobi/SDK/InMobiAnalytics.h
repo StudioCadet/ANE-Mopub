@@ -88,13 +88,4 @@
  */
 + (void)reportCustomGoal:(NSString *)goalName;
 
-/**
- * This method enables publishers to add an attribute about the user or
- * about anything they would like to report to.
- * @param attributeValue The value of the attribute that the user wants to report.
- * @param attributeName The name of the attribute that the user wants to report.
- */
-
-+(void)setUserAttribute:(NSString*)attributeValue forName:(NSString*)attributeName;
-
 @end
