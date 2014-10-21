@@ -9,14 +9,10 @@
 #import "MPBannerCustomEvent.h"
 #import "MobviousInterstitialCustomEvent.h"
 
-@interface MobviousBannerCustomEvent : MPBannerCustomEvent <SASAdViewDelegate>
+@interface MobviousBannerCustomEvent : MPBannerCustomEvent
 
-    @property (nonatomic, retain) RootViewController *controller;
     @property (nonatomic, retain) UINavigationController *navigationController;
     @property (nonatomic, retain) UIWindow *window;
-
-    @property NSInteger siteId;
-    @property (nonatomic, copy) NSString* baseUrl;
 
     @property NSInteger formatId;
     @property (nonatomic, copy) NSString* pageId;
@@ -26,3 +22,9 @@
     @property (nonatomic) Boolean isFetch;
 
 @end
+
+@interface BannerRootViewController : UIViewController <UITableViewDelegate, SASAdViewDelegate>
+@property (nonatomic, retain) MobviousBannerCustomEvent *mpCustomEvent;
+@end
+
+

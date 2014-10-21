@@ -8,12 +8,44 @@
 
 #import "MobviousInterstitialCustomEvent.h"
 #import "MPLogging.h"
+#import "MobviousUtils.h"
 
 #define kDefaultTimeOut 10
 
-static BOOL isInitialized = false;
+@implementation InterstitialRootViewController
 
-@implementation RootViewController
+-(void)adView:(SASAdView *)adView didDownloadAd:(SASAd *)ad {
+    if (adView == self.mpCustomEvent.interstitial) {
+        NSLog(@"Ad did load successfuly.");
+        [self.mpCustomEvent.delegate interstitialCustomEvent:self.mpCustomEvent didLoadAd:nil];
+        self.mpCustomEvent.isFetch = true;
+    }
+}
+
+-(void)adView:(SASAdView *)adView didFailToLoadWithError:(NSError *)error {
+    NSLog(@"Ad did fail to load... Aborting.");
+    [self.mpCustomEvent.delegate interstitialCustomEvent:self.mpCustomEvent didFailToLoadAdWithError:error];
+}
+
+-(void)adViewDidLoad:(SASAdView *)adView {
+    if (adView == self.mpCustomEvent.interstitial) {
+        NSLog(@"Ad view did load.");
+        [self.mpCustomEvent.delegate interstitialCustomEventDidAppear:nil];
+    }
+}
+
+-(void)adViewDidDisappear:(SASAdView *)adView {
+    if (adView == self.mpCustomEvent.interstitial) {
+        NSLog(@"Ad view did disappear.");
+        [self.mpCustomEvent.delegate interstitialCustomEventWillDisappear:nil];
+        [self.mpCustomEvent.delegate interstitialCustomEventDidDisappear:nil];
+    }
+}
+
+-(void)dealloc {
+    self.mpCustomEvent = nil;
+    [super dealloc];
+}
 
 @end
 
@@ -23,28 +55,18 @@ static BOOL isInitialized = false;
 #pragma mark - MPInterstitialCustomEvent Subclass Methods
 
 - (void)requestInterstitialWithCustomEventInfo:(NSDictionary *)info {
-    if (isInitialized == false) {
-        if ([info objectForKey:@"MobviousSiteID"] && [info objectForKey:@"MobviousBaseURL"]) {
-            self.siteId = [[info objectForKey:@"MobviousSiteID"] intValue];
-            self.baseUrl = [info objectForKey:@"MobviousBaseURL"];
-            NSLog(@"Setting the MobviousSiteID.");
-        } else {
-            NSLog(@"No MobviousSiteID or MobviousBaseURL to set, aborting...");
-            [self.delegate interstitialCustomEvent:self didFailToLoadAdWithError:nil];
-            return ;
-        }
-        
-        NSLog(@"Connecting to Mobvious...");
-        [SASAdView setSiteID:self.siteId baseURL:self.baseUrl];
-        isInitialized = true;
+    if (![MobviousUtils initializeMobviousIfNecessary:info]) {
+        [self.delegate interstitialCustomEvent:self didFailToLoadAdWithError:nil];
+        return;
     }
-    NSLog(@"Mobvious initialized.");
+
     self.isFetch = false;
 
     NSLog(@"Setting navigation controller to current window...");
     _window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-	self.controller = [[RootViewController alloc] initWithNibName:nil bundle:nil];
-	_navigationController = [[UINavigationController alloc] initWithRootViewController:_controller];
+	InterstitialRootViewController *controller = [[InterstitialRootViewController alloc] init];
+    controller.mpCustomEvent = self;
+	_navigationController = [[UINavigationController alloc] initWithRootViewController:controller];
     
     _window.rootViewController = _navigationController;
     
@@ -54,7 +76,7 @@ static BOOL isInitialized = false;
     [interstitial release];
 
     NSLog(@"Setting interstitial delegate...");
-    _interstitial.delegate = _controller;
+    _interstitial.delegate = controller;
 
     NSLog(@"Fetching MoPub configs...");
     if ([info objectForKey:@"MobviousFormatId"] && [info objectForKey:@"MobviousPageId"]) {
@@ -76,12 +98,6 @@ static BOOL isInitialized = false;
         self.timeOut = [[info objectForKey:@"MobviousTimeOut"] floatValue];
     }
 
-    NSLog(@"TEST");
-    NSLog(@"loadFormatId:%ld", (long)self.formatId);
-    NSLog(@"pageId:%@", self.pageId);
-    NSLog(@"timeout:%f", self.timeOut);
-    NSLog(@"[_interstitial loadFormatId:%ld pageId:%@ master:YES target:nil timeout:%f];", (long)self.formatId, self.pageId, self.timeOut);
-    NSLog(@"TEST");
     [_interstitial loadFormatId:self.formatId pageId:self.pageId master:YES target:nil timeout:self.timeOut];
     NSLog(@"Fetching next interstitial...");
 }
@@ -95,47 +111,6 @@ static BOOL isInitialized = false;
         NSLog(@"No ad fetch, aborting...");
         [self.delegate interstitialCustomEvent:self didFailToLoadAdWithError:nil];
     }
-}
-
-#pragma mark - Mobvious Delegate
-
--(void)adView:(SASAdView *)adView didDownloadAd:(SASAd *)ad {
-    if (adView == self.interstitial) {
-        NSLog(@"Ad did load succesfuly.");
-        [self.delegate interstitialCustomEvent:self didLoadAd:nil];
-        self.isFetch = true;
-    }
-}
-
--(void)adView:(SASAdView *)adView didFailToLoadWithError:(NSError *)error {
-    NSLog(@"Ad did fail to load... Aborting.");
-    [self.delegate interstitialCustomEvent:self didFailToLoadAdWithError:error];
-}
-
--(void)adViewDidLoad:(SASAdView *)adView {
-    if (adView == self.interstitial) {
-        NSLog(@"Ad view did load.");
-        [self.delegate interstitialCustomEventDidAppear:nil];
-    }
-}
-
--(void)adViewDidDisappear:(SASAdView *)adView {
-    if (adView == self.interstitial) {
-        NSLog(@"Ad view did disappear.");
-        [self.delegate interstitialCustomEventWillDisappear:nil];
-        [self.delegate interstitialCustomEventDidDisappear:nil];
-    }
-}
-
--(void)dealloc {
-    self.formatId = nil;
-    self.pageId = nil;
-    self.isFetch = false;
-    
-    self.interstitial.delegate = nil;
-    self.interstitial = nil;
-
-    [super dealloc];
 }
 
 @end

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		01B4A75719F63F19008BBB36 /* MobviousUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 01B4A75519F63F19008BBB36 /* MobviousUtils.h */; };
+		01B4A75819F63F19008BBB36 /* MobviousUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 01B4A75619F63F19008BBB36 /* MobviousUtils.m */; };
 		349B4DBE1946F1CE00184794 /* InMobiBannerCustomEvent.h in Headers */ = {isa = PBXBuildFile; fileRef = 349B4DB91946F1CE00184794 /* InMobiBannerCustomEvent.h */; };
 		349B4DBF1946F1CE00184794 /* InMobiBannerCustomEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 349B4DBA1946F1CE00184794 /* InMobiBannerCustomEvent.m */; };
 		349B4DC01946F1CE00184794 /* InMobiInterstitialCustomEvent.h in Headers */ = {isa = PBXBuildFile; fileRef = 349B4DBB1946F1CE00184794 /* InMobiInterstitialCustomEvent.h */; };
@@ -292,6 +294,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		01B4A75519F63F19008BBB36 /* MobviousUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobviousUtils.h; sourceTree = "<group>"; };
+		01B4A75619F63F19008BBB36 /* MobviousUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MobviousUtils.m; sourceTree = "<group>"; };
 		349B4DB91946F1CE00184794 /* InMobiBannerCustomEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InMobiBannerCustomEvent.h; sourceTree = "<group>"; };
 		349B4DBA1946F1CE00184794 /* InMobiBannerCustomEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InMobiBannerCustomEvent.m; sourceTree = "<group>"; };
 		349B4DBB1946F1CE00184794 /* InMobiInterstitialCustomEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InMobiInterstitialCustomEvent.h; sourceTree = "<group>"; };
@@ -637,6 +641,7 @@
 		34E1A24B190E3E57001C491E /* Chartboost */ = {
 			isa = PBXGroup;
 			children = (
+				79A6D4891636C14D009DA60A /* Products */,
 				34E1A24C190E3E57001C491E /* ChartboostInterstitialCustomEvent.h */,
 				34E1A24D190E3E57001C491E /* ChartboostInterstitialCustomEvent.m */,
 				34E1A24E190E3E57001C491E /* SDK */,
@@ -661,6 +666,8 @@
 				483B14A119E7D05A00660DCC /* MobviousBannerCustomEvent.m */,
 				483B14A319E7D05A00660DCC /* MobviousInterstitialCustomEvent.m */,
 				483B14A419E7D05A00660DCC /* SDK */,
+				01B4A75519F63F19008BBB36 /* MobviousUtils.h */,
+				01B4A75619F63F19008BBB36 /* MobviousUtils.m */,
 			);
 			path = Mobvious;
 			sourceTree = "<group>";
@@ -1108,7 +1115,6 @@
 				79F87C15177B38240047359B /* AdNetworkSupport */,
 				79A6D48D1636C14D009DA60A /* MoPubIosExtension */,
 				79A6D48A1636C14D009DA60A /* Frameworks */,
-				79A6D4891636C14D009DA60A /* Products */,
 			);
 			sourceTree = "<group>";
 		};
@@ -1118,6 +1124,7 @@
 				79A6D4881636C14D009DA60A /* libMoPubIosExtension.a */,
 			);
 			name = Products;
+			path = ..;
 			sourceTree = "<group>";
 		};
 		79A6D48A1636C14D009DA60A /* Frameworks */ = {
@@ -1323,6 +1330,7 @@
 				489280C019BEF2D500059A88 /* MPNativeAd+Internal.h in Headers */,
 				489280B419BEF2D500059A88 /* UIView+MPNativeAd.h in Headers */,
 				483B14B619E7D05A00660DCC /* SASInterstitialView.h in Headers */,
+				01B4A75719F63F19008BBB36 /* MobviousUtils.h in Headers */,
 				489280C919BEF2D500059A88 /* MPAdPositioning.h in Headers */,
 				4892804619BEF2D500059A88 /* MPAdServerURLBuilder.h in Headers */,
 				489280DF19BEF2D500059A88 /* MPNativeAdSourceDelegate.h in Headers */,
@@ -1436,6 +1444,7 @@
 				4892804119BEF2D500059A88 /* MPAdConfiguration.m in Sources */,
 				4892808919BEF2D500059A88 /* MRVideoPlayerManager.m in Sources */,
 				4892805C19BEF2D500059A88 /* MPHTMLInterstitialViewController.m in Sources */,
+				01B4A75819F63F19008BBB36 /* MobviousUtils.m in Sources */,
 				489280A919BEF2D500059A88 /* MPAdView.m in Sources */,
 				79F66B1F1654051E00E917FB /* MoPubInterstitial.m in Sources */,
 				489280BF19BEF2D500059A88 /* MPMoPubNativeCustomEvent.m in Sources */,

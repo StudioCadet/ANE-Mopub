@@ -7,36 +7,66 @@
 //
 
 #import "MobviousBannerCustomEvent.h"
+#import "MobviousUtils.h"
 
 #define kDefaultTimeOut 10
 
-static BOOL isInitialized = false;
+@implementation BannerRootViewController
+
+-(void) adView:(SASAdView *)adView didDownloadAd:(SASAd *)ad {
+    if (!ad) {
+        NSLog(@"No more banner to load !");
+        [self.mpCustomEvent.delegate bannerCustomEvent:self.mpCustomEvent didFailToLoadAdWithError:nil];
+    } else {
+        if (adView == self.mpCustomEvent.banner) {
+            [self.mpCustomEvent.delegate bannerCustomEvent:self.mpCustomEvent didLoadAd:adView];
+        }
+    }
+}
+
+-(void) adView:(SASAdView *)adView didFailToLoadWithError:(NSError *)error {
+    NSLog(@"Banner did fail to load !");
+    [self.mpCustomEvent.delegate bannerCustomEvent:self.mpCustomEvent didFailToLoadAdWithError:error];
+}
+
+-(void) adView:(SASAdView *)adView didExpandWithFrame:(CGRect)frame {
+    NSLog(@"Banner did expand.");
+}
+
+-(void) adViewDidCollapse:(SASAdView *)adView {
+    NSLog(@"Banner did collapse");
+}
+
+-(void) adViewDidDisappear:(SASAdView *)adView {
+    NSLog(@"Banner did disappear.");
+}
+
+-(void) adViewWillExpand:(SASAdView *)adView {
+    NSLog(@"Banner will expand");
+    [self.mpCustomEvent.delegate bannerCustomEventWillBeginAction:self.mpCustomEvent];
+}
+
+-(void) dealloc {
+    self.mpCustomEvent = nil;
+    [super dealloc];
+}
+@end
 
 @implementation MobviousBannerCustomEvent
 
 - (void)requestAdWithSize:(CGSize)size customEventInfo:(NSDictionary *)info
 {
-    if (isInitialized == false) {
-        if ([info objectForKey:@"MobviousSiteID"] && [info objectForKey:@"MobviousBaseURL"]) {
-            self.siteId = [[info objectForKey:@"MobviousSiteID"] intValue];
-            self.baseUrl = [info objectForKey:@"MobviousBaseURL"];
-            NSLog(@"Setting the MobviousSiteID.");
-        } else {
-            NSLog(@"No MobviousSiteID or MobviousBaseURL to set, aborting...");
-            [self.delegate bannerCustomEvent:nil didFailToLoadAdWithError:nil];
-            return ;
-        }
-    
-        NSLog(@"Connecting to Mobvious...");
-        [SASAdView setSiteID:self.siteId baseURL:self.baseUrl];
-        isInitialized = true;
+    if (![MobviousUtils initializeMobviousIfNecessary:info]) {
+        [self.delegate bannerCustomEvent:nil didFailToLoadAdWithError:nil];
+        return;
     }
 
     self.isFetch = false;
 
     _window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    self.controller = [[RootViewController alloc] initWithNibName:nil bundle:nil];
-    _navigationController = [[UINavigationController alloc] initWithRootViewController:_controller];
+    BannerRootViewController *controller = [[BannerRootViewController alloc] init];
+    controller.mpCustomEvent = self;
+    _navigationController = [[UINavigationController alloc] initWithRootViewController:controller];
 
     _window.rootViewController = _navigationController;
 
@@ -54,63 +84,9 @@ static BOOL isInitialized = false;
         return ;
     }
 
-    _banner.delegate = _controller;
+    _banner.delegate = controller;
     
     [_banner loadFormatId:self.formatId pageId:self.pageId master:YES target:nil];
-}
-
--(void) adView:(SASAdView *)adView didDownloadAd:(SASAd *)ad {
-    if (!ad) {
-        NSLog(@"No more banner to load !");
-        [self.delegate bannerCustomEvent:self didFailToLoadAdWithError:nil];
-    } else {
-        NSLog(@"Banner did download.");
-    }
-}
-
--(void) adViewDidLoad:(SASAdView *)adView {
-    if (adView == self.banner) {
-        NSLog(@"Displaying banner...");
-        [[[[[UIApplication sharedApplication] keyWindow] rootViewController] view] addSubview:_banner];
-        [self.delegate bannerCustomEvent:self didLoadAd:nil];
-    }
-}
-
--(void) adView:(SASAdView *)adView didFailToLoadWithError:(NSError *)error {
-    NSLog(@"Banner did fail to load !");
-    [self.delegate bannerCustomEvent:self didFailToLoadAdWithError:error];
-}
-
-- (BOOL)enableAutomaticImpressionAndClickTracking
-{
-    // Override this method to return NO to perform impression and click tracking manually.
-    
-    return NO;
-}
-
--(void) adView:(SASAdView *)adView didExpandWithFrame:(CGRect)frame {
-    NSLog(@"Banner did expand.");
-}
-
--(void) adViewDidCollapse:(SASAdView *)adView {
-    NSLog(@"Banner did collapse");
-    [self.delegate bannerCustomEventDidFinishAction:self];
-}
-
--(void) adViewDidDisappear:(SASAdView *)adView {
-    NSLog(@"Banner did disappear.");
-    [self.delegate bannerCustomEventDidFinishAction:self];
-}
-
--(void) adViewWillExpand:(SASAdView *)adView {
-    NSLog(@"Banner will expand");
-    [self.delegate bannerCustomEventWillBeginAction:self];
-}
-
--(void) dealloc {
-    self.banner.delegate = nil;
-    self.banner = nil;
-    [super dealloc];
 }
 
 @end
