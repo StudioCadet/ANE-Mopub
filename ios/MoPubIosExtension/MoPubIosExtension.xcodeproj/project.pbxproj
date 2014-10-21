@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		01B4A75719F63F19008BBB36 /* MobviousUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 01B4A75519F63F19008BBB36 /* MobviousUtils.h */; };
 		01B4A75819F63F19008BBB36 /* MobviousUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 01B4A75619F63F19008BBB36 /* MobviousUtils.m */; };
+		01BE706419F69DC200DBA660 /* libInMobi-4.4.1.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 01BE706319F69DC200DBA660 /* libInMobi-4.4.1.a */; };
 		349B4DBE1946F1CE00184794 /* InMobiBannerCustomEvent.h in Headers */ = {isa = PBXBuildFile; fileRef = 349B4DB91946F1CE00184794 /* InMobiBannerCustomEvent.h */; };
 		349B4DBF1946F1CE00184794 /* InMobiBannerCustomEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 349B4DBA1946F1CE00184794 /* InMobiBannerCustomEvent.m */; };
 		349B4DC01946F1CE00184794 /* InMobiInterstitialCustomEvent.h in Headers */ = {isa = PBXBuildFile; fileRef = 349B4DBB1946F1CE00184794 /* InMobiInterstitialCustomEvent.h */; };
@@ -220,7 +221,6 @@
 		489280EA19BEF2D500059A88 /* MPTableViewAdPlacer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4892802A19BEF2D500059A88 /* MPTableViewAdPlacer.m */; };
 		489280EF19C03E2500059A88 /* Chartboost.h in Headers */ = {isa = PBXBuildFile; fileRef = 489280ED19C03E2500059A88 /* Chartboost.h */; };
 		489280F019C03E2500059A88 /* libChartboost.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 489280EE19C03E2500059A88 /* libChartboost.a */; };
-		48A15D4E19DD437700E725A7 /* libInMobi-4.5.1.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 48A15D4D19DD437700E725A7 /* libInMobi-4.5.1.a */; };
 		48A15D6119E3CF6000E725A7 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48A15D6019E3CF6000E725A7 /* CoreMotion.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		48A468A81966C60600171565 /* AdColonyInterstitialCustomEvent.h in Headers */ = {isa = PBXBuildFile; fileRef = 48A468A41966C60600171565 /* AdColonyInterstitialCustomEvent.h */; };
 		48A468A91966C60600171565 /* AdColonyInterstitialCustomEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 48A468A51966C60600171565 /* AdColonyInterstitialCustomEvent.m */; };
@@ -296,6 +296,7 @@
 /* Begin PBXFileReference section */
 		01B4A75519F63F19008BBB36 /* MobviousUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobviousUtils.h; sourceTree = "<group>"; };
 		01B4A75619F63F19008BBB36 /* MobviousUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MobviousUtils.m; sourceTree = "<group>"; };
+		01BE706319F69DC200DBA660 /* libInMobi-4.4.1.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libInMobi-4.4.1.a"; sourceTree = "<group>"; };
 		349B4DB91946F1CE00184794 /* InMobiBannerCustomEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InMobiBannerCustomEvent.h; sourceTree = "<group>"; };
 		349B4DBA1946F1CE00184794 /* InMobiBannerCustomEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InMobiBannerCustomEvent.m; sourceTree = "<group>"; };
 		349B4DBB1946F1CE00184794 /* InMobiInterstitialCustomEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InMobiInterstitialCustomEvent.h; sourceTree = "<group>"; };
@@ -515,7 +516,6 @@
 		4892802F19BEF2D500059A88 /* MRAID.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MRAID.bundle; sourceTree = "<group>"; };
 		489280ED19C03E2500059A88 /* Chartboost.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Chartboost.h; sourceTree = "<group>"; };
 		489280EE19C03E2500059A88 /* libChartboost.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libChartboost.a; sourceTree = "<group>"; };
-		48A15D4D19DD437700E725A7 /* libInMobi-4.5.1.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libInMobi-4.5.1.a"; sourceTree = "<group>"; };
 		48A15D6019E3CF6000E725A7 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		48A468A41966C60600171565 /* AdColonyInterstitialCustomEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdColonyInterstitialCustomEvent.h; sourceTree = "<group>"; };
 		48A468A51966C60600171565 /* AdColonyInterstitialCustomEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdColonyInterstitialCustomEvent.m; sourceTree = "<group>"; };
@@ -592,7 +592,6 @@
 				6D5AFBD719E6846900D5C9A2 /* libz.1.2.5.dylib in Frameworks */,
 				6D247CC719E6630500F579CB /* CoreMedia.framework in Frameworks */,
 				48A15D6119E3CF6000E725A7 /* CoreMotion.framework in Frameworks */,
-				48A15D4E19DD437700E725A7 /* libInMobi-4.5.1.a in Frameworks */,
 				48E89B0B199CEC68007C857D /* Accelerate.framework in Frameworks */,
 				48927F5E19BEE01100059A88 /* VidCoin.framework in Frameworks */,
 				34FBB5A6190FE406005402C5 /* Security.framework in Frameworks */,
@@ -600,6 +599,7 @@
 				483B14B819E7D05A00660DCC /* libSmartAdServer.a in Frameworks */,
 				79F87D2F177B41AC0047359B /* AddressBookUI.framework in Frameworks */,
 				48A468AA1966C60600171565 /* AdColony.framework in Frameworks */,
+				01BE706419F69DC200DBA660 /* libInMobi-4.4.1.a in Frameworks */,
 				489280F019C03E2500059A88 /* libChartboost.a in Frameworks */,
 				79F66B1B1652882800E917FB /* AdSupport.framework in Frameworks */,
 				79BF9891174A1DB80038F1F1 /* AudioToolbox.framework in Frameworks */,
@@ -1039,7 +1039,7 @@
 		48A468AB1975573D00171565 /* SDK */ = {
 			isa = PBXGroup;
 			children = (
-				48A15D4D19DD437700E725A7 /* libInMobi-4.5.1.a */,
+				01BE706319F69DC200DBA660 /* libInMobi-4.4.1.a */,
 				48A468AC1975573D00171565 /* IMBanner.h */,
 				48A468AD1975573D00171565 /* IMBannerDelegate.h */,
 				48A468AE1975573D00171565 /* IMConstants.h */,
