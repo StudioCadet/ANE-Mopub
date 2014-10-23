@@ -7,7 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "ACTReporter.h"
 
 @interface AdMobConversionTracking : NSObject
+
++(void)trackConversion;
 
 @end

@@ -10,4 +10,9 @@
 
 @implementation AdMobConversionTracking
 
++(void)trackConversion {
+    NSLog(@"Tracking AdMob install if needed...");
+    [ACTConversionReporter reportWithConversionID:@"995500816" label:@"_HMJCliw1AgQkMbY2gM" value:@"0.60" isRepeatable:NO];
+}
+
 @end
