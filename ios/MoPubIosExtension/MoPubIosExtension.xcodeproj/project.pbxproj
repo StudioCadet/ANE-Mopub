@@ -29,6 +29,12 @@
 		483B14B619E7D05A00660DCC /* SASInterstitialView.h in Headers */ = {isa = PBXBuildFile; fileRef = 483B14AA19E7D05A00660DCC /* SASInterstitialView.h */; };
 		483B14B719E7D05A00660DCC /* SmartAdServerAd.h in Headers */ = {isa = PBXBuildFile; fileRef = 483B14AB19E7D05A00660DCC /* SmartAdServerAd.h */; };
 		483B14B819E7D05A00660DCC /* libSmartAdServer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 483B14AC19E7D05A00660DCC /* libSmartAdServer.a */; };
+		483B14DB19F7B9EE00660DCC /* AdMobConversionTracking.h in Headers */ = {isa = PBXBuildFile; fileRef = 483B14D919F7B9EE00660DCC /* AdMobConversionTracking.h */; };
+		483B14DC19F7B9EE00660DCC /* AdMobConversionTracking.m in Sources */ = {isa = PBXBuildFile; fileRef = 483B14DA19F7B9EE00660DCC /* AdMobConversionTracking.m */; };
+		483B14E319F7BA4B00660DCC /* ACTReporter.h in Headers */ = {isa = PBXBuildFile; fileRef = 483B14DD19F7BA4B00660DCC /* ACTReporter.h */; };
+		483B14E419F7BA4B00660DCC /* GoogleConversionPing.h in Headers */ = {isa = PBXBuildFile; fileRef = 483B14DF19F7BA4B00660DCC /* GoogleConversionPing.h */; };
+		483B14E519F7BA4B00660DCC /* DCTReporter.h in Headers */ = {isa = PBXBuildFile; fileRef = 483B14E119F7BA4B00660DCC /* DCTReporter.h */; };
+		483B14E619F7BA4B00660DCC /* libGoogleConversionTracking.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 483B14E219F7BA4B00660DCC /* libGoogleConversionTracking.a */; };
 		48927F5E19BEE01100059A88 /* VidCoin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48927F5B19BEE01100059A88 /* VidCoin.framework */; };
 		48927F5F19BEE01100059A88 /* VidCoinInterstitialCustomEvent.h in Headers */ = {isa = PBXBuildFile; fileRef = 48927F5C19BEE01100059A88 /* VidCoinInterstitialCustomEvent.h */; };
 		48927F6019BEE01100059A88 /* VidCoinInterstitialCustomEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 48927F5D19BEE01100059A88 /* VidCoinInterstitialCustomEvent.m */; };
@@ -317,6 +323,12 @@
 		483B14AB19E7D05A00660DCC /* SmartAdServerAd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SmartAdServerAd.h; sourceTree = "<group>"; };
 		483B14AC19E7D05A00660DCC /* libSmartAdServer.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libSmartAdServer.a; sourceTree = "<group>"; };
 		483B14AD19E7D05A00660DCC /* sas.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = sas.bundle; sourceTree = "<group>"; };
+		483B14D919F7B9EE00660DCC /* AdMobConversionTracking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdMobConversionTracking.h; sourceTree = "<group>"; };
+		483B14DA19F7B9EE00660DCC /* AdMobConversionTracking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdMobConversionTracking.m; sourceTree = "<group>"; };
+		483B14DD19F7BA4B00660DCC /* ACTReporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACTReporter.h; sourceTree = "<group>"; };
+		483B14DF19F7BA4B00660DCC /* GoogleConversionPing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoogleConversionPing.h; sourceTree = "<group>"; };
+		483B14E119F7BA4B00660DCC /* DCTReporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCTReporter.h; sourceTree = "<group>"; };
+		483B14E219F7BA4B00660DCC /* libGoogleConversionTracking.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGoogleConversionTracking.a; sourceTree = "<group>"; };
 		48927F5A19BEE01100059A88 /* VidCoin.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = VidCoin.bundle; sourceTree = "<group>"; };
 		48927F5B19BEE01100059A88 /* VidCoin.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = VidCoin.framework; sourceTree = "<group>"; };
 		48927F5C19BEE01100059A88 /* VidCoinInterstitialCustomEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VidCoinInterstitialCustomEvent.h; sourceTree = "<group>"; };
@@ -614,6 +626,7 @@
 				79BF9893174A1DC50038F1F1 /* MessageUI.framework in Frameworks */,
 				01EFE39D19F7E2D900E1E486 /* libInMobi-4.5.1.a in Frameworks */,
 				79BF989B174A1DE50038F1F1 /* MobileCoreServices.framework in Frameworks */,
+				483B14E619F7BA4B00660DCC /* libGoogleConversionTracking.a in Frameworks */,
 				79F87A48177B35DA0047359B /* PassKit.framework in Frameworks */,
 				79BF989D174A1DEC0038F1F1 /* QuartzCore.framework in Frameworks */,
 				79F87A49177B35DC0047359B /* Social.framework in Frameworks */,
@@ -693,6 +706,43 @@
 				483B14AB19E7D05A00660DCC /* SmartAdServerAd.h */,
 			);
 			path = headers;
+			sourceTree = "<group>";
+		};
+		483B14D519F7B9C900660DCC /* AdMobConversionTracking */ = {
+			isa = PBXGroup;
+			children = (
+				483B14D619F7B9C900660DCC /* SDK */,
+				483B14D919F7B9EE00660DCC /* AdMobConversionTracking.h */,
+				483B14DA19F7B9EE00660DCC /* AdMobConversionTracking.m */,
+			);
+			path = AdMobConversionTracking;
+			sourceTree = "<group>";
+		};
+		483B14D619F7B9C900660DCC /* SDK */ = {
+			isa = PBXGroup;
+			children = (
+				483B14DD19F7BA4B00660DCC /* ACTReporter.h */,
+				483B14DE19F7BA4B00660DCC /* Deprecated */,
+				483B14E019F7BA4B00660DCC /* DoubleClick */,
+				483B14E219F7BA4B00660DCC /* libGoogleConversionTracking.a */,
+			);
+			path = SDK;
+			sourceTree = "<group>";
+		};
+		483B14DE19F7BA4B00660DCC /* Deprecated */ = {
+			isa = PBXGroup;
+			children = (
+				483B14DF19F7BA4B00660DCC /* GoogleConversionPing.h */,
+			);
+			path = Deprecated;
+			sourceTree = "<group>";
+		};
+		483B14E019F7BA4B00660DCC /* DoubleClick */ = {
+			isa = PBXGroup;
+			children = (
+				483B14E119F7BA4B00660DCC /* DCTReporter.h */,
+			);
+			path = DoubleClick;
 			sourceTree = "<group>";
 		};
 		48927F5819BEE01100059A88 /* VidCoin */ = {
@@ -1105,6 +1155,7 @@
 		79A6D47D1636C14C009DA60A = {
 			isa = PBXGroup;
 			children = (
+				483B14D519F7B9C900660DCC /* AdMobConversionTracking */,
 				483B149F19E7D05A00660DCC /* Mobvious */,
 				48927F6119BEF2D400059A88 /* MoPubSDK */,
 				48927F5819BEE01100059A88 /* VidCoin */,
@@ -1226,6 +1277,7 @@
 				4892804019BEF2D500059A88 /* MPAdConfiguration.h in Headers */,
 				4892806D19BEF2D500059A88 /* MPMRAIDBannerCustomEvent.h in Headers */,
 				489280DB19BEF2D500059A88 /* MPNativeAdRequestTargeting.h in Headers */,
+				483B14DB19F7B9EE00660DCC /* AdMobConversionTracking.h in Headers */,
 				48E89B03199CD6B0007C857D /* AFAdSDKIAPProperty.h in Headers */,
 				4892808619BEF2D500059A88 /* MRProperty.h in Headers */,
 				489280B319BEF2D500059A88 /* MPNativeAdRequest+MPNativeAdSource.h in Headers */,
@@ -1239,6 +1291,7 @@
 				489280A619BEF2D500059A88 /* MPAdConversionTracker.h in Headers */,
 				483B14B519E7D05A00660DCC /* SASBannerView.h in Headers */,
 				48A468C21975573D00171565 /* InMobiAnalytics.h in Headers */,
+				483B14E519F7BA4B00660DCC /* DCTReporter.h in Headers */,
 				4892804219BEF2D500059A88 /* MPAdDestinationDisplayAgent.h in Headers */,
 				4892803219BEF2D500059A88 /* MPBannerAdManagerDelegate.h in Headers */,
 				4892806219BEF2D500059A88 /* MPInterstitialCustomEventAdapter.h in Headers */,
@@ -1269,6 +1322,7 @@
 				489280E519BEF2D500059A88 /* MPStreamAdPlacer.h in Headers */,
 				48E89B00199CD6B0007C857D /* AppsfireSDK.h in Headers */,
 				489280AC19BEF2D500059A88 /* MPBannerCustomEventDelegate.h in Headers */,
+				483B14E419F7BA4B00660DCC /* GoogleConversionPing.h in Headers */,
 				48927F5F19BEE01100059A88 /* VidCoinInterstitialCustomEvent.h in Headers */,
 				489280BA19BEF2D500059A88 /* MPImageDownloadQueue.h in Headers */,
 				48E89B05199CD6B0007C857D /* AFAdSDKAdBadgeView.h in Headers */,
@@ -1310,6 +1364,7 @@
 				34E1A251190E3E57001C491E /* ChartboostInterstitialCustomEvent.h in Headers */,
 				489280D219BEF2D500059A88 /* MPNativeAdConstants.h in Headers */,
 				48E89B01199CD6B0007C857D /* AppsfireSDKConstants.h in Headers */,
+				483B14E319F7BA4B00660DCC /* ACTReporter.h in Headers */,
 				489280E019BEF2D500059A88 /* MPNativeCustomEvent.h in Headers */,
 				48A468BE1975573D00171565 /* IMInterstitialDelegate.h in Headers */,
 				4892804D19BEF2D500059A88 /* MPLastResortDelegate.h in Headers */,
@@ -1450,6 +1505,7 @@
 				489280BF19BEF2D500059A88 /* MPMoPubNativeCustomEvent.m in Sources */,
 				4892807519BEF2D500059A88 /* MRAdView.m in Sources */,
 				489280CC19BEF2D500059A88 /* MPClientAdPositioning.m in Sources */,
+				483B14DC19F7B9EE00660DCC /* AdMobConversionTracking.m in Sources */,
 				489280E419BEF2D500059A88 /* MPStreamAdPlacementData.m in Sources */,
 				4892805E19BEF2D500059A88 /* MPBaseInterstitialAdapter.m in Sources */,
 				4892809519BEF2D500059A88 /* MPError.m in Sources */,
@@ -1563,6 +1619,7 @@
 					"$(PROJECT_DIR)/AppsFire/SDK",
 					"$(PROJECT_DIR)/Mobvious",
 					"$(PROJECT_DIR)/Mobvious/SDK",
+					"$(PROJECT_DIR)/AdMobConversionTracking/SDK",
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-ObjC";
@@ -1595,6 +1652,7 @@
 					"$(PROJECT_DIR)/AppsFire/SDK",
 					"$(PROJECT_DIR)/Mobvious",
 					"$(PROJECT_DIR)/Mobvious/SDK",
+					"$(PROJECT_DIR)/AdMobConversionTracking/SDK",
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-ObjC";
