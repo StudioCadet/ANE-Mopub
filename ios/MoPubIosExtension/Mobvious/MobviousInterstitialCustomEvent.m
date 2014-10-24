@@ -14,7 +14,7 @@
 
 @implementation InterstitialRootViewController
 
--(void)adView:(SASAdView *)adView didDownloadAd:(SASAd *)ad {
+- (void)adView:(SASAdView *)adView didDownloadAd:(SASAd *)ad {
     if (adView == self.mpCustomEvent.interstitial) {
         NSLog(@"Ad did load successfuly.");
         [self.mpCustomEvent.delegate interstitialCustomEvent:self.mpCustomEvent didLoadAd:nil];
@@ -22,7 +22,7 @@
     }
 }
 
--(void)adView:(SASAdView *)adView didFailToLoadWithError:(NSError *)error {
+- (void)adView:(SASAdView *)adView didFailToLoadWithError:(NSError *)error {
     NSLog(@"Ad did fail to load... Aborting.");
     [self.mpCustomEvent.delegate interstitialCustomEvent:self.mpCustomEvent didFailToLoadAdWithError:error];
 }
@@ -37,6 +37,8 @@
 -(void)adViewDidDisappear:(SASAdView *)adView {
     if (adView == self.mpCustomEvent.interstitial) {
         NSLog(@"Ad view did disappear.");
+        [self.mpCustomEvent.interstitial.delegate dismissViewControllerAnimated:NO completion:nil];
+        [self.mpCustomEvent.interstitial.delegate removeFromParentViewController];
         [self.mpCustomEvent.delegate interstitialCustomEventWillDisappear:nil];
         [self.mpCustomEvent.delegate interstitialCustomEventDidDisappear:nil];
     }
@@ -63,12 +65,8 @@
     self.isFetch = false;
 
     NSLog(@"Setting navigation controller to current window...");
-    _window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 	InterstitialRootViewController *controller = [[InterstitialRootViewController alloc] init];
     controller.mpCustomEvent = self;
-	_navigationController = [[UINavigationController alloc] initWithRootViewController:controller];
-    
-    _window.rootViewController = _navigationController;
     
     NSLog(@"Preparing next interstitial...");
     SASInterstitialView *interstitial = [[SASInterstitialView alloc] initWithFrame:[[UIScreen mainScreen] bounds] loader:SASLoaderNone];
@@ -99,18 +97,25 @@
     }
 
     [_interstitial loadFormatId:self.formatId pageId:self.pageId master:YES target:nil timeout:self.timeOut];
+
+    //[_interstitial prefetchFormatId:self.formatId pageId:self.pageId master:YES target:nil];
     NSLog(@"Fetching next interstitial...");
 }
 
 - (void)showInterstitialFromRootViewController:(UIViewController *)rootViewController {
     if (self.isFetch) {
         NSLog(@"Displaying interstitial...");
-        [[[[[UIApplication sharedApplication] keyWindow] rootViewController] view] addSubview:_interstitial];
+
+        [rootViewController presentViewController:self.interstitial.delegate animated:NO completion:nil];
+        [[self.interstitial.delegate view] addSubview:_interstitial];
+        
         [self.delegate interstitialCustomEventWillAppear:nil];
     } else {
         NSLog(@"No ad fetch, aborting...");
         [self.delegate interstitialCustomEvent:self didFailToLoadAdWithError:nil];
     }
 }
+
+
 
 @end
