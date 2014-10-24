@@ -46,20 +46,28 @@ public class MoPubInitFunction implements FREFunction {
 		AdColonyUtils.init(activity, appVersion);
 		
 		// Google AdvertisingID :
-		MoPubExtension.log("Retrieving Google Advertising ID in a background thread ...");
-		(new AsyncTask<Void, Void, Void>() {
-			@Override
-			protected Void doInBackground(Void... params) {
-				try {
-					MoPubExtensionContext.advertisingId = AdvertisingIdClient.getAdvertisingIdInfo(activity).getId();
-					MoPubExtension.log("Android Advertising ID available : " + MoPubExtensionContext.advertisingId);
-				} catch (Exception e) {
-					MoPubExtension.logW("Exception trying to retrieve Advertising ID : " + e.toString());
-					e.printStackTrace();
+		try {
+			Class.forName("com.google.android.gms.ads.identifier.AdvertisingIdClient");
+			MoPubExtension.log("Retrieving Google Advertising ID in a background thread ...");
+			
+			(new AsyncTask<Void, Void, Void>() {
+				@Override
+				protected Void doInBackground(Void... params) {
+					try {
+						MoPubExtensionContext.advertisingId = AdvertisingIdClient.getAdvertisingIdInfo(activity).getId();
+						MoPubExtension.log("Android Advertising ID available : " + MoPubExtensionContext.advertisingId);
+					} catch (Exception e) {
+						MoPubExtension.logW("Exception trying to retrieve Advertising ID : " + e.toString());
+						e.printStackTrace();
+					}
+					return null;
 				}
-				return null;
-			}
-		}).execute();
+			}).execute();
+		}
+		catch (Exception e) {
+			MoPubExtension.logW("Exception trying to retrieve Advertising ID : " + e.toString());
+			e.printStackTrace();
+		}
 		
 		MoPubExtension.log("MoPub extension initialized successfully.");
 		
