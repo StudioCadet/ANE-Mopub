@@ -34,7 +34,7 @@
 /**
  * Native delegate to get success/failure response for the native ad.
  */
-@property (nonatomic, weak) id<IMNativeDelegate> delegate;
+@property (nonatomic, unsafe_unretained) id<IMNativeDelegate> delegate;
 
 /**
  * Initializes the native ad instance with the appId provided
