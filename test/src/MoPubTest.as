@@ -3,6 +3,8 @@ package {
 	import com.sticksports.nativeExtensions.mopub.MoPubBanner;
 	
 	import flash.display.Sprite;
+	import flash.display.StageAlign;
+	import flash.display.StageScaleMode;
 	import flash.events.MouseEvent;
 	import flash.text.TextField;
 	import flash.text.TextFormat;
@@ -23,6 +25,9 @@ package {
 		// CONSTRUCTOR
 		public function MoPubTest() {
 			super();
+			
+			stage.align = StageAlign.TOP_LEFT;
+			stage.scaleMode = StageScaleMode.SHOW_ALL;
 			
 			initDisplay();
 			initMoPub();
