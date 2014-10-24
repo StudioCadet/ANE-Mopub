@@ -13,9 +13,6 @@
 
 @interface MobviousInterstitialCustomEvent : MPInterstitialCustomEvent <UIApplicationDelegate>
 
-@property (nonatomic, retain) UINavigationController *navigationController;
-@property (nonatomic, retain) UIWindow *window;
-
 @property NSInteger formatId;
 @property (nonatomic, copy) NSString* pageId;
 @property (nonatomic) float timeOut;
