@@ -22,6 +22,9 @@
 		<copy todir="../bin/ios">
             <fileset dir="../ios/MoPubIosExtension/AdColony/SDK" />
 			<fileset dir="../ios/MoPubIosExtension/VidCoin/SDK" />
+            <fileset dir="../ios/MoPubIosExtension/Mobvious/SDK">
+                <include name="sas.bundle" />
+            </fileset>
 		</copy>
 
 		<exec executable="ibtool" failonerror="true">

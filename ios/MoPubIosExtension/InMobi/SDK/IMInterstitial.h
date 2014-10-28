@@ -83,20 +83,26 @@
  * @warning Whenever you release the Interstitial object, make sure to set its
  * delegate to nil to prevent any chance of your application crashing.
  */
-@property (nonatomic, weak) NSObject<IMInterstitialDelegate> *delegate;
+@property (nonatomic, unsafe_unretained) NSObject<IMInterstitialDelegate> *delegate;
 
 /**
  * Delegate object that receives the params when an incentivised action is complete. 
  * @warning Whenever you release the Interstitial object, make sure to set its
  * incentivisedDelegate to nil to prevent any chance of your application crashing.
  */
-@property (nonatomic, weak) NSObject<IMIncentivisedDelegate> *incentivisedDelegate;
+@property (nonatomic, unsafe_unretained) NSObject<IMIncentivisedDelegate> *incentivisedDelegate;
 /**
  * Returns the state of the interstitial ad. The delegate's
  * interstitialDidFinishRequest: will be called when this switches from the
  * kIMInterstitialStateInit state to the kIMInterstitialStateReady state.
  */
 @property (readonly) IMInterstitialState state;
+/**
+ * Set the adMode property to switch to app gallery mode.
+ * The default value is network.
+ */
+@property (nonatomic) IMAdMode adMode;
+
 /**
  * A free form NSDictionary for any demographic information,
  * not available via InMobi class.
