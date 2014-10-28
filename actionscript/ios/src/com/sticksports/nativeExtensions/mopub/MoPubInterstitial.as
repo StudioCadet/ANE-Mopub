@@ -76,6 +76,9 @@ package com.sticksports.nativeExtensions.mopub
 				case InternalMessages.interstitialClosed :
 					dispatchEvent( new MoPubEvent( MoPubEvent.AD_CLOSED ) );
 					break;
+				case InternalMessages.interstitialCancelled :
+					dispatchEvent( new MoPubEvent( MoPubEvent.INTERSTITIAL_CANCELLED ) );
+					break;
 			}
 		}
 

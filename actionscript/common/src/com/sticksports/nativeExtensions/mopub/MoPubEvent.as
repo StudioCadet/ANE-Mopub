@@ -15,6 +15,7 @@ package com.sticksports.nativeExtensions.mopub
 		// Interstitial only :
 		public static const INTERSTITIAL_SHOWN : String = "MoPubEvent.INTERSTITIAL_SHOWN";
 		public static const INTERSTITIAL_EXPIRED : String = "MoPubEvent.INTERSTITIAL_EXPIRED"; // -> iOS only
+		public static const INTERSTITIAL_CANCELLED : String = "MoPubEvent.INTERSTITIAL_CANCELLED"; // -> iOS only
 		
 		
 		public function MoPubEvent( type : String, bubbles : Boolean = false, cancelable : Boolean = false )

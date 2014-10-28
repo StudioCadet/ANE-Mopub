@@ -17,6 +17,7 @@ package com.sticksports.nativeExtensions.mopub
 		
 		// iOS only :
 		internal static const interstitialExpired : String = "interstitialExpired";
+		internal static const interstitialCancelled : String = "interstitialCancelled";
 		
 	}
 }
