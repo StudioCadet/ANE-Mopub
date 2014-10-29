@@ -25,8 +25,6 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self
                                                     name:MPMoviePlayerPlaybackDidFinishNotification
                                                   object:nil];
-
-    [super dealloc];
 }
 
 - (void)playVideo:(NSURL *)url

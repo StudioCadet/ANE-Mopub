@@ -24,8 +24,8 @@
 @interface MPAdAlertManager () <UIGestureRecognizerDelegate, MFMailComposeViewControllerDelegate>
 
 @property (nonatomic, assign) BOOL processedAlert;
-@property (nonatomic, retain) MPAdAlertGestureRecognizer *adAlertGestureRecognizer;
-@property (nonatomic, retain) MFMailComposeViewController *currentOpenMailVC;
+@property (nonatomic, strong) MPAdAlertGestureRecognizer *adAlertGestureRecognizer;
+@property (nonatomic, strong) MFMailComposeViewController *currentOpenMailVC;
 
 @end
 
@@ -50,30 +50,24 @@
         self.adAlertGestureRecognizer.delegate = self;
         self.processedAlert = NO;
     }
-    
+
     return self;
 }
 
 - (void)dealloc
 {
-    self.adConfiguration = nil;
     [self.adAlertGestureRecognizer removeTarget:self action:nil];
     self.adAlertGestureRecognizer.delegate = nil;
-    self.adAlertGestureRecognizer = nil;
-    self.adUnitId = nil;
-    self.location = nil;
     self.currentOpenMailVC.mailComposeDelegate = [MPLastResortDelegate sharedDelegate];
-    self.currentOpenMailVC = nil;
-    
-    [super dealloc];
+
 }
 
 - (void)processAdAlert
 {
     static NSDateFormatter *dateFormatter = nil;
-    
+
     MPLogInfo(@"MPAdAlertManager processing ad alert");
-    
+
     // don't even try if this device can't send emails
     if(![MFMailComposeViewController canSendMail])
     {
@@ -81,25 +75,25 @@
         {
             [self.delegate adAlertManagerDidProcessAlert:self];
         }
-        
+
         return;
     }
-    
+
     // since iOS 4, drawing an image to a graphics context is thread-safe
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^
     {
         // take screenshot of the ad
         UIGraphicsBeginImageContextWithOptions(self.targetAdView.bounds.size, YES, 0.0);
         [self.targetAdView.layer renderInContext:UIGraphicsGetCurrentContext()];
-        
+
         UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
         UIGraphicsEndImageContext();
-    
+
         dispatch_async(dispatch_get_main_queue(), ^
         {
             // package additional ad data
             NSMutableDictionary *params = [NSMutableDictionary dictionary];
-            
+
             [params setValue:@"iOS" forKey:@"platform"];
             [params setValue:[UIDevice currentDevice].systemVersion forKey:@"platform_version"];
             [params setValue:[MPIdentityProvider identifier] forKey:@"device_id"];
@@ -111,12 +105,12 @@
             [params setValue:[[NSLocale currentLocale] localeIdentifier] forKey:@"device_locale"];
             [params setValue:[self.location description] forKey:@"location"];
             [params setValue:MP_SDK_VERSION forKey:@"sdk_version"];
-            
+
             if(self.adConfiguration.hasPreferredSize)
             {
                 [params setValue:NSStringFromCGSize(self.adConfiguration.preferredSize) forKey:@"ad_size"];
             }
-            
+
             if(dateFormatter == nil)
             {
                 dateFormatter = [[NSDateFormatter alloc] init];
@@ -124,9 +118,9 @@
                 [dateFormatter setDateStyle:NSDateFormatterShortStyle];
             }
             [params setValue:[dateFormatter stringFromDate:self.adConfiguration.creationTimestamp] forKey:kTimestampParamKey];
-            
+
             [self processAdParams:params andScreenshot:image];
-            
+
             MPLogInfo(@"MPAdAlertManager finished processing ad alert");
         });
     });
@@ -135,7 +129,7 @@
 - (void)handleAdAlertGesture
 {
     MPLogInfo(@"MPAdAlertManager alert gesture recognized");
-    
+
     [self.delegate adAlertManagerDidTriggerAlert:self];
 }
 
@@ -144,31 +138,31 @@
     NSData *imageData = UIImagePNGRepresentation(screenshot);
     NSData *paramData =[[self stringFromDictionary:params] dataUsingEncoding:NSUTF8StringEncoding];
     NSData *markupData = self.adConfiguration.adResponseData;
-    
-    self.currentOpenMailVC = [[[MFMailComposeViewController alloc] init] autorelease];
+
+    self.currentOpenMailVC = [[MFMailComposeViewController alloc] init];
     self.currentOpenMailVC.mailComposeDelegate = self;
-    
+
     [self.currentOpenMailVC setToRecipients:[NSArray arrayWithObject:@"creative-review@mopub.com"]];
     [self.currentOpenMailVC setSubject:[NSString stringWithFormat:@"New creative violation report - %@", [params objectForKey:kTimestampParamKey]]];
     [self.currentOpenMailVC setMessageBody:@"" isHTML:YES];
-    
+
     if(imageData != nil)
     {
         [self.currentOpenMailVC addAttachmentData:imageData mimeType:@"image/png" fileName:@"mp_adalert_screenshot.png"];
     }
-    
+
     if(paramData != nil)
     {
         [self.currentOpenMailVC addAttachmentData:paramData mimeType:@"text/plain" fileName:@"mp_adalert_parameters.txt"];
     }
-    
+
     if(markupData != nil)
     {
         [self.currentOpenMailVC addAttachmentData:markupData mimeType:@"text/html" fileName:@"mp_adalert_markup.html"];
     }
-    
+
     [[self.delegate viewControllerForPresentingMailVC] mp_presentModalViewController:self.currentOpenMailVC animated:MP_ANIMATED];
-    
+
     if([self.delegate respondsToSelector:@selector(adAlertManagerDidProcessAlert:)])
     {
         [self.delegate adAlertManagerDidProcessAlert:self];
@@ -179,12 +173,12 @@
 - (NSString *)stringFromDictionary:(NSDictionary *)dictionary
 {
     NSMutableString *result = [NSMutableString string];
-    
+
     for(NSString *key in [dictionary allKeys])
     {
         [result appendFormat:@"%@ : %@\n", key, [dictionary objectForKey:key]];
     }
-    
+
     return result;
 }
 
@@ -193,13 +187,13 @@
 - (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error
 {
     self.currentOpenMailVC = nil;
-    
+
     // reset processed state to allow the user to alert on this ad again
     if(result == MFMailComposeResultCancelled || result == MFMailComposeResultFailed)
     {
         self.processedAlert = NO;
     }
-    
+
     [[self.delegate viewControllerForPresentingMailVC] mp_dismissModalViewControllerAnimated:MP_ANIMATED];
 }
 
@@ -209,10 +203,10 @@
 {
     [self.targetAdView removeGestureRecognizer:self.adAlertGestureRecognizer];
     [self.targetAdView addGestureRecognizer:self.adAlertGestureRecognizer];
-    
+
     // dynamically set minimum tracking distance to account for all ad sizes
     self.adAlertGestureRecognizer.minTrackedDistanceForZigZag = self.targetAdView.bounds.size.width / 3;
-    
+
     self.processedAlert = NO;
 }
 
@@ -222,9 +216,9 @@
     {
         return;
     }
-    
+
     self.processedAlert = YES;
-    
+
     [self processAdAlert];
 }
 

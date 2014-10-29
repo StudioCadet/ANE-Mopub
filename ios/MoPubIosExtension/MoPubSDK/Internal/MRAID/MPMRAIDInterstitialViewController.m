@@ -11,8 +11,8 @@
 
 @interface MPMRAIDInterstitialViewController ()
 
-@property (nonatomic, retain) MRAdView *interstitialView;
-@property (nonatomic, retain) MPAdConfiguration *configuration;
+@property (nonatomic, strong) MRAdView *interstitialView;
+@property (nonatomic, strong) MPAdConfiguration *configuration;
 @property (nonatomic, assign) BOOL advertisementHasCustomCloseButton;
 
 @end
@@ -50,9 +50,6 @@
 - (void)dealloc
 {
     self.interstitialView.delegate = nil;
-    self.interstitialView = nil;
-    self.configuration = nil;
-    [super dealloc];
 }
 
 - (void)viewDidLoad

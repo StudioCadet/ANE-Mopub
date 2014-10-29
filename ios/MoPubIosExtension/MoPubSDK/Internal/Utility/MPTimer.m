@@ -8,10 +8,11 @@
 
 #import "MPTimer.h"
 #import "MPLogging.h"
+#import "MPInternalUtils.h"
 
 @interface MPTimer ()
 @property (nonatomic, assign) NSTimeInterval timeInterval;
-@property (nonatomic, retain) NSTimer *timer;
+@property (nonatomic, strong) NSTimer *timer;
 @property (nonatomic, copy) NSDate *pauseDate;
 @property (nonatomic, assign) BOOL isPaused;
 @property (nonatomic, assign) NSTimeInterval secondsLeft;
@@ -19,7 +20,7 @@
 
 @interface MPTimer ()
 
-@property (nonatomic, assign) id target;
+@property (nonatomic, weak) id target;
 @property (nonatomic, assign) SEL selector;
 
 @end
@@ -49,22 +50,19 @@
                                      repeats:repeats];
     timer.timeInterval = seconds;
     timer.runLoopMode = NSDefaultRunLoopMode;
-    return [timer autorelease];
+    return timer;
 }
 
 - (void)dealloc
 {
     [self.timer invalidate];
-    self.timer = nil;
-    self.pauseDate = nil;
-    [_runLoopMode release];
-
-    [super dealloc];
 }
 
 - (void)timerDidFire
 {
-    [self.target performSelector:self.selector];
+    SUPPRESS_PERFORM_SELECTOR_LEAK_WARNING(
+        [self.target performSelector:self.selector withObject:nil]
+    );
 }
 
 - (BOOL)isValid
@@ -91,7 +89,7 @@
 
     for (CFIndex i = 0; i < count; ++i) {
         CFStringRef runLoopMode = CFArrayGetValueAtIndex(arrayRef, i);
-        if (CFRunLoopContainsTimer(runLoopRef, (CFRunLoopTimerRef)self.timer, runLoopMode)) {
+        if (CFRunLoopContainsTimer(runLoopRef, (__bridge CFRunLoopTimerRef)self.timer, runLoopMode)) {
             CFRelease(arrayRef);
             return YES;
         }

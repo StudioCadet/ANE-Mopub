@@ -44,7 +44,7 @@ typedef NSUInteger MRAdViewAdType;
 
 @interface MRAdView : UIView <UIWebViewDelegate, MPAdDestinationDisplayAgentDelegate, MRCalendarManagerDelegate, MRPictureManagerDelegate, MRVideoPlayerManagerDelegate> {
     // This view's delegate object.
-    id<MRAdViewDelegate> _delegate;
+    id<MRAdViewDelegate> __weak _delegate;
 
     // The underlying webview.
     UIWebView *_webView;
@@ -83,10 +83,10 @@ typedef NSUInteger MRAdViewAdType;
     MRAdViewAdType _adType;
 }
 
-@property (nonatomic, assign) id<MRAdViewDelegate> delegate;
+@property (nonatomic, weak) id<MRAdViewDelegate> delegate;
 @property (nonatomic, assign) BOOL usesCustomCloseButton;
 @property (nonatomic, assign) BOOL expanded;
-@property (nonatomic, retain) MRAdViewDisplayController *displayController;
+@property (nonatomic, strong) MRAdViewDisplayController *displayController;
 @property (nonatomic, assign) MRAdViewAdType adType;
 
 - (id)initWithFrame:(CGRect)frame allowsExpansion:(BOOL)expansion

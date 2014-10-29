@@ -8,6 +8,7 @@
 
 #import "VidCoinInterstitialCustomEvent.h"
 #import "MPLogging.h"
+#import "MoPubInterstitial.h"
 
 /*
  * This adapter needs that you set some parameters in the MoPub web interface. Create a network
@@ -91,6 +92,8 @@ static BOOL isInitialized = false;
 -(void)vidcoinViewDidDisappearWithViewInformation:(NSDictionary *)viewInfo {
     if ([[viewInfo objectForKey: @"statusCode"] integerValue] != VCStatusCodeSuccess) {
         NSLog(@"Something went wrong or the user cancelled the VidCoin video...");
+        [MoPubInterstitial interstitialDidCancel:nil];
+        return;
     }
     
     NSLog(@"VidCoin video disappear...");

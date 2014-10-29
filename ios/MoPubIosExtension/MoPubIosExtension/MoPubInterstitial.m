@@ -9,6 +9,8 @@
 #import "MoPubInterstitial.h"
 #import "MoPubInternalMessages.h"
 
+static FREContext staticContext;
+
 @interface MoPubInterstitial ()
 {
 }
@@ -23,6 +25,8 @@
 
 - (id) initWithContext:(FREContext)extensionContext adUnitId:(NSString*)adUnitId
 {
+    staticContext = extensionContext;
+    
     self = [super init];
     
     if( self )
@@ -94,6 +98,12 @@
 - (void)interstitialDidExpire:(MPInterstitialAdController *)interstitial
 {
     FREDispatchStatusEventAsync( context, "", interstitialExpired );
+}
+
++ (void)interstitialDidCancel:(MPInterstitialAdController *)interstitial
+{
+    if (staticContext)
+        FREDispatchStatusEventAsync( staticContext, "", interstitialCancelled );
 }
 
 @end

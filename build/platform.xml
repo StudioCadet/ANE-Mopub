@@ -21,6 +21,8 @@
         <option>-framework AdColony</option>
         <option>-framework VidCoin</option>
         <option>-weak_framework CoreMotion</option>
+        <option>-weak_framework iAd</option>
+        <option>-framework CoreLocation</option>
 
 		<option>-lsqlite3</option>
 		<option>-lz</option>

@@ -17,9 +17,9 @@ static NSString * const kMoPubHTTPHeaderContentType = @"Content-Type";
 
 @interface MPURLResolver ()
 
-@property (nonatomic, retain) NSURL *URL;
-@property (nonatomic, retain) NSURLConnection *connection;
-@property (nonatomic, retain) NSMutableData *responseData;
+@property (nonatomic, strong) NSURL *URL;
+@property (nonatomic, strong) NSURLConnection *connection;
+@property (nonatomic, strong) NSMutableData *responseData;
 @property (nonatomic, assign) NSStringEncoding responseEncoding;
 
 - (BOOL)handleURL:(NSURL *)URL;
@@ -40,17 +40,9 @@ static NSString * const kMoPubHTTPHeaderContentType = @"Content-Type";
 
 + (MPURLResolver *)resolver
 {
-    return [[[MPURLResolver alloc] init] autorelease];
+    return [[MPURLResolver alloc] init];
 }
 
-- (void)dealloc
-{
-    self.URL = nil;
-    self.connection = nil;
-    self.responseData = nil;
-
-    [super dealloc];
-}
 
 - (void)startResolvingWithURL:(NSURL *)URL delegate:(id<MPURLResolverDelegate>)delegate
 {
@@ -162,27 +154,29 @@ static NSString * const kMoPubHTTPHeaderContentType = @"Content-Type";
 - (NSStringEncoding)stringEncodingFromContentType:(NSString *)contentType
 {
     NSStringEncoding encoding = NSUTF8StringEncoding;
-    
+
     if (![contentType length]) {
         MPLogWarn(@"Attempting to set string encoding from nil %@", kMoPubHTTPHeaderContentType);
         return encoding;
     }
-    
+
     NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"(?<=charset=)[^;]*" options:kNilOptions error:nil];
-    
+
     NSTextCheckingResult *charsetResult = [regex firstMatchInString:contentType options:kNilOptions range:NSMakeRange(0, [contentType length])];
     if (charsetResult && charsetResult.range.location != NSNotFound) {
         NSString *charset = [contentType substringWithRange:[charsetResult range]];
-        
-        CFStringRef cfCharset = (CFStringRef)charset;
-        
+
+        // ensure that charset is not deallocated early
+        CFStringRef cfCharset = CFBridgingRetain(charset);
         CFStringEncoding cfEncoding = CFStringConvertIANACharSetNameToEncoding(cfCharset);
+        CFBridgingRelease(cfCharset);
+
         if (cfEncoding == kCFStringEncodingInvalidId) {
             return encoding;
         }
         encoding = CFStringConvertEncodingToNSStringEncoding(cfEncoding);
     }
-    
+
     return encoding;
 }
 
@@ -213,7 +207,7 @@ static NSString * const kMoPubHTTPHeaderContentType = @"Content-Type";
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
-    [self.delegate showWebViewWithHTMLString:[[[NSString alloc] initWithData:self.responseData encoding:self.responseEncoding] autorelease] baseURL:self.URL];
+    [self.delegate showWebViewWithHTMLString:[[NSString alloc] initWithData:self.responseData encoding:self.responseEncoding] baseURL:self.URL];
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error

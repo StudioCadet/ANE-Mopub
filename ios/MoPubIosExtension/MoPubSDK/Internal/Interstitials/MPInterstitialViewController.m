@@ -38,11 +38,6 @@ static NSString * const kCloseButtonXImageName = @"MPCloseButtonX.png";
 @synthesize isOnViewControllerStack = _isOnViewControllerStack;
 @synthesize delegate = _delegate;
 
-- (void)dealloc
-{
-    self.closeButton = nil;
-    [super dealloc];
-}
 
 - (void)viewDidLoad
 {
@@ -123,7 +118,7 @@ static NSString * const kCloseButtonXImageName = @"MPCloseButtonX.png";
 - (UIButton *)closeButton
 {
     if (!_closeButton) {
-        _closeButton = [[UIButton buttonWithType:UIButtonTypeCustom] retain];
+        _closeButton = [UIButton buttonWithType:UIButtonTypeCustom];
         _closeButton.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin |
         UIViewAutoresizingFlexibleBottomMargin;
 

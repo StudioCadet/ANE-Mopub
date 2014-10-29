@@ -29,15 +29,15 @@ static NSString *const kMoPubPrecacheCompleteHost = @"precacheComplete";
 
 @interface MRAdView () <UIGestureRecognizerDelegate, MRCommandDelegate>
 
-@property (nonatomic, retain) NSMutableData *data;
-@property (nonatomic, retain) MPAdDestinationDisplayAgent *destinationDisplayAgent;
-@property (nonatomic, retain) MRCalendarManager *calendarManager;
-@property (nonatomic, retain) MRPictureManager *pictureManager;
-@property (nonatomic, retain) MRVideoPlayerManager *videoPlayerManager;
-@property (nonatomic, retain) MRJavaScriptEventEmitter *jsEventEmitter;
-@property (nonatomic, retain) id<MPAdAlertManagerProtocol> adAlertManager;
+@property (nonatomic, strong) NSMutableData *data;
+@property (nonatomic, strong) MPAdDestinationDisplayAgent *destinationDisplayAgent;
+@property (nonatomic, strong) MRCalendarManager *calendarManager;
+@property (nonatomic, strong) MRPictureManager *pictureManager;
+@property (nonatomic, strong) MRVideoPlayerManager *videoPlayerManager;
+@property (nonatomic, strong) MRJavaScriptEventEmitter *jsEventEmitter;
+@property (nonatomic, strong) id<MPAdAlertManagerProtocol> adAlertManager;
 @property (nonatomic, assign) BOOL userInteractedWithWebView;
-@property (nonatomic, retain) MPUserInteractionGestureRecognizer *userInteractionRecognizer;
+@property (nonatomic, strong) MPUserInteractionGestureRecognizer *userInteractionRecognizer;
 @property (nonatomic, assign) BOOL shouldHandleRequests;
 
 - (void)loadRequest:(NSURLRequest *)request;
@@ -90,7 +90,7 @@ static NSString *const kMoPubPrecacheCompleteHost = @"precacheComplete";
         self.backgroundColor = [UIColor clearColor];
         self.opaque = NO;
 
-        _webView = [[[MPInstanceProvider sharedProvider] buildUIWebViewWithFrame:frame] retain];
+        _webView = [[MPInstanceProvider sharedProvider] buildUIWebViewWithFrame:frame];
         _webView.autoresizingMask = UIViewAutoresizingFlexibleWidth |
                 UIViewAutoresizingFlexibleHeight;
         _webView.backgroundColor = [UIColor clearColor];
@@ -109,7 +109,7 @@ static NSString *const kMoPubPrecacheCompleteHost = @"precacheComplete";
 
         [self addSubview:_webView];
 
-        _closeButton = [[UIButton buttonWithType:UIButtonTypeCustom] retain];
+        _closeButton = [UIButton buttonWithType:UIButtonTypeCustom];
         _closeButton.frame = CGRectMake(0, 0, 50, 50);
         UIImage *image = [UIImage imageNamed:kExpandableCloseButtonImageName];
         [_closeButton setImage:image forState:UIControlStateNormal];
@@ -126,27 +126,27 @@ static NSString *const kMoPubPrecacheCompleteHost = @"precacheComplete";
 
         [_closeButton addTarget:_displayController action:@selector(closeButtonPressed) forControlEvents:UIControlEventTouchUpInside];
 
-        _destinationDisplayAgent = [[[MPCoreInstanceProvider sharedProvider]
-                                    buildMPAdDestinationDisplayAgentWithDelegate:self] retain];
-        _calendarManager = [[[MPInstanceProvider sharedProvider]
-                             buildMRCalendarManagerWithDelegate:self] retain];
-        _pictureManager = [[[MPInstanceProvider sharedProvider]
-                             buildMRPictureManagerWithDelegate:self] retain];
-        _videoPlayerManager = [[[MPInstanceProvider sharedProvider]
-                                buildMRVideoPlayerManagerWithDelegate:self] retain];
-        _jsEventEmitter = [[[MPInstanceProvider sharedProvider]
-                             buildMRJavaScriptEventEmitterWithWebView:_webView] retain];
+        _destinationDisplayAgent = [[MPCoreInstanceProvider sharedProvider]
+                                    buildMPAdDestinationDisplayAgentWithDelegate:self];
+        _calendarManager = [[MPInstanceProvider sharedProvider]
+                             buildMRCalendarManagerWithDelegate:self];
+        _pictureManager = [[MPInstanceProvider sharedProvider]
+                             buildMRPictureManagerWithDelegate:self];
+        _videoPlayerManager = [[MPInstanceProvider sharedProvider]
+                                buildMRVideoPlayerManagerWithDelegate:self];
+        _jsEventEmitter = [[MPInstanceProvider sharedProvider]
+                             buildMRJavaScriptEventEmitterWithWebView:_webView];
 
         self.adAlertManager = [[MPCoreInstanceProvider sharedProvider] buildMPAdAlertManagerWithDelegate:self];
 
         self.adType = MRAdViewAdTypeDefault;
 
-        self.userInteractionRecognizer = [[[MPUserInteractionGestureRecognizer alloc] initWithTarget:self action:@selector(handleInteraction:)] autorelease];
+        self.userInteractionRecognizer = [[MPUserInteractionGestureRecognizer alloc] initWithTarget:self action:@selector(handleInteraction:)];
         self.userInteractionRecognizer.cancelsTouchesInView = NO;
         [self addGestureRecognizer:self.userInteractionRecognizer];
         self.userInteractionRecognizer.delegate = self;
 
-        // XXX jren: inline videos seem to delay tap gesture recognition so that we get the click through
+        // inline videos seem to delay tap gesture recognition so that we get the click through
         // request in the webview delegate BEFORE we get the gesture recognizer triggered callback. For now
         // excuse all MRAID interstitials from the user interaction requirement.
         if (_placementType == MRAdViewPlacementTypeInterstitial) {
@@ -159,26 +159,14 @@ static NSString *const kMoPubPrecacheCompleteHost = @"precacheComplete";
 - (void)dealloc
 {
     _webView.delegate = nil;
-    [_webView release];
-    [_closeButton release];
-    [_data release];
-    [_displayController release];
     [_destinationDisplayAgent setDelegate:nil];
-    [_destinationDisplayAgent release];
     [_calendarManager setDelegate:nil];
-    [_calendarManager release];
     [_pictureManager setDelegate:nil];
-    [_pictureManager release];
     [_videoPlayerManager setDelegate:nil];
-    [_videoPlayerManager release];
-    [_jsEventEmitter release];
     self.adAlertManager.targetAdView = nil;
     self.adAlertManager.delegate = nil;
-    self.adAlertManager = nil;
     self.userInteractionRecognizer.delegate = nil;
     [self.userInteractionRecognizer removeTarget:self action:nil];
-    self.userInteractionRecognizer = nil;
-    [super dealloc];
 }
 
 - (void)handleInteraction:(UITapGestureRecognizer *)sender
@@ -338,7 +326,7 @@ static NSString *const kMoPubPrecacheCompleteHost = @"precacheComplete";
 
 - (NSMutableString *)HTMLWithJavaScriptBridge:(NSString *)HTML
 {
-    NSMutableString *resultHTML = [[HTML mutableCopy] autorelease];
+    NSMutableString *resultHTML = [HTML mutableCopy];
 
     if ([self HTMLStringIsMRAIDFragment:HTML]) {
         MPLogDebug(@"Fragment detected: converting to full payload.");
@@ -372,7 +360,7 @@ static NSString *const kMoPubPrecacheCompleteHost = @"precacheComplete";
     [result insertString:prepend atIndex:0];
     [result appendString:@"</body></html>"];
 
-    return [result autorelease];
+    return result;
 }
 
 - (NSString *)MRAIDScriptPath
@@ -507,7 +495,6 @@ static NSString *const kMoPubPrecacheCompleteHost = @"precacheComplete";
 {
     NSString *str = [[NSString alloc] initWithData:self.data encoding:NSUTF8StringEncoding];
     [self loadHTMLString:str baseURL:nil];
-    [str release];
 }
 
 #pragma mark - UIWebViewDelegate

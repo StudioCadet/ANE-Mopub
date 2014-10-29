@@ -26,7 +26,7 @@
 
 @interface MRCommand : NSObject
 
-@property (nonatomic, assign) id<MRCommandDelegate> delegate;
+@property (nonatomic, weak) id<MRCommandDelegate> delegate;
 
 + (id)commandForString:(NSString *)string;
 

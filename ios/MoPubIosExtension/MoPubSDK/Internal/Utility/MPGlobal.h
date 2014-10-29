@@ -2,7 +2,6 @@
 //  MPGlobal.h
 //  MoPub
 //
-//  Created by Andrew He on 5/5/11.
 //  Copyright 2011 MoPub, Inc. All rights reserved.
 //
 
@@ -22,8 +21,7 @@ CGFloat MPDeviceScaleFactor(void);
 NSDictionary *MPDictionaryFromQueryString(NSString *query);
 NSString *MPSHA1Digest(NSString *string);
 BOOL MPViewIsVisible(UIView *view);
-BOOL MPViewIntersectsKeyWindowWithPercent(UIView *view, CGFloat percentVisible);
-BOOL MPViewIntersectsApplicationWindowWithPercent(UIView *view, CGFloat percentVisible);
+BOOL MPViewIntersectsParentWindowWithPercent(UIView *view, CGFloat percentVisible);
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 

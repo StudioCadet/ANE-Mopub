@@ -18,6 +18,7 @@
 #import "MPUserInteractionGestureRecognizer.h"
 #import "NSJSONSerialization+MPAdditions.h"
 #import "NSURL+MPAdditions.h"
+#import "MPInternalUtils.h"
 
 #ifndef NSFoundationVersionNumber_iOS_6_1
 #define NSFoundationVersionNumber_iOS_6_1 993.00
@@ -33,12 +34,12 @@ NSString * const kMoPubCustomHost = @"custom";
 
 @interface MPAdWebViewAgent () <UIGestureRecognizerDelegate>
 
-@property (nonatomic, retain) MPAdConfiguration *configuration;
-@property (nonatomic, retain) MPAdDestinationDisplayAgent *destinationDisplayAgent;
+@property (nonatomic, strong) MPAdConfiguration *configuration;
+@property (nonatomic, strong) MPAdDestinationDisplayAgent *destinationDisplayAgent;
 @property (nonatomic, assign) BOOL shouldHandleRequests;
-@property (nonatomic, retain) id<MPAdAlertManagerProtocol> adAlertManager;
+@property (nonatomic, strong) id<MPAdAlertManagerProtocol> adAlertManager;
 @property (nonatomic, assign) BOOL userInteractedWithWebView;
-@property (nonatomic, retain) MPUserInteractionGestureRecognizer *userInteractionRecognizer;
+@property (nonatomic, strong) MPUserInteractionGestureRecognizer *userInteractionRecognizer;
 
 - (void)performActionForMoPubSpecificURL:(NSURL *)URL;
 - (BOOL)shouldIntercept:(NSURL *)URL navigationType:(UIWebViewNavigationType)navigationType;
@@ -70,7 +71,7 @@ NSString * const kMoPubCustomHost = @"custom";
         self.shouldHandleRequests = YES;
         self.adAlertManager = [[MPCoreInstanceProvider sharedProvider] buildMPAdAlertManagerWithDelegate:self];
 
-        self.userInteractionRecognizer = [[[MPUserInteractionGestureRecognizer alloc] initWithTarget:self action:@selector(handleInteraction:)] autorelease];
+        self.userInteractionRecognizer = [[MPUserInteractionGestureRecognizer alloc] initWithTarget:self action:@selector(handleInteraction:)];
         self.userInteractionRecognizer.cancelsTouchesInView = NO;
         [self.view addGestureRecognizer:self.userInteractionRecognizer];
         self.userInteractionRecognizer.delegate = self;
@@ -82,17 +83,11 @@ NSString * const kMoPubCustomHost = @"custom";
 {
     self.userInteractionRecognizer.delegate = nil;
     [self.userInteractionRecognizer removeTarget:self action:nil];
-    self.userInteractionRecognizer = nil;
     self.adAlertManager.targetAdView = nil;
     self.adAlertManager.delegate = nil;
-    self.adAlertManager = nil;
-    self.configuration = nil;
     [self.destinationDisplayAgent cancel];
     [self.destinationDisplayAgent setDelegate:nil];
-    self.destinationDisplayAgent = nil;
     self.view.delegate = nil;
-    self.view = nil;
-    [super dealloc];
 }
 
 - (void)handleInteraction:(UITapGestureRecognizer *)sender
@@ -253,7 +248,9 @@ NSString * const kMoPubCustomHost = @"custom";
     SEL oneArgumentSelector = NSSelectorFromString(oneArgumentSelectorName);
 
     if ([self.customMethodDelegate respondsToSelector:zeroArgumentSelector]) {
-        [self.customMethodDelegate performSelector:zeroArgumentSelector];
+        SUPPRESS_PERFORM_SELECTOR_LEAK_WARNING(
+            [self.customMethodDelegate performSelector:zeroArgumentSelector withObject:nil]
+        );
     } else if ([self.customMethodDelegate respondsToSelector:oneArgumentSelector]) {
         NSData *data = [[queryParameters objectForKey:@"data"] dataUsingEncoding:NSUTF8StringEncoding];
         NSDictionary *dataDictionary = nil;
@@ -261,8 +258,9 @@ NSString * const kMoPubCustomHost = @"custom";
             dataDictionary = [NSJSONSerialization mp_JSONObjectWithData:data options:NSJSONReadingMutableContainers clearNullObjects:YES error:nil];
         }
 
-        [self.customMethodDelegate performSelector:oneArgumentSelector
-                                        withObject:dataDictionary];
+        SUPPRESS_PERFORM_SELECTOR_LEAK_WARNING(
+            [self.customMethodDelegate performSelector:oneArgumentSelector withObject:dataDictionary]
+        );
     } else {
         MPLogError(@"Custom method delegate does not implement custom selectors %@ or %@.",
                    selectorName, oneArgumentSelectorName);

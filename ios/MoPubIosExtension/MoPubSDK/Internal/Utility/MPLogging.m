@@ -36,7 +36,7 @@ void _MPLog(NSString *format, va_list args)
         sObfuscatedIdentifier = [[MPIdentityProvider obfuscatedIdentifier] copy];
     }
 
-    NSString *logString = [[[NSString alloc] initWithFormat:format arguments:args] autorelease];
+    NSString *logString = [[NSString alloc] initWithFormat:format arguments:args];
 
     // Replace identifier with a obfuscated version when logging.
     logString = [logString stringByReplacingOccurrencesOfString:sIdentifier withString:sObfuscatedIdentifier];

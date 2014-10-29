@@ -12,7 +12,7 @@
 
 @interface MRJavaScriptEventEmitter ()
 
-@property (nonatomic, retain) UIWebView *webView;
+@property (nonatomic, strong) UIWebView *webView;
 
 @end
 
@@ -33,11 +33,6 @@
     return self;
 }
 
-- (void)dealloc
-{
-    self.webView = nil;
-    [super dealloc];
-}
 
 - (NSString *)executeJavascript:(NSString *)javascript, ... {
     va_list args;
@@ -73,7 +68,7 @@
 }
 
 - (NSString *)executeJavascript:(NSString *)javascript withVarArgs:(va_list)args {
-    NSString *js = [[[NSString alloc] initWithFormat:javascript arguments:args] autorelease];
+    NSString *js = [[NSString alloc] initWithFormat:javascript arguments:args];
     return [_webView stringByEvaluatingJavaScriptFromString:js];
 }
 

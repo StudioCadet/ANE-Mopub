@@ -12,7 +12,7 @@
 
 @interface MPHTMLInterstitialCustomEvent ()
 
-@property (nonatomic, retain) MPHTMLInterstitialViewController *interstitial;
+@property (nonatomic, strong) MPHTMLInterstitialViewController *interstitial;
 
 @end
 
@@ -36,8 +36,6 @@
 {
     [self.interstitial setDelegate:nil];
     [self.interstitial setCustomMethodDelegate:nil];
-    self.interstitial = nil;
-    [super dealloc];
 }
 
 - (void)showInterstitialFromRootViewController:(UIViewController *)rootViewController

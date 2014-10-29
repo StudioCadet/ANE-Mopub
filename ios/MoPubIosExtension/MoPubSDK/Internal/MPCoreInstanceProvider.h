@@ -40,6 +40,8 @@ typedef enum {
 + (instancetype)sharedProvider;
 - (id)singletonForClass:(Class)klass provider:(MPSingletonProviderBlock)provider;
 
+- (void)keepObjectAliveForCurrentRunLoopIteration:(id)anObject;
+
 #pragma mark - Fetching Ads
 - (NSMutableURLRequest *)buildConfiguredURLRequestWithURL:(NSURL *)URL;
 - (MPAdServerCommunicator *)buildMPAdServerCommunicatorWithDelegate:(id<MPAdServerCommunicatorDelegate>)delegate;

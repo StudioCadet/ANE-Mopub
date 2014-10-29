@@ -20,5 +20,6 @@
 - (void) setKeywords:(NSString *)keywords;
 - (void) loadInterstitial;
 - (BOOL) showInterstitial;
++ (void)interstitialDidCancel:(MPInterstitialAdController *)interstitial;
 
 @end

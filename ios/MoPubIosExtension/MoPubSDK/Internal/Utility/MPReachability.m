@@ -70,7 +70,6 @@ typedef enum {
     {
         CFRelease(reachabilityRef);
     }
-    [super dealloc];
 }
 
 + (MPReachability*) reachabilityWithAddress: (const struct sockaddr_in*) hostAddress;
@@ -79,7 +78,7 @@ typedef enum {
     MPReachability* retVal = NULL;
     if(reachability!= NULL)
     {
-        retVal= [[[self alloc] init] autorelease];
+        retVal= [[self alloc] init];
         if(retVal!= NULL)
         {
             retVal->reachabilityRef = reachability;

@@ -28,7 +28,7 @@
 @synthesize placementType = _placementType;
 
 + (MRPlacementTypeProperty *)propertyWithType:(MRAdViewPlacementType)type {
-    MRPlacementTypeProperty *property = [[[self alloc] init] autorelease];
+    MRPlacementTypeProperty *property = [[self alloc] init];
     property.placementType = type;
     return property;
 }
@@ -53,7 +53,7 @@
 @synthesize state = _state;
 
 + (MRStateProperty *)propertyWithState:(MRAdViewState)state {
-    MRStateProperty *property = [[[self alloc] init] autorelease];
+    MRStateProperty *property = [[self alloc] init];
     property.state = state;
     return property;
 }
@@ -78,7 +78,7 @@
 @synthesize screenSize = _screenSize;
 
 + (MRScreenSizeProperty *)propertyWithSize:(CGSize)size {
-    MRScreenSizeProperty *property = [[[self alloc] init] autorelease];
+    MRScreenSizeProperty *property = [[self alloc] init];
     property.screenSize = size;
     return property;
 }
@@ -124,7 +124,7 @@
 
 + (MRSupportsProperty *)propertyWithSupportedFeaturesDictionary:(NSDictionary *)dictionary
 {
-    MRSupportsProperty *property = [[[self alloc] init] autorelease];
+    MRSupportsProperty *property = [[self alloc] init];
     property.supportsSms = [[dictionary objectForKey:@"sms"] boolValue];
     property.supportsTel = [[dictionary objectForKey:@"tel"] boolValue];
     property.supportsCalendar = [[dictionary objectForKey:@"calendar"] boolValue];
@@ -157,7 +157,7 @@
 @synthesize isViewable = _isViewable;
 
 + (MRViewableProperty *)propertyWithViewable:(BOOL)viewable {
-    MRViewableProperty *property = [[[self alloc] init] autorelease];
+    MRViewableProperty *property = [[self alloc] init];
     property.isViewable = viewable;
     return property;
 }
