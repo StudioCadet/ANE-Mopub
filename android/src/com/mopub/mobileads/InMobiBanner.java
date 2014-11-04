@@ -85,7 +85,6 @@ public class InMobiBanner extends CustomEventBanner implements IMBannerListener 
 		            	MoPubExtension.log("Exception while trying to remove an InMobiBanner : " + e);
 		            }
 					finally {
-						iMBanner.destroy();
 		            	iMBanner = null;
 		            	MoPubExtension.log("InMobi banner removed.");
 		            }
