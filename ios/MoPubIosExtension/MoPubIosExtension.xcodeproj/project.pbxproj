@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0192511519FAAFE200F6267E /* libInMobi-4.4.1.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0192511419FAAFE200F6267E /* libInMobi-4.4.1.a */; };
 		01B4A75719F63F19008BBB36 /* MobviousUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 01B4A75519F63F19008BBB36 /* MobviousUtils.h */; };
 		01B4A75819F63F19008BBB36 /* MobviousUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 01B4A75619F63F19008BBB36 /* MobviousUtils.m */; };
 		349B4DBE1946F1CE00184794 /* InMobiBannerCustomEvent.h in Headers */ = {isa = PBXBuildFile; fileRef = 349B4DB91946F1CE00184794 /* InMobiBannerCustomEvent.h */; };
@@ -235,6 +234,7 @@
 		483B182319FFEDBE00660DCC /* MPTableViewAdPlacer.m in Sources */ = {isa = PBXBuildFile; fileRef = 483B175919FFEDBE00660DCC /* MPTableViewAdPlacer.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		483B182419FFEE8900660DCC /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79A6D52A1636DFB1009DA60A /* CoreLocation.framework */; };
 		483B182619FFEEC300660DCC /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 483B182519FFEEC300660DCC /* iAd.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		483B18281A08E63200660DCC /* libInMobi-4.5.1.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 483B18271A08E63200660DCC /* libInMobi-4.5.1.a */; };
 		48927F5E19BEE01100059A88 /* VidCoin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48927F5B19BEE01100059A88 /* VidCoin.framework */; };
 		48927F5F19BEE01100059A88 /* VidCoinInterstitialCustomEvent.h in Headers */ = {isa = PBXBuildFile; fileRef = 48927F5C19BEE01100059A88 /* VidCoinInterstitialCustomEvent.h */; };
 		48927F6019BEE01100059A88 /* VidCoinInterstitialCustomEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 48927F5D19BEE01100059A88 /* VidCoinInterstitialCustomEvent.m */; };
@@ -313,7 +313,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		0192511419FAAFE200F6267E /* libInMobi-4.4.1.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libInMobi-4.4.1.a"; sourceTree = "<group>"; };
 		01B4A75519F63F19008BBB36 /* MobviousUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobviousUtils.h; sourceTree = "<group>"; };
 		01B4A75619F63F19008BBB36 /* MobviousUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MobviousUtils.m; sourceTree = "<group>"; };
 		349B4DB91946F1CE00184794 /* InMobiBannerCustomEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InMobiBannerCustomEvent.h; sourceTree = "<group>"; };
@@ -546,6 +545,7 @@
 		483B175C19FFEDBE00660DCC /* MPCloseButtonX@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MPCloseButtonX@2x.png"; sourceTree = "<group>"; };
 		483B175D19FFEDBE00660DCC /* MRAID.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MRAID.bundle; sourceTree = "<group>"; };
 		483B182519FFEEC300660DCC /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
+		483B18271A08E63200660DCC /* libInMobi-4.5.1.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libInMobi-4.5.1.a"; sourceTree = "<group>"; };
 		48927F5A19BEE01100059A88 /* VidCoin.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = VidCoin.bundle; sourceTree = "<group>"; };
 		48927F5B19BEE01100059A88 /* VidCoin.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = VidCoin.framework; sourceTree = "<group>"; };
 		48927F5C19BEE01100059A88 /* VidCoinInterstitialCustomEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VidCoinInterstitialCustomEvent.h; sourceTree = "<group>"; };
@@ -639,6 +639,7 @@
 				48A468AA1966C60600171565 /* AdColony.framework in Frameworks */,
 				489280F019C03E2500059A88 /* libChartboost.a in Frameworks */,
 				79F66B1B1652882800E917FB /* AdSupport.framework in Frameworks */,
+				483B18281A08E63200660DCC /* libInMobi-4.5.1.a in Frameworks */,
 				79BF9891174A1DB80038F1F1 /* AudioToolbox.framework in Frameworks */,
 				79BF9895174A1DCA0038F1F1 /* AVFoundation.framework in Frameworks */,
 				34FBB5A4190FE3DD005402C5 /* CFNetwork.framework in Frameworks */,
@@ -650,7 +651,6 @@
 				79A6D48C1636C14D009DA60A /* Foundation.framework in Frameworks */,
 				79BF9899174A1DDA0038F1F1 /* MediaPlayer.framework in Frameworks */,
 				79BF9893174A1DC50038F1F1 /* MessageUI.framework in Frameworks */,
-				0192511519FAAFE200F6267E /* libInMobi-4.4.1.a in Frameworks */,
 				79BF989B174A1DE50038F1F1 /* MobileCoreServices.framework in Frameworks */,
 				483B14E619F7BA4B00660DCC /* libGoogleConversionTracking.a in Frameworks */,
 				79F87A48177B35DA0047359B /* PassKit.framework in Frameworks */,
@@ -1133,7 +1133,7 @@
 		48A468AB1975573D00171565 /* SDK */ = {
 			isa = PBXGroup;
 			children = (
-				0192511419FAAFE200F6267E /* libInMobi-4.4.1.a */,
+				483B18271A08E63200660DCC /* libInMobi-4.5.1.a */,
 				48A468AC1975573D00171565 /* IMBanner.h */,
 				48A468AD1975573D00171565 /* IMBannerDelegate.h */,
 				48A468AE1975573D00171565 /* IMConstants.h */,
