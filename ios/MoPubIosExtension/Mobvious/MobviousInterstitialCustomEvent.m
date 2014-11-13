@@ -37,7 +37,7 @@
 -(void)adViewDidDisappear:(SASAdView *)adView {
     if (adView == self.mpCustomEvent.interstitial) {
         NSLog(@"Ad view did disappear.");
-        [self.mpCustomEvent.interstitial.delegate dismissViewControllerAnimated:NO completion:nil];
+        [self.mpCustomEvent.interstitial.delegate dismissViewControllerAnimated:YES completion:^{[self dismissModalViewControllerAnimated:YES];}];
         [self.mpCustomEvent.interstitial.delegate removeFromParentViewController];
         [self.mpCustomEvent.delegate interstitialCustomEventWillDisappear:nil];
         [self.mpCustomEvent.delegate interstitialCustomEventDidDisappear:nil];
@@ -45,6 +45,8 @@
 }
 
 -(void)dealloc {
+    self.mpCustomEvent.interstitial.delegate = nil;
+    self.mpCustomEvent.interstitial = nil;
     self.mpCustomEvent = nil;
     [super dealloc];
 }

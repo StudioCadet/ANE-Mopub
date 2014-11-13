@@ -17,7 +17,7 @@
 @property (nonatomic, copy) NSString* pageId;
 @property (nonatomic) float timeOut;
 
-@property (nonatomic, retain) SASInterstitialView *interstitial;
+@property (nonatomic, strong) SASInterstitialView *interstitial;
 @property Boolean isFetch;
 
 @end
