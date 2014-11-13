@@ -14,6 +14,7 @@ public class SASUtils {
 	private static final String SAS_PAGE_ID_KEY = "pageId";
 	private static final String SAS_FORMAT_ID_KEY = "formatId";
 	private static final String SAS_TARGET_KEY = "target";
+	private static final String SAS_RETRY_DELAY_KEY = "retryDelay";
 	
 	
 	/**
@@ -42,5 +43,12 @@ public class SASUtils {
 	 */
 	public static String getTargetFromServerExtras(Map<String, String> serverExtras) {
 		return ExtraUtils.getString(serverExtras, SAS_TARGET_KEY);
+	}
+	
+	/**
+	 * Returns the retry delay from the server extras, or null if none is found.
+	 */
+	public static Integer getRetryDelayFromServerExtras(Map<String, String> serverExtras) {
+		return ExtraUtils.getInt(serverExtras, SAS_RETRY_DELAY_KEY);
 	}
 }
