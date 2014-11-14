@@ -1,5 +1,6 @@
 package com.mopub.mobileads;
 
+import java.util.Date;
 import java.util.Map;
 
 import android.content.Context;
@@ -11,6 +12,9 @@ import com.smartadserver.android.library.ui.SASAdView;
 import com.smartadserver.android.library.ui.SASAdView.StateChangeEvent;
 import com.sticksports.nativeExtensions.mopub.MoPubExtension;
 
+/**
+ * Mopub adapter for Smart Ad Server.
+ */
 public class SASInterstitial extends CustomEventInterstitial implements SASAdView.AdResponseHandler, SASAdView.OnStateChangeListener, View.OnClickListener {
 
 	// PROPERTIES :
@@ -27,7 +31,12 @@ public class SASInterstitial extends CustomEventInterstitial implements SASAdVie
 	private Integer formatId;
 	/** The Target got from MoPub server. */
 	private String target;
-
+	/** The delay in seconds before retrying to show a Mobvious interstitial ad since the last impression failure. */
+	private Integer retryDelay;
+	
+	/** The timestamp the last impression failed. */
+	private static long lastImpressionFailedAt = 0;
+	
 
 	//////////////////////////
 	// CUSTOM EVENT METHODS //
@@ -46,24 +55,25 @@ public class SASInterstitial extends CustomEventInterstitial implements SASAdVie
 		pageId = SASUtils.getPageIdFromServerExtras(serverExtras);
 		formatId = SASUtils.getFormatIdFromServerExtras(serverExtras);
 		target = SASUtils.getTargetFromServerExtras(serverExtras);
+		retryDelay = SASUtils.getRetryDelayFromServerExtras(serverExtras);
 
-		/////////////////////
-		siteId = 64714;
-		pageId = "497342";
-		formatId = 9769;
-		target = "";
-		////////////////////		
-
-		if(siteId == null || pageId == null || formatId == null || target == null) {
+		if(siteId == null || pageId == null || formatId == null || target == null || retryDelay == null) {
 			MoPubExtension.logE("Invalid SmartAdServer parameters ! Configure network on MoPub to provide custom data : "
-					+ "{\"siteId\":YOUR_SITE_ID, \"pageId\":YOUR_PAGE_ID, \"formatId\":YOUR_FORMAT_ID, \"target\":YOUR_TARGET}");
+					+ "{\"siteId\":YOUR_SITE_ID, \"pageId\":YOUR_PAGE_ID, \"formatId\":YOUR_FORMAT_ID, \"target\":YOUR_TARGET, \"retryDelay\":DELAY_IN_SECONDS}");
 			listener.onInterstitialFailed(MoPubErrorCode.ADAPTER_CONFIGURATION_ERROR);
 			return;
 		}
-
-		MoPubExtension.log("Prepared to display a SAS interstitial with parameters : [siteId:" + siteId + ", pageId:" + pageId + ", formatId:" + formatId + ", target:" + target + "]");
-		MoPubExtension.log("Faking a successful fetch.");
-		listener.onInterstitialLoaded();
+		
+		if(lastImpressionFailedAt > 0 && (new Date().getTime() - lastImpressionFailedAt) < (retryDelay * 1000)) {
+			MoPubExtension.log("Last SAS attempt failed too soon ago. Telling MoPub the fetch failed.");
+			listener.onInterstitialFailed(MoPubErrorCode.NETWORK_NO_FILL);
+		}
+		else {
+			MoPubExtension.log("Faking fetch of an SAS interstitial ad with parameters : "
+					+ "[siteId:" + siteId + ", pageId:" + pageId + ", formatId:" + formatId + ", target:" + target + ", retryDelay:" + retryDelay + "]");
+			lastImpressionFailedAt = 0;
+			listener.onInterstitialLoaded();
+		}
 	}
 
 	@Override
@@ -108,15 +118,14 @@ public class SASInterstitial extends CustomEventInterstitial implements SASAdVie
 	@Override
 	public void adLoadingFailed(Exception e) {
 		MoPubExtension.logW("SAS interstitial failed to load : " + e.toString());
+		MoPubExtension.log("SAS interstitial ads will be disabled for " + retryDelay + " seconds.");
+		lastImpressionFailedAt = new Date().getTime();
+		
 		if(interstitial != null) {
 			interstitial.executeOnUIThread(new Runnable() {
 				@Override public void run() {
-					if(listener != null)
+					if(listener != null) 
 						listener.onInterstitialDismissed();
-					//
-					//listener.onInterstitialFailed(MoPubErrorCode.NETWORK_NO_FILL);
-					// -> this cannot work because this is a "fetch failed" error type for MoPub, let MoPub think the 
-					//	  ad is simply dismissed without being shown
 				}
 			});
 		}

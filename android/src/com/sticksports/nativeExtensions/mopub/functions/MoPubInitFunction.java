@@ -7,6 +7,8 @@ import com.adobe.fre.FREContext;
 import com.adobe.fre.FREFunction;
 import com.adobe.fre.FREObject;
 import com.google.android.gms.ads.identifier.AdvertisingIdClient;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.mopub.mobileads.AdColonyUtils;
 import com.mopub.mobileads.ChartboostUtils;
 import com.mopub.mobileads.InMobiUtils;
@@ -46,27 +48,32 @@ public class MoPubInitFunction implements FREFunction {
 		AdColonyUtils.init(activity, appVersion);
 		
 		// Google AdvertisingID :
-		try {
-			Class.forName("com.google.android.gms.ads.identifier.AdvertisingIdClient");
-			MoPubExtension.log("Retrieving Google Advertising ID in a background thread ...");
-			
-			(new AsyncTask<Void, Void, Void>() {
-				@Override
-				protected Void doInBackground(Void... params) {
-					try {
-						MoPubExtensionContext.advertisingId = AdvertisingIdClient.getAdvertisingIdInfo(activity).getId();
-						MoPubExtension.log("Android Advertising ID available : " + MoPubExtensionContext.advertisingId);
-					} catch (Exception e) {
-						MoPubExtension.logW("Exception trying to retrieve Advertising ID : " + e.toString());
-						e.printStackTrace();
-					}
-					return null;
-				}
-			}).execute();
+		if(GooglePlayServicesUtil.isGooglePlayServicesAvailable(context.getActivity()) != ConnectionResult.SUCCESS) {
+			MoPubExtension.log("The Google Play Services cannot be used to retrieve the Google Advertising ID.");
 		}
-		catch (Exception e) {
-			MoPubExtension.logW("Exception trying to retrieve Advertising ID : " + e.toString());
-			e.printStackTrace();
+		else {
+			try {
+				Class.forName("com.google.android.gms.ads.identifier.AdvertisingIdClient");
+				MoPubExtension.log("Retrieving Google Advertising ID in a background thread ...");
+				
+				(new AsyncTask<Void, Void, Void>() {
+					@Override
+					protected Void doInBackground(Void... params) {
+						try {
+							MoPubExtensionContext.advertisingId = AdvertisingIdClient.getAdvertisingIdInfo(activity).getId();
+							MoPubExtension.log("Android Advertising ID available : " + MoPubExtensionContext.advertisingId);
+						} catch (Exception e) {
+							MoPubExtension.logW("Exception trying to retrieve Advertising ID : " + e.toString());
+							e.printStackTrace();
+						}
+						return null;
+					}
+				}).execute();
+			}
+			catch (Exception e) {
+				MoPubExtension.logW("Exception trying to retrieve Advertising ID : " + e.toString());
+				e.printStackTrace();
+			}
 		}
 		
 		MoPubExtension.log("MoPub extension initialized successfully.");
