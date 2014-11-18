@@ -31,7 +31,6 @@
 		483B14DB19F7B9EE00660DCC /* AdMobConversionTracking.h in Headers */ = {isa = PBXBuildFile; fileRef = 483B14D919F7B9EE00660DCC /* AdMobConversionTracking.h */; };
 		483B14DC19F7B9EE00660DCC /* AdMobConversionTracking.m in Sources */ = {isa = PBXBuildFile; fileRef = 483B14DA19F7B9EE00660DCC /* AdMobConversionTracking.m */; };
 		483B14E319F7BA4B00660DCC /* ACTReporter.h in Headers */ = {isa = PBXBuildFile; fileRef = 483B14DD19F7BA4B00660DCC /* ACTReporter.h */; };
-		483B14E419F7BA4B00660DCC /* GoogleConversionPing.h in Headers */ = {isa = PBXBuildFile; fileRef = 483B14DF19F7BA4B00660DCC /* GoogleConversionPing.h */; };
 		483B14E519F7BA4B00660DCC /* DCTReporter.h in Headers */ = {isa = PBXBuildFile; fileRef = 483B14E119F7BA4B00660DCC /* DCTReporter.h */; };
 		483B14E619F7BA4B00660DCC /* libGoogleConversionTracking.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 483B14E219F7BA4B00660DCC /* libGoogleConversionTracking.a */; };
 		483B175E19FFEDBE00660DCC /* MPBannerAdManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 483B168819FFEDBE00660DCC /* MPBannerAdManager.h */; };
@@ -338,7 +337,6 @@
 		483B14D919F7B9EE00660DCC /* AdMobConversionTracking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdMobConversionTracking.h; sourceTree = "<group>"; };
 		483B14DA19F7B9EE00660DCC /* AdMobConversionTracking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdMobConversionTracking.m; sourceTree = "<group>"; };
 		483B14DD19F7BA4B00660DCC /* ACTReporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACTReporter.h; sourceTree = "<group>"; };
-		483B14DF19F7BA4B00660DCC /* GoogleConversionPing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoogleConversionPing.h; sourceTree = "<group>"; };
 		483B14E119F7BA4B00660DCC /* DCTReporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCTReporter.h; sourceTree = "<group>"; };
 		483B14E219F7BA4B00660DCC /* libGoogleConversionTracking.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGoogleConversionTracking.a; sourceTree = "<group>"; };
 		483B168819FFEDBE00660DCC /* MPBannerAdManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPBannerAdManager.h; sourceTree = "<group>"; };
@@ -748,19 +746,10 @@
 			isa = PBXGroup;
 			children = (
 				483B14DD19F7BA4B00660DCC /* ACTReporter.h */,
-				483B14DE19F7BA4B00660DCC /* Deprecated */,
 				483B14E019F7BA4B00660DCC /* DoubleClick */,
 				483B14E219F7BA4B00660DCC /* libGoogleConversionTracking.a */,
 			);
 			path = SDK;
-			sourceTree = "<group>";
-		};
-		483B14DE19F7BA4B00660DCC /* Deprecated */ = {
-			isa = PBXGroup;
-			children = (
-				483B14DF19F7BA4B00660DCC /* GoogleConversionPing.h */,
-			);
-			path = Deprecated;
 			sourceTree = "<group>";
 		};
 		483B14E019F7BA4B00660DCC /* DoubleClick */ = {
@@ -1372,7 +1361,6 @@
 				483B176319FFEDBE00660DCC /* MPBaseBannerAdapter.h in Headers */,
 				483B17E219FFEDBE00660DCC /* MPInterstitialCustomEvent.h in Headers */,
 				483B17B219FFEDBE00660DCC /* MRPictureManager.h in Headers */,
-				483B14E419F7BA4B00660DCC /* GoogleConversionPing.h in Headers */,
 				483B176719FFEDBE00660DCC /* MPPrivateBannerCustomEventDelegate.h in Headers */,
 				48927F5F19BEE01100059A88 /* VidCoinInterstitialCustomEvent.h in Headers */,
 				48E89B05199CD6B0007C857D /* AFAdSDKAdBadgeView.h in Headers */,
