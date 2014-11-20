@@ -482,9 +482,9 @@ DEFINE_ANE_FUNCTION( mopub_trackConversion )
     NSString *itunesAppId = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"itunesAppId"];
     
     [[MPAdConversionTracker sharedConversionTracker] reportApplicationOpenForApplicationID:itunesAppId];
-    
+
     [AdMobConversionTracking trackConversion];
-    
+
     return NULL;
 }
 

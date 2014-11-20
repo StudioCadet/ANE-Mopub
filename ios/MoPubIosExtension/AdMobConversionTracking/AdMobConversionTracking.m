@@ -12,7 +12,13 @@
 
 +(void)trackConversion {
     NSLog(@"Tracking AdMob install if needed...");
-    [ACTConversionReporter reportWithConversionID:@"995500816" label:@"_HMJCliw1AgQkMbY2gM" value:@"0.60" isRepeatable:NO];
+    
+    NSString *conversionId = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"ADMOB_CONVERSION_ID"];
+    NSString *label = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"ADMOB_CONVERSION_LABEL"];
+    NSString *value = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"ADMOB_CONVERSION_VALUE"];
+
+    [ACTAutomatedUsageTracker disableAutomatedUsageReportingWithConversionID:conversionId];
+    [ACTConversionReporter reportWithConversionID:conversionId label:label value:value isRepeatable:NO];
 }
 
 @end
