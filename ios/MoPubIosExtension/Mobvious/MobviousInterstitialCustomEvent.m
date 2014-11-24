@@ -12,24 +12,34 @@
 
 #define kDefaultTimeOut 10
 
+/** The last time an impression request failed. */
+static NSDate *lastImpressionFailedAt = nil;
+
+//////////////////////////////////////////////////////////////////////////////////////////////////
+
 @implementation InterstitialRootViewController
 
 - (void)adView:(SASAdView *)adView didDownloadAd:(SASAd *)ad {
     if (adView == self.mpCustomEvent.interstitial) {
         NSLog(@"Ad did load successfuly.");
         [self.mpCustomEvent.delegate interstitialCustomEvent:self.mpCustomEvent didLoadAd:nil];
-        self.mpCustomEvent.isFetch = true;
     }
 }
 
 - (void)adView:(SASAdView *)adView didFailToLoadWithError:(NSError *)error {
-    NSLog(@"Ad did fail to load... Aborting.");
-    [self.mpCustomEvent.delegate interstitialCustomEvent:self.mpCustomEvent didFailToLoadAdWithError:error];
+    if (adView == self.mpCustomEvent.interstitial) {
+        NSLog(@"Ad did fail to load... Aborting.");
+        lastImpressionFailedAt = [[NSDate alloc] init];
+        [self.mpCustomEvent.delegate interstitialCustomEvent:self.mpCustomEvent didFailToLoadAdWithError:error];
+    }
 }
 
 -(void)adViewDidLoad:(SASAdView *)adView {
     if (adView == self.mpCustomEvent.interstitial) {
-        NSLog(@"Ad view did load.");
+        NSLog(@"Ad view did load. Displaying the ad.");
+        [self.mpCustomEvent.delegate interstitialCustomEventWillAppear:nil];
+        [self.mpCustomEvent.rootViewController presentViewController:self animated:NO completion:nil];
+        [self.view addSubview:self.mpCustomEvent.interstitial];
         [self.mpCustomEvent.delegate interstitialCustomEventDidAppear:nil];
     }
 }
@@ -47,6 +57,7 @@
 -(void)dealloc {
     self.mpCustomEvent.interstitial.delegate = nil;
     self.mpCustomEvent.interstitial = nil;
+    self.mpCustomEvent.rootViewController = nil;
     self.mpCustomEvent = nil;
     [super dealloc];
 }
@@ -54,68 +65,73 @@
 @end
 
 
+//////////////////////////////////////////////////////////////////////////////////////////////////
+
+
 @implementation MobviousInterstitialCustomEvent
 
 #pragma mark - MPInterstitialCustomEvent Subclass Methods
 
 - (void)requestInterstitialWithCustomEventInfo:(NSDictionary *)info {
+    
+    // Init Mobvious SDK :
     if (![MobviousUtils initializeMobviousIfNecessary:info]) {
         [self.delegate interstitialCustomEvent:self didFailToLoadAdWithError:nil];
         return;
     }
 
-    self.isFetch = false;
-
+    // Create the InterstitialRootViewController instance to display ad into :
     NSLog(@"Setting navigation controller to current window...");
 	InterstitialRootViewController *controller = [[InterstitialRootViewController alloc] init];
     controller.mpCustomEvent = self;
     
+    // Create a Mobvious interstitial :
     NSLog(@"Preparing next interstitial...");
     SASInterstitialView *interstitial = [[SASInterstitialView alloc] initWithFrame:[[UIScreen mainScreen] bounds] loader:SASLoaderNone];
     self.interstitial = interstitial;
     [interstitial release];
 
     NSLog(@"Setting interstitial delegate...");
-    _interstitial.delegate = controller;
+    self.interstitial.delegate = controller;
 
+    // Get parameters from MoPub :
     NSLog(@"Fetching MoPub configs...");
-    if ([info objectForKey:@"MobviousFormatId"] && [info objectForKey:@"MobviousPageId"]) {
-        NSLog(@"Setting the MobviousFormatId and the MobviousPageId.");
-        NSLog(@"Format ID: %@", [info objectForKey:@"MobviousFormatId"]);
-        self.formatId = (NSInteger)[[info objectForKey:@"MobviousFormatId"] intValue];
-        NSLog(@"Page ID: %@", [info objectForKey:@"MobviousPageId"]);
-        self.pageId = [info objectForKey:@"MobviousPageId"];
-    } else {
-        NSLog(@"No MobviousFormatId or MobviousPageId to set, aborting...");
+    if(![info objectForKey:@"MobviousFormatId"] || ![info objectForKey:@"MobviousPageId"] || ![info objectForKey:@"MobviousRetryDelay"]) {
+        NSLog(@"Invalid Mobvious configuration on Mopub server ! Check that MobviousFormatId, MobviousPageId and MobviousRetryDelay are set.");
         [self.delegate interstitialCustomEvent:self didFailToLoadAdWithError:nil];
         return ;
     }
-
+    
+    self.formatId = (NSInteger)[[info objectForKey:@"MobviousFormatId"] intValue];
+    self.pageId = [info objectForKey:@"MobviousPageId"];
+    self.retryDelay = (NSInteger)[[info objectForKey:@"MobviousRetryDelay"] intValue];
+    NSLog(@"Mobvious parameters set to {MobviousFormatID:%d, MobviousPageId:%@, MobviousRetryDelay:%d", self.formatId, self.pageId, self.retryDelay);
+    
     NSLog(@"Setting time out...");
     self.timeOut = kDefaultTimeOut;
     if ([info objectForKey:@"MobviousTimeOut"]) {
-        NSLog(@"Time out: %@", [info objectForKey:@"MobviousTimeOut"]);
         self.timeOut = [[info objectForKey:@"MobviousTimeOut"] floatValue];
+        NSLog(@"Time out: %f", self.timeOut);
     }
-
-    [_interstitial loadFormatId:self.formatId pageId:self.pageId master:YES target:nil timeout:self.timeOut];
-
-    //[_interstitial prefetchFormatId:self.formatId pageId:self.pageId master:YES target:nil];
-    NSLog(@"Fetching next interstitial...");
+    
+    // Last impression failed too soon ago, tell Mopub there is no ad to display :
+    if(lastImpressionFailedAt != nil && fabs([lastImpressionFailedAt timeIntervalSinceNow]) < self.retryDelay) {
+        NSLog(@"Last Mobvious attempt failed too soon ago. Telling MoPub the fetch failed.");
+        [self.delegate interstitialCustomEvent:self didFailToLoadAdWithError:nil];
+    }
+    
+    // Tell MoPub we have an ad :
+    else {
+        NSLog(@"Faking fetch of a Mobvious interstitial ad.");
+        lastImpressionFailedAt = nil;
+        [self.delegate interstitialCustomEvent:self didLoadAd:nil];
+    }
 }
 
 - (void)showInterstitialFromRootViewController:(UIViewController *)rootViewController {
-    if (self.isFetch) {
-        NSLog(@"Displaying interstitial...");
-
-        [rootViewController presentViewController:self.interstitial.delegate animated:NO completion:nil];
-        [[self.interstitial.delegate view] addSubview:_interstitial];
-        
-        [self.delegate interstitialCustomEventWillAppear:nil];
-    } else {
-        NSLog(@"No ad fetch, aborting...");
-        [self.delegate interstitialCustomEvent:self didFailToLoadAdWithError:nil];
-    }
+    NSLog(@"Showing a master interstitial ad with parameters {MobviousFormatID:%d, MobviousPageId:%@, MobviousRetryDelay:%d", self.formatId, self.pageId, self.retryDelay);
+    self.rootViewController = rootViewController;
+    [self.interstitial loadFormatId:self.formatId pageId:self.pageId master:YES target:nil timeout:self.timeOut];
 }
 
 

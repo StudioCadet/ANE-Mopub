@@ -21,7 +21,7 @@ static Boolean mobviousIsInitialized = false;
     NSLog(@"Initializing Mobvious...");
         
     if (![info objectForKey:@"MobviousSiteID"] || ![info objectForKey:@"MobviousBaseURL"]) {
-        NSLog(@"No MobviousSiteID or MobviousBaseURL to set, cannot initialize Mobivous.");
+        NSLog(@"No MobviousSiteID or MobviousBaseURL to set, cannot initialize Mobvious.");
         return NO;
     }
         
