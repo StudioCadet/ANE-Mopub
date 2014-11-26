@@ -14,10 +14,10 @@ package {
 		public static const MP_INTERSTITIAL:String = "AdUnit.MoPub.Interstitial";
 		
 		// MOPUB AD UNITS IDS :
-		private static const BANNER_ANDROID_PHONE:String = "d05738372502469292b6e918d2cae6d0";
-		private static const BANNER_ANDROID_TABLET:String = "05f2805b3dfb49eca210d27e1f269a4f";
-		private static const INTERSTITIAL_ANDROID_PHONE:String = "2183904862784cc1934742cdc1259036";
-		private static const INTERSTITIAL_ANDROID_TABLET:String = "436f37975ca54f3f8545a8760a12d45a";
+		private static const BANNER_ANDROID_PHONE:String = "de63996bf3f94e4e8ff187af08634920";
+		private static const BANNER_ANDROID_TABLET:String = "8243ba627fbd439f980f5a37b03384d9";
+		private static const INTERSTITIAL_ANDROID_PHONE:String = "befd6d8c0be64b82ae82c344af80ffcd";
+		private static const INTERSTITIAL_ANDROID_TABLET:String = "a804bb16844d427faf0a42f57f17280d";
 		
 		private static const BANNER_IOS_PHONE:String = "cdb21cb5ba924d108ecaeafb0f01d7fd";
 		private static const BANNER_IOS_TABLET:String = "de0f282607fd4fdf9e17f49286129304";

@@ -15,7 +15,7 @@
 
 	<!-- A universally unique application identifier. Must be unique across all AIR applications.
 	Using a reverse DNS-style name as the id is recommended. (Eg. com.example.ExampleApplication.) Required. -->
-	<id>MoPubTest</id>
+	<id>com.studiocadet.mopubtest</id>
 
 	<!-- Used as the filename for the application. Required. -->
 	<filename>MoPubTest</filename>
@@ -89,7 +89,7 @@
 
         <!-- The aspect ratio of the app ("portrait" or "landscape" or "any"). Optional. Mobile only. Default is the natural orientation of the device -->
 
-        <!-- <aspectRatio></aspectRatio> -->
+        <aspectRatio>portrait</aspectRatio>
 
         <!-- Whether the app will begin auto-orienting on launch. Optional. Mobile only. Default false -->
 
@@ -263,9 +263,11 @@
     <!-- </android> -->
 	<!-- End of the schema for adding the android specific tags in AndroidManifest.xml file -->
 
-<android>
+	<android>
         <manifestAdditions><![CDATA[
 			<manifest android:installLocation="auto">
+				
+				<uses-sdk android:minSdkVersion="13" android:targetSdkVersion="20" />
 			    
 			    <!-- MoPub -->
 				<uses-permission android:name="android.permission.INTERNET" />  
@@ -277,11 +279,12 @@
 				<uses-permission android:name="android.permission.READ_PHONE_STATE"/>
 			    
 			    <application>
+			    	
 			    	<!-- MoPub -->
-					<activity android:name="com.mopub.mobileads.MoPubActivity" android:configChanges="keyboardHidden|orientation"/>
-					<activity android:name="com.mopub.mobileads.MraidActivity" android:configChanges="keyboardHidden|orientation"/>
-					<activity android:name="com.mopub.common.MoPubBrowser" android:configChanges="keyboardHidden|orientation"/>
-					<activity android:name="com.mopub.mobileads.MraidVideoPlayerActivity" android:configChanges="keyboardHidden|orientation"/>
+					<activity android:name="com.mopub.mobileads.MoPubActivity" android:configChanges="keyboardHidden|orientation|screenSize"/>
+					<activity android:name="com.mopub.mobileads.MraidActivity" android:configChanges="keyboardHidden|orientation|screenSize"/>
+					<activity android:name="com.mopub.common.MoPubBrowser" android:configChanges="keyboardHidden|orientation|screenSize"/>
+					<activity android:name="com.mopub.mobileads.MraidVideoPlayerActivity" android:configChanges="keyboardHidden|orientation|screenSize"/>
 					
 					<!-- MoPub : InMobi mediation -->
 					<meta-data android:name="IN_MOBI_PROPERTY_ID" android:value="eea9feccefe944e9859b03c6b82e9f76" />
