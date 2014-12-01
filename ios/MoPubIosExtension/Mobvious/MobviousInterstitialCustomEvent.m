@@ -22,7 +22,8 @@ static NSDate *lastImpressionFailedAt = nil;
 - (void)adView:(SASAdView *)adView didDownloadAd:(SASAd *)ad {
     if (adView == self.mpCustomEvent.interstitial) {
         NSLog(@"Ad did load successfuly.");
-        [self.mpCustomEvent.delegate interstitialCustomEvent:self.mpCustomEvent didLoadAd:nil];
+        //[self.mpCustomEvent.delegate interstitialCustomEvent:self.mpCustomEvent didLoadAd:nil];
+        // -> we faked it earlier, no need to trigger the Mopub event
     }
 }
 
@@ -30,7 +31,12 @@ static NSDate *lastImpressionFailedAt = nil;
     if (adView == self.mpCustomEvent.interstitial) {
         NSLog(@"Ad did fail to load... Aborting.");
         lastImpressionFailedAt = [[NSDate alloc] init];
-        [self.mpCustomEvent.delegate interstitialCustomEvent:self.mpCustomEvent didFailToLoadAdWithError:error];
+        //[self.mpCustomEvent.delegate interstitialCustomEvent:self.mpCustomEvent didFailToLoadAdWithError:error];
+        // -> Mopub doesn't expect this event now, bypass it
+        
+        NSLog(@"Telling Mopub the ad is dimissed.");
+        [self.mpCustomEvent.delegate interstitialCustomEventWillDisappear:self.mpCustomEvent];
+        [self.mpCustomEvent.delegate interstitialCustomEventDidDisappear:self.mpCustomEvent];
     }
 }
 
@@ -40,7 +46,7 @@ static NSDate *lastImpressionFailedAt = nil;
         [self.mpCustomEvent.delegate interstitialCustomEventWillAppear:nil];
         [self.mpCustomEvent.rootViewController presentViewController:self animated:NO completion:nil];
         [self.view addSubview:self.mpCustomEvent.interstitial];
-        [self.mpCustomEvent.delegate interstitialCustomEventDidAppear:nil];
+        [self.mpCustomEvent.delegate interstitialCustomEventDidAppear:self.mpCustomEvent];
     }
 }
 
@@ -49,8 +55,8 @@ static NSDate *lastImpressionFailedAt = nil;
         NSLog(@"Ad view did disappear.");
         [self.mpCustomEvent.interstitial.delegate dismissViewControllerAnimated:YES completion:^{[self dismissModalViewControllerAnimated:YES];}];
         [self.mpCustomEvent.interstitial.delegate removeFromParentViewController];
-        [self.mpCustomEvent.delegate interstitialCustomEventWillDisappear:nil];
-        [self.mpCustomEvent.delegate interstitialCustomEventDidDisappear:nil];
+        [self.mpCustomEvent.delegate interstitialCustomEventWillDisappear:self.mpCustomEvent];
+        [self.mpCustomEvent.delegate interstitialCustomEventDidDisappear:self.mpCustomEvent];
     }
 }
 
