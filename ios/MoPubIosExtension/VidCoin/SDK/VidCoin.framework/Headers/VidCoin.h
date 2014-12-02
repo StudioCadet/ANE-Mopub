@@ -6,6 +6,14 @@
 //  Copyright (c) 2014 VidCoin. All rights reserved.
 //
 
+/*****************************************************************/
+// VidCoin iOS SDK
+//
+// SDK Version Number : v1.2.0
+// Release Date : Nov. 14th 2014
+// Github repository : https://github.com/VidCoin/VidCoin-iOS-SDK
+/*****************************************************************/
+
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
