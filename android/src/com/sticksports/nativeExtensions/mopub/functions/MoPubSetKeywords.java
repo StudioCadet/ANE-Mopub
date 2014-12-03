@@ -26,6 +26,7 @@ public class MoPubSetKeywords implements FREFunction {
 		String language = FREUtils.getString(args, 3);
 		String[] additionalKeywordsKeys = FREUtils.getStringArray(args, 4);
 		String[] additionalKeywordsValues = FREUtils.getStringArray(args, 5);
+		String inMobiInterests = FREUtils.getString(args, 6);
 		
 		// Prepare parameters :
 		Date dateOfBirth = null;
@@ -46,7 +47,8 @@ public class MoPubSetKeywords implements FREFunction {
 		}
 		
 		// Set Mopub keywords :
-		MoPubExtension.log("Setting keywords : {age:" + age + "; dateOfBirth:" + dateOfBirth + "; gender:" + gender +"; language:" + language + "; additionnalKeywords:" + additionalKeywordsString + "}");
+		MoPubExtension.log("Setting keywords : {age:" + age + "; dateOfBirth:" + dateOfBirth + "; gender:" + gender +"; language:" + language + "; "
+				+ "additionnalKeywords:" + additionalKeywordsString + "}; inMobiInterests:[" + inMobiInterests + "]");
 		if(MoPubExtensionContext.keywords == null)
 			MoPubExtensionContext.keywords = new MoPubKeywords();
 		
@@ -55,7 +57,6 @@ public class MoPubSetKeywords implements FREFunction {
 		MoPubExtensionContext.keywords.gender = gender;
 		MoPubExtensionContext.keywords.language = language;
 		MoPubExtensionContext.keywords.additionalKeywords = additionalKeywords;
-		
 		
 		// Setting InMobi keywords (in try/catch to avoid crashes for simple stuff like that) :
 		MoPubExtension.log("Passing keywords to InMobi ...");
@@ -80,6 +81,11 @@ public class MoPubSetKeywords implements FREFunction {
 		if(language != null)
 			try { InMobi.setLanguage(language); }
 			catch(Exception e) { MoPubExtension.log("	-> Failed to set InMobi language to " + language);  }
+		
+		if(inMobiInterests != null) {
+			try { InMobi.setInterests(inMobiInterests); }
+			catch(Exception e) { MoPubExtension.log("	-> Failed to set InMobi interests to " + inMobiInterests);  }
+		}
 		
 		MoPubExtension.log("InMobi's keywords set successfully.");
 		

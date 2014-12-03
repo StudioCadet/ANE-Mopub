@@ -101,7 +101,8 @@ package com.sticksports.nativeExtensions.mopub
 				keywords.gender, 
 				keywords.language, 
 				keywords.additionalKeywordsKeys, 
-				keywords.additionalKeywordsValues
+				keywords.additionalKeywordsValues,
+				keywords.inMobiInterests != null ? keywords.inMobiInterests.join(",") : null
 			);
 		}
 	}

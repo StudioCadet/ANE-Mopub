@@ -110,6 +110,7 @@ package {
 			keywords.gender = Math.random() > .5 ? MoPubKeywords.GENDER_F : MoPubKeywords.GENDER_M;
 			keywords.language = Math.random() > .5 ? "eng" : "fre";
 			keywords.setAdditionalKeywords({property1:"Value1", property2:"Value2", property3:"Value3"});
+			keywords.setInMobiInterests("Business", "Travel", "Business", "InvalidInterest");
 			trace("Setting keywords : " + keywords + " ...");
 			MoPub.setKeywords(keywords);
 			trace("Done.");
