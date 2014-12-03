@@ -5,6 +5,9 @@ import java.util.Map.Entry;
 
 import com.sticksports.nativeExtensions.mopub.MoPubExtension;
 
+/**
+ * Tools to ease working with local/server extras in custom adapters.
+ */
 public class ExtraUtils {
 	
 	/**

@@ -14,8 +14,6 @@ package com.sticksports.nativeExtensions.mopub
 		private static const setTestMode : String = "mopub_setInterstitialTestMode";
 		private static const getIsReady : String = "mopub_getInterstitialReady";
 		
-		private static const setInterstitialKeywords : String = "mopub_setInterstitialKeywords";
-		
 		private static const loadInterstitial : String = "mopub_loadInterstitial";
 		private static const showInterstitial : String = "mopub_showInterstitial";
 		
@@ -85,11 +83,6 @@ package com.sticksports.nativeExtensions.mopub
 			if(_isDisplayed)
 				dispatchEvent( new MoPubEvent( MoPubEvent.AD_CLOSED ) );
 			_isDisplayed = false;
-		}
-		
-		public function setKeywords(keywords:MoPubKeywords):void
-		{
-			extensionContext.call( setInterstitialKeywords, keywords.toMoPubString() );
 		}
 
 		public function load() : void

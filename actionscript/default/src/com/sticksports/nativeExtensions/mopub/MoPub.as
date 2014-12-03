@@ -28,20 +28,23 @@ package com.sticksports.nativeExtensions.mopub
 		public static function trackConversion():void {
 		}
 		
-		public static function getAppleIDFA():String {					
+		public static function getAppleIDFA():String {
 			return null;
 		}
 		
-		public static function getAndroidId():String {					
+		public static function getAndroidId():String {
 			return null;
 		}
 		
-		public static function getAndroidIMEI():String {					
+		public static function getAndroidIMEI():String {
 			return null;
 		}
 		
-		public static function getAndroidAdvertisingId():String {					
+		public static function getAndroidAdvertisingId():String {
 			return null;
+		}
+		
+		public static function setKeywords(keywords:MoPubKeywords):void {
 		}
 	}
 }
