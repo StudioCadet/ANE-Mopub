@@ -10,9 +10,17 @@
 
 @implementation MoPub_TypeConversion
 
+
+// FREObject to values :
+
 - (FREResult) FREGetObject:(FREObject)object asInt:(int32_t*)value
 {
     return FREGetObjectAsInt32( object, value );
+}
+
+- (FREResult) FREGetObject:(FREObject)object asDouble:(double*)value
+{
+    return FREGetObjectAsDouble( object, value );
 }
 
 - (FREResult) FREGetObject:(FREObject)object asBoolean:(uint32_t*)value
@@ -32,6 +40,42 @@
     *value = [NSString stringWithUTF8String: (char*) tempValue];
     return FRE_OK;
 }
+
+- (FREResult) FREGetObject:(FREObject)object asStringArray:(NSArray **)value
+{
+    // Get array length :
+    FREResult result;
+    uint32_t length;
+    result = FREGetArrayLength(object, &length);
+    if( result != FRE_OK )
+        return result;
+    
+    // Convert to array of string :
+    FREObject item;
+    int32_t i;
+    NSString *itemAsString;
+    NSMutableArray* array = [[NSMutableArray  alloc] init];
+    for(i = 0 ; i < length ; i++) {
+        result = FREGetArrayElementAt(object, i, &item);
+        if(result != FRE_OK)
+            return result;
+        
+        result = [self FREGetObject:item asString:&itemAsString];
+        if(result != FRE_OK)
+            return result;
+        
+        [array addObject:itemAsString];
+    }
+    
+    *value = array;
+    
+    return FRE_OK;
+}
+
+
+
+// Values to FREObject :
+
 
 - (FREResult) FREGetString:(NSString*)string asObject:(FREObject*)asObject
 {

@@ -273,6 +273,8 @@
 		48E89B0B199CEC68007C857D /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48E89B0A199CEC68007C857D /* Accelerate.framework */; };
 		6D247CC719E6630500F579CB /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D247CC619E6630500F579CB /* CoreMedia.framework */; };
 		6D5AFBD719E6846900D5C9A2 /* libz.1.2.5.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D247CC819E6634000F579CB /* libz.1.2.5.dylib */; settings = {ATTRIBUTES = (Required, ); }; };
+		6DA0194D1A2F62A1001B5D1F /* MoPubKeywords.h in Headers */ = {isa = PBXBuildFile; fileRef = 6DA0194B1A2F62A1001B5D1F /* MoPubKeywords.h */; };
+		6DA019501A2F694B001B5D1F /* MoPubKeywords.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DA0194F1A2F694B001B5D1F /* MoPubKeywords.m */; };
 		7914017E163AE16E004D6EE6 /* MoPubTypeConversion.m in Sources */ = {isa = PBXBuildFile; fileRef = 7914017D163AE16E004D6EE6 /* MoPubTypeConversion.m */; };
 		79A6D48C1636C14D009DA60A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79A6D48B1636C14D009DA60A /* Foundation.framework */; };
 		79A6D4931636C14D009DA60A /* MoPubIosExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 79A6D4921636C14D009DA60A /* MoPubIosExtension.m */; };
@@ -584,6 +586,8 @@
 		48E89B0A199CEC68007C857D /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		6D247CC619E6630500F579CB /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		6D247CC819E6634000F579CB /* libz.1.2.5.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.2.5.dylib; path = usr/lib/libz.1.2.5.dylib; sourceTree = SDKROOT; };
+		6DA0194B1A2F62A1001B5D1F /* MoPubKeywords.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoPubKeywords.h; sourceTree = "<group>"; };
+		6DA0194F1A2F694B001B5D1F /* MoPubKeywords.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoPubKeywords.m; sourceTree = "<group>"; };
 		7914017C163AE16E004D6EE6 /* MoPubTypeConversion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoPubTypeConversion.h; sourceTree = "<group>"; };
 		7914017D163AE16E004D6EE6 /* MoPubTypeConversion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoPubTypeConversion.m; sourceTree = "<group>"; };
 		798280F71638070D00DC7413 /* MoPubInternalMessages.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MoPubInternalMessages.h; sourceTree = "<group>"; };
@@ -1250,9 +1254,11 @@
 		79A6D48D1636C14D009DA60A /* MoPubIosExtension */ = {
 			isa = PBXGroup;
 			children = (
+				79A6D49F1636D8DA009DA60A /* FlashRuntimeExtensions.h */,
+				6DA0194B1A2F62A1001B5D1F /* MoPubKeywords.h */,
+				6DA0194F1A2F694B001B5D1F /* MoPubKeywords.m */,
 				7914017C163AE16E004D6EE6 /* MoPubTypeConversion.h */,
 				7914017D163AE16E004D6EE6 /* MoPubTypeConversion.m */,
-				79A6D49F1636D8DA009DA60A /* FlashRuntimeExtensions.h */,
 				79A6D4921636C14D009DA60A /* MoPubIosExtension.m */,
 				79A6D5331636E4A9009DA60A /* MoPubBanner.h */,
 				79A6D5341636E4A9009DA60A /* MoPubBanner.m */,
@@ -1423,6 +1429,7 @@
 				483B17BA19FFEDBE00660DCC /* NSURL+MPAdditions.h in Headers */,
 				483B17A219FFEDBE00660DCC /* MRAdView.h in Headers */,
 				483B17D419FFEDBE00660DCC /* MPUserInteractionGestureRecognizer.h in Headers */,
+				6DA0194D1A2F62A1001B5D1F /* MoPubKeywords.h in Headers */,
 				01B4A75719F63F19008BBB36 /* MobviousUtils.h in Headers */,
 				483B180A19FFEDBE00660DCC /* MPNativeAdData.h in Headers */,
 				483B178319FFEDBE00660DCC /* MPAdWebViewAgent.h in Headers */,
@@ -1551,6 +1558,7 @@
 				01B4A75819F63F19008BBB36 /* MobviousUtils.m in Sources */,
 				483B182319FFEDBE00660DCC /* MPTableViewAdPlacer.m in Sources */,
 				79F66B1F1654051E00E917FB /* MoPubInterstitial.m in Sources */,
+				6DA019501A2F694B001B5D1F /* MoPubKeywords.m in Sources */,
 				483B177719FFEDBE00660DCC /* MPFacebookKeywordProvider.m in Sources */,
 				483B179519FFEDBE00660DCC /* MPLegacyInterstitialCustomEventAdapter.m in Sources */,
 				483B14DC19F7B9EE00660DCC /* AdMobConversionTracking.m in Sources */,

@@ -8,6 +8,7 @@
 
 #import "MoPubBanner.h"
 #import "MoPubInternalMessages.h"
+#import "MoPubKeywords.h"
 
 @interface MoPubBanner ()
 {
@@ -136,13 +137,9 @@
     return (int) round( [self adContentViewSize].height * [self getDisplayDensity] );
 }
 
-- (void) setKeywords:(NSString *)keywords
-{
-    [super setKeywords:keywords];
-}
-
 - (void) loadBanner
 {
+    [super setKeywords:[[MoPubKeywords current] getMopubKeywords]];
     [self loadAd];
 }
 
