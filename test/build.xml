@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="ANE test" default="install.ios.debug">
+
+	<!-- Config -->
+	<property file="../build/build.config" />
+	
+	<!-- Install on iOS -->
+	<target name="install.ios.debug">
+		<exec executable="${flex.sdk}/bin/adt${bat.ext}" failonerror="true" dir=".">
+            <arg line="-installApp"/>
+            <arg line="-platform ios"/>
+            <arg line="-package bin-debug/MoPubTest.ipa"/>
+        </exec>
+	</target>
+	
+	<target name="install.ios">
+		<exec executable="${flex.sdk}/bin/adt${bat.ext}" failonerror="true" dir=".">
+            <arg line="-installApp"/>
+            <arg line="-platform ios"/>
+            <arg line="-package bin/MoPubTest.ipa"/>
+        </exec>
+	</target>
+
+</project>
