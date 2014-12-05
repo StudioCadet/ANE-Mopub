@@ -1063,9 +1063,9 @@
 		48927F5819BEE01100059A88 /* VidCoin */ = {
 			isa = PBXGroup;
 			children = (
+				48927F5919BEE01100059A88 /* SDK */,
 				48927F5C19BEE01100059A88 /* VidCoinInterstitialCustomEvent.h */,
 				48927F5D19BEE01100059A88 /* VidCoinInterstitialCustomEvent.m */,
-				48927F5919BEE01100059A88 /* SDK */,
 			);
 			path = VidCoin;
 			sourceTree = "<group>";
