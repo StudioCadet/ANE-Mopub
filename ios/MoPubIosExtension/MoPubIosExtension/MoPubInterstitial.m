@@ -8,6 +8,7 @@
 
 #import "MoPubInterstitial.h"
 #import "MoPubInternalMessages.h"
+#import "MoPubKeywords.h"
 
 static FREContext staticContext;
 
@@ -62,6 +63,7 @@ static FREContext staticContext;
 
 - (void) loadInterstitial
 {
+    self.interstitial.keywords = [[MoPubKeywords current] getMopubKeywords];
     [self.interstitial loadAd];
 }
 

@@ -57,7 +57,7 @@ public class InMobiInterstitial extends CustomEventInterstitial implements IMInt
         map.put("tp", "c_mopub");
         map.put("tp-ver", MoPub.SDK_VERSION);
         iMInterstitial.setRequestParams(map);
-		iMInterstitial.setIMInterstitialListener(this);
+        iMInterstitial.setIMInterstitialListener(this);
 		MoPubExtension.log("Loading an InMobi interstitial ...");
 		iMInterstitial.loadInterstitial();
 	}

@@ -38,13 +38,6 @@ package {
 			interstitial.addEventListener(MoPubEvent.INTERSTITIAL_SHOWN, onInterstitialShown);
 		}
 		
-		/**
-		 * Sets the keywords to use for ad querying.
-		 */
-		public function setKeywords(keywords:MoPubKeywords):void {
-			interstitial.setKeywords(keywords);
-		}
-		
 		
 		//////////////
 		// FETCHING //

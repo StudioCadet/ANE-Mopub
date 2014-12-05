@@ -12,8 +12,10 @@
 @interface MoPub_TypeConversion : NSObject
 
 - (FREResult) FREGetObject:(FREObject)object asInt:(int32_t*)value;
+- (FREResult) FREGetObject:(FREObject)object asDouble:(double*)value;
 - (FREResult) FREGetObject:(FREObject)object asBoolean:(uint32_t*)value;
 - (FREResult) FREGetObject:(FREObject)object asString:(NSString**)value;
+- (FREResult) FREGetObject:(FREObject)object asStringArray:(NSArray**)value;
 
 - (FREResult) FREGetString:(NSString*)string asObject:(FREObject*)asObject;
 - (FREResult) FREGetInt:(int32_t)value asObject:(FREObject*)asObject;

@@ -10,6 +10,7 @@ import com.sticksports.nativeExtensions.mopub.functions.MoPubGetAndroidAdvertisi
 import com.sticksports.nativeExtensions.mopub.functions.MoPubGetAndroidIMEI;
 import com.sticksports.nativeExtensions.mopub.functions.MoPubGetAndroidId;
 import com.sticksports.nativeExtensions.mopub.functions.MoPubInitFunction;
+import com.sticksports.nativeExtensions.mopub.functions.MoPubSetKeywords;
 import com.sticksports.nativeExtensions.mopub.functions.MoPubTrackConversion;
 
 public class MoPubExtensionContext extends FREContext
@@ -17,6 +18,9 @@ public class MoPubExtensionContext extends FREContext
 	
 	/** The Google advertising ID. */
 	public static String advertisingId = null;
+	
+	/** The current keywords, if any. */
+	public static MoPubKeywords keywords;
 	
 	
 	// CONSTRUCTOR :
@@ -38,6 +42,7 @@ public class MoPubExtensionContext extends FREContext
 		functionMap.put("mopub_getAndroidId", new MoPubGetAndroidId());
 		functionMap.put("mopub_getAndroidIMEI", new MoPubGetAndroidIMEI());
 		functionMap.put("mopub_getAndroidAdvertisingId", new MoPubGetAndroidAdvertisingId());
+		functionMap.put("mopub_setKeywords", new MoPubSetKeywords());
 		
 		return functionMap;
 	}

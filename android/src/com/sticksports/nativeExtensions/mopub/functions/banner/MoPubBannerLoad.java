@@ -4,6 +4,7 @@ import com.adobe.fre.FREContext;
 import com.adobe.fre.FREObject;
 import com.sticksports.nativeExtensions.mopub.MoPubBannerContext;
 import com.sticksports.nativeExtensions.mopub.MoPubExtension;
+import com.sticksports.nativeExtensions.mopub.MoPubExtensionContext;
 import com.sticksports.nativeExtensions.utils.UIThreadSafeFREFunction;
 
 public class MoPubBannerLoad extends UIThreadSafeFREFunction {
@@ -13,8 +14,9 @@ public class MoPubBannerLoad extends UIThreadSafeFREFunction {
 		try
 		{
 			MoPubBannerContext context = (MoPubBannerContext) ctx;
-			context.getBanner().loadAd();
 			MoPubExtension.log("Loading banner");
+			context.getBanner().setKeywords(MoPubExtensionContext.keywords.getForMopub());
+			context.getBanner().loadAd();
 		}
 		catch ( Exception exception )
 		{

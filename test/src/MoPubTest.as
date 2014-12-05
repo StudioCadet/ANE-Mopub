@@ -1,6 +1,7 @@
 package {
 	import com.sticksports.nativeExtensions.mopub.MoPub;
 	import com.sticksports.nativeExtensions.mopub.MoPubBanner;
+	import com.sticksports.nativeExtensions.mopub.MoPubKeywords;
 	
 	import flash.display.Sprite;
 	import flash.display.StageAlign;
@@ -42,6 +43,7 @@ package {
 			dy = 30;
 			
 			addButton("Track conversion", trackConversion);
+			addButton("Set keywords", setKeywords);
 			addButton("Show banner", showBanner);
 			addButton("Remove banner", removeBanner);
 			addButton("Fetch interstitial", fetchInterstitial);
@@ -98,6 +100,19 @@ package {
 		private function trackConversion():void {
 			trace("Tracking install conversion for MoPub ...");
 			MoPub.trackConversion();
+			trace("Done.");
+		}
+		
+		private function setKeywords():void {
+			const keywords:MoPubKeywords = new MoPubKeywords();
+			keywords.age = int(Math.random() * 50 + 10);
+			keywords.dateOfBirth = new Date(2000, 0, 1);
+			keywords.gender = Math.random() > .5 ? MoPubKeywords.GENDER_F : MoPubKeywords.GENDER_M;
+			keywords.language = Math.random() > .5 ? "eng" : "fre";
+			keywords.setAdditionalKeywords({property1:"Value1", property2:"Value2", property3:"Value3"});
+			keywords.setInMobiInterests("Business", "Travel", "Business", "InvalidInterest");
+			trace("Setting keywords : " + keywords + " ...");
+			MoPub.setKeywords(keywords);
 			trace("Done.");
 		}
 		

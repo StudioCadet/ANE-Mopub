@@ -32,7 +32,6 @@ package {
 		public var banner:MoPubBanner;
 		private var adUnit:String;
 		private var isTablet:Boolean;
-		private var keywords:MoPubKeywords;
 		/** An external callback for when the banner is displayed on screen. */
 		public var onDisplayed:Function;
 		/** An external callback for when the banner is removed from screen. */
@@ -65,13 +64,6 @@ package {
 		}
 		
 		/**
-		 * Sets the keywords to use for ad querying.
-		 */
-		public function setKeywords(keywords:MoPubKeywords):void {
-			this.keywords = keywords;
-		}
-		
-		/**
 		 * Fetches then displays the banner. Once displayed, onDisplayed() will be called.
 		 */
 		public function display(onDisplayed:Function, onRemoved:Function):void {
@@ -85,8 +77,6 @@ package {
 			banner.nativeAdsOrientation = MoPubNativeAdOrientation.portrait;
 			banner.x = (stage.fullScreenWidth * nativeScreenScaleX - banner.width) / 2;
 			banner.y = stage.fullScreenHeight * nativeScreenScaleY;
-			if(keywords)
-				banner.setKeywords(keywords);
 			
 			banner.addEventListener(MoPubEvent.AD_LOADED, onBannerLoaded);
 			banner.addEventListener(MoPubEvent.AD_FAILED_TO_LOAD, onBannerFailToLoad);

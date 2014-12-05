@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "FlashRuntimeExtensions.h"
+#import "MoPubKeywords.h"
 #import "MoPubTypeConversion.h"
 #import "MoPubBanner.h"
 #import "MoPubInterstitial.h"
@@ -24,6 +25,57 @@
 #define MAP_FUNCTION(fn, data) { (const uint8_t*)(#fn), (data), &(fn) }
 
 MoPub_TypeConversion* mopubConverter;
+
+
+/////////////////////////////////////////////////////////////
+// MOPUB
+
+
+DEFINE_ANE_FUNCTION( mopub_init )
+{
+    NSLog(@"Initializing MoPub extension ...");
+    
+    // InMobi :
+    NSString *inMobiPropertyId = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"IN_MOBI_PROPERTY_ID"];
+    if(inMobiPropertyId == NULL) {
+        NSLog(@"Your app descriptor is missing the required parameters \"IN_MOBI_PROPERTY_ID\".");
+    }
+    else {
+        NSLog(@"Initializing InMobi SDK with property ID %@", inMobiPropertyId);
+        [InMobi initialize:inMobiPropertyId];
+        NSLog(@"InMobi initialized successfully.");
+    }
+    
+    // Chartboost :
+    NSString *chartboostAppId = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CHARTBOOST_APP_ID"];
+    NSString *chartboostAppSignature = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CHARTBOOST_APP_SIGNATURE"];
+    if(chartboostAppId == NULL || chartboostAppSignature == NULL) {
+        NSLog(@"Your app descriptor is missing one of the required parameters : \"CHARTBOOST_APP_ID\", \"CHARTBOOST_APP_SIGNATURE\".");
+    }
+    else {
+        NSLog(@"Initializing Chartboost SDK with app ID : %@ (signature:%@) ...", chartboostAppId, chartboostAppSignature);
+        Chartboost *chartboost = [Chartboost sharedChartboost];
+        chartboost.appId = chartboostAppId;
+        chartboost.appSignature = chartboostAppSignature;
+        [chartboost startSession];
+        NSLog(@"Charboost initialized successfully.");
+    }
+    
+    NSLog(@"MoPub extension initialized.");
+    
+    return NULL;
+}
+
+DEFINE_ANE_FUNCTION( mopub_trackConversion )
+{
+    NSString *itunesAppId = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"itunesAppId"];
+    
+    [[MPAdConversionTracker sharedConversionTracker] reportApplicationOpenForApplicationID:itunesAppId];
+    
+    [AdMobConversionTracking trackConversion];
+    
+    return NULL;
+}
 
 DEFINE_ANE_FUNCTION( mopub_getAppleIDFA )
 {
@@ -74,6 +126,110 @@ DEFINE_ANE_FUNCTION( mopub_getNativeScreenHeight )
     }
     return NULL;
 }
+
+DEFINE_ANE_FUNCTION( mopub_setKeywords )
+{
+    int age;
+    double dateOfBirthTimestamp;
+    NSString *gender = nil;
+    NSString *language = nil;
+    NSArray *additionalKeywordsKeys = nil;
+    NSArray *additionalKeywordsValues = nil;
+    NSString *inMobiInterests = nil;
+    
+    NSLog(@"Updating MoPub keywords ...");
+    
+    // Age :
+    if([mopubConverter FREGetObject:argv[0] asInt:&age] == FRE_OK)
+        [MoPubKeywords current].age = age;
+    else
+        [MoPubKeywords current].age = -1;
+    NSLog(@"    - Age set to %i", [MoPubKeywords current].age);
+    
+    // Date of birth :
+    if([mopubConverter FREGetObject:argv[1] asDouble:&dateOfBirthTimestamp] == FRE_OK)
+        [MoPubKeywords current].dateOfBirth = [[NSDate alloc] initWithTimeIntervalSince1970:dateOfBirthTimestamp];
+    else
+        [MoPubKeywords current].dateOfBirth = nil;
+    NSLog(@"    - DateOfBirth set to %@", [MoPubKeywords current].dateOfBirth);
+    
+    // Gender :
+    if([mopubConverter FREGetObject:argv[2] asString:&gender] == FRE_OK)
+        [MoPubKeywords current].gender = gender;
+    else
+        [MoPubKeywords current].gender = nil;
+    NSLog(@"    - Gender set to %@", [MoPubKeywords current].gender);
+    
+    // Language :
+    if([mopubConverter FREGetObject:argv[3] asString:&language] == FRE_OK)
+        [MoPubKeywords current].language = language;
+    else
+        [MoPubKeywords current].language = nil;
+    NSLog(@"    - Language set to %@", [MoPubKeywords current].language);
+    
+    // Additional keywords :
+    if([mopubConverter FREGetObject:argv[4] asStringArray:&additionalKeywordsKeys] == FRE_OK &&
+       [mopubConverter FREGetObject:argv[5] asStringArray:&additionalKeywordsValues] == FRE_OK)
+    {
+        NSMutableDictionary *additionalKeywords = [[NSMutableDictionary alloc] init];
+        for(int i = 0 ; i < additionalKeywordsKeys.count ; i++)
+            [additionalKeywords setObject:additionalKeywordsValues[i] forKey:additionalKeywordsKeys[i]];
+        [MoPubKeywords current].additionalKeywords = additionalKeywords;
+    }
+    else
+        [MoPubKeywords current].additionalKeywords = nil;
+    NSLog(@"    - Additional keywords : %@", [MoPubKeywords current].additionalKeywords);
+    
+    // InMobi interests :
+    if([mopubConverter FREGetObject:argv[6] asString:&inMobiInterests] == FRE_OK)
+        [MoPubKeywords current].inMobiInterests = inMobiInterests;
+    else
+        [MoPubKeywords current].inMobiInterests = nil;
+    NSLog(@"    - InMobi interests set to %@", [MoPubKeywords current].inMobiInterests);
+    
+    NSLog(@"Keywords succesfuly retrieved.");
+    
+    
+    // Setting InMobi targetting data :
+    NSLog(@"Setting InMobi's targetting data ...");
+    if([MoPubKeywords current].age > 0) {
+        @try { [InMobi setAge:[MoPubKeywords current].age]; }
+        @catch(NSException *e) { NSLog(@"    -> Failed to set InMobi age"); }
+    }
+    
+    if([MoPubKeywords current].dateOfBirth != nil) {
+        @try { [InMobi setDateOfBirth:[MoPubKeywords current].dateOfBirth]; }
+        @catch(NSException *e) { NSLog(@"    -> Failed to set InMobi date of birth"); }
+    }
+    
+    if([MoPubKeywords current].gender != nil) {
+        @try { [InMobi setGender:
+                [[MoPubKeywords current].gender isEqualToString:@"m"] ? kIMGenderMale :
+                [[MoPubKeywords current].gender isEqualToString:@"f"] ? kIMGenderFemale : kIMGenderUnknown];
+        }
+        @catch(NSException *e) { NSLog(@"    -> Failed to set InMobi gender"); }
+    }
+    
+    if([MoPubKeywords current].language != nil) {
+        @try { [InMobi setLanguage:[MoPubKeywords current].language]; }
+        @catch(NSException *e) { NSLog(@"    -> Failed to set InMobi language"); }
+    }
+    
+    if([MoPubKeywords current].inMobiInterests != nil) {
+        @try { [InMobi setInterests:[MoPubKeywords current].inMobiInterests]; }
+        @catch(NSException *e) { NSLog(@"    -> Failed to set InMobi interests"); }
+    }
+    
+    NSLog(@"InMobi targetting data set succesfully.");
+    
+    return NULL;
+}
+
+
+
+/////////////////////////////////////////////////////////////
+// BANNER
+
 
 DEFINE_ANE_FUNCTION( mopub_initialiseBanner )
 {
@@ -321,21 +477,6 @@ DEFINE_ANE_FUNCTION( mopub_getCreativeHeight )
     return NULL;
 }
 
-DEFINE_ANE_FUNCTION(mopub_setBannerKeywords)
-{
-    MoPubBanner* banner;
-    FREGetContextNativeData( context, (void**)&banner );
-    
-    if( banner != nil )
-    {
-        NSString* keywords;
-        if( [mopubConverter FREGetObject:argv[0] asString:&keywords] != FRE_OK ) return NULL;
-        [banner setKeywords:keywords];
-    }
-    
-    return NULL;
-}
-
 DEFINE_ANE_FUNCTION( mopub_loadBanner )
 {
     MoPubBanner* banner;
@@ -368,6 +509,26 @@ DEFINE_ANE_FUNCTION( mopub_removeBanner )
     }
     return NULL;
 }
+
+DEFINE_ANE_FUNCTION( mopub_disposeBanner )
+{
+    MoPubBanner* banner;
+    FREGetContextNativeData( context, (void**)&banner );
+    if( banner != nil )
+    {
+        NSLog(@"Disposing banner...");
+        [banner removeFromSuperview];
+        [banner release];
+    }
+    
+    return NULL;
+}
+
+
+
+/////////////////////////////////////////////////////////////
+// INTERSTITIAL
+
 
 DEFINE_ANE_FUNCTION( mopub_initialiseInterstitial )
 {
@@ -409,20 +570,6 @@ DEFINE_ANE_FUNCTION( mopub_getInterstitialReady )
     return NULL;
 }
 
-DEFINE_ANE_FUNCTION( mopub_setInterstitialKeywords )
-{
-    MoPubInterstitial* interstitial;
-    FREGetContextNativeData( context, (void**)&interstitial );
-    if( interstitial != nil )
-    {
-        NSString* keywords;
-        if( [mopubConverter FREGetObject:argv[0] asString:&keywords] != FRE_OK ) return NULL;
-        [interstitial setKeywords:keywords];
-    }
-    
-    return NULL;
-}
-
 DEFINE_ANE_FUNCTION( mopub_loadInterstitial )
 {
     MoPubInterstitial* interstitial;
@@ -451,20 +598,6 @@ DEFINE_ANE_FUNCTION( mopub_showInterstitial )
     return NULL;
 }
 
-DEFINE_ANE_FUNCTION( mopub_disposeBanner )
-{
-    MoPubBanner* banner;
-    FREGetContextNativeData( context, (void**)&banner );
-    if( banner != nil )
-    {
-        NSLog(@"Disposing banner...");
-        [banner removeFromSuperview];
-        [banner release];
-    }
-    
-    return NULL;
-}
-
 DEFINE_ANE_FUNCTION( mopub_disposeInterstitial )
 {
     MoPubInterstitial* interstitial;
@@ -477,51 +610,11 @@ DEFINE_ANE_FUNCTION( mopub_disposeInterstitial )
     return NULL;
 }
 
-DEFINE_ANE_FUNCTION( mopub_trackConversion )
-{
-    NSString *itunesAppId = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"itunesAppId"];
-    
-    [[MPAdConversionTracker sharedConversionTracker] reportApplicationOpenForApplicationID:itunesAppId];
 
-    [AdMobConversionTracking trackConversion];
 
-    return NULL;
-}
 
-DEFINE_ANE_FUNCTION( mopub_init )
-{
-    NSLog(@"Initializing MoPub extension ...");
-    
-    // InMobi :
-    NSString *inMobiPropertyId = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"IN_MOBI_PROPERTY_ID"];
-    if(inMobiPropertyId == NULL) {
-        NSLog(@"Your app descriptor is missing the required parameters \"IN_MOBI_PROPERTY_ID\".");
-    }
-    else {
-        NSLog(@"Initializing InMobi SDK with property ID %@", inMobiPropertyId);
-        [InMobi initialize:inMobiPropertyId];
-        NSLog(@"InMobi initialized successfully.");
-    }
-    
-    // Chartboost :
-    NSString *chartboostAppId = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CHARTBOOST_APP_ID"];
-    NSString *chartboostAppSignature = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CHARTBOOST_APP_SIGNATURE"];
-    if(chartboostAppId == NULL || chartboostAppSignature == NULL) {
-        NSLog(@"Your app descriptor is missing one of the required parameters : \"CHARTBOOST_APP_ID\", \"CHARTBOOST_APP_SIGNATURE\".");
-    }
-    else {
-        NSLog(@"Initializing Chartboost SDK with app ID : %@ (signature:%@) ...", chartboostAppId, chartboostAppSignature);
-        Chartboost *chartboost = [Chartboost sharedChartboost];
-        chartboost.appId = chartboostAppId;
-        chartboost.appSignature = chartboostAppSignature;
-        [chartboost startSession];
-        NSLog(@"Charboost initialized successfully.");
-    }
-    
-    NSLog(@"MoPub extension initialized.");
-    
-    return NULL;
-}
+/////////////////////////////////////////////////////////////
+// NATIVE EXTENSION
 
 
 void MoPubContextInitializer( void* extData, const uint8_t* ctxType, FREContext ctx, uint32_t* numFunctionsToSet, const FRENamedFunction** functionsToSet )
@@ -530,7 +623,7 @@ void MoPubContextInitializer( void* extData, const uint8_t* ctxType, FREContext 
     {
         static FRENamedFunction mopubFunctionMap[] =
         {
-            MAP_FUNCTION( mopub_getAppleIDFA, NULL ),
+            MAP_FUNCTION( mopub_init, NULL ),
             
             MAP_FUNCTION( mopub_getAdScaleFactor, NULL ),
             
@@ -538,7 +631,8 @@ void MoPubContextInitializer( void* extData, const uint8_t* ctxType, FREContext 
             MAP_FUNCTION( mopub_getNativeScreenHeight, NULL ),
             
             MAP_FUNCTION( mopub_trackConversion, NULL ),
-            MAP_FUNCTION( mopub_init, NULL )
+            MAP_FUNCTION( mopub_getAppleIDFA, NULL ),
+            MAP_FUNCTION( mopub_setKeywords, NULL )
         };
         
         *numFunctionsToSet = sizeof( mopubFunctionMap ) / sizeof( FRENamedFunction );
@@ -555,8 +649,6 @@ void MoPubContextInitializer( void* extData, const uint8_t* ctxType, FREContext 
             
             MAP_FUNCTION( mopub_loadInterstitial, NULL ),
             MAP_FUNCTION( mopub_showInterstitial, NULL ),
-            
-            MAP_FUNCTION( mopub_setInterstitialKeywords, NULL ),
             
             MAP_FUNCTION( mopub_disposeInterstitial, NULL)
         };
@@ -591,8 +683,6 @@ void MoPubContextInitializer( void* extData, const uint8_t* ctxType, FREContext 
             MAP_FUNCTION( mopub_loadBanner, NULL ),
             MAP_FUNCTION( mopub_showBanner, NULL ),
             MAP_FUNCTION( mopub_removeBanner, NULL ),
-            
-            MAP_FUNCTION( mopub_setBannerKeywords, NULL ),
             
             MAP_FUNCTION( mopub_disposeBanner, NULL)
         };

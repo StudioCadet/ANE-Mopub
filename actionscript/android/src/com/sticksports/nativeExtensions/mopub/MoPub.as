@@ -84,6 +84,20 @@ package com.sticksports.nativeExtensions.mopub
 			return extensionContext.call("mopub_getAndroidAdvertisingId") as String;
 		}
 		
+		public static function setKeywords(keywords:MoPubKeywords):void {
+			createExtensionContextIfNull();
+			extensionContext.call("mopub_setKeywords", 
+				keywords.age, 
+				keywords.dateOfBirthTimestamp, 
+				keywords.gender, 
+				keywords.language, 
+				keywords.additionalKeywordsKeys, 
+				keywords.additionalKeywordsValues,
+				keywords.inMobiInterests != null ? keywords.inMobiInterests.join(",") : null
+			);
+		}
+		
+		
 		
 		private static function onStatusEvent(ev:StatusEvent):void {
 			if(ev.code == InternalMessages.log)
