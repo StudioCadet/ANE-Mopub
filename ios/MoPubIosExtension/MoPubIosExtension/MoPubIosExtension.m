@@ -16,7 +16,6 @@
 #import "InMobi.h"
 #import "Chartboost.h"
 #import <VidCoin/VidCoin.h>
-#import "AdMobConversionTracking.h"
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= MP_IOS_6_0
 #import <AdSupport/AdSupport.h>
 #endif
@@ -72,8 +71,6 @@ DEFINE_ANE_FUNCTION( mopub_trackConversion )
     NSString *itunesAppId = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"itunesAppId"];
     
     [[MPAdConversionTracker sharedConversionTracker] reportApplicationOpenForApplicationID:itunesAppId];
-    
-    [AdMobConversionTracking trackConversion];
     
     return NULL;
 }

@@ -28,11 +28,6 @@
 		483B14B619E7D05A00660DCC /* SASInterstitialView.h in Headers */ = {isa = PBXBuildFile; fileRef = 483B14AA19E7D05A00660DCC /* SASInterstitialView.h */; };
 		483B14B719E7D05A00660DCC /* SmartAdServerAd.h in Headers */ = {isa = PBXBuildFile; fileRef = 483B14AB19E7D05A00660DCC /* SmartAdServerAd.h */; };
 		483B14B819E7D05A00660DCC /* libSmartAdServer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 483B14AC19E7D05A00660DCC /* libSmartAdServer.a */; };
-		483B14DB19F7B9EE00660DCC /* AdMobConversionTracking.h in Headers */ = {isa = PBXBuildFile; fileRef = 483B14D919F7B9EE00660DCC /* AdMobConversionTracking.h */; };
-		483B14DC19F7B9EE00660DCC /* AdMobConversionTracking.m in Sources */ = {isa = PBXBuildFile; fileRef = 483B14DA19F7B9EE00660DCC /* AdMobConversionTracking.m */; };
-		483B14E319F7BA4B00660DCC /* ACTReporter.h in Headers */ = {isa = PBXBuildFile; fileRef = 483B14DD19F7BA4B00660DCC /* ACTReporter.h */; };
-		483B14E519F7BA4B00660DCC /* DCTReporter.h in Headers */ = {isa = PBXBuildFile; fileRef = 483B14E119F7BA4B00660DCC /* DCTReporter.h */; };
-		483B14E619F7BA4B00660DCC /* libGoogleConversionTracking.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 483B14E219F7BA4B00660DCC /* libGoogleConversionTracking.a */; };
 		483B175E19FFEDBE00660DCC /* MPBannerAdManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 483B168819FFEDBE00660DCC /* MPBannerAdManager.h */; };
 		483B175F19FFEDBE00660DCC /* MPBannerAdManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 483B168919FFEDBE00660DCC /* MPBannerAdManager.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		483B176019FFEDBE00660DCC /* MPBannerAdManagerDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 483B168A19FFEDBE00660DCC /* MPBannerAdManagerDelegate.h */; };
@@ -336,11 +331,6 @@
 		483B14AB19E7D05A00660DCC /* SmartAdServerAd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SmartAdServerAd.h; sourceTree = "<group>"; };
 		483B14AC19E7D05A00660DCC /* libSmartAdServer.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libSmartAdServer.a; sourceTree = "<group>"; };
 		483B14AD19E7D05A00660DCC /* sas.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = sas.bundle; sourceTree = "<group>"; };
-		483B14D919F7B9EE00660DCC /* AdMobConversionTracking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdMobConversionTracking.h; sourceTree = "<group>"; };
-		483B14DA19F7B9EE00660DCC /* AdMobConversionTracking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdMobConversionTracking.m; sourceTree = "<group>"; };
-		483B14DD19F7BA4B00660DCC /* ACTReporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACTReporter.h; sourceTree = "<group>"; };
-		483B14E119F7BA4B00660DCC /* DCTReporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCTReporter.h; sourceTree = "<group>"; };
-		483B14E219F7BA4B00660DCC /* libGoogleConversionTracking.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGoogleConversionTracking.a; sourceTree = "<group>"; };
 		483B168819FFEDBE00660DCC /* MPBannerAdManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPBannerAdManager.h; sourceTree = "<group>"; };
 		483B168919FFEDBE00660DCC /* MPBannerAdManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPBannerAdManager.m; sourceTree = "<group>"; };
 		483B168A19FFEDBE00660DCC /* MPBannerAdManagerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPBannerAdManagerDelegate.h; sourceTree = "<group>"; };
@@ -654,7 +644,6 @@
 				79BF9899174A1DDA0038F1F1 /* MediaPlayer.framework in Frameworks */,
 				79BF9893174A1DC50038F1F1 /* MessageUI.framework in Frameworks */,
 				79BF989B174A1DE50038F1F1 /* MobileCoreServices.framework in Frameworks */,
-				483B14E619F7BA4B00660DCC /* libGoogleConversionTracking.a in Frameworks */,
 				79F87A48177B35DA0047359B /* PassKit.framework in Frameworks */,
 				79BF989D174A1DEC0038F1F1 /* QuartzCore.framework in Frameworks */,
 				79F87A49177B35DC0047359B /* Social.framework in Frameworks */,
@@ -734,34 +723,6 @@
 				483B14AB19E7D05A00660DCC /* SmartAdServerAd.h */,
 			);
 			path = headers;
-			sourceTree = "<group>";
-		};
-		483B14D519F7B9C900660DCC /* AdMobConversionTracking */ = {
-			isa = PBXGroup;
-			children = (
-				483B14D619F7B9C900660DCC /* SDK */,
-				483B14D919F7B9EE00660DCC /* AdMobConversionTracking.h */,
-				483B14DA19F7B9EE00660DCC /* AdMobConversionTracking.m */,
-			);
-			path = AdMobConversionTracking;
-			sourceTree = "<group>";
-		};
-		483B14D619F7B9C900660DCC /* SDK */ = {
-			isa = PBXGroup;
-			children = (
-				483B14DD19F7BA4B00660DCC /* ACTReporter.h */,
-				483B14E019F7BA4B00660DCC /* DoubleClick */,
-				483B14E219F7BA4B00660DCC /* libGoogleConversionTracking.a */,
-			);
-			path = SDK;
-			sourceTree = "<group>";
-		};
-		483B14E019F7BA4B00660DCC /* DoubleClick */ = {
-			isa = PBXGroup;
-			children = (
-				483B14E119F7BA4B00660DCC /* DCTReporter.h */,
-			);
-			path = DoubleClick;
 			sourceTree = "<group>";
 		};
 		483B168519FFEDBE00660DCC /* Externals */ = {
@@ -1192,7 +1153,6 @@
 		79A6D47D1636C14C009DA60A = {
 			isa = PBXGroup;
 			children = (
-				483B14D519F7B9C900660DCC /* AdMobConversionTracking */,
 				483B149F19E7D05A00660DCC /* Mobvious */,
 				48927F6119BEF2D400059A88 /* MoPubSDK */,
 				48927F5819BEE01100059A88 /* VidCoin */,
@@ -1313,7 +1273,6 @@
 				483B17BC19FFEDBE00660DCC /* UIViewController+MPAdditions.h in Headers */,
 				489280EF19C03E2500059A88 /* Chartboost.h in Headers */,
 				483B17DB19FFEDBE00660DCC /* MPBannerCustomEvent.h in Headers */,
-				483B14DB19F7B9EE00660DCC /* AdMobConversionTracking.h in Headers */,
 				48E89B03199CD6B0007C857D /* AFAdSDKIAPProperty.h in Headers */,
 				483B17E519FFEDBE00660DCC /* MPNativeAdRequest+MPNativeAdSource.h in Headers */,
 				483B176119FFEDBE00660DCC /* MPBannerCustomEventAdapter.h in Headers */,
@@ -1327,7 +1286,6 @@
 				48A468C21975573D00171565 /* InMobiAnalytics.h in Headers */,
 				483B179419FFEDBE00660DCC /* MPLegacyInterstitialCustomEventAdapter.h in Headers */,
 				483B17C619FFEDBE00660DCC /* MPIdentityProvider.h in Headers */,
-				483B14E519F7BA4B00660DCC /* DCTReporter.h in Headers */,
 				48E89B02199CD6B0007C857D /* AFAdSDKIAP.h in Headers */,
 				483B180319FFEDBE00660DCC /* MPCollectionViewAdPlacer.h in Headers */,
 				48E89B06199CD6B0007C857D /* AFAdSDKSashimiExtendedView.h in Headers */,
@@ -1399,7 +1357,6 @@
 				48E89B01199CD6B0007C857D /* AppsfireSDKConstants.h in Headers */,
 				483B176E19FFEDBE00660DCC /* MPAdConfiguration.h in Headers */,
 				483B179F19FFEDBE00660DCC /* MPMRAIDInterstitialViewController.h in Headers */,
-				483B14E319F7BA4B00660DCC /* ACTReporter.h in Headers */,
 				48A468BE1975573D00171565 /* IMInterstitialDelegate.h in Headers */,
 				349B4DBE1946F1CE00184794 /* InMobiBannerCustomEvent.h in Headers */,
 				483B17E019FFEDBE00660DCC /* MPInterstitialAdController.h in Headers */,
@@ -1561,7 +1518,6 @@
 				6DA019501A2F694B001B5D1F /* MoPubKeywords.m in Sources */,
 				483B177719FFEDBE00660DCC /* MPFacebookKeywordProvider.m in Sources */,
 				483B179519FFEDBE00660DCC /* MPLegacyInterstitialCustomEventAdapter.m in Sources */,
-				483B14DC19F7B9EE00660DCC /* AdMobConversionTracking.m in Sources */,
 				483B17A019FFEDBE00660DCC /* MPMRAIDInterstitialViewController.m in Sources */,
 				483B180619FFEDBE00660DCC /* MPNativeAd.m in Sources */,
 				483B17E119FFEDBE00660DCC /* MPInterstitialAdController.m in Sources */,
