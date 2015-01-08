@@ -67,6 +67,8 @@
 				<pathelement location="../android/libs/adcolony.jar"/>
 				<pathelement location="../android/libs/smartadserver.jar"/>
 				<pathelement location="../android/libs/google-play-services.jar"/>
+				<pathelement location="../android/libs/StartAppInApp-2.4.12.jar"/>
+				<pathelement location="../android/libs/StartAppMoPubMediation-1.0.1.jar"/>
 			</classpath>
 		</javac>
 
@@ -76,6 +78,8 @@
 		<unzip dest="../bin/android/temp/zip" src="../android/libs/inmobi.jar" />
 		<unzip dest="../bin/android/temp/zip" src="../android/libs/adcolony.jar" />
 		<unzip dest="../bin/android/temp/zip" src="../android/libs/smartadserver.jar" />
+		<unzip dest="../bin/android/temp/zip" src="../android/libs/StartAppInApp-2.4.12.jar"/>
+		<unzip dest="../bin/android/temp/zip" src="../android/libs/StartAppMoPubMediation-1.0.1.jar"/>
 		
 		<copy todir="../bin/android/temp/classes/com">
 			<fileset dir="../bin/android/temp/zip/com" />
@@ -85,14 +89,15 @@
 		</copy>
 		
 		<jar basedir="../bin/android/temp/classes" destfile="../bin/android/${name}.jar"/>
-		<delete dir="../bin/android/temp"/>
 		
-		<!--
-		<delete dir="../bin/android/resources"/>
-		<copy todir="../bin/android/resources">
-			<fileset dir="../android/resources"/>
+		<!-- Copy StartApp resources -->
+		<copy todir="../bin/android/">
+			<fileset dir="../bin/android/temp/zip">
+				<include name="*.zip"/>
+			</fileset>
 		</copy>
-		-->
+		
+		<delete dir="../bin/android/temp"/>
 		
 		<echo message="Done."/>
 	</target>

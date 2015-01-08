@@ -12,6 +12,7 @@ import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.mopub.mobileads.AdColonyUtils;
 import com.mopub.mobileads.ChartboostUtils;
 import com.mopub.mobileads.InMobiUtils;
+import com.mopub.mobileads.StartAppUtils;
 import com.smartadserver.android.library.ui.SASAdView;
 import com.sticksports.nativeExtensions.mopub.MoPubExtension;
 import com.sticksports.nativeExtensions.mopub.MoPubExtensionContext;
@@ -46,6 +47,9 @@ public class MoPubInitFunction implements FREFunction {
 		
 		// AdColony :
 		AdColonyUtils.init(activity, appVersion);
+		
+		// StartApp :
+		StartAppUtils.init(activity);
 		
 		// Google AdvertisingID :
 		if(GooglePlayServicesUtil.isGooglePlayServicesAvailable(context.getActivity()) != ConnectionResult.SUCCESS) {

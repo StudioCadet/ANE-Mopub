@@ -1,10 +1,10 @@
 package com.sticksports.nativeExtensions.utils;
 
-import com.sticksports.nativeExtensions.mopub.MoPubExtension;
-
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
+
+import com.sticksports.nativeExtensions.mopub.MoPubExtension;
 
 public class PackageUtils {
 	
@@ -21,5 +21,14 @@ public class PackageUtils {
 		
 		return null;
 	}
-
+	
+	/**
+	 * Returns the manifest meta-data content for the given key, casted to a String. If the key doesn't exist, null is returned.
+	 */
+	public static String getMetaDataAsString(Context context, String key) {
+		Object value = getMetaData(context, key);
+		if(value == null)
+			return null;
+		return value.toString();
+	}
 }

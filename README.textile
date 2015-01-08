@@ -19,6 +19,8 @@ h1. Air Native Extension for MoPub Advertising on iOS and Android (ARM and x86)
 
 - VidCoin iOS SDK version : 1.2.0
 
+- StartApp Android SDK version : 2.14.12 (Adapter version 1.0.1)
+
 This is an "Air native extension":http://www.adobe.com/devnet/air/native-extensions-for-air.html for the "MoPub":http://www.mopub.com/ advertising platform on iOS and Android.
 
 Please view "the wiki":https://github.com/StickSports/MoPub-ANE/wiki for information on how to use this extension.
