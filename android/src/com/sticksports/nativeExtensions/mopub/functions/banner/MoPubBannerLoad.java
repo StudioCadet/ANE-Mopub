@@ -15,7 +15,8 @@ public class MoPubBannerLoad extends UIThreadSafeFREFunction {
 		{
 			MoPubBannerContext context = (MoPubBannerContext) ctx;
 			MoPubExtension.log("Loading banner");
-			context.getBanner().setKeywords(MoPubExtensionContext.keywords.getForMopub());
+			if(MoPubExtensionContext.keywords != null)
+				context.getBanner().setKeywords(MoPubExtensionContext.keywords.getForMopub());
 			context.getBanner().loadAd();
 		}
 		catch ( Exception exception )

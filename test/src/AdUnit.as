@@ -59,7 +59,7 @@ package {
 			}
 				
 			else {
-				isTablet = Math.min(Capabilities.screenResolutionX, Capabilities.screenResolutionY) >= 768;
+				isTablet = Math.max(Capabilities.screenResolutionX , Capabilities.screenResolutionY) / Capabilities.screenDPI >= 5;
 				
 				// Android tablet :
 				if(isTablet) {
