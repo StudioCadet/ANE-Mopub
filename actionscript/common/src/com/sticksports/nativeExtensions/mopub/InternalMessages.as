@@ -11,6 +11,7 @@ package com.sticksports.nativeExtensions.mopub
 		internal static const interstitialFailedToLoad : String = "interstitialFailedToLoad";
 		internal static const interstitialShown : String = "interstitialShown";
 		internal static const interstitialClosed : String = "interstitialClosed";
+		internal static const interstitialClicked : String = "interstitialClicked";
 		
 		// Android only :
 		internal static const log : String = "log";

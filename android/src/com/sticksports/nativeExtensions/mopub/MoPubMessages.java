@@ -13,4 +13,6 @@ public class MoPubMessages {
 	static String interstitialShown = "interstitialShown";
 	static String interstitialClosed = "interstitialClosed";
 	
+	static String interstitialClicked = "interstitialClicked";
+	
 }
