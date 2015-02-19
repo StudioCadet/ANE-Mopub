@@ -20,5 +20,6 @@
 #define interstitialClosed "interstitialClosed"
 #define interstitialExpired "interstitialExpired"
 #define interstitialCancelled "interstitialCancelled"
+#define interstitialClicked "interstitialClicked"
 
 #endif

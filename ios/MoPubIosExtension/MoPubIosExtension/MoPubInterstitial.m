@@ -102,6 +102,10 @@ static FREContext staticContext;
     FREDispatchStatusEventAsync( context, "", interstitialExpired );
 }
 
+- (void)interstitialDidReceiveTapEvent:(MPInterstitialAdController *)interstitial {
+    FREDispatchStatusEventAsync( context, "", interstitialClicked );
+}
+
 + (void)interstitialDidCancel:(MPInterstitialAdController *)interstitial
 {
     if (staticContext)
