@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<platform xmlns="http://ns.adobe.com/air/extension/16.0">
+    
+	<packagedDependencies>
+		<packagedDependency>adcolony.jar</packagedDependency>
+		<packagedDependency>android-support-v4.jar</packagedDependency>
+		<packagedDependency>chartboost.jar</packagedDependency>
+		<packagedDependency>google-play-services.jar</packagedDependency>
+		<packagedDependency>inmobi.jar</packagedDependency>
+		<packagedDependency>smartadserver.jar</packagedDependency>
+		<packagedDependency>StartAppInApp-2.4.12.jar</packagedDependency>
+		<packagedDependency>StartAppMoPubMediation-1.0.1.jar</packagedDependency>
+    </packagedDependencies> 
+	
+    <packagedResources>
+        <packagedResource> 
+            <packageName>com.google.android.gms</packageName> 
+            <folderName>google-play-services-res</folderName> 
+        </packagedResource>
+    </packagedResources>
+</platform>

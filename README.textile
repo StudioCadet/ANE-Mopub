@@ -1,5 +1,9 @@
 h1. Air Native Extension for MoPub Advertising on iOS and Android (ARM and x86)
 
+Google Play Services 6.5 is now included with its resources in this ANE. Feel free to strip it if your app already includes Google Play Services.
+Note : AIR SDK is shipped with a really old version of Android build tool dx.jar, and you need to manually update it for this ANE to work as expected. 
+For instructions, see https://bugbase.adobe.com/index.cfm?event=bug&id=3846188
+
 - MoPub Android SDK version : 3.2.0 (forked by StudioCadet)
 - MoPub iOS SDK version : 3.2.0
 
@@ -21,8 +25,7 @@ h1. Air Native Extension for MoPub Advertising on iOS and Android (ARM and x86)
 
 - StartApp Android SDK version : 2.14.12 (Adapter version 1.0.1)
 
-This is an "Air native extension":http://www.adobe.com/devnet/air/native-extensions-for-air.html for the "MoPub":http://www.mopub.com/ advertising platform on iOS and Android.
+- Google Play Services Android SDK : 6.5
 
-Please view "the wiki":https://github.com/StickSports/MoPub-ANE/wiki for information on how to use this extension.
 
-This project is licensed under the "BSD license":https://github.com/StickSports/MoPub-ANE/blob/master/LICENSE
+Please have a look at the included test app for a complete example. It shows what manifest additions are required, have some useful utilities to ease working with interstitial ads, banners, etc.
