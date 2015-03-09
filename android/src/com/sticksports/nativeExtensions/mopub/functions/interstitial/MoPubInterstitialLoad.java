@@ -15,9 +15,8 @@ public class MoPubInterstitialLoad extends UIThreadSafeFREFunction {
 		{
 			MoPubInterstitialContext context = (MoPubInterstitialContext) ctx;
 			MoPubExtension.log("Loading an interstitial ...");
-			if(MoPubExtensionContext.keywords != null)
-				context.getInterstitial().setKeywords(MoPubExtensionContext.keywords.getForMopub());
-			context.getInterstitial().load();
+			context.setKeywords(MoPubExtensionContext.keywords.getForMopub());
+			context.loadInterstitial();
 		}
 		catch ( Exception exception )
 		{
