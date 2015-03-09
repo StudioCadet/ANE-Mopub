@@ -13,7 +13,7 @@ For instructions, see https://bugbase.adobe.com/index.cfm?event=bug&id=3846188
 - Chartboost Android SDK version : 4.1.1
 - Chartboost iOS SDK version : 4.0
 
-- InMobi Android SDK version : 4.5.1
+- InMobi Android SDK version : 4.5.3
 - InMobi iOS SDK version : 4.5.1
 
 - AppsFire iOS SDK version : 2.4.0
