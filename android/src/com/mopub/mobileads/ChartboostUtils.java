@@ -6,6 +6,7 @@ import java.util.Map;
 import android.app.Activity;
 
 import com.chartboost.sdk.Chartboost;
+import com.chartboost.sdk.Libraries.CBLogging.Level;
 import com.mopub.mobileads.CustomEventInterstitial.CustomEventInterstitialListener;
 import com.sticksports.nativeExtensions.mopub.MoPubExtension;
 import com.sticksports.nativeExtensions.utils.ExtraUtils;
@@ -51,22 +52,26 @@ public class ChartboostUtils {
 			MoPubExtension.logE("Chartboost meta data is missing ! Aborting Chartboost initialization.");
 			return;
 		}
-
-		// Initialize chartboost :
-		Chartboost chartboost = Chartboost.sharedChartboost();
-		MoPubExtension.log("Initializing Chartboost SDK with app ID : " + appId + " (signature : " + appSignature + ") ...");
-		chartboost.onCreate(activity, appId, appSignature, new ChartboostDelegate());
-		chartboost.onStart(activity);
-
+		
 		// Prepare null listener :
 		NULL_LISTENER = new CustomEventInterstitialListener() {
-				@Override public void onInterstitialLoaded() { }
-				@Override public void onInterstitialFailed(MoPubErrorCode errorCode) { }
-				@Override public void onInterstitialShown() { }
-				@Override public void onInterstitialClicked() { }
-				@Override public void onLeaveApplication() { }
-				@Override public void onInterstitialDismissed() { }
-			};
+			@Override public void onInterstitialLoaded() { }
+			@Override public void onInterstitialFailed(MoPubErrorCode errorCode) { }
+			@Override public void onInterstitialShown() { }
+			@Override public void onInterstitialClicked() { }
+			@Override public void onLeaveApplication() { }
+			@Override public void onInterstitialDismissed() { }
+		};
+		
+		// Initialize chartboost :
+		MoPubExtension.log("Initializing Chartboost SDK with app ID : " + appId + " (signature : " + appSignature + ") ...");
+		Chartboost.startWithAppId(activity, appId, appSignature);
+		Chartboost.setLoggingLevel(Level.ALL);
+		Chartboost.setDelegate(new ChartboostDelegate());
+		Chartboost.setImpressionsUseActivities(true); // -> use the declared activity in Android Manifest
+		Chartboost.setShouldRequestInterstitialsInFirstSession(true); // -> allow Chartboost interstitial for the first session
+		Chartboost.onCreate(activity);
+		Chartboost.onStart(activity);
 		
 		MoPubExtension.log("Chartboost initialized.");
 	}
