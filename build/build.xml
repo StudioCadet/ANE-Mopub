@@ -52,52 +52,54 @@
 	<target name="android" description="Build android Library">
 		<echo message="Build android library ..."/>
 		
-		<delete dir="../bin/android/temp" />
+		<property name="android.jar" value="${android.sdk}/platforms/android-20/android.jar"/>
+		<property name="android.supportV4" value="${android.sdk}/extras/android/support/v4/android-support-v4.jar"/>
+		<property name="android.support.annotations" value="${android.sdk}/extras/android/support/annotations/android-support-annotations.jar"/>
+		<property name="android.gps.jar" value="${android.sdk}/extras/google/google_play_services/libproject/google-play-services_lib/libs/google-play-services.jar"/>
+		<property name="android.gps.res" value="${android.sdk}/extras/google/google_play_services/libproject/google-play-services_lib/res"/>
+		
+		<delete>
+			<fileset dir="../bin/android" excludes="library.swf"/>
+		</delete>
+		<delete>
+			<dirset dir="../bin/android"/>
+		</delete>
+		
 		<mkdir dir="../bin/android/temp/classes" />
 
 		<javac destdir="../bin/android/temp/classes" includeantruntime="false" target="1.6" source="1.6" fork="yes" executable="${javac.dir}/javac${bin.ext}">
 			<src path="../android/src" />
 			<src path="${mopub.android.sdk}/mopub-sdk/src/main/java" />
 			<classpath>
-				<pathelement location="${android.sdk}/android.jar" />
 				<pathelement location="${flex.sdk}/lib/android/FlashRuntimeExtensions.jar"/>
-				<pathelement location="${android.supportV4}/android-support-v4.jar" />
+				
+				<pathelement location="${android.jar}" />
+				<pathelement location="${android.supportV4}" />
+				<pathelement location="${android.support.annotations}" />
+				<pathelement location="${android.gps.jar}"/>
+				
 				<pathelement location="../android/libs/chartboost.jar"/>
 				<pathelement location="../android/libs/inmobi.jar"/>
 				<pathelement location="../android/libs/adcolony.jar"/>
 				<pathelement location="../android/libs/smartadserver.jar"/>
-				<pathelement location="../android/libs/google-play-services.jar"/>
 				<pathelement location="../android/libs/StartAppInApp-2.4.12.jar"/>
 				<pathelement location="../android/libs/StartAppMoPubMediation-1.0.1.jar"/>
 			</classpath>
 		</javac>
-
-		<mkdir dir="../bin/android/temp/zip" />
-		<unzip dest="../bin/android/temp/zip" src="${android.supportV4}/android-support-v4.jar" />
-		<unzip dest="../bin/android/temp/zip" src="../android/libs/chartboost.jar" />
-		<unzip dest="../bin/android/temp/zip" src="../android/libs/inmobi.jar" />
-		<unzip dest="../bin/android/temp/zip" src="../android/libs/adcolony.jar" />
-		<unzip dest="../bin/android/temp/zip" src="../android/libs/smartadserver.jar" />
-		<unzip dest="../bin/android/temp/zip" src="../android/libs/StartAppInApp-2.4.12.jar"/>
-		<unzip dest="../bin/android/temp/zip" src="../android/libs/StartAppMoPubMediation-1.0.1.jar"/>
-		
-		<copy todir="../bin/android/temp/classes/com">
-			<fileset dir="../bin/android/temp/zip/com" />
-		</copy>
-		<copy todir="../bin/android/temp/classes/android">
-			<fileset dir="../bin/android/temp/zip/android" />
-		</copy>
-		
 		<jar basedir="../bin/android/temp/classes" destfile="../bin/android/${name}.jar"/>
+		<delete dir="../bin/android/temp"/>
 		
-		<!-- Copy StartApp resources -->
-		<copy todir="../bin/android/">
-			<fileset dir="../bin/android/temp/zip">
-				<include name="*.zip"/>
-			</fileset>
+		<!-- Copy all JAR dependencies -->
+		<copy todir="../bin/android" file="${android.supportV4}"/>
+		<copy todir="../bin/android" file="${android.gps.jar}"/>
+		<copy todir="../bin/android">
+			<fileset dir="../android/libs" />
 		</copy>
 		
-		<delete dir="../bin/android/temp"/>
+		<!-- Copy Google Play Services resources -->
+		<copy todir="../bin/android/google-play-services-res">
+			<fileset dir="${android.gps.res}"/>
+		</copy>
 		
 		<echo message="Done."/>
 	</target>
@@ -119,7 +121,7 @@
 			<arg line='-source-path ../actionscript/ios/src' />
 			<arg line='-source-path+=../actionscript/common/src' />
 			<arg line='-output ../bin/actionscript/ios/${name}.swc' />
-			<arg line='-swf-version=27' />
+			<arg line='-swf-version=${swf.version}' />
 			<arg line='-external-library-path+="${flex.sdk}/frameworks/libs/air/airglobal.swc"' />
 			<arg line='-include-classes ${classlist.ios}' />
 		</exec>
@@ -143,7 +145,7 @@
 			<arg line='-source-path ../actionscript/android/src' />
 			<arg line='-source-path+=../actionscript/common/src' />
 			<arg line='-output ../bin/actionscript/android/${name}.swc' />
-			<arg line='-swf-version=27' />
+			<arg line='-swf-version=${swf.version}' />
 			<arg line='-external-library-path+="${flex.sdk}/frameworks/libs/air/airglobal.swc"' />
 			<arg line='-include-classes ${classlist.android}' />
 		</exec>
@@ -167,7 +169,7 @@
 			<arg line='-source-path ../actionscript/default/src' />
 			<arg line='-source-path+=../actionscript/common/src' />
 			<arg line='-output ../bin/actionscript/default/${name}.swc' />
-			<arg line='-swf-version=27' />
+			<arg line='-swf-version=${swf.version}' />
 			<arg line='-external-library-path+="${flex.sdk}/frameworks/libs/air/airglobal.swc"' />
 			<arg line='-include-classes ${classlist.default}' />
 		</exec>
@@ -207,9 +209,9 @@
             <arg value="${name}.ane"/>
             <arg value="../build/extension.xml"/>
             <arg line="-swc actionscript/default/${name}.swc"/>
-            <arg line="-platform iPhone-ARM -platformoptions ../build/platform.xml -C ios/ ."/>
-            <arg line="-platform Android-ARM -C android/ ."/>
-			<arg line="-platform Android-x86 -C android/ ."/>
+            <arg line="-platform iPhone-ARM -platformoptions ../build/platform-ios.xml -C ios/ ."/>
+            <arg line="-platform Android-ARM -platformoptions ../build/platform-android.xml -C android/ ."/>
+			<arg line="-platform Android-x86 -platformoptions ../build/platform-android.xml -C android/ ."/>
             <arg line="-platform default -C default/ ."/>
         </exec>
 		<copy file="../bin/actionscript/default/${name}.swc" todir="../bin" overwrite="true"/>
