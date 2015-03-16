@@ -7,8 +7,10 @@ import java.util.HashMap;
 import com.adobe.fre.FREContext;
 import com.adobe.fre.FREFunction;
 import com.adobe.fre.FREObject;
+import com.google.android.gms.ads.AdRequest;
 import com.inmobi.commons.GenderType;
 import com.inmobi.commons.InMobi;
+import com.mopub.mobileads.AdMobUtils;
 import com.sticksports.nativeExtensions.mopub.MoPubExtension;
 import com.sticksports.nativeExtensions.mopub.MoPubExtensionContext;
 import com.sticksports.nativeExtensions.mopub.MoPubKeywords;
@@ -57,6 +59,12 @@ public class MoPubSetKeywords implements FREFunction {
 		MoPubExtensionContext.keywords.gender = gender;
 		MoPubExtensionContext.keywords.language = language;
 		MoPubExtensionContext.keywords.additionalKeywords = additionalKeywords;
+		
+		// Setting AdMob keywords :
+		MoPubExtension.log("Passing targeting data to AdMob ...");
+		int adMobGender = gender != null && gender.equals("m") ? AdRequest.GENDER_MALE : gender != null && gender.equals("f") ? AdRequest.GENDER_FEMALE : AdRequest.GENDER_UNKNOWN;
+		AdMobUtils.setTargetingData(additionalKeywordsValues, dateOfBirth, adMobGender);
+		MoPubExtension.log("AdMob targeting data set successfully.");
 		
 		// Setting InMobi keywords (in try/catch to avoid crashes for simple stuff like that) :
 		MoPubExtension.log("Passing keywords to InMobi ...");
