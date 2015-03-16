@@ -301,6 +301,10 @@
 						</intent-filter>
 					</receiver>
 					
+					<!-- MoPub : AdMob mediation -->
+					<activity android:name="com.google.android.gms.ads.AdActivity"
+							  android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize" />
+					
 					<!-- MoPub : Adcolony mediation -->
 					<meta-data android:name="AD_COLONY_APP_ID" android:value="appd1be74c48c1b4ff28d" />
 					<meta-data android:name="AD_COLONY_ZONE_IDS" android:value="vz8efc58bf67ea42e3a7,vz2c92a67b1cd9427f81" />
