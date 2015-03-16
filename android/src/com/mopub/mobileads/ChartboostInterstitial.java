@@ -47,11 +47,10 @@ class ChartboostInterstitial extends CustomEventInterstitial {
 
 		// Load the interstitial :
 		final Activity activity = (Activity) context;
-		final Chartboost chartboost = Chartboost.sharedChartboost();
 		activity.runOnUiThread(new Runnable() {
 			@Override public void run() {
 				MoPubExtension.log("Caching Chartboost interstitial ad for location " + location + ".");
-				chartboost.cacheInterstitial(location);
+				Chartboost.cacheInterstitial(location);
 			}
 		});
 	}
@@ -59,7 +58,7 @@ class ChartboostInterstitial extends CustomEventInterstitial {
 	@Override
 	protected void showInterstitial() {
 		MoPubExtension.log("Showing Chartboost interstitial ad for location " + location + ".");
-		Chartboost.sharedChartboost().showInterstitial(location);
+		Chartboost.showInterstitial(location);
 	}
 
 	@Override
