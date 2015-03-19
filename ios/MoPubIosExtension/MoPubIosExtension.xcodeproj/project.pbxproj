@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		01A470A61AB996000047DA2C /* GoogleMobileAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01A470A51AB996000047DA2C /* GoogleMobileAds.framework */; };
+		01A470A81AB996400047DA2C /* MPGoogleAdMobInterstitialCustomEvent.h in Headers */ = {isa = PBXBuildFile; fileRef = 01A470A71AB996400047DA2C /* MPGoogleAdMobInterstitialCustomEvent.h */; };
+		01A470AA1AB9966C0047DA2C /* MPGoogleAdMobInterstitialCustomEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 01A470A91AB9966C0047DA2C /* MPGoogleAdMobInterstitialCustomEvent.m */; };
 		01B4A75719F63F19008BBB36 /* MobviousUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 01B4A75519F63F19008BBB36 /* MobviousUtils.h */; };
 		01B4A75819F63F19008BBB36 /* MobviousUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 01B4A75619F63F19008BBB36 /* MobviousUtils.m */; };
 		349B4DBE1946F1CE00184794 /* InMobiBannerCustomEvent.h in Headers */ = {isa = PBXBuildFile; fileRef = 349B4DB91946F1CE00184794 /* InMobiBannerCustomEvent.h */; };
@@ -309,6 +312,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		01A470A51AB996000047DA2C /* GoogleMobileAds.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMobileAds.framework; sourceTree = "<group>"; };
+		01A470A71AB996400047DA2C /* MPGoogleAdMobInterstitialCustomEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPGoogleAdMobInterstitialCustomEvent.h; sourceTree = "<group>"; };
+		01A470A91AB9966C0047DA2C /* MPGoogleAdMobInterstitialCustomEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPGoogleAdMobInterstitialCustomEvent.m; sourceTree = "<group>"; };
 		01B4A75519F63F19008BBB36 /* MobviousUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobviousUtils.h; sourceTree = "<group>"; };
 		01B4A75619F63F19008BBB36 /* MobviousUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MobviousUtils.m; sourceTree = "<group>"; };
 		349B4DB91946F1CE00184794 /* InMobiBannerCustomEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InMobiBannerCustomEvent.h; sourceTree = "<group>"; };
@@ -649,6 +655,7 @@
 				79F87A49177B35DC0047359B /* Social.framework in Frameworks */,
 				79A6D5301636DFB1009DA60A /* StoreKit.framework in Frameworks */,
 				79BF989F174A1DF60038F1F1 /* SystemConfiguration.framework in Frameworks */,
+				01A470A61AB996000047DA2C /* GoogleMobileAds.framework in Frameworks */,
 				79A6D5321636DFE1009DA60A /* UIKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -656,6 +663,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		01A470A31AB996000047DA2C /* AdMob */ = {
+			isa = PBXGroup;
+			children = (
+				01A470A41AB996000047DA2C /* SDK */,
+				01A470A71AB996400047DA2C /* MPGoogleAdMobInterstitialCustomEvent.h */,
+				01A470A91AB9966C0047DA2C /* MPGoogleAdMobInterstitialCustomEvent.m */,
+			);
+			path = AdMob;
+			sourceTree = "<group>";
+		};
+		01A470A41AB996000047DA2C /* SDK */ = {
+			isa = PBXGroup;
+			children = (
+				01A470A51AB996000047DA2C /* GoogleMobileAds.framework */,
+			);
+			path = SDK;
+			sourceTree = "<group>";
+		};
 		349B4DB81946F1CE00184794 /* InMobi */ = {
 			isa = PBXGroup;
 			children = (
@@ -1153,6 +1178,7 @@
 		79A6D47D1636C14C009DA60A = {
 			isa = PBXGroup;
 			children = (
+				01A470A31AB996000047DA2C /* AdMob */,
 				483B149F19E7D05A00660DCC /* Mobvious */,
 				48927F6119BEF2D400059A88 /* MoPubSDK */,
 				48927F5819BEE01100059A88 /* VidCoin */,
@@ -1266,6 +1292,7 @@
 				48E89AFF199CD6B0007C857D /* AppsfireEngageSDK.h in Headers */,
 				48E89AFA199CD6B0007C857D /* AFMoPubInterstitialCustomEvent.h in Headers */,
 				483B17D019FFEDBE00660DCC /* MPStoreKitProvider.h in Headers */,
+				01A470A81AB996400047DA2C /* MPGoogleAdMobInterstitialCustomEvent.h in Headers */,
 				483B177919FFEDBE00660DCC /* MPLastResortDelegate+EventKit.h in Headers */,
 				483B17CA19FFEDBE00660DCC /* MPLogging.h in Headers */,
 				483B17E819FFEDBE00660DCC /* MPAdPlacerInvocation.h in Headers */,
@@ -1508,6 +1535,7 @@
 				483B176F19FFEDBE00660DCC /* MPAdConfiguration.m in Sources */,
 				483B17EB19FFEDBE00660DCC /* MPDiskLRUCache.m in Sources */,
 				483B179819FFEDBE00660DCC /* MPCoreInstanceProvider.m in Sources */,
+				01A470AA1AB9966C0047DA2C /* MPGoogleAdMobInterstitialCustomEvent.m in Sources */,
 				483B176D19FFEDBE00660DCC /* MPAdBrowserController.m in Sources */,
 				483B178019FFEDBE00660DCC /* MPURLResolver.m in Sources */,
 				483B17AD19FFEDBE00660DCC /* MRDimmingView.m in Sources */,
@@ -1616,6 +1644,7 @@
 					"$(PROJECT_DIR)/AdColony/SDK",
 					"$(PROJECT_DIR)/VidCoin/SDK",
 					"$(PROJECT_DIR)/Chartboost/SDK",
+					"$(PROJECT_DIR)/AdMob/SDK",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "";
@@ -1649,6 +1678,7 @@
 					"$(PROJECT_DIR)/AdColony/SDK",
 					"$(PROJECT_DIR)/VidCoin/SDK",
 					"$(PROJECT_DIR)/Chartboost/SDK",
+					"$(PROJECT_DIR)/AdMob/SDK",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "";

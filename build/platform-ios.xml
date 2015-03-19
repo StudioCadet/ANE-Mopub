@@ -23,6 +23,7 @@
         <option>-weak_framework CoreMotion</option>
         <option>-weak_framework iAd</option>
         <option>-framework CoreLocation</option>
+        <option>-framework GoogleMobileAds</option>
 
 		<option>-lsqlite3</option>
 		<option>-lz</option>
@@ -32,6 +33,7 @@
     <packagedDependencies>
         <packagedDependency>AdColony.framework</packagedDependency>
         <packagedDependency>VidCoin.framework</packagedDependency>
+        <packagedDependency>GoogleMobileAds.framework</packagedDependency>
     </packagedDependencies>
 
 </platform>

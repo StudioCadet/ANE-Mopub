@@ -25,6 +25,7 @@
             <fileset dir="../ios/MoPubIosExtension/Mobvious/SDK">
                 <include name="sas.bundle" />
             </fileset>
+            <fileset dir="../ios/MoPubIosExtension/AdMob/SDK" />
 		</copy>
 
 		<exec executable="ibtool" failonerror="true">
