@@ -77,6 +77,9 @@
                                 accuracy:location.horizontalAccuracy];
     }
     
+    // You can set test devices using request.testDevices
+    // See AdMob documentation
+    
     [self.interstitial loadRequest:request];
 }
 
