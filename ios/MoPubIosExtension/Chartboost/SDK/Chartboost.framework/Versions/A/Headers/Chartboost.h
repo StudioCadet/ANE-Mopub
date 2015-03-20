@@ -1,7 +1,7 @@
 /*
  * Chartboost.h
  * Chartboost
- * 5.0.1
+ * 5.1.5
  *
  * Copyright 2011 Chartboost. All rights reserved.
  */
@@ -21,7 +21,19 @@ typedef NS_ENUM(NSUInteger, CBFramework) {
     /*! Adobe AIR. */
     CBFrameworkAIR,
     /*! GameSalad. */
-    CBFrameworkGameSalad
+    CBFrameworkGameSalad,
+    /*! Cordova. */
+    CBFrameworkCordova,
+    /*! CocoonJS. */
+    CBFrameworkCocoonJS,
+    /*! Cocos2d-x. */
+    CBFrameworkCocos2dx,
+    /*! MoPub. */
+    CBFrameworkMoPub,
+    /*! Fyber. */
+    CBFrameworkFyber,
+    /*! Prime31Unreal. */
+    CBFrameworkPrime31Unreal
 };
 
 /*!
@@ -68,6 +80,22 @@ typedef NS_ENUM(NSUInteger, CBClickError) {
     CBClickErrorAgeGateFailure,
     /*! Unknown internal error */
     CBClickErrorInternal,
+};
+
+/*!
+ @typedef NS_ENUM (NSUInteger, CBStatusBarBehavior)
+ 
+ @abstract
+ Used with setStatusBarBehavior:(CBStatusBarBehavior)statusBarBehavior calls to set how fullscreen ads should
+ behave with regards to the status bar.
+ */
+typedef NS_ENUM(NSUInteger, CBStatusBarBehavior) {
+    /*! Ignore status bar altogether; fullscreen ads will use the space of the status bar. */
+    CBStatusBarBehaviorIgnore,
+    /*! Respect the status bar partially; fullscreen ads will use the space of the status bar but any user interactive buttons will not. */
+    CBStatusBarBehaviorRespectButtons,
+    /*! Respect the status bar fully; fullscreen ads will not use the status bar space. */
+    CBStatusBarBehaviorRespect
 };
 
 /*!
@@ -153,6 +181,16 @@ extern CBLocation const CBLocationDefault;
 + (void)startWithAppId:(NSString*)appId
           appSignature:(NSString*)appSignature
               delegate:(id<ChartboostDelegate>)delegate;
+
+/*!
+ @abstract
+ Check to see if any views are visible
+ 
+ @return YES if there is any view visible
+ 
+ @discussion This method can be used to check if any chartboost ad's are visible on the app.
+ */
++ (BOOL)isAnyViewVisible;
 
 /*!
  @abstract
@@ -457,6 +495,17 @@ extern CBLocation const CBLocationDefault;
  */
 + (BOOL)getAutoCacheAds;
 
+/*!
+ @abstract
+ Set to control how the fullscreen ad units should interact with the status bar. (CBStatusBarBehaviorIgnore by default).
+ 
+ @param statusBarBehavior The param to set if fullscreen video should respect the status bar.
+ 
+ @discussion See the enum value comments for descriptions on the values and their behavior.  Only use this feature if your
+ application has the status bar enabled.
+ */
++ (void)setStatusBarBehavior:(CBStatusBarBehavior)statusBarBehavior;
+
 @end
 
 /*!
@@ -685,6 +734,17 @@ extern CBLocation const CBLocationDefault;
 - (void)didFailToLoadMoreApps:(CBLocation)location
                     withError:(CBLoadError)error;
 
+#pragma mark - Video Delegate
+
+/*!
+ @abstract
+ Called after videos have been successfully prefetched.
+ 
+ @discussion Implement to be notified of when the prefetching process has finished successfully.
+ */
+
+- (void)didPrefetchVideos;
+
 #pragma mark - Rewarded Video Delegate
 
 /*!
@@ -821,6 +881,18 @@ extern CBLocation const CBLocationDefault;
 
 /*!
  @abstract
+ Called before a video has been displayed on the screen.
+ 
+ @param location The location for the Chartboost impression type.
+ 
+ @discussion Implement to be notified of when a video will
+ be displayed on the screen for a given CBLocation.  You can then do things like mute
+ effects and sounds.
+ */
+- (void)willDisplayVideo:(CBLocation)location;
+
+/*!
+ @abstract
  Called after the App Store sheet is dismissed, when displaying the embedded app sheet.
  
  @discussion Implement to be notified of when the App Store sheet is dismissed.
@@ -935,6 +1007,8 @@ extern CBLocation const CBLocationDefault;
  @deprecated This method has been deprecated and will be removed in a future version.
  */
 - (void)didLoadInPlay __attribute__((deprecated("As of version 4.5, use didCacheInPlay:(CBLocation)location")));
+
+
 
 @end
 

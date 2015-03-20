@@ -26,6 +26,7 @@
                 <include name="sas.bundle" />
             </fileset>
             <fileset dir="../ios/MoPubIosExtension/AdMob/SDK" />
+            <fileset dir="../ios/MoPubIosExtension/Chartboost/SDK" />
 		</copy>
 
 		<exec executable="ibtool" failonerror="true">
