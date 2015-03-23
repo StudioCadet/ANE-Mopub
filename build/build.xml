@@ -6,7 +6,7 @@
 
 	<!-- All -->
 	<target name="all" depends="ios,android,ios.swc,android.swc,default.swc,swf,package" description="Full build of extension" />
-
+	
 	<!-- iOS -->
 	<target name="ios" description="Build iOS Library">
 		<mkdir dir="../temp/ios/build/" />
@@ -19,15 +19,35 @@
 		</exec>
 
 		<copy file="../temp/ios/build/Release-iphoneos/lib${name}IosExtension.a" todir="../bin/ios" overwrite="true" />
+		<!--
+		Ant has a weird behavior with symlinks : by default, fileset copies the original content of a link instead of just copying the link.
+		This caused the .frameworks to weigh a LOT more than they should, and the .ane too.
+		We disable the copy of symlinks on the frameworks that need it and create them manually.
+		
+		I tried to directly create a symlink to the .frameworks instead of copying them, but it doesn't work.
+		
+	    If you find a better way to handle this go for it !
+	    -->
+		
 		<copy todir="../bin/ios">
-            <fileset dir="../ios/MoPubIosExtension/AdColony/SDK" />
-			<fileset dir="../ios/MoPubIosExtension/VidCoin/SDK" />
+            <fileset dir="../ios/MoPubIosExtension/AdColony/SDK" followsymlinks="false"/>
+			<fileset dir="../ios/MoPubIosExtension/VidCoin/SDK"/>
             <fileset dir="../ios/MoPubIosExtension/Mobvious/SDK">
                 <include name="sas.bundle" />
             </fileset>
-            <fileset dir="../ios/MoPubIosExtension/AdMob/SDK" />
-            <fileset dir="../ios/MoPubIosExtension/Chartboost/SDK" />
+            <fileset dir="../ios/MoPubIosExtension/AdMob/SDK" followsymlinks="false"/>
+            <fileset dir="../ios/MoPubIosExtension/Chartboost/SDK" followsymlinks="false"/>
 		</copy>
+		
+		<symlink link="../bin/ios/AdColony.framework/Versions/Current" resource="A/" overwrite="true"/>
+		
+		<symlink link="../bin/ios/GoogleMobileAds.framework/GoogleMobileAds" resource="Versions/A/GoogleMobileAds" overwrite="true"/>
+		<symlink link="../bin/ios/GoogleMobileAds.framework/Headers" resource="Versions/A/Headers/" overwrite="true"/>
+		<symlink link="../bin/ios/GoogleMobileAds.framework/Versions/Current" resource="A/" overwrite="true"/>
+		
+		<symlink link="../bin/ios/Chartboost.framework/Chartboost" resource="Versions/A/Chartboost" overwrite="true"/>
+		<symlink link="../bin/ios/Chartboost.framework/Headers" resource="Versions/A/Headers/" overwrite="true"/>
+		<symlink link="../bin/ios/Chartboost.framework/Versions/Current" resource="A/" overwrite="true"/>
 
 		<exec executable="ibtool" failonerror="true">
 			<arg value="--errors" />
