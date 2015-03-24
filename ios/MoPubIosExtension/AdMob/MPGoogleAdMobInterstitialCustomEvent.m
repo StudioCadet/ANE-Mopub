@@ -12,6 +12,7 @@
 #import "MPAdConfiguration.h"
 #import "MPInstanceProvider.h"
 #import <CoreLocation/CoreLocation.h>
+#import "MoPubKeywords.h"
 
 @interface MPInstanceProvider (AdMobInterstitials)
 
@@ -67,8 +68,16 @@
     self.interstitial.adUnitID = adUnitID;
     self.interstitial.delegate = self;
     
+    [self.interstitial loadRequest:[self createGADRequest]];
+}
+
+- (GADRequest *)createGADRequest {
     GADRequest *request = [[MPInstanceProvider sharedProvider] buildGADInterstitialRequest];
+    
     request.requestAgent = @"Mopub";
+    
+    request.gender = [self getGADGender];
+    request.birthday = [MoPubKeywords current].dateOfBirth;
     
     CLLocation *location = self.delegate.location;
     if (location) {
@@ -80,7 +89,16 @@
     // You can set test devices using request.testDevices
     // See AdMob documentation
     
-    [self.interstitial loadRequest:request];
+    return request;
+}
+
+- (GADGender)getGADGender {
+    if ([[MoPubKeywords current].gender isEqualToString:@"m"])
+        return kGADGenderMale;
+    else if ([[MoPubKeywords current].gender isEqualToString:@"f"])
+        return kGADGenderFemale;
+    
+    return kGADGenderUnknown;
 }
 
 - (void)showInterstitialFromRootViewController:(UIViewController *)rootViewController

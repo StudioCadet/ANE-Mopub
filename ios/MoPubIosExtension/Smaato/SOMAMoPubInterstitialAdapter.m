@@ -12,13 +12,12 @@
 #import "MoPubKeywords.h"
 
 @implementation SOMAMoPubInterstitialAdapter
-- (void)requestInterstitialWithCustomEventInfo:(NSDictionary *)info{
-
+- (void)requestInterstitialWithCustomEventInfo:(NSDictionary *)info {
     MPLogInfo(@"Requesting a Smaato interstitial ad...");
     
     MoPubCustomEventClassData* customEventClassData = [[MoPubCustomEventClassData alloc] initWithMopubWebsiteData:info];
 
-    if ([customEventClassData hasRequiredProperties:@[@"publisherId",@"adSpaceId"]]) {
+    if (![customEventClassData hasRequiredProperties:@[@"publisherId",@"adSpaceId"]]) {
         MPLogError(@"One of the required properties is missing, cannot load interstitial !");
         [self.delegate interstitialCustomEvent:self didFailToLoadAdWithError:nil];
         return;
@@ -36,6 +35,10 @@
     self.adview.adSettings.publisherId = [[customEventClassData getPropertyValue:@"publisherId"] intValue];
     self.adview.adSettings.adSpaceId = [[customEventClassData getPropertyValue:@"adSpaceId"] intValue];
     self.adview.adSettings.dimension = SOMAAdDimensionDefault;
+    self.adview.adSettings.dimensionStrict = NO;
+    self.adview.adSettings.formatStrict = NO;
+    
+    self.adview.adSettings.autoReloadEnabled = NO;
     
     [self prepareAdViewUserProfile];
     [self prepareAdViewLocation];
@@ -44,10 +47,12 @@
 - (void)prepareAdViewUserProfile {
     self.adview.adSettings.userProfile.age = [[MoPubKeywords current] age];
     
-    if([[MoPubKeywords current].gender isEqualToString:@"m"])
+    if ([[MoPubKeywords current].gender isEqualToString:@"m"])
         self.adview.adSettings.userProfile.gender = SOMAUserGenderMale;
-    if([[MoPubKeywords current].gender isEqualToString:@"f"])
+    if ([[MoPubKeywords current].gender isEqualToString:@"f"])
         self.adview.adSettings.userProfile.gender = SOMAUserGenderFemale;
+    
+    self.adview.adSettings.keywords = [[MoPubKeywords current] inMobiInterests];
 }
 
 - (void)prepareAdViewLocation {
@@ -75,6 +80,7 @@
 
 - (void)somaAdView:(SOMAAdView *)adview didFailToReceiveAdWithError:(NSError *)error {
     MPLogInfo(@"Smaato ad did fail to load with error : %@", [error localizedDescription]);
+
     [self.delegate interstitialCustomEvent:self didFailToLoadAdWithError:error];
 }
 
@@ -84,13 +90,8 @@
 }
 
 - (BOOL)somaAdViewShouldEnterFullscreen:(SOMAAdView *)adview {
-    MPLogInfo(@"Soma ad view should enter fullscreen !");
-    MPLogInfo(@"Soma ad view should enter fullscreen !");
-    MPLogInfo(@"Soma ad view should enter fullscreen !");
-    MPLogInfo(@"Soma ad view should enter fullscreen !");
-    MPLogInfo(@"Soma ad view should enter fullscreen !");
-    MPLogInfo(@"Soma ad view should enter fullscreen !");
-    MPLogInfo(@"Soma ad view should enter fullscreen !");
+    MPLogInfo(@"Soma ad clicked.");
+    [self.delegate interstitialCustomEventDidReceiveTapEvent:self];
     
     return YES;
 }
