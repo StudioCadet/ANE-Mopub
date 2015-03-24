@@ -37,6 +37,7 @@
             </fileset>
             <fileset dir="../ios/MoPubIosExtension/AdMob/SDK" followsymlinks="false"/>
             <fileset dir="../ios/MoPubIosExtension/Chartboost/SDK" followsymlinks="false"/>
+            <fileset dir="../ios/MoPubIosExtension/Smaato/SDK" followsymlinks="false"/>
 		</copy>
 		
 		<symlink link="../bin/ios/AdColony.framework/Versions/Current" resource="A/" overwrite="true"/>
@@ -48,6 +49,10 @@
 		<symlink link="../bin/ios/Chartboost.framework/Chartboost" resource="Versions/A/Chartboost" overwrite="true"/>
 		<symlink link="../bin/ios/Chartboost.framework/Headers" resource="Versions/A/Headers/" overwrite="true"/>
 		<symlink link="../bin/ios/Chartboost.framework/Versions/Current" resource="A/" overwrite="true"/>
+		
+		<symlink link="../bin/ios/iSoma.framework/iSoma" resource="Versions/A/iSoma" overwrite="true"/>
+		<symlink link="../bin/ios/iSoma.framework/Headers" resource="Versions/A/Headers/" overwrite="true"/>
+		<symlink link="../bin/ios/iSoma.framework/Versions/Current" resource="A/" overwrite="true"/>
 
 		<exec executable="ibtool" failonerror="true">
 			<arg value="--errors" />
