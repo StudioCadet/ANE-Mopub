@@ -59,6 +59,7 @@ public class MoPubSetKeywords implements FREFunction {
 		MoPubExtensionContext.keywords.gender = gender;
 		MoPubExtensionContext.keywords.language = language;
 		MoPubExtensionContext.keywords.additionalKeywords = additionalKeywords;
+		MoPubExtensionContext.keywords.interests = inMobiInterests;
 		
 		// Setting AdMob keywords :
 		MoPubExtension.log("Passing targeting data to AdMob ...");
