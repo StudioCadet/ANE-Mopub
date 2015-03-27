@@ -14,7 +14,8 @@ public class MoPubInterstitialSetTestMode extends UIThreadSafeFREFunction {
 		{
 			MoPubInterstitialContext context = (MoPubInterstitialContext) ctx;
 			boolean testing = args[0].getAsBool();
-			context.getInterstitial().setTesting( testing );
+			if(!context.useInMobi)
+				context.setTestMode( testing );
 			MoPubExtension.log("Interstitial test mode set to " + testing);
 		}
 		catch ( Exception exception )

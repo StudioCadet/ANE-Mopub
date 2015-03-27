@@ -1,5 +1,7 @@
 package com.mopub.mobileads;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 
 import android.app.Activity;
@@ -21,6 +23,9 @@ public class InMobiUtils {
 	
 	/** The meta-data entry key that should contain the default property ID. */
 	private static final String META_DATA_PROPERTY_ID_KEY = "IN_MOBI_PROPERTY_ID";
+	
+	/** The meta-data entry key that should contain the list of Mopub ad units that should display ads without Mopub, but through InMobi directly. */
+	private static final String META_DATA_BYPASS_MOPUB_AD_UNITS_KEY = "IN_MOBI_BYPASS_MOPUB_AD_UNITS";
 	
 	/** The name of the custom network data used on MoPub to pass a SlotID to a particular AdUnit. */
 	private static final String CUSTOM_DATA_PROPERTY_ID_KEY = "property";
@@ -82,4 +87,15 @@ public class InMobiUtils {
 		return ExtraUtils.getString(serverExtras, CUSTOM_DATA_PROPERTY_ID_KEY);
 	}
 	
+	/**
+	 * Returns true if the given ad unit is configured to bypass mopub and use InMobi directly.
+	 */
+	public static boolean isInMobiAdUnit(Context context, String adUnit) {
+		String adUnits = PackageUtils.getMetaDataAsString(context, META_DATA_BYPASS_MOPUB_AD_UNITS_KEY);
+		if(adUnits == null || adUnits.length() == 0)
+			return false;
+		
+		List<String> adUnitsList = Arrays.asList(adUnits.split(","));
+		return adUnitsList.indexOf(adUnit) != -1;
+	}
 }
