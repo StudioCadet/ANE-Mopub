@@ -16,6 +16,13 @@
 		015BF4DD1AC0559D00B304B5 /* SOMAMoPubInterstitialAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 015BF4DB1AC0559D00B304B5 /* SOMAMoPubInterstitialAdapter.m */; };
 		015BF4E01AC05F5000B304B5 /* MoPubCustomEventClassData.h in Headers */ = {isa = PBXBuildFile; fileRef = 015BF4DE1AC05F5000B304B5 /* MoPubCustomEventClassData.h */; };
 		015BF4E11AC05F5000B304B5 /* MoPubCustomEventClassData.m in Sources */ = {isa = PBXBuildFile; fileRef = 015BF4DF1AC05F5000B304B5 /* MoPubCustomEventClassData.m */; };
+		015BF4E61AC2C8BF00B304B5 /* Nexage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 015BF4E51AC2C8BF00B304B5 /* Nexage.framework */; };
+		015BF4E91AC2C98D00B304B5 /* NexageInterstitialCustomEvent.h in Headers */ = {isa = PBXBuildFile; fileRef = 015BF4E71AC2C98D00B304B5 /* NexageInterstitialCustomEvent.h */; };
+		015BF4EA1AC2C98D00B304B5 /* NexageInterstitialCustomEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 015BF4E81AC2C98D00B304B5 /* NexageInterstitialCustomEvent.m */; };
+		015BF4EC1AC322E300B304B5 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 015BF4EB1AC322E300B304B5 /* libxml2.dylib */; };
+		015BF4EE1AC32B1100B304B5 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 015BF4ED1AC32B1100B304B5 /* OpenAL.framework */; };
+		018F9A4E1AC486290073D9AA /* TestInterstitialCustomEvent.h in Headers */ = {isa = PBXBuildFile; fileRef = 018F9A4C1AC486290073D9AA /* TestInterstitialCustomEvent.h */; };
+		018F9A4F1AC486290073D9AA /* TestInterstitialCustomEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 018F9A4D1AC486290073D9AA /* TestInterstitialCustomEvent.m */; };
 		01A470A61AB996000047DA2C /* GoogleMobileAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01A470A51AB996000047DA2C /* GoogleMobileAds.framework */; };
 		01A470A81AB996400047DA2C /* MPGoogleAdMobInterstitialCustomEvent.h in Headers */ = {isa = PBXBuildFile; fileRef = 01A470A71AB996400047DA2C /* MPGoogleAdMobInterstitialCustomEvent.h */; };
 		01A470AA1AB9966C0047DA2C /* MPGoogleAdMobInterstitialCustomEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 01A470A91AB9966C0047DA2C /* MPGoogleAdMobInterstitialCustomEvent.m */; };
@@ -330,6 +337,13 @@
 		015BF4DB1AC0559D00B304B5 /* SOMAMoPubInterstitialAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SOMAMoPubInterstitialAdapter.m; sourceTree = "<group>"; };
 		015BF4DE1AC05F5000B304B5 /* MoPubCustomEventClassData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoPubCustomEventClassData.h; sourceTree = "<group>"; };
 		015BF4DF1AC05F5000B304B5 /* MoPubCustomEventClassData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoPubCustomEventClassData.m; sourceTree = "<group>"; };
+		015BF4E51AC2C8BF00B304B5 /* Nexage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Nexage.framework; sourceTree = "<group>"; };
+		015BF4E71AC2C98D00B304B5 /* NexageInterstitialCustomEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NexageInterstitialCustomEvent.h; sourceTree = "<group>"; };
+		015BF4E81AC2C98D00B304B5 /* NexageInterstitialCustomEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NexageInterstitialCustomEvent.m; sourceTree = "<group>"; };
+		015BF4EB1AC322E300B304B5 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
+		015BF4ED1AC32B1100B304B5 /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
+		018F9A4C1AC486290073D9AA /* TestInterstitialCustomEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestInterstitialCustomEvent.h; sourceTree = "<group>"; };
+		018F9A4D1AC486290073D9AA /* TestInterstitialCustomEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestInterstitialCustomEvent.m; sourceTree = "<group>"; };
 		01A470A51AB996000047DA2C /* GoogleMobileAds.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMobileAds.framework; sourceTree = "<group>"; };
 		01A470A71AB996400047DA2C /* MPGoogleAdMobInterstitialCustomEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPGoogleAdMobInterstitialCustomEvent.h; sourceTree = "<group>"; };
 		01A470A91AB9966C0047DA2C /* MPGoogleAdMobInterstitialCustomEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPGoogleAdMobInterstitialCustomEvent.m; sourceTree = "<group>"; };
@@ -638,6 +652,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				015BF4EE1AC32B1100B304B5 /* OpenAL.framework in Frameworks */,
+				79BF989B174A1DE50038F1F1 /* MobileCoreServices.framework in Frameworks */,
+				34FBB5A4190FE3DD005402C5 /* CFNetwork.framework in Frameworks */,
+				015BF4EC1AC322E300B304B5 /* libxml2.dylib in Frameworks */,
 				483B182619FFEEC300660DCC /* iAd.framework in Frameworks */,
 				483B182419FFEE8900660DCC /* CoreLocation.framework in Frameworks */,
 				6D5AFBD719E6846900D5C9A2 /* libz.1.2.5.dylib in Frameworks */,
@@ -655,7 +673,6 @@
 				483B18281A08E63200660DCC /* libInMobi-4.5.1.a in Frameworks */,
 				79BF9891174A1DB80038F1F1 /* AudioToolbox.framework in Frameworks */,
 				79BF9895174A1DCA0038F1F1 /* AVFoundation.framework in Frameworks */,
-				34FBB5A4190FE3DD005402C5 /* CFNetwork.framework in Frameworks */,
 				79BF9897174A1DD10038F1F1 /* CoreGraphics.framework in Frameworks */,
 				79F87A43177B35630047359B /* CoreTelephony.framework in Frameworks */,
 				79F87D30177B41AC0047359B /* EventKit.framework in Frameworks */,
@@ -664,11 +681,11 @@
 				79A6D48C1636C14D009DA60A /* Foundation.framework in Frameworks */,
 				79BF9899174A1DDA0038F1F1 /* MediaPlayer.framework in Frameworks */,
 				79BF9893174A1DC50038F1F1 /* MessageUI.framework in Frameworks */,
-				79BF989B174A1DE50038F1F1 /* MobileCoreServices.framework in Frameworks */,
 				79F87A48177B35DA0047359B /* PassKit.framework in Frameworks */,
 				79BF989D174A1DEC0038F1F1 /* QuartzCore.framework in Frameworks */,
 				79F87A49177B35DC0047359B /* Social.framework in Frameworks */,
 				79A6D5301636DFB1009DA60A /* StoreKit.framework in Frameworks */,
+				015BF4E61AC2C8BF00B304B5 /* Nexage.framework in Frameworks */,
 				79BF989F174A1DF60038F1F1 /* SystemConfiguration.framework in Frameworks */,
 				01A470A61AB996000047DA2C /* GoogleMobileAds.framework in Frameworks */,
 				79A6D5321636DFE1009DA60A /* UIKit.framework in Frameworks */,
@@ -702,6 +719,33 @@
 				015BF4D81AC0554700B304B5 /* iSoma.framework */,
 			);
 			path = SDK;
+			sourceTree = "<group>";
+		};
+		015BF4E31AC2C88000B304B5 /* Nexage */ = {
+			isa = PBXGroup;
+			children = (
+				015BF4E41AC2C8A800B304B5 /* SDK */,
+				015BF4E71AC2C98D00B304B5 /* NexageInterstitialCustomEvent.h */,
+				015BF4E81AC2C98D00B304B5 /* NexageInterstitialCustomEvent.m */,
+			);
+			path = Nexage;
+			sourceTree = "<group>";
+		};
+		015BF4E41AC2C8A800B304B5 /* SDK */ = {
+			isa = PBXGroup;
+			children = (
+				015BF4E51AC2C8BF00B304B5 /* Nexage.framework */,
+			);
+			path = SDK;
+			sourceTree = "<group>";
+		};
+		018F9A4A1AC485D60073D9AA /* Test */ = {
+			isa = PBXGroup;
+			children = (
+				018F9A4C1AC486290073D9AA /* TestInterstitialCustomEvent.h */,
+				018F9A4D1AC486290073D9AA /* TestInterstitialCustomEvent.m */,
+			);
+			path = Test;
 			sourceTree = "<group>";
 		};
 		01A470A31AB996000047DA2C /* AdMob */ = {
@@ -1213,6 +1257,8 @@
 		79A6D47D1636C14C009DA60A = {
 			isa = PBXGroup;
 			children = (
+				018F9A4A1AC485D60073D9AA /* Test */,
+				015BF4E31AC2C88000B304B5 /* Nexage */,
 				015BF4D61AC054FA00B304B5 /* Smaato */,
 				01A470A31AB996000047DA2C /* AdMob */,
 				483B149F19E7D05A00660DCC /* Mobvious */,
@@ -1232,6 +1278,8 @@
 		79A6D48A1636C14D009DA60A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				015BF4ED1AC32B1100B304B5 /* OpenAL.framework */,
+				015BF4EB1AC322E300B304B5 /* libxml2.dylib */,
 				483B182519FFEEC300660DCC /* iAd.framework */,
 				6D247CC819E6634000F579CB /* libz.1.2.5.dylib */,
 				6D247CC619E6630500F579CB /* CoreMedia.framework */,
@@ -1407,6 +1455,7 @@
 				483B17DD19FFEDBE00660DCC /* MPBannerCustomEventDelegate.h in Headers */,
 				483B181C19FFEDBE00660DCC /* MPStreamAdPlacementData.h in Headers */,
 				483B17AC19FFEDBE00660DCC /* MRDimmingView.h in Headers */,
+				015BF4E91AC2C98D00B304B5 /* NexageInterstitialCustomEvent.h in Headers */,
 				483B17A119FFEDBE00660DCC /* MRAdView+Controllers.h in Headers */,
 				34E1A251190E3E57001C491E /* ChartboostInterstitialCustomEvent.h in Headers */,
 				483B17EC19FFEDBE00660DCC /* MPImageDownloadQueue.h in Headers */,
@@ -1445,6 +1494,7 @@
 				483B17BA19FFEDBE00660DCC /* NSURL+MPAdditions.h in Headers */,
 				483B17A219FFEDBE00660DCC /* MRAdView.h in Headers */,
 				483B17D419FFEDBE00660DCC /* MPUserInteractionGestureRecognizer.h in Headers */,
+				018F9A4E1AC486290073D9AA /* TestInterstitialCustomEvent.h in Headers */,
 				015BF4E01AC05F5000B304B5 /* MoPubCustomEventClassData.h in Headers */,
 				6DA0194D1A2F62A1001B5D1F /* MoPubKeywords.h in Headers */,
 				01B4A75719F63F19008BBB36 /* MobviousUtils.h in Headers */,
@@ -1537,6 +1587,7 @@
 				483B176619FFEDBE00660DCC /* MPLegacyBannerCustomEventAdapter.m in Sources */,
 				483B17FE19FFEDBE00660DCC /* MPTableViewCellImpressionTracker.m in Sources */,
 				483B17F819FFEDBE00660DCC /* MPNativeCache.m in Sources */,
+				015BF4EA1AC2C98D00B304B5 /* NexageInterstitialCustomEvent.m in Sources */,
 				483B182119FFEDBE00660DCC /* MPTableViewAdManager.m in Sources */,
 				483B181319FFEDBE00660DCC /* MPNativeAdRequestTargeting.m in Sources */,
 				483B178C19FFEDBE00660DCC /* MPBaseInterstitialAdapter.m in Sources */,
@@ -1595,6 +1646,7 @@
 				483B17B319FFEDBE00660DCC /* MRPictureManager.m in Sources */,
 				483B17A719FFEDBE00660DCC /* MRBundleManager.m in Sources */,
 				483B17EF19FFEDBE00660DCC /* MPMoPubNativeAdAdapter.m in Sources */,
+				018F9A4F1AC486290073D9AA /* TestInterstitialCustomEvent.m in Sources */,
 				483B178E19FFEDBE00660DCC /* MPInterstitialAdManager.m in Sources */,
 				483B180E19FFEDBE00660DCC /* MPNativeAdError.m in Sources */,
 				483B17CB19FFEDBE00660DCC /* MPLogging.m in Sources */,
@@ -1683,6 +1735,7 @@
 					"$(PROJECT_DIR)/Chartboost/SDK",
 					"$(PROJECT_DIR)/AdMob/SDK",
 					"$(PROJECT_DIR)/Smaato/SDK",
+					"$(PROJECT_DIR)/Nexage/SDK",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "";
@@ -1718,6 +1771,7 @@
 					"$(PROJECT_DIR)/Chartboost/SDK",
 					"$(PROJECT_DIR)/AdMob/SDK",
 					"$(PROJECT_DIR)/Smaato/SDK",
+					"$(PROJECT_DIR)/Nexage/SDK",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "";

@@ -9,6 +9,9 @@
 #import "MPInterstitialCustomEvent.h"
 #import <iSoma/iSoma.h>
 
+/**
+ * Certified with version 7.1.0 of the Smaato SDK
+ */
 @interface SOMAMoPubInterstitialAdapter : MPInterstitialCustomEvent<SOMAAdViewDelegate>
 @property(nonatomic, strong) SOMAAdView* adview;
 @end

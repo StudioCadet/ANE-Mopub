@@ -40,6 +40,7 @@
             <fileset dir="../ios/MoPubIosExtension/AdMob/SDK" />
             <fileset dir="../ios/MoPubIosExtension/Chartboost/SDK" />
             <fileset dir="../ios/MoPubIosExtension/Smaato/SDK" />
+            <fileset dir="../ios/MoPubIosExtension/Nexage/SDK" />
 		</copy>
 		
 		<delete dir="../bin/ios/AdColony.framework/Versions"/>
@@ -47,6 +48,7 @@
 		<delete dir="../bin/ios/GoogleMobileAds.framework/Versions"/>
 		<delete dir="../bin/ios/Chartboost.framework/Versions"/>
 		<delete dir="../bin/ios/iSoma.framework/Versions"/>
+		<delete dir="../bin/ios/Nexage.framework/Versions"/>
 
 
 		<exec executable="ibtool" failonerror="true">

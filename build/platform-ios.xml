@@ -9,35 +9,44 @@
 		<option>-framework AddressBook</option>
 		<option>-framework AddressBookUI</option>
 		<option>-weak_framework AdSupport</option>
+		<option>-framework CFNetwork</option>
+		<option>-framework CoreLocation</option>
+		<option>-weak_framework CoreMotion</option>
 		<option>-framework CoreTelephony</option>
 		<option>-framework EventKit</option>
 		<option>-framework EventKitUI</option>
 		<option>-weak_framework iAd</option>
 		<option>-framework MediaPlayer</option>
 		<option>-framework MessageUI</option>
+		<option>-framework MobileCoreServices</option>
+		<option>-framework OpenAL</option>
 		<option>-weak_framework PassKit</option>
+		<option>-framework QuartzCore</option>
+		<option>-framework Security</option>
+		<option>-framework SystemConfiguration</option>
 		<option>-weak_framework Social</option>
 		<option>-weak_framework StoreKit</option>
+        
         <option>-framework AdColony</option>
-        <option>-framework VidCoin</option>
-        <option>-weak_framework CoreMotion</option>
-        <option>-weak_framework iAd</option>
-        <option>-framework CoreLocation</option>
-        <option>-framework GoogleMobileAds</option>
         <option>-framework Chartboost</option>
+        <option>-framework GoogleMobileAds</option>
+        <option>-framework Nexage</option>
         <option>-framework iSoma</option>
-
+        <option>-framework VidCoin</option>
+        
 		<option>-lsqlite3</option>
 		<option>-lz</option>
+		<option>-lxml2</option>
 
 	</linkerOptions>
 
     <packagedDependencies>
         <packagedDependency>AdColony.framework</packagedDependency>
-        <packagedDependency>VidCoin.framework</packagedDependency>
-        <packagedDependency>GoogleMobileAds.framework</packagedDependency>
         <packagedDependency>Chartboost.framework</packagedDependency>
+        <packagedDependency>GoogleMobileAds.framework</packagedDependency>
         <packagedDependency>iSoma.framework</packagedDependency>
+        <packagedDependency>Nexage.framework</packagedDependency>
+        <packagedDependency>VidCoin.framework</packagedDependency>
     </packagedDependencies>
 
 </platform>
