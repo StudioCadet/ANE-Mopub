@@ -14,6 +14,8 @@ public class MoPubKeywords {
 	public String gender;
 	public String language;
 	public HashMap<String, String> additionalKeywords;
+	/** A String of interests keywords, connected with ',' */
+	public String interests;
 
 	
 	// CONSTRUCTORS :

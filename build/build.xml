@@ -106,6 +106,7 @@
 				<pathelement location="../android/libs/smartadserver.jar"/>
 				<pathelement location="../android/libs/StartAppInApp-2.4.12.jar"/>
 				<pathelement location="../android/libs/StartAppMoPubMediation-1.0.1.jar"/>
+				<pathelement location="../android/libs/SOMAAndroidSDK4.4.0.jar"/>
 			</classpath>
 		</javac>
 		<jar basedir="../bin/android/temp/classes" destfile="../bin/android/${name}.jar"/>
