@@ -88,7 +88,6 @@ public class SmaatoInterstitial extends CustomEventInterstitial implements Inter
 	public void onReadyToShow() {
 		MoPubExtension.log("Smaato interstitial is ready to show ...");
 		mInterstitialListener.onInterstitialLoaded();
-		showInterstitial();
 	}
 
 	@Override
