@@ -33,7 +33,6 @@
 		
 		<copy todir="../bin/ios">
             <fileset dir="../ios/MoPubIosExtension/AdColony/SDK"/>
-			<fileset dir="../ios/MoPubIosExtension/VidCoin/SDK"/>
             <fileset dir="../ios/MoPubIosExtension/Mobvious/SDK">
                 <include name="sas.bundle" />
             </fileset>
@@ -43,7 +42,6 @@
 		</copy>
 		
 		<delete dir="../bin/ios/AdColony.framework/Versions"/>
-		<delete dir="../bin/ios/VidCoin.framework/Versions"/>
 		<delete dir="../bin/ios/GoogleMobileAds.framework/Versions"/>
 		<delete dir="../bin/ios/Chartboost.framework/Versions"/>
 		<delete dir="../bin/ios/iSoma.framework/Versions"/>
