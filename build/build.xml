@@ -17,6 +17,13 @@
 			<arg line='-configuration Release' />
 			<arg line='SYMROOT=../../temp/ios/build/' />
 		</exec>
+		
+		<delete>
+			<fileset dir="../bin/ios" excludes="library.swf"/>
+		</delete>
+		<delete>
+			<dirset dir="../bin/ios"/>
+		</delete>
 
 		<copy file="../temp/ios/build/Release-iphoneos/lib${name}IosExtension.a" todir="../bin/ios" overwrite="true" />
 		<!--
@@ -34,7 +41,7 @@
 		<copy todir="../bin/ios">
             <fileset dir="../ios/MoPubIosExtension/AdColony/SDK"/>
             <fileset dir="../ios/MoPubIosExtension/Mobvious/SDK">
-                <include name="sas.bundle" />
+                <include name="sas.bundle/**" />
             </fileset>
             <fileset dir="../ios/MoPubIosExtension/AdMob/SDK" />
             <fileset dir="../ios/MoPubIosExtension/Chartboost/SDK" />
@@ -57,13 +64,12 @@
 			<arg value="${mopub.ios.sdk}/MoPubSDK/Internal/Common/MPAdBrowserController.xib" />
 		</exec>
 
-		<copy todir="../bin/ios" flatten="true">
-			<fileset dir="${mopub.ios.sdk}/MoPubSDK" casesensitive="yes" id="classfiles">
-				<include name="**/*.png" />
-				<include name="**/*.nib" />
-				<include name="**/*.js" />
-			</fileset>
+		<copy todir="../bin/ios">
+			<fileset dir="${mopub.ios.sdk}/MoPubSDK/Resources"/>
 		</copy>
+		
+		<!-- mraid.js was included twice, we'll look into it later. For now, simply duplicate the file. -->
+		<copy todir="../bin/ios" file="../bin/ios/MRAID.bundle/mraid.js"/>
 
 		<delete dir="../temp" />
 	</target>
