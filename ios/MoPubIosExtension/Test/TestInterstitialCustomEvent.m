@@ -11,7 +11,13 @@
 @implementation TestInterstitialCustomEvent
 
 -(void) requestInterstitialWithCustomEventInfo:(NSDictionary *)info {
-    [info setValue:@"interstitial" forKey:@"position"];
+    self.interstitialCustomEvent = [[NexageInterstitialCustomEvent alloc] init];
+    
+    NSMutableDictionary* customInfo = [info mutableCopy];
+    
+    [customInfo setValue:@"8a809418014c4c5807515ba34f970016" forKey:@"dcn"];
+    [customInfo setValue:@"320x480" forKey:@"position"];
+    
     [self.interstitialCustomEvent requestInterstitialWithCustomEventInfo:info];
 }
 
@@ -19,4 +25,13 @@
     [self.interstitialCustomEvent showInterstitialFromRootViewController:rootViewController];
 }
 
+-(BOOL) enableAutomaticImpressionAndClickTracking {
+    return [self.interstitialCustomEvent enableAutomaticImpressionAndClickTracking];
+}
+
+-(void) dealloc {
+    self.interstitialCustomEvent = nil;
+    
+    [super dealloc];
+}
 @end
