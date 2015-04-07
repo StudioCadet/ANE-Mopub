@@ -13,7 +13,7 @@ public class MoPubInterstitialShow extends UIThreadSafeFREFunction {
 		try
 		{
 			MoPubInterstitialContext context = (MoPubInterstitialContext) ctx;
-			boolean success = context.getInterstitial().show();
+			boolean success = context.showInterstitial();
 			MoPubExtension.log(success ? "Interstitial displayed" : "Interstitial failed to display");
 			return FREObject.newObject( success );
 		}

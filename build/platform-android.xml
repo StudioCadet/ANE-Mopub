@@ -10,6 +10,7 @@
 		<packagedDependency>smartadserver.jar</packagedDependency>
 		<packagedDependency>StartAppInApp-2.4.12.jar</packagedDependency>
 		<packagedDependency>StartAppMoPubMediation-1.0.1.jar</packagedDependency>
+		<packagedDependency>SOMAAndroidSDK4.4.0.jar</packagedDependency>
     </packagedDependencies> 
 	
     <packagedResources>

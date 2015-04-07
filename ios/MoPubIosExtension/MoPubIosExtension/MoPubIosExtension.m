@@ -14,7 +14,6 @@
 #import "MoPubInterstitial.h"
 #import "MPAdConversionTracker.h"
 #import "InMobi.h"
-#import <VidCoin/VidCoin.h>
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= MP_IOS_6_0
 #import <AdSupport/AdSupport.h>
 #endif
@@ -203,33 +202,6 @@ DEFINE_ANE_FUNCTION( mopub_setKeywords )
     }
     
     NSLog(@"InMobi targeting data set succesfully.");
-    
-    // Setting VidCoin targeting data :
-    NSLog(@"Setting VidCoin's targeting data ...");
-    
-    NSString *vidCoinBirthYear = nil;
-    NSString *vidCoinGender = nil;
-    
-    if([MoPubKeywords current].dateOfBirth != nil) {
-        NSDateComponents *dateComponents = [[NSCalendar currentCalendar] components:NSCalendarUnitYear fromDate:[MoPubKeywords current].dateOfBirth];
-        vidCoinBirthYear = [[NSString alloc] initWithFormat:@"%i", [dateComponents year]];
-    }
-    else if([MoPubKeywords current].age > 0) {
-        NSDateComponents *dateComponents = [[NSCalendar currentCalendar] components:NSCalendarUnitYear fromDate:[[NSDate alloc] initWithTimeIntervalSinceNow:0]];
-        vidCoinBirthYear = [[NSString alloc] initWithFormat:@"%i", [dateComponents year] - [MoPubKeywords current].age];
-    }
-    
-    if([MoPubKeywords current].gender != nil) {
-        if([[MoPubKeywords current].gender isEqualToString:@"m"])
-            vidCoinGender = kVCUserGenderMale;
-        if([[MoPubKeywords current].gender isEqualToString:@"f"])
-            vidCoinGender = kVCUserGenderFemale;
-    }
-    @try {
-        [VidCoin updateUserDictionary:[[NSDictionary alloc] initWithObjectsAndKeys:vidCoinBirthYear, kVCUserBirthYear, vidCoinGender, kVCUserGenderKey, nil]];
-        NSLog(@"VidCoin targeting data set succesfully.");
-    }
-    @catch(NSException *e) { NSLog(@"   -> Failed to set VidCoin data"); }
     
     return NULL;
 }

@@ -13,7 +13,7 @@ public class MoPubInterstitialGetIsReady extends UIThreadSafeFREFunction {
 		try
 		{
 			MoPubInterstitialContext context = (MoPubInterstitialContext) ctx;
-			boolean ready = context.getInterstitial().isReady();
+			boolean ready = context.getIsReady();
 			MoPubExtension.log("Interstitial ready ? " + ready);
 			return FREObject.newObject( ready );
 		}
