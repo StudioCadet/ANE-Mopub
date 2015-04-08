@@ -52,7 +52,7 @@ public class AdMobUtils {
 		builder.setGender(gender);
 		
 		// Add location :
-		LocationService.getLastKnownLocation(context, MoPub.getLocationPrecision(), MoPub.getLocationAwareness());
+		builder.setLocation(LocationService.getLastKnownLocation(context, MoPub.getLocationPrecision(), MoPub.getLocationAwareness()));
 		
 		return builder.build();
 	}
