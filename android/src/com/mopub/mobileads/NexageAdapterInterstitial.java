@@ -9,6 +9,8 @@ import android.app.Activity;
 import android.content.Context;
 import android.location.Location;
 
+import com.mopub.common.LocationService;
+import com.mopub.common.MoPub;
 import com.nexage.android.DeviceLocation;
 import com.nexage.android.NexageAdManager;
 import com.nexage.android.NexageInterstitial;
@@ -17,48 +19,40 @@ import com.sticksports.nativeExtensions.mopub.MoPubExtension;
 
 public class NexageAdapterInterstitial extends CustomEventInterstitial implements NexageInterstitialListener {
 
-	private com.nexage.android.NexageInterstitial mInterstitialAd;
+	
+	private static final String POSITION_KEY = "position";
+	
+	private NexageInterstitial mInterstitialAd;
 	private CustomEventInterstitialListener mInterstitialListener;
-	public static final String LOCATION_KEY = "location";
-	public static final String POSITION_KEY = "position";
 
 	@Override
-	protected void loadInterstitial(Context ctx, CustomEventInterstitialListener customEventInterstitialListener, final Map<String, Object> localParams,
+	protected void loadInterstitial(final Context context, CustomEventInterstitialListener customEventInterstitialListener, final Map<String, Object> localParams,
 			Map<String, String> serverParams) {
 		mInterstitialListener = customEventInterstitialListener;
 		MoPubExtension.log("MoPub calling Nexage for a Interstitial ad with position: " + (String) serverParams.get(POSITION_KEY));
 
-		if (!(ctx instanceof Activity)) {
+		if (!(context instanceof Activity)) {
             mInterstitialListener.onInterstitialFailed(ADAPTER_CONFIGURATION_ERROR);
             return;
         }
 		
 		NexageAdManager.setIsMediation(true);
 
-		Location location = extractLocation(localParams);
-		if (location != null) {
-			DeviceLocation myDeviceLocationImplementation = new DeviceLocation() {
-
-				@Override
-				public Location getLocation() {
-					return (Location) localParams.get(LOCATION_KEY);
-				}
-			};
-			
-			NexageAdManager.setLocationAwareness(myDeviceLocationImplementation);
-		}
 		
-		mInterstitialAd = new NexageInterstitial((String) serverParams.get(POSITION_KEY), (Activity) ctx, this);
+		DeviceLocation deviceLocation = new DeviceLocation() {
+			@Override
+			public Location getLocation() {
+				return LocationService.getLastKnownLocation(context, MoPub.getLocationPrecision(), MoPub.getLocationAwareness());
+			}
+		};
+		NexageAdManager.setLocationAwareness(deviceLocation);
+		
+		mInterstitialAd = new NexageInterstitial((String) serverParams.get(POSITION_KEY), (Activity) context, this);
+		NexageAdManager.setDCN((String) serverParams.get("dcn"));
+		
 		MoPubExtension.log("Creating a new Nexage Interstitial ID is " + mInterstitialAd.toString());
 	}
 	
-	private Location extractLocation(Map<String, Object> localExtras) {
-		Object location = localExtras.get(LOCATION_KEY);
-		if (location instanceof Location) {
-			return (Location) location;
-		}
-		return null;
-	}
 
 	@Override
 	protected void onInvalidate() {

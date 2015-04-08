@@ -111,6 +111,9 @@
 				<pathelement location="../android/libs/StartAppInApp-2.4.12.jar"/>
 				<pathelement location="../android/libs/StartAppMoPubMediation-1.0.1.jar"/>
 				<pathelement location="../android/libs/SOMAAndroidSDK4.4.0.jar"/>
+				<pathelement location="../android/libs/NexageSDK.jar"/>
+				<pathelement location="../android/libs/sourcekit-mraid.jar"/>	<!-- Need this with Mopub ? -->
+				<pathelement location="../android/libs/sourcekit-vast.jar"/>
 			</classpath>
 		</javac>
 		<jar basedir="../bin/android/temp/classes" destfile="../bin/android/${name}.jar"/>
@@ -126,6 +129,9 @@
 		<!-- Copy Google Play Services resources -->
 		<copy todir="../bin/android/google-play-services-res">
 			<fileset dir="${android.gps.res}"/>
+		</copy>
+		<copy todir="../bin/android/nexage-res">
+			<fileset dir="../android/res"/>
 		</copy>
 		
 		<echo message="Done."/>

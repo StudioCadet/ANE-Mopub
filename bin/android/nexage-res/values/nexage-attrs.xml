@@ -1,0 +1,8 @@
+<!-- Nexage custom attributes -->
+<resources>
+	<declare-styleable name="com.nexage.android.NexageAdView">
+		<attr name="refreshInterval" format="integer" />
+		<attr name="position" format="string"/>
+		<attr name="animation" format="string"/>
+	</declare-styleable>
+</resources>

@@ -18,5 +18,9 @@
             <packageName>com.google.android.gms</packageName> 
             <folderName>google-play-services-res</folderName> 
         </packagedResource>
+		<packagedResource> 
+            <packageName>com.nexage.android</packageName> 
+            <folderName>nexage-res</folderName>
+        </packagedResource>
     </packagedResources>
 </platform>
