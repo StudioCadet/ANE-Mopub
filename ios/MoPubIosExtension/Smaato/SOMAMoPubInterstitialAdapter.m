@@ -29,14 +29,17 @@
 }
 
 - (void) prepareAdViewFromCustomEventClassData:(MoPubCustomEventClassData *)customEventClassData {
+    NSDictionary *dicFromEnum = [NSDictionary dictionaryWithObjectsAndKeys:@"0", @"SOMAAdDimensionDefault", @"1", @"SOMAAdDimensionXXLARGE", @"2", @"SOMAAdDimensionXLARGE", @"3", @"SOMAAdDimensionMMA", @"4", @"SOMAAdDimensionMedRect", @"5", @"SOMAAdDimensionLeader", @"6", @"SOMAAdDimensionSky", @"7", @"SOMAAdDimensionWideSky", @"8", @"SOMAAdDimensionInterstitialLandscapePhone", @"9", @"SOMAAdDimensionInterstitialPortraitPhone", @"10", @"SOMAAdDimensionInterstitialLandscapePad", @"11", @"SOMAAdDimensionInterstitialPortraitPad", nil];
+    
     self.adview = [[SOMAInterstitialAdView alloc] init];
     self.adview.delegate = self;
     
     self.adview.adSettings.publisherId = [[customEventClassData getPropertyValue:@"publisherId"] intValue];
     self.adview.adSettings.adSpaceId = [[customEventClassData getPropertyValue:@"adSpaceId"] intValue];
-    self.adview.adSettings.dimension = SOMAAdDimensionDefault;
+    self.adview.adSettings.dimension = [[dicFromEnum objectForKey:[customEventClassData getPropertyValue:@"dimension"]] intValue];
     self.adview.adSettings.dimensionStrict = NO;
     self.adview.adSettings.formatStrict = NO;
+    
     
     self.adview.adSettings.autoReloadEnabled = NO;
     
