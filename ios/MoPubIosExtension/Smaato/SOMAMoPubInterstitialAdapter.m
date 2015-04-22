@@ -34,12 +34,18 @@
     self.adview = [[SOMAInterstitialAdView alloc] init];
     self.adview.delegate = self;
     
+    int enumDimension = 0;
+    if ([dicFromEnum objectForKey:[customEventClassData getPropertyValue:@"dimension"]]) {
+        enumDimension = [[dicFromEnum objectForKey:[customEventClassData getPropertyValue:@"dimension"]] intValue];
+    } else {
+        enumDimension = 0;
+    }
+
     self.adview.adSettings.publisherId = [[customEventClassData getPropertyValue:@"publisherId"] intValue];
     self.adview.adSettings.adSpaceId = [[customEventClassData getPropertyValue:@"adSpaceId"] intValue];
-    self.adview.adSettings.dimension = [[dicFromEnum objectForKey:[customEventClassData getPropertyValue:@"dimension"]] intValue];
+    self.adview.adSettings.dimension = enumDimension;
     self.adview.adSettings.dimensionStrict = NO;
     self.adview.adSettings.formatStrict = NO;
-    
     
     self.adview.adSettings.autoReloadEnabled = NO;
     
