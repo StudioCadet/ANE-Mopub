@@ -92,6 +92,11 @@ static FREContext staticContext;
     FREDispatchStatusEventAsync( context, "", interstitialShown );
 }
 
+- (void)interstitialWillDisappear:(MPInterstitialAdController *)interstitial
+{
+    FREDispatchStatusEventAsync( context, "", interstitialWillClosed );
+}
+
 - (void)interstitialDidDisappear:(MPInterstitialAdController *)interstitial
 {
     FREDispatchStatusEventAsync( context, "", interstitialClosed );
