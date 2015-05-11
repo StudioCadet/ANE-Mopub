@@ -7,6 +7,7 @@ package com.sticksports.nativeExtensions.mopub
 		// Common events :
 		public static const AD_LOADED : String = "MoPubEvent.AD_LOADED";
 		public static const AD_FAILED_TO_LOAD : String = "MoPubEvent.AD_FAILED_TO_LOAD";
+		public static const AD_WILL_CLOSED : String = "MoPubEvent.AD_WILL_CLOSED";
 		public static const AD_CLOSED : String = "MoPubEvent.AD_CLOSED";
 		
 		// Banner only :
