@@ -18,6 +18,7 @@
 #define interstitialFailedToLoad "interstitialFailedToLoad"
 #define interstitialShown "interstitialShown"
 #define interstitialClosed "interstitialClosed"
+#define interstitialWillClosed "interstitialWillClosed"
 #define interstitialExpired "interstitialExpired"
 #define interstitialCancelled "interstitialCancelled"
 #define interstitialClicked "interstitialClicked"
