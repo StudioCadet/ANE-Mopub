@@ -25,6 +25,8 @@
 + (MPChartboostRouter *)sharedRouter;
 
 
+- (void)startWithAppId:(NSString *)appId appSignature:(NSString *)appSignature;
+
 /*
  * Interstitial Ads
  */
