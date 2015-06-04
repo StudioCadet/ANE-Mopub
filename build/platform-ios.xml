@@ -21,6 +21,7 @@
         <option>-framework AdColony</option>
         <option>-weak_framework CoreMotion</option>
         <option>-weak_framework iAd</option>
+		<option>-weak_framework WebKit</option>
         <option>-framework CoreLocation</option>
         <option>-framework GoogleMobileAds</option>
         <option>-framework Chartboost</option>
