@@ -75,6 +75,8 @@
 
 - (void)showInterstitialFromRootViewController:(UIViewController *)rootViewController{
 	[self.adview show];
+    [self.delegate interstitialCustomEventWillAppear:self];
+    [self.delegate interstitialCustomEventDidAppear:self];
 }
 
 
@@ -95,11 +97,12 @@
 
 - (void)somaAdViewDidExitFullscreen:(SOMAAdView *)adview {
     MPLogInfo(@"Smaato ad did exit full screen.");
+    [self.delegate interstitialCustomEventWillDisappear:self];
     [self.delegate interstitialCustomEventDidDisappear:self];
 }
 
 - (BOOL)somaAdViewShouldEnterFullscreen:(SOMAAdView *)adview {
-    MPLogInfo(@"Soma ad clicked.");
+    MPLogInfo(@"Smaato ad clicked.");
     [self.delegate interstitialCustomEventDidReceiveTapEvent:self];
     
     return YES;
