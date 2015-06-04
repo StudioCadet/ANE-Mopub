@@ -240,7 +240,6 @@
 		483B182319FFEDBE00660DCC /* MPTableViewAdPlacer.m in Sources */ = {isa = PBXBuildFile; fileRef = 483B175919FFEDBE00660DCC /* MPTableViewAdPlacer.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		483B182419FFEE8900660DCC /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79A6D52A1636DFB1009DA60A /* CoreLocation.framework */; };
 		483B182619FFEEC300660DCC /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 483B182519FFEEC300660DCC /* iAd.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
-		483B18281A08E63200660DCC /* libInMobi-4.5.1.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 483B18271A08E63200660DCC /* libInMobi-4.5.1.a */; };
 		48A15D6119E3CF6000E725A7 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48A15D6019E3CF6000E725A7 /* CoreMotion.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		48A468A81966C60600171565 /* AdColonyInterstitialCustomEvent.h in Headers */ = {isa = PBXBuildFile; fileRef = 48A468A41966C60600171565 /* AdColonyInterstitialCustomEvent.h */; };
 		48A468A91966C60600171565 /* AdColonyInterstitialCustomEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 48A468A51966C60600171565 /* AdColonyInterstitialCustomEvent.m */; };
@@ -259,6 +258,7 @@
 		48E89B0B199CEC68007C857D /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48E89B0A199CEC68007C857D /* Accelerate.framework */; };
 		6D247CC719E6630500F579CB /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D247CC619E6630500F579CB /* CoreMedia.framework */; };
 		6D5AFBD719E6846900D5C9A2 /* libz.1.2.5.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D247CC819E6634000F579CB /* libz.1.2.5.dylib */; settings = {ATTRIBUTES = (Required, ); }; };
+		6D8D40F51B20A52700401572 /* libInMobi-4.5.3.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D8D40F41B20A52700401572 /* libInMobi-4.5.3.a */; };
 		6DA0194D1A2F62A1001B5D1F /* MoPubKeywords.h in Headers */ = {isa = PBXBuildFile; fileRef = 6DA0194B1A2F62A1001B5D1F /* MoPubKeywords.h */; };
 		6DA019501A2F694B001B5D1F /* MoPubKeywords.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DA0194F1A2F694B001B5D1F /* MoPubKeywords.m */; };
 		7914017E163AE16E004D6EE6 /* MoPubTypeConversion.m in Sources */ = {isa = PBXBuildFile; fileRef = 7914017D163AE16E004D6EE6 /* MoPubTypeConversion.m */; };
@@ -540,7 +540,6 @@
 		483B175C19FFEDBE00660DCC /* MPCloseButtonX@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MPCloseButtonX@2x.png"; sourceTree = "<group>"; };
 		483B175D19FFEDBE00660DCC /* MRAID.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MRAID.bundle; sourceTree = "<group>"; };
 		483B182519FFEEC300660DCC /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
-		483B18271A08E63200660DCC /* libInMobi-4.5.1.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libInMobi-4.5.1.a"; sourceTree = "<group>"; };
 		48A15D6019E3CF6000E725A7 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		48A468A41966C60600171565 /* AdColonyInterstitialCustomEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdColonyInterstitialCustomEvent.h; sourceTree = "<group>"; };
 		48A468A51966C60600171565 /* AdColonyInterstitialCustomEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdColonyInterstitialCustomEvent.m; sourceTree = "<group>"; };
@@ -559,6 +558,7 @@
 		48E89B0A199CEC68007C857D /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		6D247CC619E6630500F579CB /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		6D247CC819E6634000F579CB /* libz.1.2.5.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.2.5.dylib; path = usr/lib/libz.1.2.5.dylib; sourceTree = SDKROOT; };
+		6D8D40F41B20A52700401572 /* libInMobi-4.5.3.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libInMobi-4.5.3.a"; sourceTree = "<group>"; };
 		6DA0194B1A2F62A1001B5D1F /* MoPubKeywords.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoPubKeywords.h; sourceTree = "<group>"; };
 		6DA0194F1A2F694B001B5D1F /* MoPubKeywords.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoPubKeywords.m; sourceTree = "<group>"; };
 		7914017C163AE16E004D6EE6 /* MoPubTypeConversion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoPubTypeConversion.h; sourceTree = "<group>"; };
@@ -612,7 +612,6 @@
 				79F87D2F177B41AC0047359B /* AddressBookUI.framework in Frameworks */,
 				48A468AA1966C60600171565 /* AdColony.framework in Frameworks */,
 				79F66B1B1652882800E917FB /* AdSupport.framework in Frameworks */,
-				483B18281A08E63200660DCC /* libInMobi-4.5.1.a in Frameworks */,
 				79BF9891174A1DB80038F1F1 /* AudioToolbox.framework in Frameworks */,
 				79BF9895174A1DCA0038F1F1 /* AVFoundation.framework in Frameworks */,
 				34FBB5A4190FE3DD005402C5 /* CFNetwork.framework in Frameworks */,
@@ -626,6 +625,7 @@
 				79BF989B174A1DE50038F1F1 /* MobileCoreServices.framework in Frameworks */,
 				79F87A48177B35DA0047359B /* PassKit.framework in Frameworks */,
 				79BF989D174A1DEC0038F1F1 /* QuartzCore.framework in Frameworks */,
+				6D8D40F51B20A52700401572 /* libInMobi-4.5.3.a in Frameworks */,
 				79F87A49177B35DC0047359B /* Social.framework in Frameworks */,
 				79A6D5301636DFB1009DA60A /* StoreKit.framework in Frameworks */,
 				79BF989F174A1DF60038F1F1 /* SystemConfiguration.framework in Frameworks */,
@@ -1087,7 +1087,7 @@
 		48A468AB1975573D00171565 /* SDK */ = {
 			isa = PBXGroup;
 			children = (
-				483B18271A08E63200660DCC /* libInMobi-4.5.1.a */,
+				6D8D40F41B20A52700401572 /* libInMobi-4.5.3.a */,
 				48A468AC1975573D00171565 /* IMBanner.h */,
 				48A468AD1975573D00171565 /* IMBannerDelegate.h */,
 				48A468AE1975573D00171565 /* IMConstants.h */,
