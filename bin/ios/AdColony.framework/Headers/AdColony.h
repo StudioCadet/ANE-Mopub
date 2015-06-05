@@ -7,31 +7,34 @@
 
 #import <Foundation/Foundation.h>
 
+#import "AdColonyAdInfo.h"
+
 #pragma mark -
 #pragma mark Constants
 
 /**
  * Enum for zone status
  */
-typedef enum {
+typedef NS_ENUM(NSUInteger, ADCOLONY_ZONE_STATUS) {
     ADCOLONY_ZONE_STATUS_NO_ZONE = 0,   /**< AdColony has not been configured with that zone ID. */
     ADCOLONY_ZONE_STATUS_OFF,           /**< The zone has been turned off on the [Control Panel](http://clients.adcolony.com). */
     ADCOLONY_ZONE_STATUS_LOADING,       /**< The zone is preparing ads for display. */
-    ADCOLONY_ZONE_STATUS_ACTIVE,        /**< The zone has completed preparing ads for display .*/
+    ADCOLONY_ZONE_STATUS_ACTIVE,        /**< The zone has completed preparing ads for display. */
     ADCOLONY_ZONE_STATUS_UNKNOWN        /**< AdColony has not yet received the zone's configuration from the server. */
-} ADCOLONY_ZONE_STATUS;
+};
 
 #pragma mark -
 #pragma mark Forward declarations
 
 @class AdColonyNativeAdView;
+@class UIViewController;
 
 #pragma mark -
 #pragma mark AdColonyDelegate protocol
 
 /** 
  * Use the AdColonyDelegate to receive callbacks when ad availability changes or when a V4VC transaction has completed.
- * This delegate is passed to AdColony during configuration using `+[AdColony configureWithAppID:zoneIDs:delegate:logging:]`.
+ * This delegate is passed to AdColony during configuration using `+ AdColony configureWithAppID:zoneIDs:delegate:logging:`.
  */
 @protocol AdColonyDelegate <NSObject>
 @optional
@@ -43,10 +46,10 @@ typedef enum {
  * This method is called when a zone's ad availability state changes (when ads become available, or become unavailable).
  * Listening to these callbacks allows your app to update its user interface immediately. 
  * For example, when ads become available in a zone you could immediately show an ad for that zone.
- * @param available Whether ads became available or unavailable  
- * @param zoneID The affected zone  
+ * @param available Whether ads became available or unavailable.
+ * @param zoneID The affected zone.
  */
-- ( void ) onAdColonyAdAvailabilityChange:(BOOL)available inZone:(NSString*) zoneID;
+- ( void ) onAdColonyAdAvailabilityChange:( BOOL )available inZone:( NSString * )zoneID;
 
 
 /** @name Virtual Currency Rewards (V4VC) */
@@ -57,12 +60,12 @@ typedef enum {
  * AdColony has successfully rewarded. Client-side V4VC implementations should increment the user's currency 
  * balance in this method. Server-side V4VC implementations should contact the game server to determine 
  * the current total balance for the virtual currency.
- * @param success Whether the transaction succeeded or failed
- * @param currencyName The name of currency to reward  
- * @param amount The amount of currency to reward  
- * @param zoneID The affected zone  
+ * @param success Whether the transaction succeeded or failed.
+ * @param currencyName The name of currency to reward.
+ * @param amount The amount of currency to reward.
+ * @param zoneID The affected zone.
  */
-- ( void ) onAdColonyV4VCReward:(BOOL)success currencyName:(NSString*)currencyName currencyAmount:(int)amount inZone:(NSString*)zoneID;
+- ( void ) onAdColonyV4VCReward:( BOOL )success currencyName:( NSString * )currencyName currencyAmount:( int )amount inZone:( NSString * )zoneID;
 
 @end
 
@@ -80,7 +83,7 @@ typedef enum {
  * Notifies your app that an ad will actually play in response to the app's request to play an ad.
  * This method is called when AdColony has taken control of the device screen and is about to begin 
  * showing an ad. Apps should implement app-specific code such as pausing a game and turning off app music.
- * @param zoneID The affected zone
+ * @param zoneID The affected zone.
  */
 - ( void ) onAdColonyAdStartedInZone:( NSString * )zoneID;
 
@@ -88,10 +91,21 @@ typedef enum {
  * Notifies your app that an ad completed playing (or never played) and control has been returned to the app.
  * This method is called when AdColony has finished trying to show an ad, either successfully or unsuccessfully. 
  * If an ad was shown, apps should implement app-specific code such as unpausing a game and restarting app music.
- * @param shown Whether an ad was actually shown  
- * @param zoneID The affected zone  
+ * @param shown Whether an ad was actually shown.
+ * @param zoneID The affected zone.
  */
 - ( void ) onAdColonyAdAttemptFinished:(BOOL)shown inZone:( NSString * )zoneID;
+
+/**
+ * Alternative for `- onAdColonyAdAttemptFinished:inZone` that passes an AdColonyAdInfo object to the delegate. The AdColonyAdInfo object can be queried
+ * for information about the ad session: whether or not the ad was shown, the associated zone ID, whether or not the video was an In-App Purchase Promo (IAPP),
+ * the type of engagement that triggered an IAP, etc. If your application is showing IAPP advertisements, you will need to implement this callback
+ * instead of `- onAdColonyAdAttemptFinished:inZone` so you can decide what action to take once the ad has completed.
+ * @param info An AdColonyAdInfo object containing metadata about the associated ad.
+ * @see onAdColonyAdAttemptFinished:inZone
+ * @see AdColonyAdInfo
+ */
+- ( void ) onAdColonyAdFinishedWithInfo:( AdColonyAdInfo * )info;
 
 @end
 
@@ -170,7 +184,7 @@ typedef enum {
  * call it before `+ configureWithAppID:zoneIDs:delegate:logging:` so that the
  * identifier is used consistently across all server communications. The 
  * identifier will also pass through to server-side V4VC callbacks.
- * @param customID An arbitrary, application-specific identifier string for the current user. Must be less than 128 characters 
+ * @param customID An arbitrary, application-specific identifier string for the current user. Must be less than 128 characters.
  * @see getCustomID
  */
 + ( void ) setCustomID:( NSString * )customID;
@@ -211,7 +225,7 @@ typedef enum {
  * For details, please see the [ODIN-1 Google Code page](https://code.google.com/p/odinmobile/wiki/ODIN1).
  * As of iOS 7, the behavior of this identifier will change. We do not recommend using this
  * identifier for new integrations. This method is provided for backwards compatibility.
- * @return The string representation of the device's ODIN-1
+ * @return The string representation of the device's ODIN-1.
  */
 + ( NSString * ) getODIN1;
 
@@ -228,6 +242,7 @@ typedef enum {
  */
 + ( NSString * ) getVendorIdentifier;
 
+
 /** @name V4VC Availability and Currency Info */
 
 /** 
@@ -243,7 +258,7 @@ typedef enum {
 /**
  * Returns the number of possible virtual currency rewards currently available for the user.
  * This method takes into account daily caps, available ads, and other variables.
- * @param zoneID The zone in question
+ * @param zoneID The zone in question.
  * @return An integer number of remaining virtual currency rewards that can possibly occur in the near future.
  */
 + ( int ) getVirtualCurrencyRewardsAvailableTodayForZone:( NSString * )zoneID;
@@ -282,7 +297,7 @@ typedef enum {
  * Returns the number of ads that the user has seen towards their next reward.
  * You must first configure AdColony using `+ configureWithAppID:zoneIDs:delegate:logging:` 
  * and ensure the zone's status is not `ADCOLONY_ZONE_STATUS_UNKNOWN` before this function will return an accurate result.
- * @param currencyName The name of the currency to query
+ * @param currencyName The name of the currency to query.
  * @return An integer number of ads that the user has seen towards their next reward.
  */
 + ( int ) getVideoCreditBalance:( NSString * )currencyName;
@@ -291,13 +306,6 @@ typedef enum {
 /** @name Options and Other Functionality */
 
 /**
- * Sets advanced AdColony options.
- * If using this method, call it before `+ configureWithAppID:zoneIDs:delegate:logging:`.
- * @param options A dictionary of option key-value pairs.
- */
-+ ( void ) setOptions:( NSDictionary * )options;
-
-/** 
  * Cancels any full-screen ad that is currently playing and returns control to the app.
  * No earnings or V4VC rewards will occur if an ad is canceled programmatically by the app. 
  * This should only be used by apps that must immediately respond to non-standard incoming events, 
@@ -308,7 +316,7 @@ typedef enum {
 
 /**
  * Whether a full-screen AdColony ad is currently being played.
- * @return A boolean indicating if AdColony is currently playing an ad
+ * @return A boolean indicating if AdColony is currently playing an ad.
  */
 + ( BOOL ) videoAdCurrentlyRunning;
 
@@ -327,8 +335,8 @@ typedef enum {
  * Provide AdColony with per-user non personally-identifiable information for ad targeting purposes.
  * Providing non personally-identifiable information using this API will improve targeting and unlock
  * improved earnings for your app. [This support article](http://support.adcolony.com/customer/portal/articles/700183-sdk-user-metadata-pass-through) contains usage guidelines.
- * @param metadataType One of the predefined user metadata keys  
- * @param value Either a predefined user metadata value, or arbitrary value
+ * @param metadataType One of the predefined user metadata keys.
+ * @param value Either a predefined user metadata value, or arbitrary value.
  */
 + ( void ) setUserMetadata:( NSString * )metadataType withValue:( NSString * )value;
 
@@ -339,9 +347,24 @@ typedef enum {
  * You can call this as often as you want with various topics that the user has engaged in 
  * within your app or as the user engages in them. For example, if the user has started browsing 
  * the finance section of a news app, a developer should call: `[AdColony userInterestedIn:@"finance"]`.
- * @param topic An arbitrary topic string  
+ * @param topic An arbitrary topic string.  
  */
 + ( void ) userInterestedIn:( NSString * )topic;
+
+
+/** @name In-app purchase (IAP) Tracking */
+
+/**
+ * Call this method to report IAPs within your application. Note that this API can be leveraged to report standard IAPs
+ * as well as those triggered by AdColony’s IAP Promo (IAPP) advertisements and will improve overall ad targeting.
+ * @param transactionID An NSString representing the unique SKPaymentTransaction identifier for the IAP. Must be 128 chars or less.
+ * @param productID An NSString identifying the purchased product. Must be 128 chars or less.
+ * @param quantity An int indicating the number of items.
+ * @param price (*optional*) An NSNumber indicating the total price of the items purchased.
+ * @param currencyCode (*optional*) An NSString indicating the real-world, three-letter ISO 4217 (e.g. USD) currency code of the transaction.
+ * @see onAdColonyIAPRequest:quantity
+ */
++ ( void ) notifyIAPComplete:( NSString * )transactionID productID:( NSString * )productID quantity:( int )quantity price:( NSNumber * )price currencyCode:( NSString * )currencyCode;
 
 @end
 
