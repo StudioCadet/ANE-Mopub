@@ -9,10 +9,10 @@
 #import "MPInstanceProvider.h"
 #import "MPLogging.h"
 
-#define kAdColonyAppId @"app7afb1ad98acb4c978d"
-#define kAdColonyDefaultZoneId @"vz919a101ded4043d7a9" // This zone id will be used if "zoneId" is not passed through the custom info dictionary
+#define kAdColonyAppId @"appe4451aa0cbf74a1fb1"
+#define kAdColonyDefaultZoneId @"vze16ba0d359c64c00a5" // This zone id will be used if "zoneId" is not passed through the custom info dictionary
 
-#define AdColonyZoneIds() [NSArray arrayWithObjects:@"vz919a101ded4043d7a9", nil]
+#define AdColonyZoneIds() [NSArray arrayWithObjects:@"vze16ba0d359c64c00a5", nil]
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
