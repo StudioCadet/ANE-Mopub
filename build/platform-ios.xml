@@ -25,7 +25,6 @@
         <option>-framework CoreLocation</option>
         <option>-framework GoogleMobileAds</option>
         <option>-framework Chartboost</option>
-        <option>-framework iSoma</option>
 
 		<option>-lsqlite3</option>
 		<option>-lz</option>
@@ -36,7 +35,6 @@
         <packagedDependency>AdColony.framework</packagedDependency>
         <packagedDependency>GoogleMobileAds.framework</packagedDependency>
         <packagedDependency>Chartboost.framework</packagedDependency>
-        <packagedDependency>iSoma.framework</packagedDependency>
     </packagedDependencies>
 
 </platform>

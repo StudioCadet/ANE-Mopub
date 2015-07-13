@@ -11,16 +11,11 @@
 		0146A0631ABB33C80060CB75 /* MPChartboostRouter.m in Sources */ = {isa = PBXBuildFile; fileRef = 0146A05F1ABB33C80060CB75 /* MPChartboostRouter.m */; };
 		0146A0641ABB33C80060CB75 /* MPInstanceProvider+Chartboost.h in Headers */ = {isa = PBXBuildFile; fileRef = 0146A0601ABB33C80060CB75 /* MPInstanceProvider+Chartboost.h */; };
 		0146A0651ABB33C80060CB75 /* MPInstanceProvider+Chartboost.m in Sources */ = {isa = PBXBuildFile; fileRef = 0146A0611ABB33C80060CB75 /* MPInstanceProvider+Chartboost.m */; };
-		015BF4D91AC0554700B304B5 /* iSoma.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 015BF4D81AC0554700B304B5 /* iSoma.framework */; };
-		015BF4DC1AC0559D00B304B5 /* SOMAMoPubInterstitialAdapter.h in Headers */ = {isa = PBXBuildFile; fileRef = 015BF4DA1AC0559D00B304B5 /* SOMAMoPubInterstitialAdapter.h */; };
-		015BF4DD1AC0559D00B304B5 /* SOMAMoPubInterstitialAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 015BF4DB1AC0559D00B304B5 /* SOMAMoPubInterstitialAdapter.m */; };
 		015BF4E01AC05F5000B304B5 /* MoPubCustomEventClassData.h in Headers */ = {isa = PBXBuildFile; fileRef = 015BF4DE1AC05F5000B304B5 /* MoPubCustomEventClassData.h */; };
 		015BF4E11AC05F5000B304B5 /* MoPubCustomEventClassData.m in Sources */ = {isa = PBXBuildFile; fileRef = 015BF4DF1AC05F5000B304B5 /* MoPubCustomEventClassData.m */; };
 		01A470A61AB996000047DA2C /* GoogleMobileAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01A470A51AB996000047DA2C /* GoogleMobileAds.framework */; };
 		01A470A81AB996400047DA2C /* MPGoogleAdMobInterstitialCustomEvent.h in Headers */ = {isa = PBXBuildFile; fileRef = 01A470A71AB996400047DA2C /* MPGoogleAdMobInterstitialCustomEvent.h */; };
 		01A470AA1AB9966C0047DA2C /* MPGoogleAdMobInterstitialCustomEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 01A470A91AB9966C0047DA2C /* MPGoogleAdMobInterstitialCustomEvent.m */; };
-		01B4A75719F63F19008BBB36 /* MobviousUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 01B4A75519F63F19008BBB36 /* MobviousUtils.h */; };
-		01B4A75819F63F19008BBB36 /* MobviousUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 01B4A75619F63F19008BBB36 /* MobviousUtils.m */; };
 		349B4DBE1946F1CE00184794 /* InMobiBannerCustomEvent.h in Headers */ = {isa = PBXBuildFile; fileRef = 349B4DB91946F1CE00184794 /* InMobiBannerCustomEvent.h */; };
 		349B4DBF1946F1CE00184794 /* InMobiBannerCustomEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 349B4DBA1946F1CE00184794 /* InMobiBannerCustomEvent.m */; };
 		349B4DC01946F1CE00184794 /* InMobiInterstitialCustomEvent.h in Headers */ = {isa = PBXBuildFile; fileRef = 349B4DBB1946F1CE00184794 /* InMobiInterstitialCustomEvent.h */; };
@@ -29,17 +24,6 @@
 		34E1A252190E3E57001C491E /* ChartboostInterstitialCustomEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 34E1A24D190E3E57001C491E /* ChartboostInterstitialCustomEvent.m */; };
 		34FBB5A4190FE3DD005402C5 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34FBB5A3190FE3DD005402C5 /* CFNetwork.framework */; };
 		34FBB5A6190FE406005402C5 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34FBB5A5190FE405005402C5 /* Security.framework */; };
-		483B14AE19E7D05A00660DCC /* MobviousBannerCustomEvent.h in Headers */ = {isa = PBXBuildFile; fileRef = 483B14A019E7D05A00660DCC /* MobviousBannerCustomEvent.h */; };
-		483B14AF19E7D05A00660DCC /* MobviousBannerCustomEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 483B14A119E7D05A00660DCC /* MobviousBannerCustomEvent.m */; };
-		483B14B019E7D05A00660DCC /* MobviousInterstitialCustomEvent.h in Headers */ = {isa = PBXBuildFile; fileRef = 483B14A219E7D05A00660DCC /* MobviousInterstitialCustomEvent.h */; };
-		483B14B119E7D05A00660DCC /* MobviousInterstitialCustomEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 483B14A319E7D05A00660DCC /* MobviousInterstitialCustomEvent.m */; };
-		483B14B219E7D05A00660DCC /* SASAd.h in Headers */ = {isa = PBXBuildFile; fileRef = 483B14A619E7D05A00660DCC /* SASAd.h */; };
-		483B14B319E7D05A00660DCC /* SASAdView.h in Headers */ = {isa = PBXBuildFile; fileRef = 483B14A719E7D05A00660DCC /* SASAdView.h */; };
-		483B14B419E7D05A00660DCC /* SASAdViewDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 483B14A819E7D05A00660DCC /* SASAdViewDelegate.h */; };
-		483B14B519E7D05A00660DCC /* SASBannerView.h in Headers */ = {isa = PBXBuildFile; fileRef = 483B14A919E7D05A00660DCC /* SASBannerView.h */; };
-		483B14B619E7D05A00660DCC /* SASInterstitialView.h in Headers */ = {isa = PBXBuildFile; fileRef = 483B14AA19E7D05A00660DCC /* SASInterstitialView.h */; };
-		483B14B719E7D05A00660DCC /* SmartAdServerAd.h in Headers */ = {isa = PBXBuildFile; fileRef = 483B14AB19E7D05A00660DCC /* SmartAdServerAd.h */; };
-		483B14B819E7D05A00660DCC /* libSmartAdServer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 483B14AC19E7D05A00660DCC /* libSmartAdServer.a */; };
 		483B175E19FFEDBE00660DCC /* MPBannerAdManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 483B168819FFEDBE00660DCC /* MPBannerAdManager.h */; };
 		483B175F19FFEDBE00660DCC /* MPBannerAdManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 483B168919FFEDBE00660DCC /* MPBannerAdManager.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		483B176019FFEDBE00660DCC /* MPBannerAdManagerDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 483B168A19FFEDBE00660DCC /* MPBannerAdManagerDelegate.h */; };
@@ -306,16 +290,11 @@
 		0146A0601ABB33C80060CB75 /* MPInstanceProvider+Chartboost.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MPInstanceProvider+Chartboost.h"; sourceTree = "<group>"; };
 		0146A0611ABB33C80060CB75 /* MPInstanceProvider+Chartboost.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MPInstanceProvider+Chartboost.m"; sourceTree = "<group>"; };
 		015BF4CE1ABB34C700B304B5 /* libMoPubIosExtension.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libMoPubIosExtension.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		015BF4D81AC0554700B304B5 /* iSoma.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = iSoma.framework; sourceTree = "<group>"; };
-		015BF4DA1AC0559D00B304B5 /* SOMAMoPubInterstitialAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SOMAMoPubInterstitialAdapter.h; sourceTree = "<group>"; };
-		015BF4DB1AC0559D00B304B5 /* SOMAMoPubInterstitialAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SOMAMoPubInterstitialAdapter.m; sourceTree = "<group>"; };
 		015BF4DE1AC05F5000B304B5 /* MoPubCustomEventClassData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoPubCustomEventClassData.h; sourceTree = "<group>"; };
 		015BF4DF1AC05F5000B304B5 /* MoPubCustomEventClassData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoPubCustomEventClassData.m; sourceTree = "<group>"; };
 		01A470A51AB996000047DA2C /* GoogleMobileAds.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMobileAds.framework; sourceTree = "<group>"; };
 		01A470A71AB996400047DA2C /* MPGoogleAdMobInterstitialCustomEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPGoogleAdMobInterstitialCustomEvent.h; sourceTree = "<group>"; };
 		01A470A91AB9966C0047DA2C /* MPGoogleAdMobInterstitialCustomEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPGoogleAdMobInterstitialCustomEvent.m; sourceTree = "<group>"; };
-		01B4A75519F63F19008BBB36 /* MobviousUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobviousUtils.h; sourceTree = "<group>"; };
-		01B4A75619F63F19008BBB36 /* MobviousUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MobviousUtils.m; sourceTree = "<group>"; };
 		349B4DB91946F1CE00184794 /* InMobiBannerCustomEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InMobiBannerCustomEvent.h; sourceTree = "<group>"; };
 		349B4DBA1946F1CE00184794 /* InMobiBannerCustomEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InMobiBannerCustomEvent.m; sourceTree = "<group>"; };
 		349B4DBB1946F1CE00184794 /* InMobiInterstitialCustomEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InMobiInterstitialCustomEvent.h; sourceTree = "<group>"; };
@@ -324,18 +303,6 @@
 		34E1A24D190E3E57001C491E /* ChartboostInterstitialCustomEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChartboostInterstitialCustomEvent.m; sourceTree = "<group>"; };
 		34FBB5A3190FE3DD005402C5 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		34FBB5A5190FE405005402C5 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
-		483B14A019E7D05A00660DCC /* MobviousBannerCustomEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobviousBannerCustomEvent.h; sourceTree = "<group>"; };
-		483B14A119E7D05A00660DCC /* MobviousBannerCustomEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MobviousBannerCustomEvent.m; sourceTree = "<group>"; };
-		483B14A219E7D05A00660DCC /* MobviousInterstitialCustomEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobviousInterstitialCustomEvent.h; sourceTree = "<group>"; };
-		483B14A319E7D05A00660DCC /* MobviousInterstitialCustomEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MobviousInterstitialCustomEvent.m; sourceTree = "<group>"; };
-		483B14A619E7D05A00660DCC /* SASAd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SASAd.h; sourceTree = "<group>"; };
-		483B14A719E7D05A00660DCC /* SASAdView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SASAdView.h; sourceTree = "<group>"; };
-		483B14A819E7D05A00660DCC /* SASAdViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SASAdViewDelegate.h; sourceTree = "<group>"; };
-		483B14A919E7D05A00660DCC /* SASBannerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SASBannerView.h; sourceTree = "<group>"; };
-		483B14AA19E7D05A00660DCC /* SASInterstitialView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SASInterstitialView.h; sourceTree = "<group>"; };
-		483B14AB19E7D05A00660DCC /* SmartAdServerAd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SmartAdServerAd.h; sourceTree = "<group>"; };
-		483B14AC19E7D05A00660DCC /* libSmartAdServer.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libSmartAdServer.a; sourceTree = "<group>"; };
-		483B14AD19E7D05A00660DCC /* sas.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = sas.bundle; sourceTree = "<group>"; };
 		483B168819FFEDBE00660DCC /* MPBannerAdManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPBannerAdManager.h; sourceTree = "<group>"; };
 		483B168919FFEDBE00660DCC /* MPBannerAdManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPBannerAdManager.m; sourceTree = "<group>"; };
 		483B168A19FFEDBE00660DCC /* MPBannerAdManagerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPBannerAdManagerDelegate.h; sourceTree = "<group>"; };
@@ -605,11 +572,9 @@
 				6D247CC719E6630500F579CB /* CoreMedia.framework in Frameworks */,
 				48A15D6119E3CF6000E725A7 /* CoreMotion.framework in Frameworks */,
 				48E89B0B199CEC68007C857D /* Accelerate.framework in Frameworks */,
-				015BF4D91AC0554700B304B5 /* iSoma.framework in Frameworks */,
 				6D8D40FD1B219E8800401572 /* AdColony.framework in Frameworks */,
 				34FBB5A6190FE406005402C5 /* Security.framework in Frameworks */,
 				79F87D2E177B41AC0047359B /* AddressBook.framework in Frameworks */,
-				483B14B819E7D05A00660DCC /* libSmartAdServer.a in Frameworks */,
 				79F87D2F177B41AC0047359B /* AddressBookUI.framework in Frameworks */,
 				79F66B1B1652882800E917FB /* AdSupport.framework in Frameworks */,
 				79BF9891174A1DB80038F1F1 /* AudioToolbox.framework in Frameworks */,
@@ -641,24 +606,6 @@
 			isa = PBXGroup;
 			children = (
 				0146A05D1ABB2BB90060CB75 /* Chartboost.framework */,
-			);
-			path = SDK;
-			sourceTree = "<group>";
-		};
-		015BF4D61AC054FA00B304B5 /* Smaato */ = {
-			isa = PBXGroup;
-			children = (
-				015BF4DA1AC0559D00B304B5 /* SOMAMoPubInterstitialAdapter.h */,
-				015BF4DB1AC0559D00B304B5 /* SOMAMoPubInterstitialAdapter.m */,
-				015BF4D71AC0553600B304B5 /* SDK */,
-			);
-			path = Smaato;
-			sourceTree = "<group>";
-		};
-		015BF4D71AC0553600B304B5 /* SDK */ = {
-			isa = PBXGroup;
-			children = (
-				015BF4D81AC0554700B304B5 /* iSoma.framework */,
 			);
 			path = SDK;
 			sourceTree = "<group>";
@@ -705,43 +652,6 @@
 				34E1A24D190E3E57001C491E /* ChartboostInterstitialCustomEvent.m */,
 			);
 			path = Chartboost;
-			sourceTree = "<group>";
-		};
-		483B149F19E7D05A00660DCC /* Mobvious */ = {
-			isa = PBXGroup;
-			children = (
-				483B14A019E7D05A00660DCC /* MobviousBannerCustomEvent.h */,
-				483B14A119E7D05A00660DCC /* MobviousBannerCustomEvent.m */,
-				483B14A219E7D05A00660DCC /* MobviousInterstitialCustomEvent.h */,
-				483B14A319E7D05A00660DCC /* MobviousInterstitialCustomEvent.m */,
-				483B14A419E7D05A00660DCC /* SDK */,
-				01B4A75519F63F19008BBB36 /* MobviousUtils.h */,
-				01B4A75619F63F19008BBB36 /* MobviousUtils.m */,
-			);
-			path = Mobvious;
-			sourceTree = "<group>";
-		};
-		483B14A419E7D05A00660DCC /* SDK */ = {
-			isa = PBXGroup;
-			children = (
-				483B14A519E7D05A00660DCC /* headers */,
-				483B14AC19E7D05A00660DCC /* libSmartAdServer.a */,
-				483B14AD19E7D05A00660DCC /* sas.bundle */,
-			);
-			path = SDK;
-			sourceTree = "<group>";
-		};
-		483B14A519E7D05A00660DCC /* headers */ = {
-			isa = PBXGroup;
-			children = (
-				483B14A619E7D05A00660DCC /* SASAd.h */,
-				483B14A719E7D05A00660DCC /* SASAdView.h */,
-				483B14A819E7D05A00660DCC /* SASAdViewDelegate.h */,
-				483B14A919E7D05A00660DCC /* SASBannerView.h */,
-				483B14AA19E7D05A00660DCC /* SASInterstitialView.h */,
-				483B14AB19E7D05A00660DCC /* SmartAdServerAd.h */,
-			);
-			path = headers;
 			sourceTree = "<group>";
 		};
 		483B168519FFEDBE00660DCC /* Externals */ = {
@@ -1106,9 +1016,7 @@
 		79A6D47D1636C14C009DA60A = {
 			isa = PBXGroup;
 			children = (
-				015BF4D61AC054FA00B304B5 /* Smaato */,
 				01A470A31AB996000047DA2C /* AdMob */,
-				483B149F19E7D05A00660DCC /* Mobvious */,
 				48927F6119BEF2D400059A88 /* MoPubSDK */,
 				48A468A31966C60600171565 /* AdColony */,
 				349B4DB81946F1CE00184794 /* InMobi */,
@@ -1207,7 +1115,6 @@
 				483B17CE19FFEDBE00660DCC /* MPSessionTracker.h in Headers */,
 				6D8D410B1B219E9A00401572 /* IMBanner.h in Headers */,
 				79F66B1E1654051E00E917FB /* MoPubInterstitial.h in Headers */,
-				483B14B719E7D05A00660DCC /* SmartAdServerAd.h in Headers */,
 				483B179619FFEDBE00660DCC /* MPPrivateInterstitialCustomEventDelegate.h in Headers */,
 				483B17BE19FFEDBE00660DCC /* UIWebView+MPAdditions.h in Headers */,
 				483B17D019FFEDBE00660DCC /* MPStoreKitProvider.h in Headers */,
@@ -1223,10 +1130,8 @@
 				483B176119FFEDBE00660DCC /* MPBannerCustomEventAdapter.h in Headers */,
 				483B180D19FFEDBE00660DCC /* MPNativeAdError.h in Headers */,
 				483B17B819FFEDBE00660DCC /* NSJSONSerialization+MPAdditions.h in Headers */,
-				483B14B319E7D05A00660DCC /* SASAdView.h in Headers */,
 				6D8D410D1B219E9A00401572 /* IMConstants.h in Headers */,
 				483B17D719FFEDBE00660DCC /* MPAdConversionTracker.h in Headers */,
-				483B14B519E7D05A00660DCC /* SASBannerView.h in Headers */,
 				483B175E19FFEDBE00660DCC /* MPBannerAdManager.h in Headers */,
 				483B179019FFEDBE00660DCC /* MPInterstitialCustomEventAdapter.h in Headers */,
 				483B179419FFEDBE00660DCC /* MPLegacyInterstitialCustomEventAdapter.h in Headers */,
@@ -1252,7 +1157,6 @@
 				483B17DE19FFEDBE00660DCC /* MPConstants.h in Headers */,
 				483B181719FFEDBE00660DCC /* MPNativeCustomEvent.h in Headers */,
 				483B17A819FFEDBE00660DCC /* MRCalendarManager.h in Headers */,
-				483B14B219E7D05A00660DCC /* SASAd.h in Headers */,
 				483B180819FFEDBE00660DCC /* MPNativeAdConstants.h in Headers */,
 				483B178119FFEDBE00660DCC /* MPAdWebView.h in Headers */,
 				483B17EE19FFEDBE00660DCC /* MPMoPubNativeAdAdapter.h in Headers */,
@@ -1273,8 +1177,6 @@
 				483B182219FFEDBE00660DCC /* MPTableViewAdPlacer.h in Headers */,
 				483B176519FFEDBE00660DCC /* MPLegacyBannerCustomEventAdapter.h in Headers */,
 				483B181019FFEDBE00660DCC /* MPNativeAdRequest.h in Headers */,
-				483B14B419E7D05A00660DCC /* SASAdViewDelegate.h in Headers */,
-				015BF4DC1AC0559D00B304B5 /* SOMAMoPubInterstitialAdapter.h in Headers */,
 				483B181A19FFEDBE00660DCC /* MPServerAdPositioning.h in Headers */,
 				483B17FB19FFEDBE00660DCC /* MPNativePositionSource.h in Headers */,
 				483B181219FFEDBE00660DCC /* MPNativeAdRequestTargeting.h in Headers */,
@@ -1297,11 +1199,9 @@
 				483B17E019FFEDBE00660DCC /* MPInterstitialAdController.h in Headers */,
 				483B17A619FFEDBE00660DCC /* MRBundleManager.h in Headers */,
 				483B17A419FFEDBE00660DCC /* MRAdViewDisplayController.h in Headers */,
-				483B14AE19E7D05A00660DCC /* MobviousBannerCustomEvent.h in Headers */,
 				483B182019FFEDBE00660DCC /* MPTableViewAdManager.h in Headers */,
 				483B17FF19FFEDBE00660DCC /* MPAdPositioning.h in Headers */,
 				483B177019FFEDBE00660DCC /* MPAdDestinationDisplayAgent.h in Headers */,
-				483B14B019E7D05A00660DCC /* MobviousInterstitialCustomEvent.h in Headers */,
 				483B179919FFEDBE00660DCC /* MPInstanceProvider.h in Headers */,
 				483B181E19FFEDBE00660DCC /* MPStreamAdPlacer.h in Headers */,
 				483B17C819FFEDBE00660DCC /* MPInternalUtils.h in Headers */,
@@ -1315,7 +1215,6 @@
 				483B177F19FFEDBE00660DCC /* MPURLResolver.h in Headers */,
 				483B178719FFEDBE00660DCC /* MPHTMLInterstitialCustomEvent.h in Headers */,
 				483B178519FFEDBE00660DCC /* MPHTMLBannerCustomEvent.h in Headers */,
-				483B14B619E7D05A00660DCC /* SASInterstitialView.h in Headers */,
 				483B17BA19FFEDBE00660DCC /* NSURL+MPAdditions.h in Headers */,
 				6D8D410E1B219E9A00401572 /* IMError.h in Headers */,
 				483B17A219FFEDBE00660DCC /* MRAdView.h in Headers */,
@@ -1323,7 +1222,6 @@
 				6D8D41151B219E9A00401572 /* InMobiAnalytics.h in Headers */,
 				015BF4E01AC05F5000B304B5 /* MoPubCustomEventClassData.h in Headers */,
 				6DA0194D1A2F62A1001B5D1F /* MoPubKeywords.h in Headers */,
-				01B4A75719F63F19008BBB36 /* MobviousUtils.h in Headers */,
 				483B180A19FFEDBE00660DCC /* MPNativeAdData.h in Headers */,
 				6D8D410F1B219E9A00401572 /* IMIncentivisedDelegate.h in Headers */,
 				483B178319FFEDBE00660DCC /* MPAdWebViewAgent.h in Headers */,
@@ -1392,7 +1290,6 @@
 				483B17C119FFEDBE00660DCC /* MPAnalyticsTracker.m in Sources */,
 				483B17F619FFEDBE00660DCC /* MPNativeAdUtils.m in Sources */,
 				0146A0631ABB33C80060CB75 /* MPChartboostRouter.m in Sources */,
-				015BF4DD1AC0559D00B304B5 /* SOMAMoPubInterstitialAdapter.m in Sources */,
 				483B17DA19FFEDBE00660DCC /* MPAdView.m in Sources */,
 				483B17BF19FFEDBE00660DCC /* UIWebView+MPAdditions.m in Sources */,
 				483B180419FFEDBE00660DCC /* MPCollectionViewAdPlacer.m in Sources */,
@@ -1417,7 +1314,6 @@
 				483B182119FFEDBE00660DCC /* MPTableViewAdManager.m in Sources */,
 				483B181319FFEDBE00660DCC /* MPNativeAdRequestTargeting.m in Sources */,
 				483B178C19FFEDBE00660DCC /* MPBaseInterstitialAdapter.m in Sources */,
-				483B14AF19E7D05A00660DCC /* MobviousBannerCustomEvent.m in Sources */,
 				483B17BB19FFEDBE00660DCC /* NSURL+MPAdditions.m in Sources */,
 				7914017E163AE16E004D6EE6 /* MoPubTypeConversion.m in Sources */,
 				483B180219FFEDBE00660DCC /* MPClientAdPositioning.m in Sources */,
@@ -1452,7 +1348,6 @@
 				483B178019FFEDBE00660DCC /* MPURLResolver.m in Sources */,
 				483B17AD19FFEDBE00660DCC /* MRDimmingView.m in Sources */,
 				483B17D119FFEDBE00660DCC /* MPStoreKitProvider.m in Sources */,
-				01B4A75819F63F19008BBB36 /* MobviousUtils.m in Sources */,
 				483B182319FFEDBE00660DCC /* MPTableViewAdPlacer.m in Sources */,
 				79F66B1F1654051E00E917FB /* MoPubInterstitial.m in Sources */,
 				6DA019501A2F694B001B5D1F /* MoPubKeywords.m in Sources */,
@@ -1465,7 +1360,6 @@
 				483B176419FFEDBE00660DCC /* MPBaseBannerAdapter.m in Sources */,
 				483B17D519FFEDBE00660DCC /* MPUserInteractionGestureRecognizer.m in Sources */,
 				483B17F119FFEDBE00660DCC /* MPMoPubNativeCustomEvent.m in Sources */,
-				483B14B119E7D05A00660DCC /* MobviousInterstitialCustomEvent.m in Sources */,
 				483B17B119FFEDBE00660DCC /* MRJavaScriptEventEmitter.m in Sources */,
 				483B176B19FFEDBE00660DCC /* MPAdAlertManager.m in Sources */,
 				483B17B319FFEDBE00660DCC /* MRPictureManager.m in Sources */,
