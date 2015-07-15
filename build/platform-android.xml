@@ -7,7 +7,6 @@
 		<packagedDependency>chartboost.jar</packagedDependency>
 		<packagedDependency>google-play-services.jar</packagedDependency>
 		<packagedDependency>inmobi.jar</packagedDependency>
-		<packagedDependency>smartadserver.jar</packagedDependency>
 		<packagedDependency>StartAppInApp-2.4.12.jar</packagedDependency>
 		<packagedDependency>StartAppMoPubMediation-1.0.1.jar</packagedDependency>
     </packagedDependencies> 

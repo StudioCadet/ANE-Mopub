@@ -13,7 +13,6 @@ import com.mopub.mobileads.AdColonyUtils;
 import com.mopub.mobileads.ChartboostUtils;
 import com.mopub.mobileads.InMobiUtils;
 import com.mopub.mobileads.StartAppUtils;
-import com.smartadserver.android.library.ui.SASAdView;
 import com.sticksports.nativeExtensions.mopub.MoPubExtension;
 import com.sticksports.nativeExtensions.mopub.MoPubExtensionContext;
 
@@ -41,9 +40,6 @@ public class MoPubInitFunction implements FREFunction {
 		
 		// Chartboost :
 		ChartboostUtils.init(activity);
-		
-		// SmartAdServer :
-		SASAdView.enableLogging();
 		
 		// AdColony :
 		AdColonyUtils.init(activity, appVersion);

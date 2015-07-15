@@ -102,7 +102,6 @@
 				<pathelement location="../android/libs/chartboost.jar"/>
 				<pathelement location="../android/libs/inmobi.jar"/>
 				<pathelement location="../android/libs/adcolony.jar"/>
-				<pathelement location="../android/libs/smartadserver.jar"/>
 				<pathelement location="../android/libs/StartAppInApp-2.4.12.jar"/>
 				<pathelement location="../android/libs/StartAppMoPubMediation-1.0.1.jar"/>
 			</classpath>
