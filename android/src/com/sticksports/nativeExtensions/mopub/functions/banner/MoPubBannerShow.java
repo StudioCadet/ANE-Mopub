@@ -7,6 +7,7 @@ import android.widget.FrameLayout;
 
 import com.adobe.fre.FREContext;
 import com.adobe.fre.FREObject;
+import com.mopub.common.util.Views;
 import com.sticksports.nativeExtensions.mopub.MoPubBanner;
 import com.sticksports.nativeExtensions.mopub.MoPubBannerContext;
 import com.sticksports.nativeExtensions.mopub.MoPubExtension;
@@ -28,9 +29,10 @@ public class MoPubBannerShow extends UIThreadSafeFREFunction {
 					params.gravity = Gravity.LEFT | Gravity.TOP;
 					params.setMargins( banner.getPosX(), banner.getPosY(), 0, 0 );
 					
-					ViewGroup parent = (ViewGroup) banner.getParent();
-					if(parent != null)
-						parent.removeView(banner);
+					try {
+						Views.removeFromParent(banner);
+					}
+					catch(Exception e) {}
 					
 					ViewGroup frameLayout = (ViewGroup) activity.findViewById( android.R.id.content );
 					frameLayout = (ViewGroup) frameLayout.getChildAt( 0 );
