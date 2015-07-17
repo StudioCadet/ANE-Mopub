@@ -13,6 +13,8 @@
 		0146A0651ABB33C80060CB75 /* MPInstanceProvider+Chartboost.m in Sources */ = {isa = PBXBuildFile; fileRef = 0146A0611ABB33C80060CB75 /* MPInstanceProvider+Chartboost.m */; };
 		015BF4E01AC05F5000B304B5 /* MoPubCustomEventClassData.h in Headers */ = {isa = PBXBuildFile; fileRef = 015BF4DE1AC05F5000B304B5 /* MoPubCustomEventClassData.h */; };
 		015BF4E11AC05F5000B304B5 /* MoPubCustomEventClassData.m in Sources */ = {isa = PBXBuildFile; fileRef = 015BF4DF1AC05F5000B304B5 /* MoPubCustomEventClassData.m */; };
+		016174D61B58F2C200F92420 /* TestBannerCustomEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 016174D51B58F2C100F92420 /* TestBannerCustomEvent.m */; };
+		016174D81B58F30800F92420 /* TestBannerCustomEvent.h in Headers */ = {isa = PBXBuildFile; fileRef = 016174D71B58F30800F92420 /* TestBannerCustomEvent.h */; };
 		01A470A61AB996000047DA2C /* GoogleMobileAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01A470A51AB996000047DA2C /* GoogleMobileAds.framework */; };
 		01A470A81AB996400047DA2C /* MPGoogleAdMobInterstitialCustomEvent.h in Headers */ = {isa = PBXBuildFile; fileRef = 01A470A71AB996400047DA2C /* MPGoogleAdMobInterstitialCustomEvent.h */; };
 		01A470AA1AB9966C0047DA2C /* MPGoogleAdMobInterstitialCustomEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 01A470A91AB9966C0047DA2C /* MPGoogleAdMobInterstitialCustomEvent.m */; };
@@ -292,6 +294,8 @@
 		015BF4CE1ABB34C700B304B5 /* libMoPubIosExtension.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libMoPubIosExtension.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		015BF4DE1AC05F5000B304B5 /* MoPubCustomEventClassData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoPubCustomEventClassData.h; sourceTree = "<group>"; };
 		015BF4DF1AC05F5000B304B5 /* MoPubCustomEventClassData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoPubCustomEventClassData.m; sourceTree = "<group>"; };
+		016174D51B58F2C100F92420 /* TestBannerCustomEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TestBannerCustomEvent.m; path = Test/TestBannerCustomEvent.m; sourceTree = "<group>"; };
+		016174D71B58F30800F92420 /* TestBannerCustomEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestBannerCustomEvent.h; sourceTree = "<group>"; };
 		01A470A51AB996000047DA2C /* GoogleMobileAds.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMobileAds.framework; sourceTree = "<group>"; };
 		01A470A71AB996400047DA2C /* MPGoogleAdMobInterstitialCustomEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPGoogleAdMobInterstitialCustomEvent.h; sourceTree = "<group>"; };
 		01A470A91AB9966C0047DA2C /* MPGoogleAdMobInterstitialCustomEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPGoogleAdMobInterstitialCustomEvent.m; sourceTree = "<group>"; };
@@ -608,6 +612,15 @@
 				0146A05D1ABB2BB90060CB75 /* Chartboost.framework */,
 			);
 			path = SDK;
+			sourceTree = "<group>";
+		};
+		016174D41B58F21300F92420 /* Test */ = {
+			isa = PBXGroup;
+			children = (
+				016174D51B58F2C100F92420 /* TestBannerCustomEvent.m */,
+				016174D71B58F30800F92420 /* TestBannerCustomEvent.h */,
+			);
+			name = Test;
 			sourceTree = "<group>";
 		};
 		01A470A31AB996000047DA2C /* AdMob */ = {
@@ -1016,6 +1029,7 @@
 		79A6D47D1636C14C009DA60A = {
 			isa = PBXGroup;
 			children = (
+				016174D41B58F21300F92420 /* Test */,
 				01A470A31AB996000047DA2C /* AdMob */,
 				48927F6119BEF2D400059A88 /* MoPubSDK */,
 				48A468A31966C60600171565 /* AdColony */,
@@ -1192,6 +1206,7 @@
 				6D8D41131B219E9A00401572 /* IMNativeDelegate.h in Headers */,
 				483B17FD19FFEDBE00660DCC /* MPTableViewCellImpressionTracker.h in Headers */,
 				483B176C19FFEDBE00660DCC /* MPAdBrowserController.h in Headers */,
+				016174D81B58F30800F92420 /* TestBannerCustomEvent.h in Headers */,
 				483B17E619FFEDBE00660DCC /* UIView+MPNativeAd.h in Headers */,
 				483B176E19FFEDBE00660DCC /* MPAdConfiguration.h in Headers */,
 				483B179F19FFEDBE00660DCC /* MPMRAIDInterstitialViewController.h in Headers */,
@@ -1363,6 +1378,7 @@
 				483B17B119FFEDBE00660DCC /* MRJavaScriptEventEmitter.m in Sources */,
 				483B176B19FFEDBE00660DCC /* MPAdAlertManager.m in Sources */,
 				483B17B319FFEDBE00660DCC /* MRPictureManager.m in Sources */,
+				016174D61B58F2C200F92420 /* TestBannerCustomEvent.m in Sources */,
 				483B17A719FFEDBE00660DCC /* MRBundleManager.m in Sources */,
 				483B17EF19FFEDBE00660DCC /* MPMoPubNativeAdAdapter.m in Sources */,
 				483B178E19FFEDBE00660DCC /* MPInterstitialAdManager.m in Sources */,

@@ -98,12 +98,10 @@
     }
 }
 
-- (BOOL)enableAutomaticImpressionAndClickTracking
-{
-    // Override this method to return NO to perform impression and click tracking manually.
-    
+- (BOOL)enableAutomaticImpressionAndClickTracking {
     return NO;
 }
+
 
 - (void)dealloc
 {
@@ -112,9 +110,7 @@
     [super dealloc];
 }
 
-#pragma mark - IMAdDelegate
-
-#pragma mark InMobiAdDelegate methods
+#pragma mark - IMBannerDelegate
 
 - (void)bannerDidReceiveAd:(IMBanner *)banner {
     MPLogInfo(@"InMobi banner did load");
