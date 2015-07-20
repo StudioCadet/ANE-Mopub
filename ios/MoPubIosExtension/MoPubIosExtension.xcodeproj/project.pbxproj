@@ -15,6 +15,8 @@
 		015BF4E11AC05F5000B304B5 /* MoPubCustomEventClassData.m in Sources */ = {isa = PBXBuildFile; fileRef = 015BF4DF1AC05F5000B304B5 /* MoPubCustomEventClassData.m */; };
 		016174D61B58F2C200F92420 /* TestBannerCustomEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 016174D51B58F2C100F92420 /* TestBannerCustomEvent.m */; };
 		016174D81B58F30800F92420 /* TestBannerCustomEvent.h in Headers */ = {isa = PBXBuildFile; fileRef = 016174D71B58F30800F92420 /* TestBannerCustomEvent.h */; };
+		016174DB1B5909D900F92420 /* MPGoogleAdMobBannerCustomEvent.h in Headers */ = {isa = PBXBuildFile; fileRef = 016174D91B5909D900F92420 /* MPGoogleAdMobBannerCustomEvent.h */; };
+		016174DC1B5909D900F92420 /* MPGoogleAdMobBannerCustomEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 016174DA1B5909D900F92420 /* MPGoogleAdMobBannerCustomEvent.m */; };
 		01A470A61AB996000047DA2C /* GoogleMobileAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01A470A51AB996000047DA2C /* GoogleMobileAds.framework */; };
 		01A470A81AB996400047DA2C /* MPGoogleAdMobInterstitialCustomEvent.h in Headers */ = {isa = PBXBuildFile; fileRef = 01A470A71AB996400047DA2C /* MPGoogleAdMobInterstitialCustomEvent.h */; };
 		01A470AA1AB9966C0047DA2C /* MPGoogleAdMobInterstitialCustomEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 01A470A91AB9966C0047DA2C /* MPGoogleAdMobInterstitialCustomEvent.m */; };
@@ -296,6 +298,8 @@
 		015BF4DF1AC05F5000B304B5 /* MoPubCustomEventClassData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoPubCustomEventClassData.m; sourceTree = "<group>"; };
 		016174D51B58F2C100F92420 /* TestBannerCustomEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TestBannerCustomEvent.m; path = Test/TestBannerCustomEvent.m; sourceTree = "<group>"; };
 		016174D71B58F30800F92420 /* TestBannerCustomEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestBannerCustomEvent.h; sourceTree = "<group>"; };
+		016174D91B5909D900F92420 /* MPGoogleAdMobBannerCustomEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPGoogleAdMobBannerCustomEvent.h; sourceTree = "<group>"; };
+		016174DA1B5909D900F92420 /* MPGoogleAdMobBannerCustomEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPGoogleAdMobBannerCustomEvent.m; sourceTree = "<group>"; };
 		01A470A51AB996000047DA2C /* GoogleMobileAds.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMobileAds.framework; sourceTree = "<group>"; };
 		01A470A71AB996400047DA2C /* MPGoogleAdMobInterstitialCustomEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPGoogleAdMobInterstitialCustomEvent.h; sourceTree = "<group>"; };
 		01A470A91AB9966C0047DA2C /* MPGoogleAdMobInterstitialCustomEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPGoogleAdMobInterstitialCustomEvent.m; sourceTree = "<group>"; };
@@ -629,6 +633,8 @@
 				01A470A41AB996000047DA2C /* SDK */,
 				01A470A71AB996400047DA2C /* MPGoogleAdMobInterstitialCustomEvent.h */,
 				01A470A91AB9966C0047DA2C /* MPGoogleAdMobInterstitialCustomEvent.m */,
+				016174D91B5909D900F92420 /* MPGoogleAdMobBannerCustomEvent.h */,
+				016174DA1B5909D900F92420 /* MPGoogleAdMobBannerCustomEvent.m */,
 			);
 			path = AdMob;
 			sourceTree = "<group>";
@@ -1235,6 +1241,7 @@
 				483B17A219FFEDBE00660DCC /* MRAdView.h in Headers */,
 				483B17D419FFEDBE00660DCC /* MPUserInteractionGestureRecognizer.h in Headers */,
 				6D8D41151B219E9A00401572 /* InMobiAnalytics.h in Headers */,
+				016174DB1B5909D900F92420 /* MPGoogleAdMobBannerCustomEvent.h in Headers */,
 				015BF4E01AC05F5000B304B5 /* MoPubCustomEventClassData.h in Headers */,
 				6DA0194D1A2F62A1001B5D1F /* MoPubKeywords.h in Headers */,
 				483B180A19FFEDBE00660DCC /* MPNativeAdData.h in Headers */,
@@ -1323,6 +1330,7 @@
 				79A6D5351636E4A9009DA60A /* MoPubBanner.m in Sources */,
 				483B176919FFEDBE00660DCC /* MPAdAlertGestureRecognizer.m in Sources */,
 				483B17E719FFEDBE00660DCC /* UIView+MPNativeAd.m in Sources */,
+				016174DC1B5909D900F92420 /* MPGoogleAdMobBannerCustomEvent.m in Sources */,
 				483B176619FFEDBE00660DCC /* MPLegacyBannerCustomEventAdapter.m in Sources */,
 				483B17FE19FFEDBE00660DCC /* MPTableViewCellImpressionTracker.m in Sources */,
 				483B17F819FFEDBE00660DCC /* MPNativeCache.m in Sources */,
