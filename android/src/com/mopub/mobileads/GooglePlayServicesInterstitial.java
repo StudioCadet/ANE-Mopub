@@ -42,6 +42,7 @@ public class GooglePlayServicesInterstitial extends CustomEventInterstitial {
         if (serverExtras.containsKey(AD_UNIT_ID_KEY)) {
             adUnitId = serverExtras.get(AD_UNIT_ID_KEY);
         } else {
+        	MoPubExtension.log("Server extras are missing key : " + AD_UNIT_ID_KEY + ". Aborting.");
             mInterstitialListener.onInterstitialFailed(ADAPTER_CONFIGURATION_ERROR);
             return;
         }
