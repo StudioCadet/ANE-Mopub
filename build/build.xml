@@ -88,7 +88,7 @@
 		
 		<mkdir dir="../bin/android/temp/classes" />
 
-		<javac destdir="../bin/android/temp/classes" includeantruntime="false" target="1.6" source="1.6" fork="yes" executable="${javac.dir}/javac${bin.ext}">
+		<javac destdir="../bin/android/temp/classes" includeantruntime="false" target="1.7" source="1.7" fork="yes" executable="${javac.dir}/javac${bin.ext}">
 			<src path="../android/src" />
 			<src path="${mopub.android.sdk}/mopub-sdk/src/main/java" />
 			<classpath>
