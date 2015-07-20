@@ -14,6 +14,7 @@
 #import <CoreLocation/CoreLocation.h>
 #import "MoPubKeywords.h"
 
+
 @interface MPInstanceProvider (AdMobInterstitials)
 
 - (GADInterstitial *)buildGADInterstitialAd;
@@ -89,10 +90,11 @@
     
     // You can set test devices using request.testDevices
     // See AdMob documentation
+
     
     return request;
 }
-
+                            
 - (GADGender)getGADGender {
     if ([[MoPubKeywords current].gender isEqualToString:@"m"])
         return kGADGenderMale;

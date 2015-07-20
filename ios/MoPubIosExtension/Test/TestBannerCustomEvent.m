@@ -3,12 +3,17 @@
 @implementation TestBannerCustomEvent
 
 - (void) requestAdWithSize:(CGSize)size customEventInfo:(NSDictionary *)info {
-    self.bannerCustomEvent = [[MPGoogleAdMobBannerCustomEvent alloc] init];
     self.bannerCustomEvent.delegate = self.delegate;
+    NSMutableDictionary* customInfo = [[NSMutableDictionary alloc] init];
     
-    NSMutableDictionary* customInfo = [info mutableCopy];
-    
+    // AdMob
+    self.bannerCustomEvent = [[MPGoogleAdMobBannerCustomEvent alloc] init];
     [customInfo setValue:@"ca-app-pub-3940256099942544/2934735716" forKey:@"adUnitID"];
+    
+    // Other networks here
+    // ...
+    
+    
     
     [self.bannerCustomEvent requestAdWithSize:size customEventInfo:customInfo];
 }
