@@ -78,7 +78,6 @@
     request.requestAgent = @"Mopub";
 
     request.gender = [self getGADGender];
-    request.birthday = [MoPubKeywords current].dateOfBirth;
     request.keywords = [[MoPubKeywords current].additionalKeywords allValues];
     
     CLLocation *location = self.delegate.location;
