@@ -44,8 +44,10 @@ public class MoPubBannerContext extends FREContext implements BannerAdListener {
 	 */
 	public MoPubBanner getBanner() {
 		if(banner == null) {
+			MoPubExtension.log("Creating a new banner ...");
 			banner = new MoPubBanner(this.getActivity());
 			banner.setBannerAdListener(this);
+			MoPubExtension.log("Banner created successfully.");
 		}
 		return banner;
 	}
@@ -54,17 +56,27 @@ public class MoPubBannerContext extends FREContext implements BannerAdListener {
 	 * Disposes the current banner, if any.
 	 */
 	public void disposeBanner() {
-		if(banner == null) return;
+		if(banner == null)
+			return;
 
-		banner.setBannerAdListener(null);
-		this.getActivity().runOnUiThread(new Runnable() {
-			@Override public void run() {
-				ViewGroup parent = (ViewGroup) banner.getParent();
-				if(parent != null)
-					parent.removeView( banner );
-				banner.destroy();
-			}
-		});
+		MoPubExtension.log("Removing a banner ...");
+		final MoPubBanner previousBanner = this.banner;
+		this.banner = null;
+		
+		this.getActivity().runOnUiThread(
+				new Runnable() {
+					@Override public void run() {
+						previousBanner.setBannerAdListener(null);
+						
+						ViewGroup parent = (ViewGroup) previousBanner.getParent();
+						if(parent != null)
+							parent.removeView( previousBanner );
+						
+						previousBanner.destroy();
+						MoPubExtension.log("Banner removed succesfully.");
+					}
+				}
+			);
 	}
 	
 	
@@ -74,25 +86,30 @@ public class MoPubBannerContext extends FREContext implements BannerAdListener {
 	
 	@Override
 	public void onBannerLoaded(MoPubView banner) {
+		MoPubExtension.log("Mopub banner loaded");
 		dispatchStatusEventAsync( "", MoPubMessages.bannerLoaded );
 	}
 
 	@Override
 	public void onBannerFailed(MoPubView banner, MoPubErrorCode errorCode) {
+		MoPubExtension.log("Mopub banner failed : " + errorCode.toString());
 		dispatchStatusEventAsync( "", MoPubMessages.bannerFailedToLoad );
 	}
 
 	@Override
 	public void onBannerClicked(MoPubView banner) {
+		MoPubExtension.log("Mopub banner clicked.");
 		dispatchStatusEventAsync( "", MoPubMessages.bannerAdClicked );
 	}
 
 	@Override
 	public void onBannerExpanded(MoPubView banner) {
+		MoPubExtension.log("Mopub banner expanded.");
 	}
 
 	@Override
 	public void onBannerCollapsed(MoPubView banner) {
+		MoPubExtension.log("Mopub banner collapsed.");
 	}
 	
 	
@@ -103,6 +120,7 @@ public class MoPubBannerContext extends FREContext implements BannerAdListener {
 	@Override
 	public void dispose() {
 		disposeBanner();
+		MoPubExtension.log("Disposed banner.");
 	}
 
 	@Override

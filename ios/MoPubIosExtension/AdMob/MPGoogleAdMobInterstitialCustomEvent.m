@@ -14,6 +14,7 @@
 #import <CoreLocation/CoreLocation.h>
 #import "MoPubKeywords.h"
 
+
 @interface MPInstanceProvider (AdMobInterstitials)
 
 - (GADInterstitial *)buildGADInterstitialAd;
@@ -75,9 +76,10 @@
     GADRequest *request = [[MPInstanceProvider sharedProvider] buildGADInterstitialRequest];
     
     request.requestAgent = @"Mopub";
-    
+
     request.gender = [self getGADGender];
     request.birthday = [MoPubKeywords current].dateOfBirth;
+    request.keywords = [[MoPubKeywords current].additionalKeywords allValues];
     
     CLLocation *location = self.delegate.location;
     if (location) {
@@ -88,10 +90,11 @@
     
     // You can set test devices using request.testDevices
     // See AdMob documentation
+
     
     return request;
 }
-
+                            
 - (GADGender)getGADGender {
     if ([[MoPubKeywords current].gender isEqualToString:@"m"])
         return kGADGenderMale;

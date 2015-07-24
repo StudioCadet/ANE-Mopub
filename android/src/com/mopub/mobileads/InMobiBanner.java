@@ -135,7 +135,7 @@ public class InMobiBanner extends CustomEventBanner implements IMBannerListener 
 
 	@Override
 	public void onLeaveApplication(IMBanner imBanner) {
-
+		MoPubExtension.log("Application leaved.");
 	}
 
 	@Override

@@ -83,7 +83,7 @@
     [super dealloc];
 }
 
-#pragma mark - IMAdInterstitialDelegate
+#pragma mark - IMInterstitialDelegate
 
 
 - (void)interstitialDidReceiveAd:(IMInterstitial *)ad {

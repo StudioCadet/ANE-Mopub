@@ -7,6 +7,8 @@ import android.widget.FrameLayout;
 
 import com.adobe.fre.FREContext;
 import com.adobe.fre.FREObject;
+import com.mopub.common.util.Views;
+import com.sticksports.nativeExtensions.mopub.MoPubBanner;
 import com.sticksports.nativeExtensions.mopub.MoPubBannerContext;
 import com.sticksports.nativeExtensions.mopub.MoPubExtension;
 import com.sticksports.nativeExtensions.utils.UIThreadSafeFREFunction;
@@ -19,15 +21,23 @@ public class MoPubBannerShow extends UIThreadSafeFREFunction {
 		{
 			final MoPubBannerContext context = (MoPubBannerContext) ctx;
 			final Activity activity = context.getActivity();
+			final MoPubBanner banner = context.getBanner();
 			
 			activity.runOnUiThread(new Runnable() {
 				@Override public void run() {
+					FrameLayout.LayoutParams params = new FrameLayout.LayoutParams( banner.getPlannedWidth(), banner.getPlannedHeight() );
+					params.gravity = Gravity.LEFT | Gravity.TOP;
+					params.setMargins( banner.getPosX(), banner.getPosY(), 0, 0 );
+					
+					try {
+						Views.removeFromParent(banner);
+					}
+					catch(Exception e) {}
+					
 					ViewGroup frameLayout = (ViewGroup) activity.findViewById( android.R.id.content );
 					frameLayout = (ViewGroup) frameLayout.getChildAt( 0 );
-					FrameLayout.LayoutParams params = new FrameLayout.LayoutParams( context.getBanner().getPlannedWidth(), context.getBanner().getPlannedHeight() );
-					params.gravity = Gravity.LEFT | Gravity.TOP;
-					params.setMargins( context.getBanner().getPosX(), context.getBanner().getPosY(), 0, 0 );
-					frameLayout.addView( context.getBanner(), params );
+					frameLayout.addView( banner, params );
+					
 					MoPubExtension.log("Banner displayed");
 				}
 			});
