@@ -45,12 +45,9 @@
 + (SKStoreProductViewController *)buildController
 {
     // use our safe subclass on iOS 7
-    if([[UIDevice currentDevice].systemVersion compare:@"7.0"] != NSOrderedAscending)
-    {
+    if ([[UIDevice currentDevice].systemVersion compare:@"7.0"] != NSOrderedAscending) {
         return [[MPiOS7SafeStoreProductViewController alloc] init];
-    }
-    else
-    {
+    } else {
         return [[SKStoreProductViewController alloc] init];
     }
 }

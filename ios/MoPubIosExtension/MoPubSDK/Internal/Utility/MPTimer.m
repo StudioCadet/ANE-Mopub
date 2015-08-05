@@ -101,8 +101,7 @@
 
 - (BOOL)scheduleNow
 {
-    if (![self.timer isValid])
-    {
+    if (![self.timer isValid]) {
         MPLogDebug(@"Could not schedule invalidated MPTimer (%p).", self);
         return NO;
     }
@@ -113,20 +112,17 @@
 
 - (BOOL)pause
 {
-    if (self.isPaused)
-    {
+    if (self.isPaused) {
         MPLogDebug(@"No-op: tried to pause an MPTimer (%p) that was already paused.", self);
         return NO;
     }
 
-    if (![self.timer isValid])
-    {
+    if (![self.timer isValid]) {
         MPLogDebug(@"Cannot pause invalidated MPTimer (%p).", self);
         return NO;
     }
 
-    if (![self isScheduled])
-    {
+    if (![self isScheduled]) {
         MPLogDebug(@"No-op: tried to pause an MPTimer (%p) that was never scheduled.", self);
         return NO;
     }
@@ -134,12 +130,12 @@
     NSDate *fireDate = [self.timer fireDate];
     self.pauseDate = [NSDate date];
     self.secondsLeft = [fireDate timeIntervalSinceDate:self.pauseDate];
-    if (self.secondsLeft <= 0)
-    {
+    if (self.secondsLeft <= 0) {
         MPLogWarn(@"An MPTimer was somehow paused after it was supposed to fire.");
         self.secondsLeft = 5;
+    } else {
+        MPLogDebug(@"Paused MPTimer (%p) %.1f seconds left before firing.", self, self.secondsLeft);
     }
-    else MPLogDebug(@"Paused MPTimer (%p) %.1f seconds left before firing.", self, self.secondsLeft);
 
     // Pause the timer by setting its fire date far into the future.
     [self.timer setFireDate:[NSDate distantFuture]];
@@ -150,14 +146,12 @@
 
 - (BOOL)resume
 {
-    if (![self.timer isValid])
-    {
+    if (![self.timer isValid]) {
         MPLogDebug(@"Cannot resume invalidated MPTimer (%p).", self);
         return NO;
     }
 
-    if (!self.isPaused)
-    {
+    if (!self.isPaused) {
         MPLogDebug(@"No-op: tried to resume an MPTimer (%p) that was never paused.", self);
         return NO;
     }
@@ -168,8 +162,9 @@
     NSDate *newFireDate = [NSDate dateWithTimeInterval:self.secondsLeft sinceDate:[NSDate date]];
     [self.timer setFireDate:newFireDate];
 
-    if (![self isScheduled])
+    if (![self isScheduled]) {
         [[NSRunLoop currentRunLoop] addTimer:self.timer forMode:self.runLoopMode];
+    }
 
     self.isPaused = NO;
     return YES;

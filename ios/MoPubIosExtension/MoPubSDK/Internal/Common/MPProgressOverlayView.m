@@ -11,6 +11,8 @@
 #import "MPLogging.h"
 #import <QuartzCore/QuartzCore.h>
 
+static NSString * const kCloseButtonXImageName = @"MPCloseButtonX.png";
+
 @interface MPProgressOverlayView ()
 
 - (void)updateCloseButtonPosition;
@@ -61,7 +63,7 @@ static void exponentialDecayInterpolation(void *info, const CGFloat *input, CGFl
         [_closeButton addTarget:self
                          action:@selector(closeButtonPressed)
                forControlEvents:UIControlEventTouchUpInside];
-        UIImage *image = [UIImage imageNamed:@"MPCloseButtonX.png"];
+        UIImage *image = [UIImage imageNamed:MPResourcePathForResource(kCloseButtonXImageName)];
         [_closeButton setImage:image forState:UIControlStateNormal];
         [_closeButton sizeToFit];
 
@@ -151,6 +153,11 @@ static void exponentialDecayInterpolation(void *info, const CGFloat *input, CGFl
 
 - (void)hide
 {
+    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(enableCloseButton) object:nil];
+
+    self.closeButton.hidden = YES;
+    self.closeButton.alpha = 0.0f;
+
     if (MP_ANIMATED) {
         [UIView animateWithDuration:0.2 animations:^{
             self.alpha = 0.0;

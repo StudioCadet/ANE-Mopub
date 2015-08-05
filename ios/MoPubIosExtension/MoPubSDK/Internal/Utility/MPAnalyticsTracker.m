@@ -37,6 +37,14 @@
                                   delegate:nil];
 }
 
+- (void)sendTrackingRequestForURLs:(NSArray *)URLs
+{
+    for (NSURL *URL in URLs) {
+        NSURLRequest *trackingRequest = [self requestForURL:URL];
+        [NSURLConnection connectionWithRequest:trackingRequest delegate:nil];
+    }
+}
+
 - (NSURLRequest *)requestForURL:(NSURL *)URL
 {
     NSMutableURLRequest *request = [[MPCoreInstanceProvider sharedProvider] buildConfiguredURLRequestWithURL:URL];

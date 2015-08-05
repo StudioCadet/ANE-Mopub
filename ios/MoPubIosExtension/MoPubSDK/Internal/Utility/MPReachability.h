@@ -55,8 +55,10 @@
     SCNetworkReachabilityRef reachabilityRef;
 }
 
-+ (MPReachability *) reachabilityForLocalWiFi;
++ (MPReachability *)reachabilityForLocalWiFi;
++ (MPReachability *)reachabilityForInternetConnection;
 - (BOOL)hasWifi;
+- (BOOL)hasCellular;
 
 @end
 

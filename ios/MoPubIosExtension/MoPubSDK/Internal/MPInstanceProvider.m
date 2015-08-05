@@ -20,7 +20,6 @@
 #import "MPBannerCustomEvent.h"
 #import "MPBannerAdManager.h"
 #import "MPLogging.h"
-#import "MRJavaScriptEventEmitter.h"
 #import "MRImageDownloader.h"
 #import "MRBundleManager.h"
 #import "MRCalendarManager.h"
@@ -34,9 +33,28 @@
 #import "MPNativePositionSource.h"
 #import "MPStreamAdPlacementData.h"
 #import "MPStreamAdPlacer.h"
+#import "MRNativeCommandHandler.h"
+#import "MRBridge.h"
+#import "MRController.h"
+#import "MPClosableView.h"
+#import "MPRewardedVideoAdManager.h"
+#import "MPRewardedVideoAdapter.h"
+#import "MPRewardedVideoCustomEvent.h"
 
 @interface MPInstanceProvider ()
 
+// A nested dictionary. The top-level dictionary maps Class objects to second-level dictionaries.
+// The second level dictionaries map identifiers to singleton objects.
+//
+// An example:
+//  {
+//      SomeClass:
+//      {
+//          @"default": <singleton_a>
+//          @"other_context": <singleton_b>
+//      }
+//  }
+//
 @property (nonatomic, strong) NSMutableDictionary *singletons;
 
 @end
@@ -65,13 +83,23 @@ static MPInstanceProvider *sharedAdProvider = nil;
     return self;
 }
 
-
 - (id)singletonForClass:(Class)klass provider:(MPSingletonProviderBlock)provider
 {
-    id singleton = [self.singletons objectForKey:klass];
+    return [self singletonForClass:klass provider:provider context:@"default"];
+}
+
+- (id)singletonForClass:(Class)klass provider:(MPSingletonProviderBlock)provider context:(id)context
+{
+    id singleton = [[self.singletons objectForKey:klass] objectForKey:context];
     if (!singleton) {
         singleton = provider();
-        [self.singletons setObject:singleton forKey:(id<NSCopying>)klass];
+        NSMutableDictionary *singletonsForClass = [self.singletons objectForKey:klass];
+        if (!singletonsForClass) {
+            NSMutableDictionary *singletonsForContext = [NSMutableDictionary dictionaryWithObjectsAndKeys:singleton, context, nil];
+            [self.singletons setObject:singletonsForContext forKey:(id<NSCopying>)klass];
+        } else {
+            [singletonsForClass setObject:singleton forKey:context];
+        }
     }
     return singleton;
 }
@@ -144,12 +172,10 @@ static MPInstanceProvider *sharedAdProvider = nil;
 
 - (MPHTMLInterstitialViewController *)buildMPHTMLInterstitialViewControllerWithDelegate:(id<MPInterstitialViewControllerDelegate>)delegate
                                                                         orientationType:(MPInterstitialOrientationType)type
-                                                                   customMethodDelegate:(id)customMethodDelegate
 {
     MPHTMLInterstitialViewController *controller = [[MPHTMLInterstitialViewController alloc] init];
     controller.delegate = delegate;
     controller.orientationType = type;
-    controller.customMethodDelegate = customMethodDelegate;
     return controller;
 }
 
@@ -161,6 +187,31 @@ static MPInstanceProvider *sharedAdProvider = nil;
     return controller;
 }
 
+#pragma mark - Rewarded Video
+
+- (MPRewardedVideoAdManager *)buildRewardedVideoAdManagerWithAdUnitID:(NSString *)adUnitID delegate:(id<MPRewardedVideoAdManagerDelegate>)delegate
+{
+    return [[MPRewardedVideoAdManager alloc] initWithAdUnitID:adUnitID delegate:delegate];
+}
+
+- (MPRewardedVideoAdapter *)buildRewardedVideoAdapterWithDelegate:(id<MPRewardedVideoAdapterDelegate>)delegate
+{
+    return [[MPRewardedVideoAdapter alloc] initWithDelegate:delegate];
+}
+
+- (MPRewardedVideoCustomEvent *)buildRewardedVideoCustomEventFromCustomClass:(Class)customClass delegate:(id<MPRewardedVideoCustomEventDelegate>)delegate
+{
+    MPRewardedVideoCustomEvent *customEvent = [[customClass alloc] init];
+
+    if (![customEvent isKindOfClass:[MPRewardedVideoCustomEvent class]]) {
+        MPLogError(@"**** Custom Event Class: %@ does not extend MPRewardedVideoCustomEvent ****", NSStringFromClass(customClass));
+        return nil;
+    }
+
+    customEvent.delegate = delegate;
+    return customEvent;
+}
+
 #pragma mark - HTML Ads
 
 - (MPAdWebView *)buildMPAdWebViewWithFrame:(CGRect)frame delegate:(id<UIWebViewDelegate>)delegate
@@ -170,22 +221,21 @@ static MPInstanceProvider *sharedAdProvider = nil;
     return webView;
 }
 
-- (MPAdWebViewAgent *)buildMPAdWebViewAgentWithAdWebViewFrame:(CGRect)frame delegate:(id<MPAdWebViewAgentDelegate>)delegate customMethodDelegate:(id)customMethodDelegate
+- (MPAdWebViewAgent *)buildMPAdWebViewAgentWithAdWebViewFrame:(CGRect)frame delegate:(id<MPAdWebViewAgentDelegate>)delegate
 {
-    return [[MPAdWebViewAgent alloc] initWithAdWebViewFrame:frame delegate:delegate customMethodDelegate:customMethodDelegate];
+    return [[MPAdWebViewAgent alloc] initWithAdWebViewFrame:frame delegate:delegate];
 }
 
 #pragma mark - MRAID
 
-- (MRAdView *)buildMRAdViewWithFrame:(CGRect)frame
-                     allowsExpansion:(BOOL)allowsExpansion
-                    closeButtonStyle:(MRAdViewCloseButtonStyle)style
-                       placementType:(MRAdViewPlacementType)type
-                            delegate:(id<MRAdViewDelegate>)delegate
+- (MPClosableView *)buildMRAIDMPClosableViewWithFrame:(CGRect)frame webView:(UIWebView *)webView delegate:(id<MPClosableViewDelegate>)delegate
 {
-    MRAdView *mrAdView = [[MRAdView alloc] initWithFrame:frame allowsExpansion:allowsExpansion closeButtonStyle:style placementType:type];
-    mrAdView.delegate = delegate;
-    return mrAdView;
+    MPClosableView *adView = [[MPClosableView alloc] initWithFrame:frame closeButtonType:MPClosableViewCloseButtonTypeTappableWithImage];
+    adView.delegate = delegate;
+    adView.clipsToBounds = YES;
+    webView.frame = adView.bounds;
+    [adView addSubview:webView];
+    return adView;
 }
 
 - (MRBundleManager *)buildMRBundleManager
@@ -193,14 +243,34 @@ static MPInstanceProvider *sharedAdProvider = nil;
     return [MRBundleManager sharedManager];
 }
 
+- (MRController *)buildBannerMRControllerWithFrame:(CGRect)frame delegate:(id<MRControllerDelegate>)delegate
+{
+    return [self buildMRControllerWithFrame:frame placementType:MRAdViewPlacementTypeInline delegate:delegate];
+}
+
+- (MRController *)buildInterstitialMRControllerWithFrame:(CGRect)frame delegate:(id<MRControllerDelegate>)delegate
+{
+    return [self buildMRControllerWithFrame:frame placementType:MRAdViewPlacementTypeInterstitial delegate:delegate];
+}
+
+- (MRController *)buildMRControllerWithFrame:(CGRect)frame placementType:(MRAdViewPlacementType)placementType delegate:(id<MRControllerDelegate>)delegate
+{
+    MRController *controller = [[MRController alloc] initWithAdViewFrame:frame adPlacementType:placementType];
+    controller.delegate = delegate;
+    return controller;
+}
+
+- (MRBridge *)buildMRBridgeWithWebView:(UIWebView *)webView delegate:(id<MRBridgeDelegate>)delegate
+{
+    MRBridge *bridge = [[MRBridge alloc] initWithWebView:webView];
+    bridge.delegate = delegate;
+    bridge.shouldHandleRequests = YES;
+    return bridge;
+}
+
 - (UIWebView *)buildUIWebViewWithFrame:(CGRect)frame
 {
     return [[UIWebView alloc] initWithFrame:frame];
-}
-
-- (MRJavaScriptEventEmitter *)buildMRJavaScriptEventEmitterWithWebView:(UIWebView *)webView
-{
-    return [[MRJavaScriptEventEmitter alloc] initWithWebView:webView];
 }
 
 - (MRCalendarManager *)buildMRCalendarManagerWithDelegate:(id<MRCalendarManagerDelegate>)delegate
@@ -245,6 +315,11 @@ static MPInstanceProvider *sharedAdProvider = nil;
     UIGraphicsEndImageContext();
 
     return playerViewController;
+}
+
+- (MRNativeCommandHandler *)buildMRNativeCommandHandlerWithDelegate:(id<MRNativeCommandHandlerDelegate>)delegate
+{
+    return [[MRNativeCommandHandler alloc] initWithDelegate:delegate];
 }
 
 #pragma mark - Native

@@ -12,6 +12,7 @@
 #import "MPLogging.h"
 #import "MPIdentityProvider.h"
 #import "MPCoreInstanceProvider.h"
+#import "MPAPIEndpoints.h"
 
 #define MOPUB_CONVERSION_DEFAULTS_KEY @"com.mopub.conversion"
 
@@ -82,8 +83,8 @@
 
 - (NSURL *)URLForAppID:(NSString *)appID
 {
-    NSString *path = [NSString stringWithFormat:@"http://%@/m/open?v=%@&udid=%@&id=%@&av=%@",
-                      HOSTNAME,
+    NSString *path = [NSString stringWithFormat:@"%@?v=%@&udid=%@&id=%@&av=%@",
+                      [MPAPIEndpoints baseURLStringWithPath:MOPUB_API_PATH_CONVERSION testing:NO],
                       MP_SERVER_VERSION,
                       [MPIdentityProvider identifier],
                       appID,

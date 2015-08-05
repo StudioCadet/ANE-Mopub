@@ -10,6 +10,8 @@
 #import "MPLogging.h"
 #import "MPGlobal.h"
 
+static NSString * const kAdBrowserControllerNibName = @"MPAdBrowserController";
+
 @interface MPAdBrowserController ()
 
 @property (nonatomic, strong) UIActionSheet *actionSheet;
@@ -43,8 +45,7 @@
 
 - (id)initWithURL:(NSURL *)URL HTMLString:(NSString *)HTMLString delegate:(id<MPAdBrowserControllerDelegate>)delegate
 {
-    if (self = [super initWithNibName:@"MPAdBrowserController" bundle:nil])
-    {
+    if (self = [super initWithNibName:MPResourcePathForResource(kAdBrowserControllerNibName) bundle:nil]) {
         self.delegate = delegate;
         self.URL = URL;
         self.HTMLString = HTMLString;
@@ -151,12 +152,9 @@
 
 - (IBAction)safari
 {
-    if (self.actionSheet)
-    {
+    if (self.actionSheet) {
         [self dismissActionSheet];
-    }
-    else
-    {
+    } else {
         self.actionSheet = [[UIActionSheet alloc] initWithTitle:nil
                                                        delegate:self
                                               cancelButtonTitle:@"Cancel"
@@ -183,8 +181,7 @@
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     self.actionSheet = nil;
-    if (buttonIndex == 0)
-    {
+    if (buttonIndex == 0) {
         // Open in Safari.
         [[UIApplication sharedApplication] openURL:self.URL];
     }

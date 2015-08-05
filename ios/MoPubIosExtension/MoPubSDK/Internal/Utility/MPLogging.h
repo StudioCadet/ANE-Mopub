@@ -2,7 +2,6 @@
 //  MPLogging.h
 //  MoPub
 //
-//  Created by Andrew He on 2/10/11.
 //  Copyright 2011 MoPub, Inc. All rights reserved.
 //
 
@@ -10,6 +9,7 @@
 #import "MPConstants.h"
 
 extern NSString * const kMPClearErrorLogFormatWithAdUnitID;
+extern NSString * const kMPWarmingUpErrorLogFormatWithAdUnitID;
 
 // Lower = finer-grained logs.
 typedef enum

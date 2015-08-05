@@ -10,7 +10,9 @@
 extern NSString * const kMPErrorDomain;
 
 typedef enum {
+    MPErrorUnknown = -1,
     MPErrorNoInventory = 0,
+    MPErrorAdUnitWarmingUp = 1,
     MPErrorNetworkTimedOut = 4,
     MPErrorServerError = 8,
     MPErrorAdapterNotFound = 16,

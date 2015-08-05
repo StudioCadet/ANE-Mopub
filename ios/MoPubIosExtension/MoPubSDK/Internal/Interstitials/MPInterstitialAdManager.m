@@ -16,6 +16,7 @@
 #import "MPCoreInstanceProvider.h"
 #import "MPInterstitialAdManagerDelegate.h"
 #import "MPLogging.h"
+#import "MPError.h"
 
 @interface MPInterstitialAdManager ()
 
@@ -56,8 +57,6 @@
     [self.communicator setDelegate:nil];
 
     self.adapter = nil;
-
-
 }
 
 - (void)setAdapter:(MPBaseInterstitialAdapter *)adapter
@@ -127,17 +126,24 @@
 
     MPLogInfo(@"Interstitial ad view is fetching ad network type: %@", self.configuration.networkType);
 
+    if (self.configuration.adUnitWarmingUp) {
+        MPLogInfo(kMPWarmingUpErrorLogFormatWithAdUnitID, self.delegate.interstitialAdController.adUnitId);
+        self.loading = NO;
+        [self.delegate manager:self didFailToLoadInterstitialWithError:[MPError errorWithCode:MPErrorAdUnitWarmingUp]];
+        return;
+    }
+
     if ([self.configuration.networkType isEqualToString:kAdTypeClear]) {
         MPLogInfo(kMPClearErrorLogFormatWithAdUnitID, self.delegate.interstitialAdController.adUnitId);
         self.loading = NO;
-        [self.delegate manager:self didFailToLoadInterstitialWithError:nil];
+        [self.delegate manager:self didFailToLoadInterstitialWithError:[MPError errorWithCode:MPErrorNoInventory]];
         return;
     }
 
     if (self.configuration.adType != MPAdTypeInterstitial) {
         MPLogWarn(@"Could not load ad: interstitial object received a non-interstitial ad unit ID.");
         self.loading = NO;
-        [self.delegate manager:self didFailToLoadInterstitialWithError:nil];
+        [self.delegate manager:self didFailToLoadInterstitialWithError:[MPError errorWithCode:MPErrorAdapterInvalid]];
         return;
     }
 

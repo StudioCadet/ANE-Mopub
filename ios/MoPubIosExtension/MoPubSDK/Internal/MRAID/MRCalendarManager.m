@@ -5,7 +5,6 @@
 #import "MRCalendarManager.h"
 #import <EventKit/EventKit.h>
 #import "MPInstanceProvider.h"
-#import "UIViewController+MPAdditions.h"
 #import "MPLastResortDelegate+EventKit.h"
 
 @interface MRCalendarManager ()
@@ -150,8 +149,7 @@
 
 - (void)presentCalendarEditor:(EKEventEditViewController *)editor
 {
-    [[self.delegate viewControllerForPresentingCalendarEditor] mp_presentModalViewController:editor
-                                                                                    animated:MP_ANIMATED];
+    [[self.delegate viewControllerForPresentingCalendarEditor] presentViewController:editor animated:MP_ANIMATED completion:nil];
 }
 
 - (NSDate *)dateWithParameters:(NSDictionary *)parameters forKey:(NSString *)key
@@ -281,8 +279,9 @@
         [self.delegate calendarManager:self didFailToCreateCalendarEventWithErrorMessage:@"Failed to create event because the user canceled the action."];
     }
 
-    [controller mp_dismissModalViewControllerAnimated:MP_ANIMATED];
-    [self.delegate calendarManagerDidDismissCalendarEditor:self];
+    [controller dismissViewControllerAnimated:MP_ANIMATED completion:^{
+        [self.delegate calendarManagerDidDismissCalendarEditor:self];
+    }];
 }
 
 @end

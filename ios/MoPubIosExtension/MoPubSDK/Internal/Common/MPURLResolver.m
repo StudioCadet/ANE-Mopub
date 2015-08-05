@@ -7,22 +7,25 @@
 
 #import "MPURLResolver.h"
 #import "NSURL+MPAdditions.h"
+#import "NSHTTPURLResponse+MPAdditions.h"
 #import "MPInstanceProvider.h"
 #import "MPLogging.h"
 #import "MPCoreInstanceProvider.h"
 
 static NSString * const kMoPubSafariScheme = @"mopubnativebrowser";
 static NSString * const kMoPubSafariNavigateHost = @"navigate";
-static NSString * const kMoPubHTTPHeaderContentType = @"Content-Type";
+static NSString * const kResolverErrorDomain = @"com.mopub.resolver";
 
 @interface MPURLResolver ()
 
-@property (nonatomic, strong) NSURL *URL;
+@property (nonatomic, strong) NSURL *originalURL;
+@property (nonatomic, strong) NSURL *currentURL;
 @property (nonatomic, strong) NSURLConnection *connection;
 @property (nonatomic, strong) NSMutableData *responseData;
 @property (nonatomic, assign) NSStringEncoding responseEncoding;
+@property (nonatomic, copy) MPURLResolverCompletionBlock completion;
 
-- (BOOL)handleURL:(NSURL *)URL;
+- (MPURLActionInfo *)actionInfoFromURL:(NSURL *)URL error:(NSError **)error;
 - (NSString *)storeItemIdentifierForURL:(NSURL *)URL;
 - (BOOL)URLShouldOpenInApplication:(NSURL *)URL;
 - (BOOL)URLIsHTTPOrHTTPS:(NSURL *)URL;
@@ -33,28 +36,43 @@ static NSString * const kMoPubHTTPHeaderContentType = @"Content-Type";
 
 @implementation MPURLResolver
 
-@synthesize URL = _URL;
-@synthesize delegate = _delegate;
+@synthesize originalURL = _originalURL;
+@synthesize currentURL = _currentURL;
 @synthesize connection = _connection;
 @synthesize responseData = _responseData;
+@synthesize completion = _completion;
 
-+ (MPURLResolver *)resolver
++ (instancetype)resolverWithURL:(NSURL *)URL completion:(MPURLResolverCompletionBlock)completion
 {
-    return [[MPURLResolver alloc] init];
+    return [[MPURLResolver alloc] initWithURL:URL completion:completion];
 }
 
+- (instancetype)initWithURL:(NSURL *)URL completion:(MPURLResolverCompletionBlock)completion
+{
+    self = [super init];
+    if (self) {
+        _originalURL = [URL copy];
+        _completion = [completion copy];
+    }
+    return self;
+}
 
-- (void)startResolvingWithURL:(NSURL *)URL delegate:(id<MPURLResolverDelegate>)delegate
+- (void)start
 {
     [self.connection cancel];
+    self.currentURL = self.originalURL;
 
-    self.URL = URL;
-    self.delegate = delegate;
-    self.responseData = [NSMutableData data];
-    self.responseEncoding = NSUTF8StringEncoding;
+    NSError *error = nil;
+    MPURLActionInfo *info = [self actionInfoFromURL:self.originalURL error:&error];
 
-    if (![self handleURL:self.URL]) {
-        NSURLRequest *request = [[MPCoreInstanceProvider sharedProvider] buildConfiguredURLRequestWithURL:self.URL];
+    if (info) {
+        [self safeInvokeAndNilCompletionBlock:info error:nil];
+    } else if (error) {
+        [self safeInvokeAndNilCompletionBlock:nil error:error];
+    } else {
+        NSURLRequest *request = [[MPCoreInstanceProvider sharedProvider] buildConfiguredURLRequestWithURL:self.originalURL];
+        self.responseData = [NSMutableData data];
+        self.responseEncoding = NSUTF8StringEncoding;
         self.connection = [NSURLConnection connectionWithRequest:request delegate:self];
     }
 }
@@ -63,35 +81,51 @@ static NSString * const kMoPubHTTPHeaderContentType = @"Content-Type";
 {
     [self.connection cancel];
     self.connection = nil;
+    self.completion = nil;
+}
+
+- (void)safeInvokeAndNilCompletionBlock:(MPURLActionInfo *)info error:(NSError *)error
+{
+    if (self.completion != nil) {
+        self.completion(info, error);
+        self.completion = nil;
+    }
 }
 
 #pragma mark - Handling Application/StoreKit URLs
 
 /*
  * Parses the provided URL for actions to perform (opening StoreKit, opening Safari, etc.).
- * If the URL represents an action, this method will inform its delegate of the correct action to
- * perform.
- *
- * Returns YES if the URL contained an action, and NO otherwise.
+ * If the URL represents an action, this method will return an info object containing data that is
+ * relevant to the suggested action.
  */
-- (BOOL)handleURL:(NSURL *)URL
+- (MPURLActionInfo *)actionInfoFromURL:(NSURL *)URL error:(NSError **)error;
 {
+    MPURLActionInfo *actionInfo = nil;
+
     if ([self storeItemIdentifierForURL:URL]) {
-        [self.delegate showStoreKitProductWithParameter:[self storeItemIdentifierForURL:URL] fallbackURL:URL];
-    } else if ([self safariURLForURL:URL]) {
-        NSURL *safariURL = [NSURL URLWithString:[self safariURLForURL:URL]];
-        [self.delegate openURLInApplication:safariURL];
-    } else if ([self URLShouldOpenInApplication:URL]) {
-        if ([[UIApplication sharedApplication] canOpenURL:URL]) {
-            [self.delegate openURLInApplication:URL];
+        actionInfo = [MPURLActionInfo infoWithURL:self.originalURL iTunesItemIdentifier:[self storeItemIdentifierForURL:URL] iTunesStoreFallbackURL:URL];
+    } else if ([self URLHasDeeplinkPlusScheme:URL]) {
+        MPEnhancedDeeplinkRequest *request = [[MPEnhancedDeeplinkRequest alloc] initWithURL:URL];
+        if (request) {
+            actionInfo = [MPURLActionInfo infoWithURL:self.originalURL enhancedDeeplinkRequest:request];
         } else {
-            [self.delegate failedToResolveURLWithError:[NSError errorWithDomain:@"com.mopub" code:-1 userInfo:nil]];
+            actionInfo = [MPURLActionInfo infoWithURL:self.originalURL deeplinkURL:URL];
         }
-    } else {
-        return NO;
+    } else if ([self safariURLForURL:URL]) {
+        actionInfo = [MPURLActionInfo infoWithURL:self.originalURL safariDestinationURL:[NSURL URLWithString:[self safariURLForURL:URL]]];
+    } else if ([URL mp_isMoPubShareScheme]) {
+        actionInfo = [MPURLActionInfo infoWithURL:self.originalURL shareURL:URL];
+    } else if ([self URLShouldOpenInApplication:URL]) {
+        // TODO: in iOS 9, this check will most likely fail. Let's get rid of it.
+        if ([[UIApplication sharedApplication] canOpenURL:URL]) {
+            actionInfo = [MPURLActionInfo infoWithURL:self.originalURL deeplinkURL:URL];
+        } else {
+            *error = [NSError errorWithDomain:kResolverErrorDomain code:-1 userInfo:@{NSLocalizedDescriptionKey: @"Cannot find any application to handle the given URL."}];
+        }
     }
 
-    return YES;
+    return actionInfo;
 }
 
 #pragma mark Identifying Application URLs
@@ -104,6 +138,11 @@ static NSString * const kMoPubHTTPHeaderContentType = @"Content-Type";
 - (BOOL)URLIsHTTPOrHTTPS:(NSURL *)URL
 {
     return [URL.scheme isEqualToString:@"http"] || [URL.scheme isEqualToString:@"https"];
+}
+
+- (BOOL)URLHasDeeplinkPlusScheme:(NSURL *)URL
+{
+    return [[URL.scheme lowercaseString] isEqualToString:@"deeplink+"];
 }
 
 - (BOOL)URLPointsToAMap:(NSURL *)URL
@@ -189,30 +228,40 @@ static NSString * const kMoPubHTTPHeaderContentType = @"Content-Type";
 
 - (NSURLRequest *)connection:(NSURLConnection *)connection willSendRequest:(NSURLRequest *)request redirectResponse:(NSURLResponse *)response
 {
-    if ([self handleURL:request.URL]) {
+    // First, check to see if the redirect URL matches any of our suggested actions.
+    NSError *error = nil;
+    MPURLActionInfo *info = [self actionInfoFromURL:request.URL error:&error];
+
+    if (info) {
         [connection cancel];
+        [self safeInvokeAndNilCompletionBlock:info error:nil];
         return nil;
     } else {
-        self.URL = request.URL;
+        // The redirected URL didn't match any actions, so we should continue with loading the URL.
+        self.currentURL = request.URL;
         return request;
     }
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
 {
-    NSDictionary *headers = [(NSHTTPURLResponse *)response allHeaderFields];
+    NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
+
+    NSDictionary *headers = [httpResponse allHeaderFields];
     NSString *contentType = [headers objectForKey:kMoPubHTTPHeaderContentType];
-    self.responseEncoding = [self stringEncodingFromContentType:contentType];
+    self.responseEncoding = [httpResponse stringEncodingFromContentType:contentType];
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
-    [self.delegate showWebViewWithHTMLString:[[NSString alloc] initWithData:self.responseData encoding:self.responseEncoding] baseURL:self.URL];
+    NSString *responseString = [[NSString alloc] initWithData:self.responseData encoding:self.responseEncoding];
+    MPURLActionInfo *info = [MPURLActionInfo infoWithURL:self.originalURL HTTPResponseString:responseString webViewBaseURL:self.currentURL];
+    [self safeInvokeAndNilCompletionBlock:info error:nil];
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
 {
-    [self.delegate failedToResolveURLWithError:error];
+    [self safeInvokeAndNilCompletionBlock:nil error:error];
 }
 
 @end

@@ -213,14 +213,18 @@
 
     if (configuration.adType == MPAdTypeInterstitial) {
         MPLogWarn(@"Could not load ad: banner object received an interstitial ad unit ID.");
-
         [self didFailToLoadAdapterWithError:[MPError errorWithCode:MPErrorAdapterInvalid]];
+        return;
+    }
+
+    if (configuration.adUnitWarmingUp) {
+        MPLogInfo(kMPWarmingUpErrorLogFormatWithAdUnitID, self.delegate.adUnitId);
+        [self didFailToLoadAdapterWithError:[MPError errorWithCode:MPErrorAdUnitWarmingUp]];
         return;
     }
 
     if ([configuration.networkType isEqualToString:kAdTypeClear]) {
         MPLogInfo(kMPClearErrorLogFormatWithAdUnitID, self.delegate.adUnitId);
-
         [self didFailToLoadAdapterWithError:[MPError errorWithCode:MPErrorNoInventory]];
         return;
     }

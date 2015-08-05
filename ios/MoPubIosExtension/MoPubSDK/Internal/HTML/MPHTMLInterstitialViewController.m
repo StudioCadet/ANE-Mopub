@@ -22,13 +22,11 @@
 
 @synthesize delegate = _delegate;
 @synthesize backingViewAgent = _backingViewAgent;
-@synthesize customMethodDelegate = _customMethodDelegate;
 @synthesize backingView = _backingView;
 
 - (void)dealloc
 {
     self.backingViewAgent.delegate = nil;
-    self.backingViewAgent.customMethodDelegate = nil;
 
     self.backingView.delegate = nil;
 }
@@ -39,8 +37,7 @@
 
     self.view.backgroundColor = [UIColor blackColor];
     self.backingViewAgent = [[MPInstanceProvider sharedProvider] buildMPAdWebViewAgentWithAdWebViewFrame:self.view.bounds
-                                                                                                delegate:self
-                                                                                    customMethodDelegate:self.customMethodDelegate];
+                                                                                                delegate:self];
     self.backingView = self.backingViewAgent.view;
     self.backingView.autoresizingMask = UIViewAutoresizingFlexibleWidth |
         UIViewAutoresizingFlexibleHeight;

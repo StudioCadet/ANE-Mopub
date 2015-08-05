@@ -10,6 +10,8 @@
 #import "MPAdConfiguration.h"
 #import "MPLogging.h"
 #import "MPCoreInstanceProvider.h"
+#import "MPLogEvent.h"
+#import "MPLogEventRecorder.h"
 
 const NSTimeInterval kRequestTimeoutInterval = 10.0;
 
@@ -22,6 +24,7 @@ const NSTimeInterval kRequestTimeoutInterval = 10.0;
 @property (nonatomic, strong) NSURLConnection *connection;
 @property (nonatomic, strong) NSMutableData *responseData;
 @property (nonatomic, strong) NSDictionary *responseHeaders;
+@property (nonatomic, strong) MPLogEvent *adRequestLatencyEvent;
 
 - (NSError *)errorForStatusCode:(NSInteger)statusCode;
 - (NSURLRequest *)adRequestForURL:(NSURL *)URL;
@@ -60,6 +63,11 @@ const NSTimeInterval kRequestTimeoutInterval = 10.0;
 {
     [self cancel];
     self.URL = URL;
+
+    // Start tracking how long it takes to successfully or unsuccessfully retrieve an ad.
+    self.adRequestLatencyEvent = [[MPLogEvent alloc] init];
+    self.adRequestLatencyEvent.requestURI = URL.absoluteString;
+
     self.connection = [NSURLConnection connectionWithRequest:[self adRequestForURL:URL]
                                                     delegate:self];
     self.loading = YES;
@@ -67,6 +75,7 @@ const NSTimeInterval kRequestTimeoutInterval = 10.0;
 
 - (void)cancel
 {
+    self.adRequestLatencyEvent = nil;
     self.loading = NO;
     [self.connection cancel];
     self.connection = nil;
@@ -81,6 +90,9 @@ const NSTimeInterval kRequestTimeoutInterval = 10.0;
     if ([response respondsToSelector:@selector(statusCode)]) {
         NSInteger statusCode = [(NSHTTPURLResponse *)response statusCode];
         if (statusCode >= 400) {
+            // Do not record a logging event if we failed to make a connection.
+            self.adRequestLatencyEvent = nil;
+
             [connection cancel];
             self.loading = NO;
             [self.delegate communicatorDidFailWithError:[self errorForStatusCode:statusCode]];
@@ -99,15 +111,30 @@ const NSTimeInterval kRequestTimeoutInterval = 10.0;
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
 {
+    // Do not record a logging event if we failed to make a connection.
+    self.adRequestLatencyEvent = nil;
+
     self.loading = NO;
     [self.delegate communicatorDidFailWithError:error];
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
+    [self.adRequestLatencyEvent recordEndTime];
+    self.adRequestLatencyEvent.requestStatusCode = 200;
+
     MPAdConfiguration *configuration = [[MPAdConfiguration alloc]
                                          initWithHeaders:self.responseHeaders
                                          data:self.responseData];
+
+    // Do not record ads that are warming up.
+    if (configuration.adUnitWarmingUp) {
+        self.adRequestLatencyEvent = nil;
+    } else {
+        [self.adRequestLatencyEvent setRequestPropertiesWithConfiguration:configuration];
+        MPAddLogEvent(self.adRequestLatencyEvent);
+    }
+
     self.loading = NO;
     [self.delegate communicatorDidReceiveAdConfiguration:configuration];
 }

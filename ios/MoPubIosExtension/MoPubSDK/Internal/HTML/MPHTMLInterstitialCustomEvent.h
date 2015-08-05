@@ -11,6 +11,9 @@
 
 @interface MPHTMLInterstitialCustomEvent : MPInterstitialCustomEvent <MPInterstitialViewControllerDelegate>
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wobjc-property-synthesis"
 @property (nonatomic, weak) id<MPPrivateInterstitialCustomEventDelegate> delegate;
+#pragma clang diagnostic pop
 
 @end

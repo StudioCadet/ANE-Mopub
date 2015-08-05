@@ -15,5 +15,6 @@
 
 - (void)trackImpressionForConfiguration:(MPAdConfiguration *)configuration;
 - (void)trackClickForConfiguration:(MPAdConfiguration *)configuration;
+- (void)sendTrackingRequestForURLs:(NSArray *)URLs;
 
 @end

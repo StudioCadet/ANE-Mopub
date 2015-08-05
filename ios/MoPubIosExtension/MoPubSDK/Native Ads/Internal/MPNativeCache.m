@@ -68,8 +68,7 @@ typedef enum {
 {
     if (enabled) {
         self.cacheMethod = MPNativeCacheMethodDiskAndMemory;
-    }
-    else {
+    } else {
         self.cacheMethod = MPNativeCacheMethodDisk;
         [self.memoryCache removeAllObjects];
     }

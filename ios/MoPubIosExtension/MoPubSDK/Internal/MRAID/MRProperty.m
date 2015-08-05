@@ -8,6 +8,7 @@
 
 #import "MRProperty.h"
 #import <EventKit/EventKit.h>
+#import "MPConstants.h"
 
 @implementation MRProperty
 
@@ -17,6 +18,26 @@
 
 - (NSString *)jsonString {
     return @"{}";
+}
+
+@end
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+
+@implementation MRHostSDKVersionProperty : MRProperty
+
+@synthesize version = _version;
+
++ (instancetype)defaultProperty
+{
+    MRHostSDKVersionProperty *property = [[self alloc] init];
+    property.version = MP_SDK_VERSION;
+    return property;
+}
+
+- (NSString *)description
+{
+    return [NSString stringWithFormat:@"hostSDKVersion: '%@'", self.version];
 }
 
 @end
@@ -61,10 +82,21 @@
 - (NSString *)description {
     NSString *stateString;
     switch (_state) {
-        case MRAdViewStateHidden:      stateString = @"hidden"; break;
-        case MRAdViewStateDefault:     stateString = @"default"; break;
-        case MRAdViewStateExpanded:    stateString = @"expanded"; break;
-        default:                       stateString = @"loading"; break;
+        case MRAdViewStateHidden:
+            stateString = @"hidden";
+            break;
+        case MRAdViewStateDefault:
+            stateString = @"default";
+            break;
+        case MRAdViewStateExpanded:
+            stateString = @"expanded";
+            break;
+        case MRAdViewStateResized:
+            stateString = @"resized";
+            break;
+        default:
+            stateString = @"loading";
+            break;
     }
     return [NSString stringWithFormat:@"state: '%@'", stateString];
 }

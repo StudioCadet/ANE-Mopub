@@ -11,6 +11,9 @@
 
 @interface MPHTMLBannerCustomEvent : MPBannerCustomEvent <MPAdWebViewAgentDelegate>
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wobjc-property-synthesis"
 @property (nonatomic, weak) id<MPPrivateBannerCustomEventDelegate> delegate;
+#pragma clang diagnostic pop
 
 @end

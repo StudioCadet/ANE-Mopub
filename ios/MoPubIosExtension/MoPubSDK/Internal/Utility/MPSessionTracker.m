@@ -10,6 +10,7 @@
 #import "MPIdentityProvider.h"
 #import "MPGlobal.h"
 #import "MPCoreInstanceProvider.h"
+#import "MPAPIEndpoints.h"
 
 @implementation MPSessionTracker
 
@@ -36,8 +37,8 @@
 
 + (NSURL *)URL
 {
-    NSString *path = [NSString stringWithFormat:@"http://%@/m/open?v=%@&udid=%@&id=%@&av=%@&st=1",
-                      HOSTNAME,
+    NSString *path = [NSString stringWithFormat:@"%@?v=%@&udid=%@&id=%@&av=%@&st=1",
+                      [MPAPIEndpoints baseURLStringWithPath:MOPUB_API_PATH_SESSION testing:NO],
                       MP_SERVER_VERSION,
                       [MPIdentityProvider identifier],
                       [[[NSBundle mainBundle] bundleIdentifier] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],

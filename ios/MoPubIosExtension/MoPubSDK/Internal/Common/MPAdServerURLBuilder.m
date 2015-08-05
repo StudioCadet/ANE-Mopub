@@ -8,11 +8,13 @@
 #import "MPAdServerURLBuilder.h"
 
 #import "MPConstants.h"
+#import "MPGeolocationProvider.h"
 #import "MPGlobal.h"
 #import "MPKeywordProvider.h"
 #import "MPIdentityProvider.h"
 #import "MPCoreInstanceProvider.h"
 #import "MPReachability.h"
+#import "MPAPIEndpoints.h"
 
 static NSString * const kMoPubInterfaceOrientationPortrait = @"p";
 static NSString * const kMoPubInterfaceOrientationLandscape = @"l";
@@ -36,9 +38,10 @@ static NSInteger const kAdSequenceNone = -1;
 + (NSString *)queryParameterForMobileNetworkCode;
 + (NSString *)queryParameterForMobileCountryCode;
 + (NSString *)queryParameterForDeviceName;
-+ (NSString *)queryParameterForTwitterAvailability;
 + (NSString *)queryParameterForDesiredAdAssets:(NSArray *)assets;
 + (NSString *)queryParameterForAdSequence:(NSInteger)adSequence;
++ (NSString *)queryParameterForPhysicalScreenSize;
++ (NSString *)queryParameterForBundleIdentifier;
 + (BOOL)advertisingTrackingEnabled;
 
 @end
@@ -90,8 +93,8 @@ static NSInteger const kAdSequenceNone = -1;
              desiredAssets:(NSArray *)assets
                 adSequence:(NSInteger)adSequence
 {
-    NSString *URLString = [NSString stringWithFormat:@"http://%@/m/ad?v=%@&udid=%@&id=%@&%@=%@",
-                           testing ? HOSTNAME_FOR_TESTING : HOSTNAME,
+    NSString *URLString = [NSString stringWithFormat:@"%@?v=%@&udid=%@&id=%@&%@=%@",
+                           [MPAPIEndpoints baseURLStringWithPath:MOPUB_API_PATH_AD_REQUEST testing:testing],
                            MP_SERVER_VERSION,
                            [MPIdentityProvider identifier],
                            [adUnitID stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
@@ -111,9 +114,10 @@ static NSInteger const kAdSequenceNone = -1;
     URLString = [URLString stringByAppendingString:[self queryParameterForMobileNetworkCode]];
     URLString = [URLString stringByAppendingString:[self queryParameterForMobileCountryCode]];
     URLString = [URLString stringByAppendingString:[self queryParameterForDeviceName]];
-    URLString = [URLString stringByAppendingString:[self queryParameterForTwitterAvailability]];
     URLString = [URLString stringByAppendingString:[self queryParameterForDesiredAdAssets:assets]];
     URLString = [URLString stringByAppendingString:[self queryParameterForAdSequence:adSequence]];
+    URLString = [URLString stringByAppendingString:[self queryParameterForPhysicalScreenSize]];
+    URLString = [URLString stringByAppendingString:[self queryParameterForBundleIdentifier]];
 
     return [NSURL URLWithString:URLString];
 }
@@ -176,15 +180,30 @@ static NSInteger const kAdSequenceNone = -1;
 {
     NSString *result = @"";
 
-    if (location && location.horizontalAccuracy >= 0) {
-        result = [NSString stringWithFormat:@"&ll=%@,%@",
-                  [NSNumber numberWithDouble:location.coordinate.latitude],
-                  [NSNumber numberWithDouble:location.coordinate.longitude]];
+    CLLocation *bestLocation = location;
+    CLLocation *locationFromProvider = [[[MPCoreInstanceProvider sharedProvider] sharedMPGeolocationProvider] lastKnownLocation];
 
-        if (location.horizontalAccuracy) {
+    if (locationFromProvider) {
+        bestLocation = locationFromProvider;
+    }
+
+    if (bestLocation && bestLocation.horizontalAccuracy >= 0) {
+        result = [NSString stringWithFormat:@"&ll=%@,%@",
+                  [NSNumber numberWithDouble:bestLocation.coordinate.latitude],
+                  [NSNumber numberWithDouble:bestLocation.coordinate.longitude]];
+
+        if (bestLocation.horizontalAccuracy) {
             result = [result stringByAppendingFormat:@"&lla=%@",
-                      [NSNumber numberWithDouble:location.horizontalAccuracy]];
+                      [NSNumber numberWithDouble:bestLocation.horizontalAccuracy]];
         }
+
+        if (bestLocation == locationFromProvider) {
+            result = [result stringByAppendingString:@"&llsdk=1"];
+        }
+
+        NSTimeInterval locationLastUpdatedMillis = [[NSDate date] timeIntervalSinceDate:bestLocation.timestamp] * 1000.0;
+
+        result = [result stringByAppendingFormat:@"&llf=%.0f", locationLastUpdatedMillis];
     }
 
     return result;
@@ -248,19 +267,6 @@ static NSInteger const kAdSequenceNone = -1;
     return deviceName ? [NSString stringWithFormat:@"&dn=%@", [deviceName URLEncodedString]] : @"";
 }
 
-+ (NSString *)queryParameterForTwitterAvailability
-{
-    MPTwitterAvailability twitterAvailability = [[MPCoreInstanceProvider sharedProvider] twitterAvailabilityOnDevice];
-    NSString *queryString = @"";
-
-    if (twitterAvailability)
-    {
-        queryString = [NSString stringWithFormat:@"&ts=%u", twitterAvailability];
-    }
-
-    return queryString;
-}
-
 + (NSString *)queryParameterForDesiredAdAssets:(NSArray *)assets
 {
     NSString *concatenatedAssets = [assets componentsJoinedByString:@","];
@@ -270,6 +276,19 @@ static NSInteger const kAdSequenceNone = -1;
 + (NSString *)queryParameterForAdSequence:(NSInteger)adSequence
 {
     return (adSequence >= 0) ? [NSString stringWithFormat:@"&seq=%ld", (long)adSequence] : @"";
+}
+
++ (NSString *)queryParameterForPhysicalScreenSize
+{
+    CGSize screenSize = MPScreenResolution();
+
+    return [NSString stringWithFormat:@"&w=%.0f&h=%.0f", screenSize.width, screenSize.height];
+}
+
++ (NSString *)queryParameterForBundleIdentifier
+{
+    NSString *bundleIdentifier = [[NSBundle mainBundle] bundleIdentifier];
+    return bundleIdentifier ? [NSString stringWithFormat:@"&bundle=%@", [bundleIdentifier URLEncodedString]] : @"";
 }
 
 + (BOOL)advertisingTrackingEnabled

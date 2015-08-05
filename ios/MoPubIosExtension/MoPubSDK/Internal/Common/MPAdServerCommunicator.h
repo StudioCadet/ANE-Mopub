@@ -14,11 +14,7 @@
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#if __IPHONE_OS_VERSION_MAX_ALLOWED >= MP_IOS_5_0
 @interface MPAdServerCommunicator : NSObject <NSURLConnectionDataDelegate>
-#else
-@interface MPAdServerCommunicator : NSObject
-#endif
 
 @property (nonatomic, weak) id<MPAdServerCommunicatorDelegate> delegate;
 @property (nonatomic, assign, readonly) BOOL loading;

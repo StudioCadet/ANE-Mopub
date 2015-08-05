@@ -26,12 +26,6 @@
 
 #define MPOffscreenWebViewNeedsRenderingWorkaround() (floor(NSFoundationVersionNumber) > NSFoundationVersionNumber_iOS_6_1)
 
-NSString * const kMoPubURLScheme = @"mopub";
-NSString * const kMoPubCloseHost = @"close";
-NSString * const kMoPubFinishLoadHost = @"finishLoad";
-NSString * const kMoPubFailLoadHost = @"failLoad";
-NSString * const kMoPubCustomHost = @"custom";
-
 @interface MPAdWebViewAgent () <UIGestureRecognizerDelegate>
 
 @property (nonatomic, strong) MPAdConfiguration *configuration;
@@ -44,7 +38,6 @@ NSString * const kMoPubCustomHost = @"custom";
 - (void)performActionForMoPubSpecificURL:(NSURL *)URL;
 - (BOOL)shouldIntercept:(NSURL *)URL navigationType:(UIWebViewNavigationType)navigationType;
 - (void)interceptURL:(NSURL *)URL;
-- (void)handleMoPubCustomURL:(NSURL *)URL;
 
 @end
 
@@ -53,21 +46,19 @@ NSString * const kMoPubCustomHost = @"custom";
 @synthesize configuration = _configuration;
 @synthesize delegate = _delegate;
 @synthesize destinationDisplayAgent = _destinationDisplayAgent;
-@synthesize customMethodDelegate = _customMethodDelegate;
 @synthesize shouldHandleRequests = _shouldHandleRequests;
 @synthesize view = _view;
 @synthesize adAlertManager = _adAlertManager;
 @synthesize userInteractedWithWebView = _userInteractedWithWebView;
 @synthesize userInteractionRecognizer = _userInteractionRecognizer;
 
-- (id)initWithAdWebViewFrame:(CGRect)frame delegate:(id<MPAdWebViewAgentDelegate>)delegate customMethodDelegate:(id)customMethodDelegate;
+- (id)initWithAdWebViewFrame:(CGRect)frame delegate:(id<MPAdWebViewAgentDelegate>)delegate;
 {
     self = [super init];
     if (self) {
         self.view = [[MPInstanceProvider sharedProvider] buildMPAdWebViewWithFrame:frame delegate:self];
         self.destinationDisplayAgent = [[MPCoreInstanceProvider sharedProvider] buildMPAdDestinationDisplayAgentWithDelegate:self];
         self.delegate = delegate;
-        self.customMethodDelegate = customMethodDelegate;
         self.shouldHandleRequests = YES;
         self.adAlertManager = [[MPCoreInstanceProvider sharedProvider] buildMPAdAlertManagerWithDelegate:self];
 
@@ -83,8 +74,6 @@ NSString * const kMoPubCustomHost = @"custom";
 {
     self.userInteractionRecognizer.delegate = nil;
     [self.userInteractionRecognizer removeTarget:self action:nil];
-    self.adAlertManager.targetAdView = nil;
-    self.adAlertManager.delegate = nil;
     [self.destinationDisplayAgent cancel];
     [self.destinationDisplayAgent setDelegate:nil];
     self.view.delegate = nil;
@@ -204,7 +193,7 @@ NSString * const kMoPubCustomHost = @"custom";
     }
 
     NSURL *URL = [request URL];
-    if ([[URL scheme] isEqualToString:kMoPubURLScheme]) {
+    if ([URL mp_isMoPubScheme]) {
         [self performActionForMoPubSpecificURL:URL];
         return NO;
     } else if ([self shouldIntercept:URL navigationType:navigationType]) {
@@ -225,45 +214,20 @@ NSString * const kMoPubCustomHost = @"custom";
 - (void)performActionForMoPubSpecificURL:(NSURL *)URL
 {
     MPLogDebug(@"MPAdWebView - loading MoPub URL: %@", URL);
-    NSString *host = [URL host];
-    if ([host isEqualToString:kMoPubCloseHost]) {
-        [self.delegate adDidClose:self.view];
-    } else if ([host isEqualToString:kMoPubFinishLoadHost]) {
-        [self.delegate adDidFinishLoadingAd:self.view];
-    } else if ([host isEqualToString:kMoPubFailLoadHost]) {
-        [self.delegate adDidFailToLoadAd:self.view];
-    } else if ([host isEqualToString:kMoPubCustomHost]) {
-        [self handleMoPubCustomURL:URL];
-    } else {
-        MPLogWarn(@"MPAdWebView - unsupported MoPub URL: %@", [URL absoluteString]);
-    }
-}
-
-- (void)handleMoPubCustomURL:(NSURL *)URL
-{
-    NSDictionary *queryParameters = [URL mp_queryAsDictionary];
-    NSString *selectorName = [queryParameters objectForKey:@"fnc"];
-    NSString *oneArgumentSelectorName = [selectorName stringByAppendingString:@":"];
-    SEL zeroArgumentSelector = NSSelectorFromString(selectorName);
-    SEL oneArgumentSelector = NSSelectorFromString(oneArgumentSelectorName);
-
-    if ([self.customMethodDelegate respondsToSelector:zeroArgumentSelector]) {
-        SUPPRESS_PERFORM_SELECTOR_LEAK_WARNING(
-            [self.customMethodDelegate performSelector:zeroArgumentSelector withObject:nil]
-        );
-    } else if ([self.customMethodDelegate respondsToSelector:oneArgumentSelector]) {
-        NSData *data = [[queryParameters objectForKey:@"data"] dataUsingEncoding:NSUTF8StringEncoding];
-        NSDictionary *dataDictionary = nil;
-        if (data) {
-            dataDictionary = [NSJSONSerialization mp_JSONObjectWithData:data options:NSJSONReadingMutableContainers clearNullObjects:YES error:nil];
-        }
-
-        SUPPRESS_PERFORM_SELECTOR_LEAK_WARNING(
-            [self.customMethodDelegate performSelector:oneArgumentSelector withObject:dataDictionary]
-        );
-    } else {
-        MPLogError(@"Custom method delegate does not implement custom selectors %@ or %@.",
-                   selectorName, oneArgumentSelectorName);
+    MPMoPubHostCommand command = [URL mp_mopubHostCommand];
+    switch (command) {
+        case MPMoPubHostCommandClose:
+            [self.delegate adDidClose:self.view];
+            break;
+        case MPMoPubHostCommandFinishLoad:
+            [self.delegate adDidFinishLoadingAd:self.view];
+            break;
+        case MPMoPubHostCommandFailLoad:
+            [self.delegate adDidFailToLoadAd:self.view];
+            break;
+        default:
+            MPLogWarn(@"MPAdWebView - unsupported MoPub URL: %@", [URL absoluteString]);
+            break;
     }
 }
 
@@ -316,8 +280,7 @@ NSString * const kMoPubCustomHost = @"custom";
 {
     UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
     int angle = -1;
-    switch (orientation)
-    {
+    switch (orientation) {
         case UIInterfaceOrientationPortrait: angle = 0; break;
         case UIInterfaceOrientationLandscapeLeft: angle = 90; break;
         case UIInterfaceOrientationLandscapeRight: angle = -90; break;

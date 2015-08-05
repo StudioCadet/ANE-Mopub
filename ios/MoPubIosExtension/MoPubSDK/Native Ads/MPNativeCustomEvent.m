@@ -34,8 +34,7 @@
                 completionBlock(errors);
             }
         }];
-    }
-    else {
+    } else {
         if (completionBlock) {
             completionBlock(nil);
         }

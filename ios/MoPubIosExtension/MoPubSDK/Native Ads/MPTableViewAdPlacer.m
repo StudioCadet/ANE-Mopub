@@ -79,12 +79,9 @@
         UINib *nib = [_defaultAdRenderingClass nibForAd];
         NSAssert(nib, @"+nibForAd must return a valid UINib object.");
 
-#if __IPHONE_OS_VERSION_MAX_ALLOWED >= MP_IOS_5_0
-        if ([_tableView respondsToSelector:@selector(registerNib:forCellReuseIdentifier:)]) {
-            [_tableView registerNib:nib forCellReuseIdentifier:adCellReuseIdentifier];
-            _didRegisterNibOrClassForCells = YES;
-        }
-#endif
+        [_tableView registerNib:nib forCellReuseIdentifier:adCellReuseIdentifier];
+        _didRegisterNibOrClassForCells = YES;
+
         // If the rendering class doesn't provide a nib, try to register the class directly.
     } else if ([_tableView respondsToSelector:@selector(registerClass:forCellReuseIdentifier:)]) {
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= MP_IOS_6_0

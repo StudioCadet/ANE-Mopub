@@ -30,13 +30,12 @@ UIWindow *MPKeyWindow()
 }
 
 CGFloat MPStatusBarHeight() {
-    if ([UIApplication sharedApplication].statusBarHidden) return 0.0;
+    if ([UIApplication sharedApplication].statusBarHidden) return 0.0f;
 
-    UIInterfaceOrientation orientation = MPInterfaceOrientation();
+    CGFloat width = CGRectGetWidth([UIApplication sharedApplication].statusBarFrame);
+    CGFloat height = CGRectGetHeight([UIApplication sharedApplication].statusBarFrame);
 
-    return UIInterfaceOrientationIsLandscape(orientation) ?
-        CGRectGetWidth([UIApplication sharedApplication].statusBarFrame) :
-        CGRectGetHeight([UIApplication sharedApplication].statusBarFrame);
+    return (width < height) ? width : height;
 }
 
 CGRect MPApplicationFrame()
@@ -53,8 +52,7 @@ CGRect MPScreenBounds()
 {
     CGRect bounds = [UIScreen mainScreen].bounds;
 
-    if (UIInterfaceOrientationIsLandscape(MPInterfaceOrientation()))
-    {
+    if (UIInterfaceOrientationIsLandscape(MPInterfaceOrientation()) && [[UIDevice currentDevice].systemVersion compare:@"8.0"] == NSOrderedAscending) {
         CGFloat width = bounds.size.width;
         bounds.size.width = bounds.size.height;
         bounds.size.height = width;
@@ -63,14 +61,22 @@ CGRect MPScreenBounds()
     return bounds;
 }
 
+CGSize MPScreenResolution()
+{
+    CGRect bounds = MPScreenBounds();
+    CGFloat scale = MPDeviceScaleFactor();
+
+    return CGSizeMake(bounds.size.width*scale, bounds.size.height*scale);
+}
+
 CGFloat MPDeviceScaleFactor()
 {
     if ([[UIScreen mainScreen] respondsToSelector:@selector(displayLinkWithTarget:selector:)] &&
-        [[UIScreen mainScreen] respondsToSelector:@selector(scale)])
-    {
+        [[UIScreen mainScreen] respondsToSelector:@selector(scale)]) {
         return [[UIScreen mainScreen] scale];
+    } else {
+        return 1.0;
     }
-    else return 1.0;
 }
 
 NSDictionary *MPDictionaryFromQueryString(NSString *query) {
@@ -93,8 +99,7 @@ NSString *MPSHA1Digest(NSString *string)
     CC_SHA1([data bytes], (CC_LONG)[data length], digest);
 
     NSMutableString *output = [NSMutableString stringWithCapacity:CC_SHA1_DIGEST_LENGTH * 2];
-    for (int i = 0; i < CC_SHA1_DIGEST_LENGTH; i++)
-    {
+    for (int i = 0; i < CC_SHA1_DIGEST_LENGTH; i++) {
         [output appendFormat:@"%02x", digest[i]];
     }
 
@@ -169,6 +174,17 @@ BOOL MPViewIntersectsParentWindowWithPercent(UIView *view, CGFloat percentVisibl
     return intersectionArea >= (originalArea * percentVisible);
 }
 
+NSString *MPResourcePathForResource(NSString *resourceName)
+{
+#ifdef MP_FABRIC
+    // We store all assets inside a bundle for Fabric.
+    return [@"MoPub.bundle" stringByAppendingPathComponent:resourceName];
+#else
+    // When using open source, the resources just live in the main bundle.
+    return resourceName;
+#endif
+}
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
 @implementation NSString (MPAdditions)
@@ -202,6 +218,75 @@ BOOL MPViewIntersectsParentWindowWithPercent(UIView *view, CGFloat percentVisibl
 
 @end
 
+@implementation UIApplication (MPAdditions)
+
+- (void)mp_preIOS7setApplicationStatusBarHidden:(BOOL)hidden
+{
+    // Hiding the status bar should use a fade effect.
+    // Displaying the status bar should use no animation.
+    UIStatusBarAnimation animation = hidden ?
+    UIStatusBarAnimationFade : UIStatusBarAnimationNone;
+    [[UIApplication sharedApplication] setStatusBarHidden:hidden withAnimation:animation];
+}
+
+- (BOOL)mp_supportsOrientationMask:(UIInterfaceOrientationMask)orientationMask
+{
+    NSArray *supportedOrientations = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"UISupportedInterfaceOrientations"];
+
+    if (orientationMask & UIInterfaceOrientationMaskLandscapeLeft) {
+        if ([supportedOrientations containsObject:@"UIInterfaceOrientationLandscapeLeft"]) {
+            return YES;
+        }
+    }
+
+    if (orientationMask & UIInterfaceOrientationMaskLandscapeRight) {
+        if ([supportedOrientations containsObject:@"UIInterfaceOrientationLandscapeRight"]) {
+            return YES;
+        }
+    }
+
+    if (orientationMask & UIInterfaceOrientationMaskPortrait) {
+        if ([supportedOrientations containsObject:@"UIInterfaceOrientationPortrait"]) {
+            return YES;
+        }
+    }
+
+    if (orientationMask & UIInterfaceOrientationMaskPortraitUpsideDown) {
+        if ([supportedOrientations containsObject:@"UIInterfaceOrientationPortraitUpsideDown"]) {
+            return YES;
+        }
+    }
+
+    return NO;
+}
+
+- (BOOL)mp_doesOrientation:(UIInterfaceOrientation)orientation matchOrientationMask:(UIInterfaceOrientationMask)orientationMask
+{
+    BOOL supportsLandscapeLeft = (orientationMask & UIInterfaceOrientationMaskLandscapeLeft) > 0;
+    BOOL supportsLandscapeRight = (orientationMask & UIInterfaceOrientationMaskLandscapeRight) > 0;
+    BOOL supportsPortrait = (orientationMask & UIInterfaceOrientationMaskPortrait) > 0;
+    BOOL supportsPortraitUpsideDown = (orientationMask & UIInterfaceOrientationMaskPortraitUpsideDown) > 0;
+
+    if (supportsLandscapeLeft && orientation == UIInterfaceOrientationLandscapeLeft) {
+        return YES;
+    }
+
+    if (supportsLandscapeRight && orientation == UIInterfaceOrientationLandscapeRight) {
+        return YES;
+    }
+
+    if (supportsPortrait && orientation == UIInterfaceOrientationPortrait) {
+        return YES;
+    }
+
+    if (supportsPortraitUpsideDown && orientation == UIInterfaceOrientationPortraitUpsideDown) {
+        return YES;
+    }
+
+    return NO;
+}
+
+@end
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
 @interface MPTelephoneConfirmationController ()

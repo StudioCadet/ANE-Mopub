@@ -16,7 +16,9 @@ enum {
 typedef NSUInteger MPAdType;
 
 extern NSString * const kAdTypeHeaderKey;
+extern NSString * const kAdUnitWarmingUpHeaderKey;
 extern NSString * const kClickthroughHeaderKey;
+extern NSString * const kCreativeIdHeaderKey;
 extern NSString * const kCustomSelectorHeaderKey;
 extern NSString * const kCustomEventClassNameHeaderKey;
 extern NSString * const kCustomEventClassDataHeaderKey;
@@ -33,6 +35,7 @@ extern NSString * const kScrollableHeaderKey;
 extern NSString * const kWidthHeaderKey;
 extern NSString * const kDspCreativeIdKey;
 extern NSString * const kPrecacheRequiredKey;
+extern NSString * const kIsVastVideoPlayerKey;
 
 extern NSString * const kInterstitialAdTypeHeaderKey;
 extern NSString * const kOrientationTypeHeaderKey;
@@ -46,6 +49,7 @@ extern NSString * const kAdTypeNative;
 @interface MPAdConfiguration : NSObject
 
 @property (nonatomic, assign) MPAdType adType;
+@property (nonatomic, assign) BOOL adUnitWarmingUp;
 @property (nonatomic, copy) NSString *networkType;
 @property (nonatomic, assign) CGSize preferredSize;
 @property (nonatomic, strong) NSURL *clickTrackingURL;
@@ -64,7 +68,10 @@ extern NSString * const kAdTypeNative;
 @property (nonatomic, assign) MPInterstitialOrientationType orientationType;
 @property (nonatomic, copy) NSString *dspCreativeId;
 @property (nonatomic, assign) BOOL precacheRequired;
+@property (nonatomic, assign) BOOL isVastVideoPlayer;
 @property (nonatomic, strong) NSDate *creationTimestamp;
+@property (nonatomic, copy) NSString *creativeId;
+@property (nonatomic, copy) NSString *headerAdType;
 
 - (id)initWithHeaders:(NSDictionary *)headers data:(NSData *)data;
 

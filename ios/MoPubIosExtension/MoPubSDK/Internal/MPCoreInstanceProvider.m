@@ -16,7 +16,9 @@
 #import "MPReachability.h"
 #import "MPTimer.h"
 #import "MPAnalyticsTracker.h"
-
+#import "MPGeolocationProvider.h"
+#import "MPLogEventRecorder.h"
+#import "MPNetworkManager.h"
 
 #define MOPUB_CARRIER_INFO_DEFAULTS_KEY @"com.mopub.carrierinfo"
 
@@ -102,7 +104,7 @@ static MPCoreInstanceProvider *sharedProvider = nil;
 
     // check if we have a saved copy
     NSDictionary *saved = [[NSUserDefaults standardUserDefaults] dictionaryForKey:MOPUB_CARRIER_INFO_DEFAULTS_KEY];
-    if(saved != nil) {
+    if (saved != nil) {
         [self.carrierInfo addEntriesFromDictionary:saved];
     }
 
@@ -151,9 +153,9 @@ static MPCoreInstanceProvider *sharedProvider = nil;
 
 #pragma mark - URL Handling
 
-- (MPURLResolver *)buildMPURLResolver
+- (MPURLResolver *)buildMPURLResolverWithURL:(NSURL *)URL completion:(MPURLResolverCompletionBlock)completion;
 {
-    return [MPURLResolver resolver];
+    return [MPURLResolver resolverWithURL:URL completion:completion];
 }
 
 - (MPAdDestinationDisplayAgent *)buildMPAdDestinationDisplayAgentWithDelegate:(id<MPAdDestinationDisplayAgentDelegate>)delegate
@@ -163,13 +165,29 @@ static MPCoreInstanceProvider *sharedProvider = nil;
 
 #pragma mark - Utilities
 
+- (UIDevice *)sharedCurrentDevice
+{
+    return [UIDevice currentDevice];
+}
+
+- (MPGeolocationProvider *)sharedMPGeolocationProvider
+{
+    return [self singletonForClass:[MPGeolocationProvider class] provider:^id{
+        return [MPGeolocationProvider sharedProvider];
+    }];
+}
+
+- (CLLocationManager *)buildCLLocationManager
+{
+    return [[CLLocationManager alloc] init];
+}
+
 - (id<MPAdAlertManagerProtocol>)buildMPAdAlertManagerWithDelegate:(id)delegate
 {
     id<MPAdAlertManagerProtocol> adAlertManager = nil;
 
     Class adAlertManagerClass = NSClassFromString(@"MPAdAlertManager");
-    if(adAlertManagerClass != nil)
-    {
+    if (adAlertManagerClass != nil) {
         adAlertManager = [[adAlertManagerClass alloc] init];
         [adAlertManager performSelector:@selector(setDelegate:) withObject:delegate];
     }
@@ -182,8 +200,7 @@ static MPCoreInstanceProvider *sharedProvider = nil;
     MPAdAlertGestureRecognizer *gestureRecognizer = nil;
 
     Class gestureRecognizerClass = NSClassFromString(@"MPAdAlertGestureRecognizer");
-    if(gestureRecognizerClass != nil)
-    {
+    if (gestureRecognizerClass != nil) {
         gestureRecognizer = [[gestureRecognizerClass alloc] initWithTarget:target action:action];
     }
 
@@ -216,6 +233,21 @@ static MPCoreInstanceProvider *sharedProvider = nil;
     }];
 }
 
+- (MPLogEventRecorder *)sharedLogEventRecorder
+{
+    return [self singletonForClass:[MPLogEventRecorder class] provider:^id{
+        MPLogEventRecorder *recorder = [[MPLogEventRecorder alloc] init];
+        return recorder;
+    }];
+}
+
+- (MPNetworkManager *)sharedNetworkManager
+{
+    return [self singletonForClass:[MPNetworkManager class] provider:^id{
+        return [MPNetworkManager sharedNetworkManager];
+    }];
+}
+
 - (NSDictionary *)sharedCarrierInfo
 {
     return self.carrierInfo;
@@ -225,71 +257,5 @@ static MPCoreInstanceProvider *sharedProvider = nil;
 {
     return [MPTimer timerWithTimeInterval:seconds target:target selector:selector repeats:repeats];
 }
-
-#pragma mark - Twitter Availability
-
-- (void)resetTwitterAppInstallCheck
-{
-    self.twitterDeepLinkStatus = MPTwitterDeepLinkNotChecked;
-}
-
-- (BOOL)isTwitterInstalled
-{
-
-    if (self.twitterDeepLinkStatus == MPTwitterDeepLinkNotChecked)
-    {
-        BOOL twitterDeepLinkEnabled = [[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"twitter://timeline"]];
-        if (twitterDeepLinkEnabled)
-        {
-            self.twitterDeepLinkStatus = MPTwitterDeepLinkEnabled;
-        }
-        else
-        {
-            self.twitterDeepLinkStatus = MPTwitterDeepLinkDisabled;
-        }
-    }
-
-    return (self.twitterDeepLinkStatus == MPTwitterDeepLinkEnabled);
-}
-
-+ (BOOL)deviceHasTwitterIntegration
-{
-    return !![MPCoreInstanceProvider tweetComposeVCClass];
-}
-
-+ (Class)tweetComposeVCClass
-{
-    return NSClassFromString(@"TWTweetComposeViewController");
-}
-
-- (BOOL)isNativeTwitterAccountPresent
-{
-    BOOL nativeTwitterAccountPresent = NO;
-    if ([MPCoreInstanceProvider deviceHasTwitterIntegration])
-    {
-        nativeTwitterAccountPresent = (BOOL)[[MPCoreInstanceProvider tweetComposeVCClass] performSelector:@selector(canSendTweet)];
-    }
-
-    return nativeTwitterAccountPresent;
-}
-
-- (MPTwitterAvailability)twitterAvailabilityOnDevice
-{
-    MPTwitterAvailability twitterAvailability = MPTwitterAvailabilityNone;
-
-    if ([self isTwitterInstalled])
-    {
-        twitterAvailability |= MPTwitterAvailabilityApp;
-    }
-
-    if ([self isNativeTwitterAccountPresent])
-    {
-        twitterAvailability |= MPTwitterAvailabilityNative;
-    }
-
-    return twitterAvailability;
-}
-
-
 
 @end
