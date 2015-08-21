@@ -4,9 +4,11 @@
 	<packagedDependencies>
 		<packagedDependency>adcolony.jar</packagedDependency>
 		<packagedDependency>android-support-v4.jar</packagedDependency>
+		<packagedDependency>android-support-v7-recyclerview.jar</packagedDependency>
 		<packagedDependency>chartboost.jar</packagedDependency>
 		<packagedDependency>google-play-services.jar</packagedDependency>
 		<packagedDependency>inmobi.jar</packagedDependency>
+		<packagedDependency>mopub-volley-1.1.0.jar</packagedDependency>
 		<packagedDependency>StartAppInApp-2.4.12.jar</packagedDependency>
 		<packagedDependency>StartAppMoPubMediation-1.0.1.jar</packagedDependency>
     </packagedDependencies> 
@@ -16,5 +18,9 @@
             <packageName>com.google.android.gms</packageName> 
             <folderName>google-play-services-res</folderName> 
         </packagedResource>
+		<packagedResource>
+			<packageName>android.support.v7</packageName>
+			<folderName>android-support-v7-recyclerview-res</folderName>
+		</packagedResource>
     </packagedResources>
 </platform>

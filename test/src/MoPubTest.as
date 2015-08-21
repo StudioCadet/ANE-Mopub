@@ -10,6 +10,7 @@ package {
 	import flash.text.TextField;
 	import flash.text.TextFormat;
 	import flash.text.TextFormatAlign;
+	import flash.utils.getTimer;
 	
 	
 	/**
@@ -29,6 +30,8 @@ package {
 			
 			stage.align = StageAlign.TOP_LEFT;
 			stage.scaleMode = StageScaleMode.SHOW_ALL;
+			
+			trace("### Starting time : " + getTimer() + "ms");
 			
 			initDisplay();
 			initMoPub();
