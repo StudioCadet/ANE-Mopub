@@ -17,16 +17,16 @@
 
 @interface MPInstanceProvider (AdMobInterstitials)
 
-- (GADInterstitial *)buildGADInterstitialAd;
+- (GADInterstitial *)buildGADInterstitialAd:(NSString *)adUnitId;
 - (GADRequest *)buildGADInterstitialRequest;
 
 @end
 
 @implementation MPInstanceProvider (AdMobInterstitials)
 
-- (GADInterstitial *)buildGADInterstitialAd
+- (GADInterstitial *)buildGADInterstitialAd:(NSString *)adUnitId
 {
-    return [[GADInterstitial alloc] init];
+    return [[GADInterstitial alloc] initWithAdUnitID:adUnitId];
 }
 
 - (GADRequest *)buildGADInterstitialRequest
@@ -64,7 +64,7 @@
     
     MPLogInfo(@"Using AdMob ad unit ID : %@", adUnitID);
     
-    self.interstitial = [[MPInstanceProvider sharedProvider] buildGADInterstitialAd];
+    self.interstitial = [[MPInstanceProvider sharedProvider] buildGADInterstitialAd:adUnitID];
     
     self.interstitial.adUnitID = adUnitID;
     self.interstitial.delegate = self;
