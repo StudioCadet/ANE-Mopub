@@ -328,15 +328,6 @@
 							  android:theme="@android:style/Theme.Translucent.NoTitleBar"
 							  android:excludeFromRecents="true" />
 					
-					<!-- MoPub : StartApp mediation -->
-					<meta-data android:name="START_APP_DEV_ID" android:value="112477335" />
-					<meta-data android:name="START_APP_APP_ID" android:value="212271814" />
-					<activity android:name="com.startapp.android.publish.list3d.List3DActivity"
-					          android:theme="@android:style/Theme" />
-					<activity android:name="com.startapp.android.publish.AppWallActivity"
-					          android:theme="@android:style/Theme.Translucent"
-					          android:configChanges="orientation|keyboardHidden|screenSize" />
-					
 			    </application>
 			    
 			</manifest>
