@@ -8,8 +8,6 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-#import <GoogleMobileAds/GoogleMobileAdsDefines.h>
-
 /// A valid GADAdSize is considered to be one of the predefined GADAdSize constants or a GADAdSize
 /// constructed by GADAdSizeFromCGSize, GADAdSizeFullWidthPortraitWithHeight,
 /// GADAdSizeFullWidthLandscapeWithHeight.
@@ -25,35 +23,35 @@ typedef struct GADAdSize {
 #pragma mark Standard Sizes
 
 /// iPhone and iPod Touch ad size. Typically 320x50.
-GAD_EXTERN GADAdSize const kGADAdSizeBanner;
+extern GADAdSize const kGADAdSizeBanner;
 
 /// Taller version of kGADAdSizeBanner. Typically 320x100.
-GAD_EXTERN GADAdSize const kGADAdSizeLargeBanner;
+extern GADAdSize const kGADAdSizeLargeBanner;
 
 /// Medium Rectangle size for the iPad (especially in a UISplitView's left pane). Typically 300x250.
-GAD_EXTERN GADAdSize const kGADAdSizeMediumRectangle;
+extern GADAdSize const kGADAdSizeMediumRectangle;
 
 /// Full Banner size for the iPad (especially in a UIPopoverController or in
 /// UIModalPresentationFormSheet). Typically 468x60.
-GAD_EXTERN GADAdSize const kGADAdSizeFullBanner;
+extern GADAdSize const kGADAdSizeFullBanner;
 
 /// Leaderboard size for the iPad. Typically 728x90.
-GAD_EXTERN GADAdSize const kGADAdSizeLeaderboard;
+extern GADAdSize const kGADAdSizeLeaderboard;
 
 /// Skyscraper size for the iPad. Mediation only. AdMob/Google does not offer this size. Typically
 /// 120x600.
-GAD_EXTERN GADAdSize const kGADAdSizeSkyscraper;
+extern GADAdSize const kGADAdSizeSkyscraper;
 
 /// An ad size that spans the full width of the application in portrait orientation. The height is
 /// typically 50 pixels on an iPhone/iPod UI, and 90 pixels tall on an iPad UI.
-GAD_EXTERN GADAdSize const kGADAdSizeSmartBannerPortrait;
+extern GADAdSize const kGADAdSizeSmartBannerPortrait;
 
 /// An ad size that spans the full width of the application in landscape orientation. The height is
 /// typically 32 pixels on an iPhone/iPod UI, and 90 pixels tall on an iPad UI.
-GAD_EXTERN GADAdSize const kGADAdSizeSmartBannerLandscape;
+extern GADAdSize const kGADAdSizeSmartBannerLandscape;
 
 /// Invalid ad size marker.
-GAD_EXTERN GADAdSize const kGADAdSizeInvalid;
+extern GADAdSize const kGADAdSizeInvalid;
 
 #pragma mark Custom Sizes
 

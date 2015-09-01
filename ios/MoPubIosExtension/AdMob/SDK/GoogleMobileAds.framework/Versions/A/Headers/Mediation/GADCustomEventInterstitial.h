@@ -7,8 +7,8 @@
 
 #import <UIKit/UIKit.h>
 
-#import <GoogleMobileAds/GADCustomEventInterstitialDelegate.h>
-#import <GoogleMobileAds/GADCustomEventRequest.h>
+#import "GADCustomEventInterstitialDelegate.h"
+#import "GADCustomEventRequest.h"
 
 /// The protocol for a Custom Event of the interstitial type. Your Custom Event handler object for
 /// interstitial must implement this protocol. The requestInterstitialAd method will be called when

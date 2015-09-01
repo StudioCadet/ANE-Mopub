@@ -6,7 +6,6 @@
 //
 
 #import <GoogleMobileAds/GADBannerView.h>
-#import <GoogleMobileAds/GoogleMobileAdsDefines.h>
 
 @protocol DFPCustomRenderedBannerViewDelegate;
 @protocol GADAdSizeDelegate;
@@ -62,8 +61,6 @@
 /// Use this function to resize the banner view without launching a new ad request.
 - (void)resize:(GADAdSize)size;
 
-#pragma mark Deprecated
-
 /// Sets the receiver's valid ad sizes to the values pointed to by the provided NULL terminated list
 /// of GADAdSize pointers.
 ///
@@ -73,7 +70,6 @@
 ///   GADAdSize size2 = kGADAdSizeLargeBanner;
 ///   [bannerView setValidAdSizesWithSizes:&size1, &size2, NULL];
 ///   \endcode
-- (void)setValidAdSizesWithSizes:(GADAdSize *)firstSize, ... NS_REQUIRES_NIL_TERMINATION
-                                 GAD_DEPRECATED_MSG_ATTRIBUTE("Use validAdSizes property.");
+- (void)setValidAdSizesWithSizes:(GADAdSize *)firstSize, ... NS_REQUIRES_NIL_TERMINATION;
 
 @end

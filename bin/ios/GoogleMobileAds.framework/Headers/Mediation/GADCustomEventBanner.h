@@ -8,8 +8,9 @@
 #import <UIKit/UIKit.h>
 
 #import <GoogleMobileAds/GADAdSize.h>
-#import <GoogleMobileAds/GADCustomEventBannerDelegate.h>
-#import <GoogleMobileAds/GADCustomEventRequest.h>
+
+#import "GADCustomEventBannerDelegate.h"
+#import "GADCustomEventRequest.h"
 
 /// The protocol for a Custom Event of the banner type. Your Custom Event handler object for banners
 /// must implement this protocol. The requestBannerAd method will be called when mediation schedules
