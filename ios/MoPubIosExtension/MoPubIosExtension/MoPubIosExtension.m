@@ -141,7 +141,7 @@ DEFINE_ANE_FUNCTION( mopub_setKeywords )
     
     // Date of birth :
     if([mopubConverter FREGetObject:argv[1] asDouble:&dateOfBirthTimestamp] == FRE_OK)
-        [MoPubKeywords current].dateOfBirth = [[NSDate alloc] initWithTimeIntervalSince1970:dateOfBirthTimestamp];
+        [MoPubKeywords current].dateOfBirth = [[NSDate alloc] initWithTimeIntervalSince1970:dateOfBirthTimestamp/1000];
     else
         [MoPubKeywords current].dateOfBirth = nil;
     NSLog(@"    - DateOfBirth set to %@", [MoPubKeywords current].dateOfBirth);
