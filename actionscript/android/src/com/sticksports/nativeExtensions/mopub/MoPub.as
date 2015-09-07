@@ -23,7 +23,7 @@ package com.sticksports.nativeExtensions.mopub
 		 * The stage passed through the init method.
 		 */
 		private static var _stage:Stage;
-		private static function get stage():Stage {
+		public static function get stage():Stage {
 			return _stage;
 		}
 		
