@@ -4,6 +4,7 @@ package com.sticksports.nativeExtensions.mopub
 	import flash.events.StatusEvent;
 	import flash.external.ExtensionContext;
 	import flash.system.Capabilities;
+	import flash.display.Stage;
 	
 	public class MoPub {
 		
@@ -17,6 +18,14 @@ package com.sticksports.nativeExtensions.mopub
 		private static var scaleFactor:Number;
 		private static var conversionTracked:Boolean;
 		private static var initialized:Boolean;
+		
+		/**
+		 * The stage passed through the init method.
+		 */
+		private static var _stage:Stage;
+		private static function get stage():Stage {
+			return _stage;
+		}
 		
 		private static function createExtensionContextIfNull():void {
 			if(extensionContext)
@@ -52,9 +61,11 @@ package com.sticksports.nativeExtensions.mopub
 			conversionTracked = true;
 		}
 		
-		public static function init():void {
+		public static function init(stage:Stage = null):void {
 			if(initialized)
 				return;
+				
+			_stage = stage;
 			
 			createExtensionContextIfNull();
 			

@@ -1,5 +1,8 @@
 package com.sticksports.nativeExtensions.mopub
 {
+	import flash.desktop.NativeApplication;
+	import flash.display.DisplayObjectContainer;
+	import flash.display.Sprite;
 	import flash.events.EventDispatcher;
 
 	public class MoPubBanner extends EventDispatcher
@@ -16,6 +19,9 @@ package com.sticksports.nativeExtensions.mopub
 		private var _y : Number = 0;
 		private var _width : Number = 0;
 		private var _height : Number = 0;
+		
+		private var fakeBanner:Sprite;
+		private var disposed:Boolean;
 
 // properties
 
@@ -66,7 +72,9 @@ package com.sticksports.nativeExtensions.mopub
 
 		public function set x( value : Number ) : void
 		{
+			if(disposed) return;
 			_x = value;
+			fakeBanner.x = value;
 		}
 
 		public function get y() : Number
@@ -76,7 +84,9 @@ package com.sticksports.nativeExtensions.mopub
 
 		public function set y( value : Number ) : void
 		{
+			if(disposed) return;
 			_y = value;
+			fakeBanner.y = value;
 		}
 
 		public function get width() : Number
@@ -86,7 +96,9 @@ package com.sticksports.nativeExtensions.mopub
 
 		public function set width( value : Number ) : void
 		{
+			if(disposed) return;
 			_width = value;
+			fakeBanner.width = value;
 		}
 
 		public function get height() : Number
@@ -96,7 +108,9 @@ package com.sticksports.nativeExtensions.mopub
 
 		public function set height( value : Number ) : void
 		{
+			if(disposed) return;
 			_height = value;
+			fakeBanner.height = value;
 		}
 
 		public function get size() : MoPubSize
@@ -111,18 +125,19 @@ package com.sticksports.nativeExtensions.mopub
 
 		public function get creativeWidth() : Number
 		{
-			return 0;
+			return _width;
 		}
 
 		public function get creativeHeight() : Number
 		{
-			return 0;
+			return _height;
 		}
 
 // methods
 
 		public function MoPubBanner( adUnitId : String, size : MoPubSize )
 		{
+			disposed = false;
 			_adUnitId = adUnitId;
 			_size = size;
 
@@ -145,22 +160,47 @@ package com.sticksports.nativeExtensions.mopub
 					_height = 600;
 					break;
 			}
+			
+			if(MoPub.stage == null) {
+				// If no stage has been passed to MoPub at initialization, the fake banners will not be displayed.
+				disposed = true;
+				return;
+			}
+				
+				
+				
+			fakeBanner = new Sprite();
+			fakeBanner.graphics.beginFill(Math.random() * 0xFFFFFF, 1);
+			fakeBanner.graphics.drawRect(0,0,_width,_height);
+			fakeBanner.graphics.endFill();
+			fakeBanner.visible = false;
+			MoPub.stage.addChild(fakeBanner);
 		}
 		
-		public function load() : void
-		{
+		public function load() : void {
+			// Simulates banners failing to load.
+			if(Math.random() > 0.5)
+				dispatchEvent( new MoPubEvent( MoPubEvent.AD_LOADED ) );
+			else
+				dispatchEvent(new MoPubEvent( MoPubEvent.AD_FAILED_TO_LOAD) );
 		}
 
-		public function show() : void
-		{
+		public function show() : void {
+			if(disposed) return;
+			fakeBanner.visible = true;
 		}
 
-		public function remove() : void
-		{
+		public function remove() : void {
+			if(disposed) return;
+			fakeBanner.visible = false;
 		}
 		
-		public function dispose() : void
-		{
+		public function dispose() : void {
+			if(Mopub.stage != null) {
+				MoPub.stage.removeChild(fakeBanner);
+				fakeBanner = null;
+			}
+			disposed = true;
 		}
 	}
 }

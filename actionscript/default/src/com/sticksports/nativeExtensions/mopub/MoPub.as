@@ -1,5 +1,6 @@
 package com.sticksports.nativeExtensions.mopub
 {
+	import flash.display.Stage;
 	import flash.system.Capabilities;
 
 	public class MoPub {
@@ -8,6 +9,14 @@ package com.sticksports.nativeExtensions.mopub
 		public static var logger:Function = trace;
 		/** The prefix appended to every log message. Defaults to "[MoPub]". */
 		public static var logPrefix:String = "[MoPub]";
+		
+		/**
+		 * The stage passed through the init method.
+		 */
+		private static var _stage:Stage;
+		public static function get stage():Stage {
+			return _stage;
+		}
 		
 		
 		public static function get adScaleFactor():Number {
@@ -22,7 +31,8 @@ package com.sticksports.nativeExtensions.mopub
 			return Capabilities.screenResolutionY;
 		}
 		
-		public static function init():void {
+		public static function init(stage:Stage = null):void {
+			_stage = stage;
 		}
 		
 		public static function trackConversion():void {
