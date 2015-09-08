@@ -191,7 +191,10 @@ class GooglePlayServicesBanner extends CustomEventBanner {
 
         @Override
         public void onAdLeftApplication() {
-
+        	MoPubExtension.log("AdMob banner ad clicked.");
+            if (mBannerListener != null) {
+            	mBannerListener.onBannerClicked();
+            }
         }
 
         @Override
