@@ -4,6 +4,7 @@ package com.sticksports.nativeExtensions.mopub
 	import flash.display.DisplayObjectContainer;
 	import flash.display.Sprite;
 	import flash.events.EventDispatcher;
+	import flash.utils.setTimeout;
 
 	public class MoPubBanner extends EventDispatcher
 	{
@@ -22,6 +23,13 @@ package com.sticksports.nativeExtensions.mopub
 		
 		private var fakeBanner:Sprite;
 		private var disposed:Boolean;
+		
+		
+		// DEBUG SETTINGS :
+		/** The average fail rate when loading a banner. The value must be between 0.0 and 1.0 . */
+		private var failRate:Number;
+		/** The response time when loading a banner. The value is given in seconds. */
+		private var responseTime:Number;
 
 // properties
 
@@ -178,12 +186,20 @@ package com.sticksports.nativeExtensions.mopub
 		}
 		
 		public function load() : void {
+			if(isNaN(responseTime))
+				loadingResponse();
+			else
+				setTimeout(loadingResponse, responseTime * 1000);
+		}
+		
+		private function loadingResponse():void {
 			// Simulates banners failing to load.
-			if(Math.random() > 0.5)
+			if(isNaN(failRate) || Math.random() > failRate)
 				dispatchEvent( new MoPubEvent( MoPubEvent.AD_LOADED ) );
 			else
 				dispatchEvent(new MoPubEvent( MoPubEvent.AD_FAILED_TO_LOAD) );
 		}
+		
 
 		public function show() : void {
 			if(disposed) return;
@@ -196,12 +212,30 @@ package com.sticksports.nativeExtensions.mopub
 		}
 		
 		public function dispose() : void {
-			if(Mopub.stage != null) {
+			if(MoPub.stage != null) {
 				MoPub.stage.removeChild(fakeBanner);
 				fakeBanner = null;
 			}
 			disposed = true;
 		}
+		
+		
+		
+		
+		///////////
+		// DEBUG //
+		///////////
+		
+		/**
+		 * Sets the desired settings for debugging banners. <br/>The given failRate will define the percentage of chances to fail
+		 * a banner loading. The failures will be picked randomly when calling <code>load()</code>. </br>
+		 * The given responseTime tells the delay to wait before sending a loading complete or failed, to simulate the asynchronous loading.
+		 */
+		public function setDebugSettings(failRate:Number, responseTime:Number):void {
+			this.failRate = failRate;
+			this.responseTime = responseTime;
+		}
+		
 	}
 }
 

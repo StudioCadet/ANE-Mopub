@@ -209,6 +209,16 @@ package com.sticksports.nativeExtensions.mopub
 		{
 			extensionContext.call( disposeBanner );
 		}
+		
+		
+		
+		///////////
+		// DEBUG //
+		///////////
+		
+		public function setDebugSettings(failRate:Number, responseTime:Number):void {
+			// Empty here, this is useful for default implementation only.
+		}
 	}
 }
 
