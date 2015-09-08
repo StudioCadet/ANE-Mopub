@@ -14,6 +14,7 @@
 {
 }
 @property (nonatomic, assign)FREContext context;
+@property (nonatomic, assign)BOOL didDispatchAdClicked;
 
 @end
 
@@ -140,6 +141,7 @@
 - (void) loadBanner
 {
     [super setKeywords:[[MoPubKeywords current] getMopubKeywords]];
+    self.didDispatchAdClicked = false;
     [self loadAd];
 }
 
@@ -160,6 +162,14 @@
 
 // Delegate
 
+- (void)dispatchAdClickedIfPossible {
+    if (self.didDispatchAdClicked)
+        return;
+    
+    self.didDispatchAdClicked = true;
+    FREDispatchStatusEventAsync( context, "", bannerAdClicked );
+}
+
 - (void)adViewDidLoadAd:(MPAdView*)view
 {
     FREDispatchStatusEventAsync( context, "", bannerLoaded );
@@ -172,12 +182,17 @@
 
 - (void)willPresentModalViewForAd:(MPAdView *)view
 {
-    FREDispatchStatusEventAsync( context, "", bannerAdClicked );
+    [self dispatchAdClickedIfPossible];
 }
 
 - (void)didDismissModalViewForAd:(MPAdView *)view
 {
     FREDispatchStatusEventAsync( context, "", bannerAdClosed );
+}
+
+- (void)willLeaveApplicationFromAd:(MPAdView *)view
+{
+    [self dispatchAdClickedIfPossible];
 }
 
 @end

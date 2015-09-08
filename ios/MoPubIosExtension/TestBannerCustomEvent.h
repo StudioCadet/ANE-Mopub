@@ -1,8 +1,8 @@
 #import "MPBannerCustomEvent.h"
-#import "MPGoogleAdMobBannerCustomEvent.h"
+#import "InMobiBannerCustomEvent.h"
 
 @interface TestBannerCustomEvent : MPBannerCustomEvent
 
-@property (nonatomic, retain) MPGoogleAdMobBannerCustomEvent *bannerCustomEvent;
+@property (nonatomic, retain) InMobiBannerCustomEvent *bannerCustomEvent;
 
 @end
