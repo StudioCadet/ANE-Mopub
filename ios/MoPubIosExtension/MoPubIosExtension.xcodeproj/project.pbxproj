@@ -263,7 +263,9 @@
 		016178E11B72675600F92420 /* MPRewardedVideoError.m in Sources */ = {isa = PBXBuildFile; fileRef = 016177EB1B72675500F92420 /* MPRewardedVideoError.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		016178E21B72675600F92420 /* MPRewardedVideoReward.h in Headers */ = {isa = PBXBuildFile; fileRef = 016177EC1B72675500F92420 /* MPRewardedVideoReward.h */; };
 		016178E31B72675600F92420 /* MPRewardedVideoReward.m in Sources */ = {isa = PBXBuildFile; fileRef = 016177ED1B72675500F92420 /* MPRewardedVideoReward.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
-		01A470A61AB996000047DA2C /* GoogleMobileAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01A470A51AB996000047DA2C /* GoogleMobileAds.framework */; };
+		016178EC1B9ED4C100F92420 /* TestInterstitialCustomEvent.h in Headers */ = {isa = PBXBuildFile; fileRef = 016178EA1B9ED4C000F92420 /* TestInterstitialCustomEvent.h */; };
+		016178ED1B9ED4C100F92420 /* TestInterstitialCustomEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 016178EB1B9ED4C100F92420 /* TestInterstitialCustomEvent.m */; };
+		016178F31B9EDD3600F92420 /* GoogleMobileAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 016178F21B9EDD3600F92420 /* GoogleMobileAds.framework */; };
 		01A470A81AB996400047DA2C /* MPGoogleAdMobInterstitialCustomEvent.h in Headers */ = {isa = PBXBuildFile; fileRef = 01A470A71AB996400047DA2C /* MPGoogleAdMobInterstitialCustomEvent.h */; };
 		01A470AA1AB9966C0047DA2C /* MPGoogleAdMobInterstitialCustomEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 01A470A91AB9966C0047DA2C /* MPGoogleAdMobInterstitialCustomEvent.m */; };
 		349B4DBE1946F1CE00184794 /* InMobiBannerCustomEvent.h in Headers */ = {isa = PBXBuildFile; fileRef = 349B4DB91946F1CE00184794 /* InMobiBannerCustomEvent.h */; };
@@ -600,7 +602,9 @@
 		016177EB1B72675500F92420 /* MPRewardedVideoError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPRewardedVideoError.m; sourceTree = "<group>"; };
 		016177EC1B72675500F92420 /* MPRewardedVideoReward.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPRewardedVideoReward.h; sourceTree = "<group>"; };
 		016177ED1B72675500F92420 /* MPRewardedVideoReward.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPRewardedVideoReward.m; sourceTree = "<group>"; };
-		01A470A51AB996000047DA2C /* GoogleMobileAds.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMobileAds.framework; sourceTree = "<group>"; };
+		016178EA1B9ED4C000F92420 /* TestInterstitialCustomEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TestInterstitialCustomEvent.h; path = Test/TestInterstitialCustomEvent.h; sourceTree = "<group>"; };
+		016178EB1B9ED4C100F92420 /* TestInterstitialCustomEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TestInterstitialCustomEvent.m; path = Test/TestInterstitialCustomEvent.m; sourceTree = "<group>"; };
+		016178F21B9EDD3600F92420 /* GoogleMobileAds.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMobileAds.framework; sourceTree = "<group>"; };
 		01A470A71AB996400047DA2C /* MPGoogleAdMobInterstitialCustomEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPGoogleAdMobInterstitialCustomEvent.h; sourceTree = "<group>"; };
 		01A470A91AB9966C0047DA2C /* MPGoogleAdMobInterstitialCustomEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPGoogleAdMobInterstitialCustomEvent.m; sourceTree = "<group>"; };
 		349B4DB91946F1CE00184794 /* InMobiBannerCustomEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InMobiBannerCustomEvent.h; sourceTree = "<group>"; };
@@ -683,6 +687,7 @@
 				79F87D2F177B41AC0047359B /* AddressBookUI.framework in Frameworks */,
 				79F66B1B1652882800E917FB /* AdSupport.framework in Frameworks */,
 				79BF9891174A1DB80038F1F1 /* AudioToolbox.framework in Frameworks */,
+				016178F31B9EDD3600F92420 /* GoogleMobileAds.framework in Frameworks */,
 				79BF9895174A1DCA0038F1F1 /* AVFoundation.framework in Frameworks */,
 				34FBB5A4190FE3DD005402C5 /* CFNetwork.framework in Frameworks */,
 				79BF9897174A1DD10038F1F1 /* CoreGraphics.framework in Frameworks */,
@@ -699,7 +704,6 @@
 				79F87A49177B35DC0047359B /* Social.framework in Frameworks */,
 				79A6D5301636DFB1009DA60A /* StoreKit.framework in Frameworks */,
 				79BF989F174A1DF60038F1F1 /* SystemConfiguration.framework in Frameworks */,
-				01A470A61AB996000047DA2C /* GoogleMobileAds.framework in Frameworks */,
 				79A6D5321636DFE1009DA60A /* UIKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -720,6 +724,8 @@
 			children = (
 				016174D51B58F2C100F92420 /* TestBannerCustomEvent.m */,
 				016174D71B58F30800F92420 /* TestBannerCustomEvent.h */,
+				016178EA1B9ED4C000F92420 /* TestInterstitialCustomEvent.h */,
+				016178EB1B9ED4C100F92420 /* TestInterstitialCustomEvent.m */,
 			);
 			name = Test;
 			sourceTree = "<group>";
@@ -1126,7 +1132,7 @@
 		01A470A41AB996000047DA2C /* SDK */ = {
 			isa = PBXGroup;
 			children = (
-				01A470A51AB996000047DA2C /* GoogleMobileAds.framework */,
+				016178F21B9EDD3600F92420 /* GoogleMobileAds.framework */,
 			);
 			path = SDK;
 			sourceTree = "<group>";
@@ -1297,6 +1303,7 @@
 				016178551B72675500F92420 /* MRController.h in Headers */,
 				016178E01B72675600F92420 /* MPRewardedVideoError.h in Headers */,
 				0161786D1B72675500F92420 /* MPAnalyticsTracker.h in Headers */,
+				016178EC1B9ED4C100F92420 /* TestInterstitialCustomEvent.h in Headers */,
 				0161784F1B72675500F92420 /* MRCalendarManager.h in Headers */,
 				6D8D41101B219E9A00401572 /* IMInterstitial.h in Headers */,
 				016178811B72675500F92420 /* MPStoreKitProvider.h in Headers */,
@@ -1620,6 +1627,7 @@
 				016178E11B72675600F92420 /* MPRewardedVideoError.m in Sources */,
 				48A468A91966C60600171565 /* AdColonyInterstitialCustomEvent.m in Sources */,
 				016178351B72675500F92420 /* MPBaseInterstitialAdapter.m in Sources */,
+				016178ED1B9ED4C100F92420 /* TestInterstitialCustomEvent.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

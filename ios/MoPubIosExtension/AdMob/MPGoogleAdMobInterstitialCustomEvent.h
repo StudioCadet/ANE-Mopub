@@ -10,7 +10,7 @@
 #else
 #import "MPInterstitialCustomEvent.h"
 #endif
-
+#import <GoogleMobileAds/GADInterstitialDelegate.h>
 /*
  * MoPub certified with version 6.12.2 (Jun. 6, 2014) of the Google AdMob Ads SDK.
  * Pixmix certified with version 7.0.0 (Feb. 3, 2015) of the Google AdMob Ads SDK.

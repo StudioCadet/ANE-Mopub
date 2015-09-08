@@ -1,8 +1,8 @@
 #import "MPInterstitialCustomEvent.h"
-#import "MPGoogleAdMobInterstitialCustomEvent.h"
+#import "InMobiInterstitialCustomEvent.h"
 
 @interface TestInterstitialCustomEvent : MPInterstitialCustomEvent
 
-@property (nonatomic, retain) MPGoogleAdMobInterstitialCustomEvent *interstitialCustomEvent;
+@property (nonatomic, retain) InMobiInterstitialCustomEvent *interstitialCustomEvent;
 
 @end
