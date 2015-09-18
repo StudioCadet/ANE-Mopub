@@ -19,28 +19,24 @@ public class MoPubBannerShow extends UIThreadSafeFREFunction {
 	{
 		try
 		{
-			final MoPubBannerContext context = (MoPubBannerContext) ctx;
-			final Activity activity = context.getActivity();
-			final MoPubBanner banner = context.getBanner();
+			MoPubBannerContext context = (MoPubBannerContext) ctx;
+			Activity activity = context.getActivity();
+			MoPubBanner banner = context.getBanner();
 			
-			activity.runOnUiThread(new Runnable() {
-				@Override public void run() {
-					FrameLayout.LayoutParams params = new FrameLayout.LayoutParams( banner.getPlannedWidth(), banner.getPlannedHeight() );
-					params.gravity = Gravity.LEFT | Gravity.TOP;
-					params.setMargins( banner.getPosX(), banner.getPosY(), 0, 0 );
-					
-					try {
-						Views.removeFromParent(banner);
-					}
-					catch(Exception e) {}
-					
-					ViewGroup frameLayout = (ViewGroup) activity.findViewById( android.R.id.content );
-					frameLayout = (ViewGroup) frameLayout.getChildAt( 0 );
-					frameLayout.addView( banner, params );
-					
-					MoPubExtension.log("Banner displayed");
-				}
-			});
+			FrameLayout.LayoutParams params = new FrameLayout.LayoutParams( banner.getPlannedWidth(), banner.getPlannedHeight() );
+			params.gravity = Gravity.LEFT | Gravity.TOP;
+			params.setMargins( banner.getPosX(), banner.getPosY(), 0, 0 );
+			
+			try {
+				Views.removeFromParent(banner);
+			}
+			catch(Exception e) {}
+			
+			ViewGroup frameLayout = (ViewGroup) activity.findViewById( android.R.id.content );
+			frameLayout = (ViewGroup) frameLayout.getChildAt( 0 );
+			frameLayout.addView( banner, params );
+			
+			MoPubExtension.log("Banner displayed");
 		}
 		catch ( Exception exception )
 		{
