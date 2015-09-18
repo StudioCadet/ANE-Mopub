@@ -9,14 +9,12 @@ import static com.mopub.mobileads.MoPubErrorCode.NETWORK_NO_FILL;
 
 import java.util.Map;
 
-import android.app.Activity;
 import android.content.Context;
 
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdSize;
 import com.google.android.gms.ads.AdView;
-import com.mopub.common.util.Views;
 import com.sticksports.nativeExtensions.mopub.MoPubExtension;
 
 /*
@@ -35,7 +33,6 @@ class GooglePlayServicesBanner extends CustomEventBanner {
 
     private CustomEventBannerListener mBannerListener;
     private AdView mGoogleAdView;
-    private Activity activity;
     
     
     ///////////////////
@@ -45,12 +42,6 @@ class GooglePlayServicesBanner extends CustomEventBanner {
     @Override
     protected void loadBanner(final Context context, final CustomEventBannerListener customEventBannerListener, final Map<String, Object> localExtras, final Map<String, String> serverExtras) {
         mBannerListener = customEventBannerListener;
-        
-        activity = null;
-        if(context instanceof Activity) 
-        	activity = (Activity) context;
-        else
-        	activity = null;
         
         final String adUnitId;
         final int adWidth;
@@ -91,28 +82,15 @@ class GooglePlayServicesBanner extends CustomEventBanner {
 
     @Override
     protected void onInvalidate() {
-    	if(mGoogleAdView  != null && activity != null) {
-    		activity.runOnUiThread(new Runnable() {
-				@Override
-				public void run() {
-					
-					MoPubExtension.log("Removing AdMob banner ...");
-					mGoogleAdView.setAdListener(null);
-					try {
-		            	Views.removeFromParent(mGoogleAdView);
-		            	MoPubExtension.log("AdMob banner view removed.");
-		            }
-		            catch(Exception e) {
-		            	MoPubExtension.log("Exception while trying to remove an AdMob banner : " + e);
-		            }
-					finally {
-		            	mGoogleAdView.destroy();
-		            	mGoogleAdView = null;
-		            	MoPubExtension.log("AdMob banner removed.");
-					}
-				}
-			});
-    	}
+    	if(mGoogleAdView == null)
+    		return;
+    	
+    	MoPubExtension.log("Removing AdMob banner ...");
+    	mGoogleAdView.setAdListener(null);
+		mGoogleAdView.destroy();
+		mGoogleAdView = null;
+		
+		MoPubExtension.log("AdMob banner removed.");
     }
 
     private boolean extrasAreValid(Map<String, String> serverExtras) {

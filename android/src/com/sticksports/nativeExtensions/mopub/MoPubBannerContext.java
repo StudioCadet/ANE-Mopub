@@ -3,8 +3,6 @@ package com.sticksports.nativeExtensions.mopub;
 import java.util.HashMap;
 import java.util.Map;
 
-import android.view.ViewGroup;
-
 import com.adobe.fre.FREContext;
 import com.adobe.fre.FREFunction;
 import com.mopub.mobileads.MoPubErrorCode;
@@ -60,23 +58,11 @@ public class MoPubBannerContext extends FREContext implements BannerAdListener {
 			return;
 
 		MoPubExtension.log("Removing a banner ...");
-		final MoPubBanner previousBanner = this.banner;
+		banner.setBannerAdListener(null);
+		banner.destroy();
 		this.banner = null;
 		
-		this.getActivity().runOnUiThread(
-				new Runnable() {
-					@Override public void run() {
-						previousBanner.setBannerAdListener(null);
-						
-						ViewGroup parent = (ViewGroup) previousBanner.getParent();
-						if(parent != null)
-							parent.removeView( previousBanner );
-						
-						previousBanner.destroy();
-						MoPubExtension.log("Banner removed succesfully.");
-					}
-				}
-			);
+		MoPubExtension.log("Banner removed succesfully.");
 	}
 	
 	

@@ -10,7 +10,6 @@ import com.inmobi.monetization.IMBanner;
 import com.inmobi.monetization.IMBannerListener;
 import com.inmobi.monetization.IMErrorCode;
 import com.mopub.common.MoPub;
-import com.mopub.common.util.Views;
 import com.sticksports.nativeExtensions.mopub.MoPubExtension;
 
 /*
@@ -71,27 +70,15 @@ public class InMobiBanner extends CustomEventBanner implements IMBannerListener 
 	
 	@Override
 	public void onInvalidate() {
-		if (iMBanner != null && activity != null) {
-			activity.runOnUiThread(new Runnable() {
-				@Override public void run() {
-					
-					MoPubExtension.log("Removing InMobi banner ...");
-					iMBanner.setIMBannerListener(null);
-					try {
-		            	Views.removeFromParent(iMBanner);
-		            	MoPubExtension.log("InMobi banner view removed.");
-		            }
-		            catch(Exception e) {
-		            	MoPubExtension.log("Exception while trying to remove an InMobiBanner : " + e);
-		            }
-					finally {
-		            	iMBanner = null;
-		            	MoPubExtension.log("InMobi banner removed.");
-		            }
-				}
-			});
-		}
-	}
+		if(iMBanner == null)
+			return;
+		
+		MoPubExtension.log("Removing InMobi banner ...");
+		iMBanner.setIMBannerListener(null);
+    	iMBanner = null;
+    	
+    	MoPubExtension.log("InMobi banner removed.");
+    }
 
 	@Override
 	public void onBannerInteraction(IMBanner imBanner, Map<String, String> map) {
