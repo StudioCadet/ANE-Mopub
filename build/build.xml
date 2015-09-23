@@ -106,6 +106,7 @@
 				<pathelement location="../android/libs/chartboost.jar"/>
 				<pathelement location="../android/libs/inmobi.jar"/>
 				<pathelement location="../android/libs/mopub-volley-1.1.0.jar"/>
+				<pathelement location="../android/libs/SmartAdServer-Android-SDK-6.1.jar"/>
 			</classpath>
 		</javac>
 		<jar basedir="../bin/android/temp/classes" destfile="../bin/android/${name}.jar"/>
