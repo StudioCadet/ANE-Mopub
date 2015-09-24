@@ -72,9 +72,7 @@
     // Add the navigation controller to the view hierarchy, otherwise nothing will happen when clicking on the banner
     [[[[[UIApplication sharedApplication] delegate] window] rootViewController] addChildViewController:_navigationController];
     
-    SASBannerView *banner = [[SASBannerView alloc] initWithFrame:CGRectMake(0, 0, size.width, size.height) loader:SASLoaderNone];
-    self.banner = banner;
-    [banner release];
+    self.banner = [[SASBannerView alloc] initWithFrame:CGRectMake(0, 0, size.width, size.height) loader:SASLoaderNone];
     
     if ([info objectForKey:@"MobviousFormatId"] && [info objectForKey:@"MobviousPageId"]) {
         self.formatId = (NSInteger)[[info objectForKey:@"MobviousFormatId"] intValue];
