@@ -1,8 +1,8 @@
 #import "MPInterstitialCustomEvent.h"
-#import "InMobiInterstitialCustomEvent.h"
+#import "SASInterstitialCustomEvent.h"
 
 @interface TestInterstitialCustomEvent : MPInterstitialCustomEvent
 
-@property (nonatomic, retain) InMobiInterstitialCustomEvent *interstitialCustomEvent;
+@property (nonatomic, retain) SASInterstitialCustomEvent *interstitialCustomEvent;
 
 @end

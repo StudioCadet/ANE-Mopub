@@ -268,6 +268,11 @@
 		016178F31B9EDD3600F92420 /* GoogleMobileAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 016178F21B9EDD3600F92420 /* GoogleMobileAds.framework */; };
 		01A470A81AB996400047DA2C /* MPGoogleAdMobInterstitialCustomEvent.h in Headers */ = {isa = PBXBuildFile; fileRef = 01A470A71AB996400047DA2C /* MPGoogleAdMobInterstitialCustomEvent.h */; };
 		01A470AA1AB9966C0047DA2C /* MPGoogleAdMobInterstitialCustomEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 01A470A91AB9966C0047DA2C /* MPGoogleAdMobInterstitialCustomEvent.m */; };
+		21691A141BB2906300E1CF84 /* SASInterstitialCustomEvent.h in Headers */ = {isa = PBXBuildFile; fileRef = 21691A121BB2906300E1CF84 /* SASInterstitialCustomEvent.h */; settings = {ASSET_TAGS = (); }; };
+		21691A151BB2906300E1CF84 /* SASInterstitialCustomEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 21691A131BB2906300E1CF84 /* SASInterstitialCustomEvent.m */; settings = {ASSET_TAGS = (); }; };
+		21691A181BB2907100E1CF84 /* SASBannerCustomEvent.h in Headers */ = {isa = PBXBuildFile; fileRef = 21691A161BB2907100E1CF84 /* SASBannerCustomEvent.h */; settings = {ASSET_TAGS = (); }; };
+		21691A191BB2907100E1CF84 /* SASBannerCustomEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 21691A171BB2907100E1CF84 /* SASBannerCustomEvent.m */; settings = {ASSET_TAGS = (); }; };
+		21691A1A1BB291A800E1CF84 /* libSmartAdServer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 21691A101BB28B4B00E1CF84 /* libSmartAdServer.a */; };
 		349B4DBE1946F1CE00184794 /* InMobiBannerCustomEvent.h in Headers */ = {isa = PBXBuildFile; fileRef = 349B4DB91946F1CE00184794 /* InMobiBannerCustomEvent.h */; };
 		349B4DBF1946F1CE00184794 /* InMobiBannerCustomEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 349B4DBA1946F1CE00184794 /* InMobiBannerCustomEvent.m */; };
 		349B4DC01946F1CE00184794 /* InMobiInterstitialCustomEvent.h in Headers */ = {isa = PBXBuildFile; fileRef = 349B4DBB1946F1CE00184794 /* InMobiInterstitialCustomEvent.h */; };
@@ -607,6 +612,18 @@
 		016178F21B9EDD3600F92420 /* GoogleMobileAds.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMobileAds.framework; sourceTree = "<group>"; };
 		01A470A71AB996400047DA2C /* MPGoogleAdMobInterstitialCustomEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPGoogleAdMobInterstitialCustomEvent.h; sourceTree = "<group>"; };
 		01A470A91AB9966C0047DA2C /* MPGoogleAdMobInterstitialCustomEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPGoogleAdMobInterstitialCustomEvent.m; sourceTree = "<group>"; };
+		21691A0A1BB28B4B00E1CF84 /* SASAd.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SASAd.h; sourceTree = "<group>"; };
+		21691A0B1BB28B4B00E1CF84 /* SASAdView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SASAdView.h; sourceTree = "<group>"; };
+		21691A0C1BB28B4B00E1CF84 /* SASAdViewDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SASAdViewDelegate.h; sourceTree = "<group>"; };
+		21691A0D1BB28B4B00E1CF84 /* SASBannerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SASBannerView.h; sourceTree = "<group>"; };
+		21691A0E1BB28B4B00E1CF84 /* SASInterstitialView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SASInterstitialView.h; sourceTree = "<group>"; };
+		21691A0F1BB28B4B00E1CF84 /* SASMediationAd.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SASMediationAd.h; sourceTree = "<group>"; };
+		21691A101BB28B4B00E1CF84 /* libSmartAdServer.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libSmartAdServer.a; sourceTree = "<group>"; };
+		21691A111BB28B4B00E1CF84 /* sas.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = sas.bundle; sourceTree = "<group>"; };
+		21691A121BB2906300E1CF84 /* SASInterstitialCustomEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SASInterstitialCustomEvent.h; sourceTree = "<group>"; };
+		21691A131BB2906300E1CF84 /* SASInterstitialCustomEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SASInterstitialCustomEvent.m; sourceTree = "<group>"; };
+		21691A161BB2907100E1CF84 /* SASBannerCustomEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SASBannerCustomEvent.h; sourceTree = "<group>"; };
+		21691A171BB2907100E1CF84 /* SASBannerCustomEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SASBannerCustomEvent.m; sourceTree = "<group>"; };
 		349B4DB91946F1CE00184794 /* InMobiBannerCustomEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InMobiBannerCustomEvent.h; sourceTree = "<group>"; };
 		349B4DBA1946F1CE00184794 /* InMobiBannerCustomEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InMobiBannerCustomEvent.m; sourceTree = "<group>"; };
 		349B4DBB1946F1CE00184794 /* InMobiInterstitialCustomEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InMobiInterstitialCustomEvent.h; sourceTree = "<group>"; };
@@ -675,6 +692,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				21691A1A1BB291A800E1CF84 /* libSmartAdServer.a in Frameworks */,
 				483B182619FFEEC300660DCC /* iAd.framework in Frameworks */,
 				483B182419FFEE8900660DCC /* CoreLocation.framework in Frameworks */,
 				6D5AFBD719E6846900D5C9A2 /* libz.1.2.5.dylib in Frameworks */,
@@ -1137,6 +1155,41 @@
 			path = SDK;
 			sourceTree = "<group>";
 		};
+		21691A071BB28B4B00E1CF84 /* SmartAdServer */ = {
+			isa = PBXGroup;
+			children = (
+				21691A081BB28B4B00E1CF84 /* SDK */,
+				21691A121BB2906300E1CF84 /* SASInterstitialCustomEvent.h */,
+				21691A131BB2906300E1CF84 /* SASInterstitialCustomEvent.m */,
+				21691A161BB2907100E1CF84 /* SASBannerCustomEvent.h */,
+				21691A171BB2907100E1CF84 /* SASBannerCustomEvent.m */,
+			);
+			path = SmartAdServer;
+			sourceTree = "<group>";
+		};
+		21691A081BB28B4B00E1CF84 /* SDK */ = {
+			isa = PBXGroup;
+			children = (
+				21691A091BB28B4B00E1CF84 /* headers */,
+				21691A101BB28B4B00E1CF84 /* libSmartAdServer.a */,
+				21691A111BB28B4B00E1CF84 /* sas.bundle */,
+			);
+			path = SDK;
+			sourceTree = "<group>";
+		};
+		21691A091BB28B4B00E1CF84 /* headers */ = {
+			isa = PBXGroup;
+			children = (
+				21691A0A1BB28B4B00E1CF84 /* SASAd.h */,
+				21691A0B1BB28B4B00E1CF84 /* SASAdView.h */,
+				21691A0C1BB28B4B00E1CF84 /* SASAdViewDelegate.h */,
+				21691A0D1BB28B4B00E1CF84 /* SASBannerView.h */,
+				21691A0E1BB28B4B00E1CF84 /* SASInterstitialView.h */,
+				21691A0F1BB28B4B00E1CF84 /* SASMediationAd.h */,
+			);
+			path = headers;
+			sourceTree = "<group>";
+		};
 		349B4DB81946F1CE00184794 /* InMobi */ = {
 			isa = PBXGroup;
 			children = (
@@ -1203,6 +1256,7 @@
 		79A6D47D1636C14C009DA60A = {
 			isa = PBXGroup;
 			children = (
+				21691A071BB28B4B00E1CF84 /* SmartAdServer */,
 				016174D41B58F21300F92420 /* Test */,
 				01A470A31AB996000047DA2C /* AdMob */,
 				48A468A31966C60600171565 /* AdColony */,
@@ -1297,6 +1351,7 @@
 				0161783D1B72675500F92420 /* MPLegacyInterstitialCustomEventAdapter.h in Headers */,
 				016178711B72675500F92420 /* MPGeolocationProvider.h in Headers */,
 				016178111B72675500F92420 /* MPFacebookKeywordProvider.h in Headers */,
+				21691A141BB2906300E1CF84 /* SASInterstitialCustomEvent.h in Headers */,
 				0161780B1B72675500F92420 /* MPAPIEndpoints.h in Headers */,
 				016178981B72675500F92420 /* MPNativeAdRequest+MPNativeAdSource.h in Headers */,
 				016178181B72675500F92420 /* MPProgressOverlayView.h in Headers */,
@@ -1378,6 +1433,7 @@
 				6D8D410C1B219E9A00401572 /* IMBannerDelegate.h in Headers */,
 				016178901B72675500F92420 /* MPBannerCustomEventDelegate.h in Headers */,
 				0161784D1B72675500F92420 /* MRBundleManager.h in Headers */,
+				21691A181BB2907100E1CF84 /* SASBannerCustomEvent.h in Headers */,
 				34E1A251190E3E57001C491E /* ChartboostInterstitialCustomEvent.h in Headers */,
 				016177F81B72675500F92420 /* MPPrivateBannerCustomEventDelegate.h in Headers */,
 				016178141B72675500F92420 /* MPLastResortDelegate+EventKit.h in Headers */,
@@ -1526,6 +1582,7 @@
 				016178501B72675500F92420 /* MRCalendarManager.m in Sources */,
 				0161788B1B72675500F92420 /* MPAdConversionTracker.m in Sources */,
 				016177FA1B72675500F92420 /* MPAdAlertGestureRecognizer.m in Sources */,
+				21691A151BB2906300E1CF84 /* SASInterstitialCustomEvent.m in Sources */,
 				016178521B72675500F92420 /* MRCommand.m in Sources */,
 				016178B31B72675500F92420 /* MPAdPositioning.m in Sources */,
 				016178581B72675500F92420 /* MRError.m in Sources */,
@@ -1572,6 +1629,7 @@
 				0161784C1B72675500F92420 /* MRBridge.m in Sources */,
 				016177F51B72675500F92420 /* MPBaseBannerAdapter.m in Sources */,
 				016178461B72675500F92420 /* MPMRAIDBannerCustomEvent.m in Sources */,
+				21691A191BB2907100E1CF84 /* SASBannerCustomEvent.m in Sources */,
 				016178B51B72675500F92420 /* MPClientAdPositioning.m in Sources */,
 				016178D21B72675500F92420 /* MPStreamAdPlacer.m in Sources */,
 				016178D81B72675600F92420 /* MPRewardedVideoAdapter.m in Sources */,
@@ -1705,11 +1763,12 @@
 					"$(PROJECT_DIR)/Mobvious",
 					"$(PROJECT_DIR)/Mobvious/SDK",
 					"$(PROJECT_DIR)/AdMobConversionTracking/SDK",
+					"$(PROJECT_DIR)/SmartAdServer/SDK",
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
+				SDKROOT = iphoneos8.1;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALID_ARCHS = "armv7 arm64 armv7s";
@@ -1740,11 +1799,12 @@
 					"$(PROJECT_DIR)/Mobvious",
 					"$(PROJECT_DIR)/Mobvious/SDK",
 					"$(PROJECT_DIR)/AdMobConversionTracking/SDK",
+					"$(PROJECT_DIR)/SmartAdServer/SDK",
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
+				SDKROOT = iphoneos8.1;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALID_ARCHS = "armv7 arm64 armv7s";

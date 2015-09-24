@@ -42,6 +42,9 @@
             <fileset dir="../ios/MoPubIosExtension/AdColony/SDK"/>
             <fileset dir="../ios/MoPubIosExtension/AdMob/SDK" />
             <fileset dir="../ios/MoPubIosExtension/Chartboost/SDK" />
+			<fileset dir="../ios/MoPubIosExtension/SmartAdServer/SDK">
+				<include name="sas.bundle/**" />
+			</fileset>
 		</copy>
 		
 		<delete dir="../bin/ios/AdColony.framework/Versions"/>

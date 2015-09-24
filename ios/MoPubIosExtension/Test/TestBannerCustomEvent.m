@@ -11,10 +11,18 @@
     */
     
     // InMobi
+    /*
     self.bannerCustomEvent = [[InMobiBannerCustomEvent alloc] init];
     NSMutableDictionary* customInfo = [[NSMutableDictionary alloc] init];
     [customInfo setValue:@"6b99a57cf0fb481a9db5c00cc93baa73" forKey:@"property"];
+    */
     
+    // SAS
+    self.bannerCustomEvent = [[SASBannerCustomEvent alloc] init];
+    NSMutableDictionary* customInfo = [[NSMutableDictionary alloc] init];
+    [customInfo setValue:@"8948" forKey:@"MobviousFormatId"];
+    [customInfo setValue:@"497341" forKey:@"MobviousPageId"];
+
     // Other networks here
     // ...
     
