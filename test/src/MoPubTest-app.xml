@@ -327,12 +327,6 @@
 							  android:configChanges="keyboardHidden|orientation|screenSize"
 							  android:theme="@android:style/Theme.Translucent.NoTitleBar"
 							  android:excludeFromRecents="true" />
-							  
-					<!-- MoPub : Smart Ad Server -->
-					<com.smartadserver.android.library.SASBannerView
-							  android:id="@+id/banner"
-							  android:layout_width="fill_parent"
-							  android:layout_height="50dp"/>
 					
 			    </application>
 			    
