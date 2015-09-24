@@ -92,6 +92,7 @@ public class SmartAdBanner extends CustomEventBanner implements View.OnClickList
 
 	@Override
 	public void adLoadingFailed(Exception e) {
+		final MoPubErrorCode errorCode = SmartAdUtils.getMopubErrorCodeFromSmartAdException(e);
 		MoPubExtension.logW("SAS banner failed to load : " + e);
 		if(banner != null) {
 			banner.executeOnUIThread(new Runnable() {
@@ -99,12 +100,12 @@ public class SmartAdBanner extends CustomEventBanner implements View.OnClickList
 					if(banner != null)
 						banner.setVisibility(View.GONE);
 					if(listener != null)
-						listener.onBannerFailed(MoPubErrorCode.UNSPECIFIED);
+						listener.onBannerFailed(errorCode);
 				}
 			});
 		}
 		else if(listener != null)
-			listener.onBannerFailed(MoPubErrorCode.UNSPECIFIED);
+			listener.onBannerFailed(errorCode);
 	}
 
 

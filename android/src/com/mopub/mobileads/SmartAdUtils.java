@@ -2,6 +2,9 @@ package com.mopub.mobileads;
 
 import java.util.Map;
 
+import com.smartadserver.android.library.exception.SASAdTimeoutException;
+import com.smartadserver.android.library.exception.SASNoAdToDeliverException;
+import com.smartadserver.android.library.exception.SASNoAdToDeliverFromCacheException;
 import com.sticksports.nativeExtensions.utils.ExtraUtils;
 
 /**
@@ -50,5 +53,15 @@ public class SmartAdUtils {
 	 */
 	public static Integer getRetryDelayFromServerExtras(Map<String, String> serverExtras) {
 		return ExtraUtils.getInt(serverExtras, SAS_RETRY_DELAY_KEY);
+	}
+
+	public static MoPubErrorCode getMopubErrorCodeFromSmartAdException(Exception e) {
+		if(e instanceof SASNoAdToDeliverException || e instanceof SASNoAdToDeliverFromCacheException)
+			return MoPubErrorCode.NETWORK_NO_FILL;
+		
+		if(e instanceof SASAdTimeoutException)
+			return MoPubErrorCode.NETWORK_TIMEOUT;
+		
+		return MoPubErrorCode.UNSPECIFIED;
 	}
 }
