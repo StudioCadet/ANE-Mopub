@@ -11,9 +11,18 @@
     */
     
     // InMobi
+    /*
     self.interstitialCustomEvent = [[InMobiInterstitialCustomEvent alloc] init];
     NSMutableDictionary* customInfo = [[NSMutableDictionary alloc] init];
     [customInfo setValue:@"0e9b68e0a02b493c8fc81f3b816d9795" forKey:@"property"];
+    */
+    
+    // SAS
+    self.interstitialCustomEvent = [[SASInterstitialCustomEvent alloc] init];
+    NSMutableDictionary* customInfo = [[NSMutableDictionary alloc] init];
+    [customInfo setValue:@"8946" forKey:@"MobviousFormatId"];
+    [customInfo setValue:@"497340" forKey:@"MobviousPageId"];
+    [customInfo setValue:@"3" forKey:@"MobviousRetryDelay"];
     
     
     // Other networks here

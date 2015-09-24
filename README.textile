@@ -16,8 +16,8 @@ For instructions, see https://bugbase.adobe.com/index.cfm?event=bug&id=3846188
 - InMobi Android SDK version : 4.5.3
 - InMobi iOS SDK version : 4.5.3
 
-- Mobvious (SmartAdServer) Android SDK version : 4.2.2
-- Mobvious (SmartAdServer) iOS SDK version : 4.5
+- SmartAdServer Android SDK version : 6.1
+- SmartAdServer iOS SDK version : 6.1
 
 - Google Play Services Android SDK : 7.8.95
 

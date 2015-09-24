@@ -349,6 +349,10 @@
 			<key>CHARTBOOST_APP_ID</key><string>530f145f2d42da3e6e213c26</string>
 			<key>CHARTBOOST_APP_SIGNATURE</key><string>6dbe46fc9262f1eb835648eb349c56d75eb873c8</string>
 			
+			<!-- SmartAdServer/Mobvious -->
+			<key>CFBundleAllowMixedLocalizations</key><true/>
+			<key>MOBVIOUS_SITE_ID</key><string>64713</string>
+			<key>MOBVIOUS_BASE_URL</key><string>http://mobile.smartadserver.com</string>
 		]]></InfoAdditions>
         <requestedDisplayResolution>high</requestedDisplayResolution>
     </iPhone>

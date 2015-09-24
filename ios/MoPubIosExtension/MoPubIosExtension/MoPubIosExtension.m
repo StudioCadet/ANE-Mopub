@@ -15,6 +15,7 @@
 #import "MPAdConversionTracker.h"
 #import "InMobi.h"
 #import "MPChartboostRouter.h"
+#import "SASAdView.h"
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= MP_IOS_6_0
 #import <AdSupport/AdSupport.h>
 #endif
@@ -56,6 +57,16 @@ DEFINE_ANE_FUNCTION( mopub_init )
         [[MPChartboostRouter sharedRouter] startWithAppId:chartboostAppId appSignature:chartboostAppSignature];
     }
     
+    // SmartAdServer/Mobvious
+    NSString *mobviousSiteId = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"MOBVIOUS_SITE_ID"];
+    NSString *mobviousBaseURL = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"MOBVIOUS_BASE_URL"];
+    
+    if (mobviousSiteId == nil || mobviousBaseURL == nil) {
+        NSLog(@"Your app descriptor is missing on of the required parameters \"MOBVIOUS_SITE_ID\" or \"MOBVIOUS_BASE_URL\".");
+    } else {
+        NSLog(@"Initializing SmartAdServer SDK with site ID %@ and base URL %@", mobviousSiteId, mobviousBaseURL);
+        [SASAdView setSiteID:mobviousSiteId.integerValue baseURL:mobviousBaseURL];
+    }
     NSLog(@"MoPub extension initialized.");
     
     return NULL;
