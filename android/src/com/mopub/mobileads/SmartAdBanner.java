@@ -9,6 +9,8 @@ import android.location.LocationManager;
 import android.os.Bundle;
 import android.view.View;
 
+import com.mopub.common.LocationService;
+import com.mopub.common.MoPub;
 import com.smartadserver.android.library.SASBannerView;
 import com.smartadserver.android.library.model.SASAdElement;
 import com.smartadserver.android.library.ui.SASAdView;
@@ -57,6 +59,8 @@ public class SmartAdBanner extends CustomEventBanner implements View.OnClickList
 		banner.addStateChangeListener(this);
 		banner.setVisibility(View.GONE);
 		banner.loadAd(siteId, pageId, formatId, true, target, this);
+		
+		this.banner.setLocation(LocationService.getLastKnownLocation(context, MoPub.getLocationPrecision(), MoPub.getLocationAwareness()));
 	}
 
 	@Override
@@ -118,38 +122,38 @@ public class SmartAdBanner extends CustomEventBanner implements View.OnClickList
 	// LOCATION HANDLING //
 	// /////////////////////
 
-	private void setupLocationInfo(Context context) {
-		final LocationListener mLocationListener = new LocationListener() {
-			@Override public void onStatusChanged(String arg0, int arg1, Bundle arg2) { }
-			@Override public void onProviderEnabled(String arg0) { }
-			@Override public void onProviderDisabled(String arg0) { }
-
-			@Override
-			public void onLocationChanged(Location location) {
-				if (banner != null)
-					banner.setLocation(location);
-			}
-		};
-
-		final LocationManager mLocationManager = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
-		stateChangeListener = new SASAdView.OnStateChangeListener() {
-					@Override
-					public void onStateChanged(StateChangeEvent event) {
-						if (event.getType() == StateChangeEvent.VIEW_EXPANDED) {
-							// we request location updates each 10s to the
-							// location manager and register our listener
-							mLocationManager.requestLocationUpdates(
-									LocationManager.NETWORK_PROVIDER, 10000, 0,
-									mLocationListener);
-						} else if (event.getType() == StateChangeEvent.VIEW_HIDDEN) {
-							// we stop listening to location updates as the
-							// banner is closed
-							mLocationManager.removeUpdates(mLocationListener);
-						}
-					}
-				};
-			banner.addStateChangeListener(stateChangeListener);
-	}
+//	private void setupLocationInfo(Context context) {
+//		final LocationListener mLocationListener = new LocationListener() {
+//			@Override public void onStatusChanged(String arg0, int arg1, Bundle arg2) { }
+//			@Override public void onProviderEnabled(String arg0) { }
+//			@Override public void onProviderDisabled(String arg0) { }
+//
+//			@Override
+//			public void onLocationChanged(Location location) {
+//				if (banner != null)
+//					banner.setLocation(location);
+//			}
+//		};
+//
+//		final LocationManager mLocationManager = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
+//		stateChangeListener = new SASAdView.OnStateChangeListener() {
+//					@Override
+//					public void onStateChanged(StateChangeEvent event) {
+//						if (event.getType() == StateChangeEvent.VIEW_EXPANDED) {
+//							// we request location updates each 10s to the
+//							// location manager and register our listener
+//							mLocationManager.requestLocationUpdates(
+//									LocationManager.NETWORK_PROVIDER, 10000, 0,
+//									mLocationListener);
+//						} else if (event.getType() == StateChangeEvent.VIEW_HIDDEN) {
+//							// we stop listening to location updates as the
+//							// banner is closed
+//							mLocationManager.removeUpdates(mLocationListener);
+//						}
+//					}
+//				};
+//			banner.addStateChangeListener(stateChangeListener);
+//	}
 
 	// ///////////////////////////////
 	// SAS AD STATE CHANGE METHODS //
