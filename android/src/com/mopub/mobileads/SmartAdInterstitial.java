@@ -41,8 +41,6 @@ public class SmartAdInterstitial extends CustomEventInterstitial implements SASA
 	private String target;
 	/** The delay in seconds before retrying to show a Mobvious interstitial ad since the last impression failure. */
 	private Integer retryDelay;
-	/** The listener to handle the location.  */
-	private OnStateChangeListener stateChangeListener;
 	
 	/** The timestamp the last impression failed. */
 	private static long lastImpressionFailedAt = 0;
@@ -102,7 +100,6 @@ public class SmartAdInterstitial extends CustomEventInterstitial implements SASA
 		if(interstitial != null) {
 			MoPubExtension.log("Destroying SAS interstitial ...");
 			interstitial.removeStateChangeListener(this);
-			interstitial.removeStateChangeListener(stateChangeListener);
 			interstitial.onDestroy();
 		}
 		interstitial = null;
@@ -143,41 +140,6 @@ public class SmartAdInterstitial extends CustomEventInterstitial implements SASA
 			});
 		}
 	}
-	
-	
-	
-	///////////////////////
-	// LOCATION HANDLING //
-	///////////////////////
-	
-//	private void setupLocationInfo(Context context) {
-//		final LocationListener mLocationListener = new LocationListener() {
-//			@Override public void onStatusChanged(String arg0, int arg1, Bundle arg2) { }
-//			@Override public void onProviderEnabled(String arg0) { }
-//			@Override public void onProviderDisabled(String arg0) { }
-//			
-//			@Override
-//			public void onLocationChanged(Location location) {
-//				if(interstitial != null)
-//					interstitial.setLocation(location);
-//			}
-//		};
-//		
-//		final LocationManager mLocationManager = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
-//		stateChangeListener = new SASAdView.OnStateChangeListener() {
-//			@Override
-//			public void onStateChanged(StateChangeEvent event) {
-//				if(event.getType() == StateChangeEvent.VIEW_EXPANDED) { 
-//					// we request location updates each 10s to the location manager and register our listener
-//					mLocationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 10000,0,mLocationListener);
-//				} else if (event.getType() == StateChangeEvent.VIEW_HIDDEN) {
-//					// we stop listening to location updates as the interstitial is closed			
-//					mLocationManager.removeUpdates(mLocationListener);			
-//				}
-//			}
-//		};
-//		interstitial.addStateChangeListener(stateChangeListener);
-//	}
 
 
 	/////////////////////////////////
