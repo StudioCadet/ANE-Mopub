@@ -4,11 +4,18 @@ import java.util.Date;
 import java.util.Map;
 
 import android.content.Context;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
+import android.os.Bundle;
 import android.view.View;
 
+import com.mopub.common.LocationService;
+import com.mopub.common.MoPub;
 import com.smartadserver.android.library.SASInterstitialView;
 import com.smartadserver.android.library.model.SASAdElement;
 import com.smartadserver.android.library.ui.SASAdView;
+import com.smartadserver.android.library.ui.SASAdView.OnStateChangeListener;
 import com.smartadserver.android.library.ui.SASAdView.StateChangeEvent;
 import com.sticksports.nativeExtensions.mopub.MoPubExtension;
 
@@ -75,6 +82,8 @@ public class SmartAdInterstitial extends CustomEventInterstitial implements SASA
 			lastImpressionFailedAt = 0;
 			listener.onInterstitialLoaded();
 		}
+		
+		this.interstitial.setLocation(LocationService.getLastKnownLocation(context, MoPub.getLocationPrecision(), MoPub.getLocationAwareness()));
 	}
 
 	@Override
