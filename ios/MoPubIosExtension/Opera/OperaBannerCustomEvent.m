@@ -1,150 +1,124 @@
 //
-//  InMobiBannerCustomEvent.m
-//  MoPub
+//  OperaBannerCustomEvent.m
 //
-//  Copyright (c) 2013 MoPub, Inc. All rights reserved.
+//  Copyright (c) 2016 Voodoo All rights reserved.
 //
 
-#import "InMobiBannerCustomEvent.h"
+#import "OperaBannerCustomEvent.h"
 #import "MPInstanceProvider.h"
 #import "MPConstants.h"
 #import "MPLogging.h"
+#import "AdMarvelView.h"
 
-#define INVALID_INMOBI_AD_SIZE  -1
 
-@interface MPInstanceProvider (InMobiBanners)
+@interface OperaBannerCustomEvent ()
 
-- (IMBanner *)buildIMBannerWithFrame:(CGRect)frame appId:(NSString *)appId adSize:(int)adSize;
-- (IMBanner *)buildIMBannerWithSlotIdAndFrame:(CGRect)frame slotId:(long long)slotId;
-
-@end
-
-@implementation MPInstanceProvider (InMobiBanners)
-
-- (IMBanner *)buildIMBannerWithFrame:(CGRect)frame appId:(NSString *)appId adSize:(int)adSize
-{
-    return [[[IMBanner alloc] initWithFrame:frame appId:appId adSize:adSize] autorelease];
-}
-
-- (IMBanner *)buildIMBannerWithSlotIdAndFrame:(CGRect)frame slotId:(long long)slotId
-{
-    return [[[IMBanner alloc] initWithFrame:frame slotId:slotId] autorelease];
-}
+@property (nonatomic, retain) AdMarvelView *adMarvelBanner;
+@property (nonatomic) CGSize bannerSize;
+@property (nonatomic, strong) NSString *partnerId;
+@property (nonatomic, strong) NSString *siteId;
 
 @end
 
-////////////////////////////////////////////////////////////////////////////////////////////////////
-
-@interface InMobiBannerCustomEvent ()
-
-@property (nonatomic, retain) IMBanner *inMobiBanner;
-
-- (int)imAdSizeConstantForCGSize:(CGSize)size;
-
-@end
-
-@implementation InMobiBannerCustomEvent
+@implementation OperaBannerCustomEvent
 
 #pragma mark - MPBannerCustomEvent Subclass Methods
 
-- (void)requestAdWithSize:(CGSize)size customEventInfo:(NSDictionary *)info
-{
-    MPLogInfo(@"Requesting InMobi banner");
-    int imAdSizeConstant = [self imAdSizeConstantForCGSize:size];
-    if (imAdSizeConstant == INVALID_INMOBI_AD_SIZE) {
-        MPLogInfo(@"Failed to create an inMobi Banner with invalid size %@", NSStringFromCGSize(size));
+- (void)requestAdWithSize:(CGSize)size customEventInfo:(NSDictionary *)info {
+    MPLogInfo(@"Requesting an Opera banner ...");
+
+    // Get the required IDs
+    self.partnerId = info[@"pid"];
+    self.siteId = info[@"sid"];
+
+    if(!self.partnerId || self.siteId) {
+        MPLogError(@"Invalid partnerId (%@) or siteId (%@)!", self.partnerId, self.siteId);
         [self.delegate bannerCustomEvent:self didFailToLoadAdWithError:nil];
-        return;
-    }
-    
-    // Get the property ID to use :
-    NSString *propertyId = [info objectForKey:@"property"];
-    if(!propertyId) {
-        propertyId = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"IN_MOBI_PROPERTY_ID"];
-        NSLog(@"No property ID specified through MoPub custom network, using default property ID.");
     }
     
     // Create the banner :
-    NSLog(@"Creating InMobi banner with the property ID %@ (size:%i) ...", propertyId, imAdSizeConstant);
-    self.inMobiBanner = [[MPInstanceProvider sharedProvider] buildIMBannerWithFrame:CGRectMake(0, 0, size.width, size.height) appId:propertyId adSize:imAdSizeConstant];
-    self.inMobiBanner.delegate = self;
-    self.inMobiBanner.refreshInterval = REFRESH_INTERVAL_OFF;
+    self.bannerSize = size;
+    self.adMarvelBanner = [AdMarvelView createAdMarvelViewWithDelegate:self];
     
-    NSMutableDictionary *paramsDict = [[NSMutableDictionary alloc] init];
-    [paramsDict setObject:@"c_mopub" forKey:@"tp"];
-	[paramsDict setObject:MP_SDK_VERSION forKey:@"tp-ver"];
-    self.inMobiBanner.additionaParameters = paramsDict; // For supply source identification
-
-    if (self.delegate.location) {
-        [InMobi setLocationWithLatitude:self.delegate.location.coordinate.latitude
-                               longitude:self.delegate.location.coordinate.longitude
-                                accuracy:self.delegate.location.horizontalAccuracy];
-    }
-    
-    [self.inMobiBanner loadBanner];
+    [self.adMarvelBanner getAdWithNotification];
     
 }
 
-- (int)imAdSizeConstantForCGSize:(CGSize)size
-{
-    if (CGSizeEqualToSize(size, MOPUB_BANNER_SIZE)) {
-        return IM_UNIT_320x50;
-    } else if (CGSizeEqualToSize(size, MOPUB_MEDIUM_RECT_SIZE)) {
-        return IM_UNIT_300x250;
-    } else if (CGSizeEqualToSize(size, MOPUB_LEADERBOARD_SIZE)) {
-        return IM_UNIT_728x90;
-    } else {
-        return INVALID_INMOBI_AD_SIZE;
-    }
+
+
+
+
+#pragma mark - Delegate implementation
+
+- (NSString *)partnerId:(AdMarvelView *)AdMarvelView {
+    return self.partnerId;
 }
 
-- (BOOL)enableAutomaticImpressionAndClickTracking {
-    return NO;
+- (NSString *)siteId:(AdMarvelView *)AdMarvelView {
+    return self.siteId;
 }
 
-
-- (void)dealloc
-{
-    [self.inMobiBanner setDelegate:nil];
-    self.inMobiBanner = nil;
-    [super dealloc];
+- (UIViewController *)applicationUIViewController:(AdMarvelView *)AdMarvelView {
+    // Mopub cares about displaying the banner, passing nil as the application view controller.
+    return nil;
 }
 
-#pragma mark - IMBannerDelegate
-
-- (void)bannerDidReceiveAd:(IMBanner *)banner {
-    MPLogInfo(@"InMobi banner did load");
-    [self.delegate trackImpression];
-    [self.delegate bannerCustomEvent:self didLoadAd:banner];
+- (CGRect)AdMarvelViewFrame:(AdMarvelView *)adMarvelView {
+    return CGRectMake(0, 0, self.bannerSize.width, self.bannerSize.height);
 }
 
-- (void)banner:(IMBanner *)banner didFailToReceiveAdWithError:(IMError *)error {
-    MPLogInfo(@"InMobi banner did fail with error: %@", error.localizedDescription);
-    [self.delegate bannerCustomEvent:self didFailToLoadAdWithError:error];
+- (BOOL) testingMode:(AdMarvelView*)adMarvelView {
+    return YES;
 }
 
-- (void)bannerDidDismissScreen:(IMBanner *)banner {
-    MPLogInfo(@"adViewDidDismissScreen");
-    [self.delegate bannerCustomEventDidFinishAction:self];
-}
-
-- (void)bannerWillDismissScreen:(IMBanner *)banner {
-    MPLogInfo(@"adViewWillDismissScreen");
-}
-
-- (void)bannerWillPresentScreen:(IMBanner *)banner {
+- (void) fullScreenWebViewActivated:(AdMarvelView *)adMarvelView {
     MPLogInfo(@"InMobi banner will present modal");
     [self.delegate bannerCustomEventWillBeginAction:self];
 }
 
-- (void)bannerWillLeaveApplication:(IMBanner *)banner {
-    MPLogInfo(@"InMobi banner will leave application");
-    [self.delegate bannerCustomEventWillLeaveApplication:self];
+- (void) fullScreenWebViewClosed:(AdMarvelView *)adMarvelView {
+    MPLogInfo(@"adViewDidDismissScreen");
+    [self.delegate bannerCustomEventDidFinishAction:self];
 }
 
-- (void)bannerDidInteract:(IMBanner *)banner withParams:(NSDictionary *)dictionary {
+- (void) getAdSucceeded:(AdMarvelView *)adMarvelView {
+    MPLogInfo(@"InMobi banner did load");
+    [self.delegate trackImpression];
+    [self.delegate bannerCustomEvent:self didLoadAd:adMarvelView];
+}
+
+- (void) getAdFailed:(AdMarvelView *)adMarvelView {
+    MPLogInfo(@"Opera Mediaworks banner did fail to load!");
+    [self.delegate bannerCustomEvent:self didFailToLoadAdWithError:nil];    // -> no error is provided by Opera mediaworks
+}
+
+- (void) adDidExpand:(AdMarvelView *)adMarvelView {
+    NSLog(@"AdMarvelBannerDemoViewController: adDidExpand!");
+}
+
+- (void) adDidCollapse:(AdMarvelView *)adMarvelView {
+    NSLog(@"AdMarvelBannerDemoViewController: adDidCollapse!");
+}
+
+- (void) adMarvelViewWasClicked:(AdMarvelView *)adMarvelView {
     MPLogInfo(@"InMobi banner was clicked");
     [self.delegate trackClick];
+}
+
+- (void) handleAdMarvelSDKClick:(NSString *)urlString forAdMarvelView:(AdMarvelView *)adMarvelView {
+    MPLogInfo(@"InMobi banner was clicked");
+    [self.delegate trackClick];
+}
+
+
+
+
+- (void)dealloc {
+    [self.adMarvelBanner setDelegate:nil];
+    self.adMarvelBanner = nil;
+
+    self.partnerId = nil;
+    self.siteId = nil;
 }
 
 @end

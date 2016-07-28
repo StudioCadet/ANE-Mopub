@@ -7,9 +7,6 @@
 
 #import "MPInterstitialCustomEvent.h"
 
-#import "IMInterstitial.h"
-#import "IMInterstitialDelegate.h"
-
 /*
  * Certified with version 4.1.0 of the InMobi SDK.
  */

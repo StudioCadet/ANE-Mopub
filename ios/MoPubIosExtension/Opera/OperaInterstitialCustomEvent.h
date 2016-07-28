@@ -1,19 +1,17 @@
 //
-//  InMobiInterstitialCustomEvent.h
-//  MoPub
+//  OperaInterstitialCustomEvent.h
 //
-//  Copyright (c) 2013 MoPub, Inc. All rights reserved.
+//  Copyright (c) 2016 Voodoo All rights reserved.
 //
 
 #import "MPInterstitialCustomEvent.h"
+#import "AdMarvelDelegate.h"
 
-#import "IMInterstitial.h"
-#import "IMInterstitialDelegate.h"
 
 /*
- * Certified with version 4.1.0 of the InMobi SDK.
+ * Certified with version 3.5.0 of the Opera Mediaworks SDK.
  */
 
-@interface InMobiInterstitialCustomEvent : MPInterstitialCustomEvent <IMInterstitialDelegate>
+@interface OperaInterstitialCustomEvent : MPInterstitialCustomEvent <AdMarvelDelegate>
 
 @end
