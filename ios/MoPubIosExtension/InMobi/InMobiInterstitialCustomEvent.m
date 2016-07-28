@@ -8,6 +8,7 @@
 #import "InMobiInterstitialCustomEvent.h"
 #import "MPInstanceProvider.h"
 #import "MPLogging.h"
+#import "IMInterstitial.h"
 
 @interface MPInstanceProvider (InMobiInterstitials)
 

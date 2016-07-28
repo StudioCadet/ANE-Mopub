@@ -268,10 +268,10 @@
 		016178F31B9EDD3600F92420 /* GoogleMobileAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 016178F21B9EDD3600F92420 /* GoogleMobileAds.framework */; };
 		01A470A81AB996400047DA2C /* MPGoogleAdMobInterstitialCustomEvent.h in Headers */ = {isa = PBXBuildFile; fileRef = 01A470A71AB996400047DA2C /* MPGoogleAdMobInterstitialCustomEvent.h */; };
 		01A470AA1AB9966C0047DA2C /* MPGoogleAdMobInterstitialCustomEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 01A470A91AB9966C0047DA2C /* MPGoogleAdMobInterstitialCustomEvent.m */; };
-		21691A141BB2906300E1CF84 /* SASInterstitialCustomEvent.h in Headers */ = {isa = PBXBuildFile; fileRef = 21691A121BB2906300E1CF84 /* SASInterstitialCustomEvent.h */; settings = {ASSET_TAGS = (); }; };
-		21691A151BB2906300E1CF84 /* SASInterstitialCustomEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 21691A131BB2906300E1CF84 /* SASInterstitialCustomEvent.m */; settings = {ASSET_TAGS = (); }; };
-		21691A181BB2907100E1CF84 /* SASBannerCustomEvent.h in Headers */ = {isa = PBXBuildFile; fileRef = 21691A161BB2907100E1CF84 /* SASBannerCustomEvent.h */; settings = {ASSET_TAGS = (); }; };
-		21691A191BB2907100E1CF84 /* SASBannerCustomEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 21691A171BB2907100E1CF84 /* SASBannerCustomEvent.m */; settings = {ASSET_TAGS = (); }; };
+		21691A141BB2906300E1CF84 /* SASInterstitialCustomEvent.h in Headers */ = {isa = PBXBuildFile; fileRef = 21691A121BB2906300E1CF84 /* SASInterstitialCustomEvent.h */; };
+		21691A151BB2906300E1CF84 /* SASInterstitialCustomEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 21691A131BB2906300E1CF84 /* SASInterstitialCustomEvent.m */; };
+		21691A181BB2907100E1CF84 /* SASBannerCustomEvent.h in Headers */ = {isa = PBXBuildFile; fileRef = 21691A161BB2907100E1CF84 /* SASBannerCustomEvent.h */; };
+		21691A191BB2907100E1CF84 /* SASBannerCustomEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 21691A171BB2907100E1CF84 /* SASBannerCustomEvent.m */; };
 		21691A1A1BB291A800E1CF84 /* libSmartAdServer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 21691A101BB28B4B00E1CF84 /* libSmartAdServer.a */; };
 		349B4DBE1946F1CE00184794 /* InMobiBannerCustomEvent.h in Headers */ = {isa = PBXBuildFile; fileRef = 349B4DB91946F1CE00184794 /* InMobiBannerCustomEvent.h */; };
 		349B4DBF1946F1CE00184794 /* InMobiBannerCustomEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 349B4DBA1946F1CE00184794 /* InMobiBannerCustomEvent.m */; };
@@ -624,6 +624,23 @@
 		21691A131BB2906300E1CF84 /* SASInterstitialCustomEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SASInterstitialCustomEvent.m; sourceTree = "<group>"; };
 		21691A161BB2907100E1CF84 /* SASBannerCustomEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SASBannerCustomEvent.h; sourceTree = "<group>"; };
 		21691A171BB2907100E1CF84 /* SASBannerCustomEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SASBannerCustomEvent.m; sourceTree = "<group>"; };
+		22B917A31D4A5985009637F1 /* AdMarvelDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AdMarvelDelegate.h; sourceTree = "<group>"; };
+		22B917A41D4A5985009637F1 /* AdMarvelNativeAd.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AdMarvelNativeAd.h; sourceTree = "<group>"; };
+		22B917A51D4A5985009637F1 /* AdMarvelNativeAdDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AdMarvelNativeAdDelegate.h; sourceTree = "<group>"; };
+		22B917A61D4A5985009637F1 /* AdMarvelReward.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AdMarvelReward.h; sourceTree = "<group>"; };
+		22B917A71D4A5985009637F1 /* AdMarvelRewardDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AdMarvelRewardDelegate.h; sourceTree = "<group>"; };
+		22B917A81D4A5985009637F1 /* AdMarvelView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AdMarvelView.h; sourceTree = "<group>"; };
+		22B917A91D4A5985009637F1 /* libAdMarvelSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libAdMarvelSDK.a; sourceTree = "<group>"; };
+		22B917AB1D4A5985009637F1 /* OMWCustomBanner.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OMWCustomBanner.h; sourceTree = "<group>"; };
+		22B917AC1D4A5985009637F1 /* OMWCustomBannerDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OMWCustomBannerDelegate.h; sourceTree = "<group>"; };
+		22B917AD1D4A5985009637F1 /* OMWCustomInterstitial.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OMWCustomInterstitial.h; sourceTree = "<group>"; };
+		22B917AE1D4A5985009637F1 /* OMWCustomInterstitialDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OMWCustomInterstitialDelegate.h; sourceTree = "<group>"; };
+		22B917AF1D4A5985009637F1 /* OMWCustomReward.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OMWCustomReward.h; sourceTree = "<group>"; };
+		22B917B01D4A5985009637F1 /* OMWCustomRewardDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OMWCustomRewardDelegate.h; sourceTree = "<group>"; };
+		22B917B11D4A5985009637F1 /* OperaBannerCustomEvent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OperaBannerCustomEvent.h; sourceTree = "<group>"; };
+		22B917B21D4A5985009637F1 /* OperaBannerCustomEvent.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OperaBannerCustomEvent.m; sourceTree = "<group>"; };
+		22B917B31D4A5985009637F1 /* OperaInterstitialCustomEvent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OperaInterstitialCustomEvent.h; sourceTree = "<group>"; };
+		22B917B41D4A5985009637F1 /* OperaInterstitialCustomEvent.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OperaInterstitialCustomEvent.m; sourceTree = "<group>"; };
 		349B4DB91946F1CE00184794 /* InMobiBannerCustomEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InMobiBannerCustomEvent.h; sourceTree = "<group>"; };
 		349B4DBA1946F1CE00184794 /* InMobiBannerCustomEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InMobiBannerCustomEvent.m; sourceTree = "<group>"; };
 		349B4DBB1946F1CE00184794 /* InMobiInterstitialCustomEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InMobiInterstitialCustomEvent.h; sourceTree = "<group>"; };
@@ -1190,6 +1207,46 @@
 			path = headers;
 			sourceTree = "<group>";
 		};
+		22B917A11D4A5985009637F1 /* Opera */ = {
+			isa = PBXGroup;
+			children = (
+				22B917A21D4A5985009637F1 /* AdMarvelSDK */,
+				22B917B11D4A5985009637F1 /* OperaBannerCustomEvent.h */,
+				22B917B21D4A5985009637F1 /* OperaBannerCustomEvent.m */,
+				22B917B31D4A5985009637F1 /* OperaInterstitialCustomEvent.h */,
+				22B917B41D4A5985009637F1 /* OperaInterstitialCustomEvent.m */,
+			);
+			path = Opera;
+			sourceTree = "<group>";
+		};
+		22B917A21D4A5985009637F1 /* AdMarvelSDK */ = {
+			isa = PBXGroup;
+			children = (
+				22B917A31D4A5985009637F1 /* AdMarvelDelegate.h */,
+				22B917A41D4A5985009637F1 /* AdMarvelNativeAd.h */,
+				22B917A51D4A5985009637F1 /* AdMarvelNativeAdDelegate.h */,
+				22B917A61D4A5985009637F1 /* AdMarvelReward.h */,
+				22B917A71D4A5985009637F1 /* AdMarvelRewardDelegate.h */,
+				22B917A81D4A5985009637F1 /* AdMarvelView.h */,
+				22B917A91D4A5985009637F1 /* libAdMarvelSDK.a */,
+				22B917AA1D4A5985009637F1 /* SDKConnectorHeaders */,
+			);
+			path = AdMarvelSDK;
+			sourceTree = "<group>";
+		};
+		22B917AA1D4A5985009637F1 /* SDKConnectorHeaders */ = {
+			isa = PBXGroup;
+			children = (
+				22B917AB1D4A5985009637F1 /* OMWCustomBanner.h */,
+				22B917AC1D4A5985009637F1 /* OMWCustomBannerDelegate.h */,
+				22B917AD1D4A5985009637F1 /* OMWCustomInterstitial.h */,
+				22B917AE1D4A5985009637F1 /* OMWCustomInterstitialDelegate.h */,
+				22B917AF1D4A5985009637F1 /* OMWCustomReward.h */,
+				22B917B01D4A5985009637F1 /* OMWCustomRewardDelegate.h */,
+			);
+			path = SDKConnectorHeaders;
+			sourceTree = "<group>";
+		};
 		349B4DB81946F1CE00184794 /* InMobi */ = {
 			isa = PBXGroup;
 			children = (
@@ -1256,6 +1313,7 @@
 		79A6D47D1636C14C009DA60A = {
 			isa = PBXGroup;
 			children = (
+				22B917A11D4A5985009637F1 /* Opera */,
 				21691A071BB28B4B00E1CF84 /* SmartAdServer */,
 				016174D41B58F21300F92420 /* Test */,
 				01A470A31AB996000047DA2C /* AdMob */,
