@@ -6,27 +6,40 @@
 		<option>-ios_version_min 6.0</option>
 
         <option>-framework Accelerate</option>
+        <option>-framework Accounts</option>
 		<option>-framework AddressBook</option>
 		<option>-framework AddressBookUI</option>
-		<option>-weak_framework AdSupport</option>
+		<option>-framework AdSupport</option>
+		<option>-framework AssetsLibrary</option>
+		<option>-framework AudioToolbox</option>
+		<option>-framework AVFoundation</option>
+		<option>-framework CFNetwork</option>
+		<option>-framework CoreGraphics</option>
+		<option>-framework CoreMedia</option>
 		<option>-framework CoreTelephony</option>
 		<option>-framework EventKit</option>
 		<option>-framework EventKitUI</option>
-		<option>-weak_framework iAd</option>
+		<option>-framework iAd</option>
 		<option>-framework MediaPlayer</option>
 		<option>-framework MessageUI</option>
+		<option>-framework MobileCoreServices</option>
 		<option>-weak_framework PassKit</option>
-		<option>-weak_framework Social</option>
-		<option>-weak_framework StoreKit</option>
+		<option>-framework QuartzCore</option>
+		<option>-framework Security</option>
+		<option>-framework Social</option>
+		<option>-framework StoreKit</option>
+		<option>-framework SystemConfiguration</option>
+		<option>-framework UIKit</option>
         <option>-framework AdColony</option>
-        <option>-weak_framework CoreMotion</option>
-        <option>-weak_framework iAd</option>
+        <option>-framework CoreMotion</option>
+        <option>-framework iAd</option>
 		<option>-weak_framework WebKit</option>
         <option>-framework CoreLocation</option>
         <option>-framework GoogleMobileAds</option>
         <option>-framework Chartboost</option>
 
 		<option>-lsqlite3</option>
+		<option>-lstdc++</option>
 		<option>-lz</option>
 
 	</linkerOptions>

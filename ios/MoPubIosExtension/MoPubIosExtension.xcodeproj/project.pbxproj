@@ -328,6 +328,27 @@
 		79F87D2F177B41AC0047359B /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79F87D21177B41950047359B /* AddressBookUI.framework */; };
 		79F87D30177B41AC0047359B /* EventKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79F87D22177B41950047359B /* EventKit.framework */; };
 		79F87D31177B41AC0047359B /* EventKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79F87D23177B41950047359B /* EventKitUI.framework */; };
+		7FB0C0B31D4F948A00984F19 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FB0C0B21D4F948A00984F19 /* Accounts.framework */; };
+		7FB0C0B41D4F949F00984F19 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FB0C0B01D4F8D3500984F19 /* AssetsLibrary.framework */; };
+		7FB0C0B51D4F95A400984F19 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 79F87D25177B41950047359B /* libz.dylib */; };
+		7FB0C0B71D4F95A400984F19 /* libstdc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FB0C0B61D4F95A400984F19 /* libstdc++.dylib */; };
+		7FB0C0CC1D509EC200984F19 /* AdMarvelDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 7FB0C0BA1D509EC200984F19 /* AdMarvelDelegate.h */; };
+		7FB0C0CD1D509EC200984F19 /* AdMarvelNativeAd.h in Headers */ = {isa = PBXBuildFile; fileRef = 7FB0C0BB1D509EC200984F19 /* AdMarvelNativeAd.h */; };
+		7FB0C0CE1D509EC200984F19 /* AdMarvelNativeAdDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 7FB0C0BC1D509EC200984F19 /* AdMarvelNativeAdDelegate.h */; };
+		7FB0C0CF1D509EC200984F19 /* AdMarvelReward.h in Headers */ = {isa = PBXBuildFile; fileRef = 7FB0C0BD1D509EC200984F19 /* AdMarvelReward.h */; };
+		7FB0C0D01D509EC200984F19 /* AdMarvelRewardDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 7FB0C0BE1D509EC200984F19 /* AdMarvelRewardDelegate.h */; };
+		7FB0C0D11D509EC200984F19 /* AdMarvelView.h in Headers */ = {isa = PBXBuildFile; fileRef = 7FB0C0BF1D509EC200984F19 /* AdMarvelView.h */; };
+		7FB0C0D21D509EC200984F19 /* libAdMarvelSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FB0C0C01D509EC200984F19 /* libAdMarvelSDK.a */; };
+		7FB0C0D31D509EC200984F19 /* OMWCustomBanner.h in Headers */ = {isa = PBXBuildFile; fileRef = 7FB0C0C21D509EC200984F19 /* OMWCustomBanner.h */; };
+		7FB0C0D41D509EC200984F19 /* OMWCustomBannerDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 7FB0C0C31D509EC200984F19 /* OMWCustomBannerDelegate.h */; };
+		7FB0C0D51D509EC200984F19 /* OMWCustomInterstitial.h in Headers */ = {isa = PBXBuildFile; fileRef = 7FB0C0C41D509EC200984F19 /* OMWCustomInterstitial.h */; };
+		7FB0C0D61D509EC200984F19 /* OMWCustomInterstitialDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 7FB0C0C51D509EC200984F19 /* OMWCustomInterstitialDelegate.h */; };
+		7FB0C0D71D509EC200984F19 /* OMWCustomReward.h in Headers */ = {isa = PBXBuildFile; fileRef = 7FB0C0C61D509EC200984F19 /* OMWCustomReward.h */; };
+		7FB0C0D81D509EC200984F19 /* OMWCustomRewardDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 7FB0C0C71D509EC200984F19 /* OMWCustomRewardDelegate.h */; };
+		7FB0C0D91D509EC200984F19 /* OperaBannerCustomEvent.h in Headers */ = {isa = PBXBuildFile; fileRef = 7FB0C0C81D509EC200984F19 /* OperaBannerCustomEvent.h */; };
+		7FB0C0DA1D509EC200984F19 /* OperaBannerCustomEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FB0C0C91D509EC200984F19 /* OperaBannerCustomEvent.m */; };
+		7FB0C0DB1D509EC200984F19 /* OperaInterstitialCustomEvent.h in Headers */ = {isa = PBXBuildFile; fileRef = 7FB0C0CA1D509EC200984F19 /* OperaInterstitialCustomEvent.h */; };
+		7FB0C0DC1D509EC200984F19 /* OperaInterstitialCustomEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FB0C0CB1D509EC200984F19 /* OperaInterstitialCustomEvent.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -624,23 +645,6 @@
 		21691A131BB2906300E1CF84 /* SASInterstitialCustomEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SASInterstitialCustomEvent.m; sourceTree = "<group>"; };
 		21691A161BB2907100E1CF84 /* SASBannerCustomEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SASBannerCustomEvent.h; sourceTree = "<group>"; };
 		21691A171BB2907100E1CF84 /* SASBannerCustomEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SASBannerCustomEvent.m; sourceTree = "<group>"; };
-		22B917A31D4A5985009637F1 /* AdMarvelDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AdMarvelDelegate.h; sourceTree = "<group>"; };
-		22B917A41D4A5985009637F1 /* AdMarvelNativeAd.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AdMarvelNativeAd.h; sourceTree = "<group>"; };
-		22B917A51D4A5985009637F1 /* AdMarvelNativeAdDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AdMarvelNativeAdDelegate.h; sourceTree = "<group>"; };
-		22B917A61D4A5985009637F1 /* AdMarvelReward.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AdMarvelReward.h; sourceTree = "<group>"; };
-		22B917A71D4A5985009637F1 /* AdMarvelRewardDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AdMarvelRewardDelegate.h; sourceTree = "<group>"; };
-		22B917A81D4A5985009637F1 /* AdMarvelView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AdMarvelView.h; sourceTree = "<group>"; };
-		22B917A91D4A5985009637F1 /* libAdMarvelSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libAdMarvelSDK.a; sourceTree = "<group>"; };
-		22B917AB1D4A5985009637F1 /* OMWCustomBanner.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OMWCustomBanner.h; sourceTree = "<group>"; };
-		22B917AC1D4A5985009637F1 /* OMWCustomBannerDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OMWCustomBannerDelegate.h; sourceTree = "<group>"; };
-		22B917AD1D4A5985009637F1 /* OMWCustomInterstitial.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OMWCustomInterstitial.h; sourceTree = "<group>"; };
-		22B917AE1D4A5985009637F1 /* OMWCustomInterstitialDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OMWCustomInterstitialDelegate.h; sourceTree = "<group>"; };
-		22B917AF1D4A5985009637F1 /* OMWCustomReward.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OMWCustomReward.h; sourceTree = "<group>"; };
-		22B917B01D4A5985009637F1 /* OMWCustomRewardDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OMWCustomRewardDelegate.h; sourceTree = "<group>"; };
-		22B917B11D4A5985009637F1 /* OperaBannerCustomEvent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OperaBannerCustomEvent.h; sourceTree = "<group>"; };
-		22B917B21D4A5985009637F1 /* OperaBannerCustomEvent.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OperaBannerCustomEvent.m; sourceTree = "<group>"; };
-		22B917B31D4A5985009637F1 /* OperaInterstitialCustomEvent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OperaInterstitialCustomEvent.h; sourceTree = "<group>"; };
-		22B917B41D4A5985009637F1 /* OperaInterstitialCustomEvent.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OperaInterstitialCustomEvent.m; sourceTree = "<group>"; };
 		349B4DB91946F1CE00184794 /* InMobiBannerCustomEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InMobiBannerCustomEvent.h; sourceTree = "<group>"; };
 		349B4DBA1946F1CE00184794 /* InMobiBannerCustomEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InMobiBannerCustomEvent.m; sourceTree = "<group>"; };
 		349B4DBB1946F1CE00184794 /* InMobiInterstitialCustomEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InMobiInterstitialCustomEvent.h; sourceTree = "<group>"; };
@@ -702,6 +706,26 @@
 		79F87D23177B41950047359B /* EventKitUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKitUI.framework; path = System/Library/Frameworks/EventKitUI.framework; sourceTree = SDKROOT; };
 		79F87D24177B41950047359B /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		79F87D25177B41950047359B /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		7FB0C0B01D4F8D3500984F19 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
+		7FB0C0B21D4F948A00984F19 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
+		7FB0C0B61D4F95A400984F19 /* libstdc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.dylib"; path = "usr/lib/libstdc++.dylib"; sourceTree = SDKROOT; };
+		7FB0C0BA1D509EC200984F19 /* AdMarvelDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdMarvelDelegate.h; sourceTree = "<group>"; };
+		7FB0C0BB1D509EC200984F19 /* AdMarvelNativeAd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdMarvelNativeAd.h; sourceTree = "<group>"; };
+		7FB0C0BC1D509EC200984F19 /* AdMarvelNativeAdDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdMarvelNativeAdDelegate.h; sourceTree = "<group>"; };
+		7FB0C0BD1D509EC200984F19 /* AdMarvelReward.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdMarvelReward.h; sourceTree = "<group>"; };
+		7FB0C0BE1D509EC200984F19 /* AdMarvelRewardDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdMarvelRewardDelegate.h; sourceTree = "<group>"; };
+		7FB0C0BF1D509EC200984F19 /* AdMarvelView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdMarvelView.h; sourceTree = "<group>"; };
+		7FB0C0C01D509EC200984F19 /* libAdMarvelSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libAdMarvelSDK.a; sourceTree = "<group>"; };
+		7FB0C0C21D509EC200984F19 /* OMWCustomBanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OMWCustomBanner.h; sourceTree = "<group>"; };
+		7FB0C0C31D509EC200984F19 /* OMWCustomBannerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OMWCustomBannerDelegate.h; sourceTree = "<group>"; };
+		7FB0C0C41D509EC200984F19 /* OMWCustomInterstitial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OMWCustomInterstitial.h; sourceTree = "<group>"; };
+		7FB0C0C51D509EC200984F19 /* OMWCustomInterstitialDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OMWCustomInterstitialDelegate.h; sourceTree = "<group>"; };
+		7FB0C0C61D509EC200984F19 /* OMWCustomReward.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OMWCustomReward.h; sourceTree = "<group>"; };
+		7FB0C0C71D509EC200984F19 /* OMWCustomRewardDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OMWCustomRewardDelegate.h; sourceTree = "<group>"; };
+		7FB0C0C81D509EC200984F19 /* OperaBannerCustomEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OperaBannerCustomEvent.h; sourceTree = "<group>"; };
+		7FB0C0C91D509EC200984F19 /* OperaBannerCustomEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OperaBannerCustomEvent.m; sourceTree = "<group>"; };
+		7FB0C0CA1D509EC200984F19 /* OperaInterstitialCustomEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OperaInterstitialCustomEvent.h; sourceTree = "<group>"; };
+		7FB0C0CB1D509EC200984F19 /* OperaInterstitialCustomEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OperaInterstitialCustomEvent.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -709,37 +733,42 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				21691A1A1BB291A800E1CF84 /* libSmartAdServer.a in Frameworks */,
-				483B182619FFEEC300660DCC /* iAd.framework in Frameworks */,
-				483B182419FFEE8900660DCC /* CoreLocation.framework in Frameworks */,
-				6D5AFBD719E6846900D5C9A2 /* libz.1.2.5.dylib in Frameworks */,
+				7FB0C0B71D4F95A400984F19 /* libstdc++.dylib in Frameworks */,
+				79BF9897174A1DD10038F1F1 /* CoreGraphics.framework in Frameworks */,
 				6D247CC719E6630500F579CB /* CoreMedia.framework in Frameworks */,
 				48A15D6119E3CF6000E725A7 /* CoreMotion.framework in Frameworks */,
-				48E89B0B199CEC68007C857D /* Accelerate.framework in Frameworks */,
-				6D8D40FD1B219E8800401572 /* AdColony.framework in Frameworks */,
-				34FBB5A6190FE406005402C5 /* Security.framework in Frameworks */,
-				79F87D2E177B41AC0047359B /* AddressBook.framework in Frameworks */,
-				79F87D2F177B41AC0047359B /* AddressBookUI.framework in Frameworks */,
-				79F66B1B1652882800E917FB /* AdSupport.framework in Frameworks */,
-				79BF9891174A1DB80038F1F1 /* AudioToolbox.framework in Frameworks */,
-				016178F31B9EDD3600F92420 /* GoogleMobileAds.framework in Frameworks */,
-				79BF9895174A1DCA0038F1F1 /* AVFoundation.framework in Frameworks */,
-				34FBB5A4190FE3DD005402C5 /* CFNetwork.framework in Frameworks */,
-				79BF9897174A1DD10038F1F1 /* CoreGraphics.framework in Frameworks */,
 				79F87A43177B35630047359B /* CoreTelephony.framework in Frameworks */,
 				79F87D30177B41AC0047359B /* EventKit.framework in Frameworks */,
 				79F87D31177B41AC0047359B /* EventKitUI.framework in Frameworks */,
 				79A6D48C1636C14D009DA60A /* Foundation.framework in Frameworks */,
+				483B182619FFEEC300660DCC /* iAd.framework in Frameworks */,
+				7FB0C0B51D4F95A400984F19 /* libz.dylib in Frameworks */,
 				79BF9899174A1DDA0038F1F1 /* MediaPlayer.framework in Frameworks */,
 				79BF9893174A1DC50038F1F1 /* MessageUI.framework in Frameworks */,
 				79BF989B174A1DE50038F1F1 /* MobileCoreServices.framework in Frameworks */,
-				79F87A48177B35DA0047359B /* PassKit.framework in Frameworks */,
 				79BF989D174A1DEC0038F1F1 /* QuartzCore.framework in Frameworks */,
-				6D8D41161B219E9A00401572 /* libInMobi-4.5.3.a in Frameworks */,
+				34FBB5A6190FE406005402C5 /* Security.framework in Frameworks */,
 				79F87A49177B35DC0047359B /* Social.framework in Frameworks */,
 				79A6D5301636DFB1009DA60A /* StoreKit.framework in Frameworks */,
 				79BF989F174A1DF60038F1F1 /* SystemConfiguration.framework in Frameworks */,
 				79A6D5321636DFE1009DA60A /* UIKit.framework in Frameworks */,
+				34FBB5A4190FE3DD005402C5 /* CFNetwork.framework in Frameworks */,
+				79BF9895174A1DCA0038F1F1 /* AVFoundation.framework in Frameworks */,
+				79BF9891174A1DB80038F1F1 /* AudioToolbox.framework in Frameworks */,
+				7FB0C0B41D4F949F00984F19 /* AssetsLibrary.framework in Frameworks */,
+				79F66B1B1652882800E917FB /* AdSupport.framework in Frameworks */,
+				7FB0C0B31D4F948A00984F19 /* Accounts.framework in Frameworks */,
+				21691A1A1BB291A800E1CF84 /* libSmartAdServer.a in Frameworks */,
+				483B182419FFEE8900660DCC /* CoreLocation.framework in Frameworks */,
+				6D5AFBD719E6846900D5C9A2 /* libz.1.2.5.dylib in Frameworks */,
+				48E89B0B199CEC68007C857D /* Accelerate.framework in Frameworks */,
+				6D8D40FD1B219E8800401572 /* AdColony.framework in Frameworks */,
+				79F87D2E177B41AC0047359B /* AddressBook.framework in Frameworks */,
+				79F87D2F177B41AC0047359B /* AddressBookUI.framework in Frameworks */,
+				7FB0C0D21D509EC200984F19 /* libAdMarvelSDK.a in Frameworks */,
+				016178F31B9EDD3600F92420 /* GoogleMobileAds.framework in Frameworks */,
+				79F87A48177B35DA0047359B /* PassKit.framework in Frameworks */,
+				6D8D41161B219E9A00401572 /* libInMobi-4.5.3.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1207,46 +1236,6 @@
 			path = headers;
 			sourceTree = "<group>";
 		};
-		22B917A11D4A5985009637F1 /* Opera */ = {
-			isa = PBXGroup;
-			children = (
-				22B917A21D4A5985009637F1 /* AdMarvelSDK */,
-				22B917B11D4A5985009637F1 /* OperaBannerCustomEvent.h */,
-				22B917B21D4A5985009637F1 /* OperaBannerCustomEvent.m */,
-				22B917B31D4A5985009637F1 /* OperaInterstitialCustomEvent.h */,
-				22B917B41D4A5985009637F1 /* OperaInterstitialCustomEvent.m */,
-			);
-			path = Opera;
-			sourceTree = "<group>";
-		};
-		22B917A21D4A5985009637F1 /* AdMarvelSDK */ = {
-			isa = PBXGroup;
-			children = (
-				22B917A31D4A5985009637F1 /* AdMarvelDelegate.h */,
-				22B917A41D4A5985009637F1 /* AdMarvelNativeAd.h */,
-				22B917A51D4A5985009637F1 /* AdMarvelNativeAdDelegate.h */,
-				22B917A61D4A5985009637F1 /* AdMarvelReward.h */,
-				22B917A71D4A5985009637F1 /* AdMarvelRewardDelegate.h */,
-				22B917A81D4A5985009637F1 /* AdMarvelView.h */,
-				22B917A91D4A5985009637F1 /* libAdMarvelSDK.a */,
-				22B917AA1D4A5985009637F1 /* SDKConnectorHeaders */,
-			);
-			path = AdMarvelSDK;
-			sourceTree = "<group>";
-		};
-		22B917AA1D4A5985009637F1 /* SDKConnectorHeaders */ = {
-			isa = PBXGroup;
-			children = (
-				22B917AB1D4A5985009637F1 /* OMWCustomBanner.h */,
-				22B917AC1D4A5985009637F1 /* OMWCustomBannerDelegate.h */,
-				22B917AD1D4A5985009637F1 /* OMWCustomInterstitial.h */,
-				22B917AE1D4A5985009637F1 /* OMWCustomInterstitialDelegate.h */,
-				22B917AF1D4A5985009637F1 /* OMWCustomReward.h */,
-				22B917B01D4A5985009637F1 /* OMWCustomRewardDelegate.h */,
-			);
-			path = SDKConnectorHeaders;
-			sourceTree = "<group>";
-		};
 		349B4DB81946F1CE00184794 /* InMobi */ = {
 			isa = PBXGroup;
 			children = (
@@ -1313,7 +1302,7 @@
 		79A6D47D1636C14C009DA60A = {
 			isa = PBXGroup;
 			children = (
-				22B917A11D4A5985009637F1 /* Opera */,
+				7FB0C0B81D509EC200984F19 /* Opera */,
 				21691A071BB28B4B00E1CF84 /* SmartAdServer */,
 				016174D41B58F21300F92420 /* Test */,
 				01A470A31AB996000047DA2C /* AdMob */,
@@ -1331,6 +1320,9 @@
 		79A6D48A1636C14D009DA60A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7FB0C0B61D4F95A400984F19 /* libstdc++.dylib */,
+				7FB0C0B21D4F948A00984F19 /* Accounts.framework */,
+				7FB0C0B01D4F8D3500984F19 /* AssetsLibrary.framework */,
 				483B182519FFEEC300660DCC /* iAd.framework */,
 				6D247CC819E6634000F579CB /* libz.1.2.5.dylib */,
 				6D247CC619E6630500F579CB /* CoreMedia.framework */,
@@ -1392,6 +1384,46 @@
 			path = "../../gitignore/mopub-ios-sdk/AdNetworkSupport";
 			sourceTree = "<group>";
 		};
+		7FB0C0B81D509EC200984F19 /* Opera */ = {
+			isa = PBXGroup;
+			children = (
+				7FB0C0B91D509EC200984F19 /* AdMarvelSDK */,
+				7FB0C0C81D509EC200984F19 /* OperaBannerCustomEvent.h */,
+				7FB0C0C91D509EC200984F19 /* OperaBannerCustomEvent.m */,
+				7FB0C0CA1D509EC200984F19 /* OperaInterstitialCustomEvent.h */,
+				7FB0C0CB1D509EC200984F19 /* OperaInterstitialCustomEvent.m */,
+			);
+			path = Opera;
+			sourceTree = "<group>";
+		};
+		7FB0C0B91D509EC200984F19 /* AdMarvelSDK */ = {
+			isa = PBXGroup;
+			children = (
+				7FB0C0BA1D509EC200984F19 /* AdMarvelDelegate.h */,
+				7FB0C0BB1D509EC200984F19 /* AdMarvelNativeAd.h */,
+				7FB0C0BC1D509EC200984F19 /* AdMarvelNativeAdDelegate.h */,
+				7FB0C0BD1D509EC200984F19 /* AdMarvelReward.h */,
+				7FB0C0BE1D509EC200984F19 /* AdMarvelRewardDelegate.h */,
+				7FB0C0BF1D509EC200984F19 /* AdMarvelView.h */,
+				7FB0C0C01D509EC200984F19 /* libAdMarvelSDK.a */,
+				7FB0C0C11D509EC200984F19 /* SDKConnectorHeaders */,
+			);
+			path = AdMarvelSDK;
+			sourceTree = "<group>";
+		};
+		7FB0C0C11D509EC200984F19 /* SDKConnectorHeaders */ = {
+			isa = PBXGroup;
+			children = (
+				7FB0C0C21D509EC200984F19 /* OMWCustomBanner.h */,
+				7FB0C0C31D509EC200984F19 /* OMWCustomBannerDelegate.h */,
+				7FB0C0C41D509EC200984F19 /* OMWCustomInterstitial.h */,
+				7FB0C0C51D509EC200984F19 /* OMWCustomInterstitialDelegate.h */,
+				7FB0C0C61D509EC200984F19 /* OMWCustomReward.h */,
+				7FB0C0C71D509EC200984F19 /* OMWCustomRewardDelegate.h */,
+			);
+			path = SDKConnectorHeaders;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -1401,7 +1433,10 @@
 			files = (
 				016178451B72675500F92420 /* MPMRAIDBannerCustomEvent.h in Headers */,
 				016178401B72675500F92420 /* MPCoreInstanceProvider.h in Headers */,
+				7FB0C0D61D509EC200984F19 /* OMWCustomInterstitialDelegate.h in Headers */,
 				0161785B1B72675500F92420 /* MRImageDownloader.h in Headers */,
+				7FB0C0CF1D509EC200984F19 /* AdMarvelReward.h in Headers */,
+				7FB0C0CE1D509EC200984F19 /* AdMarvelNativeAdDelegate.h in Headers */,
 				016178471B72675500F92420 /* MPMRAIDInterstitialCustomEvent.h in Headers */,
 				0146A0621ABB33C80060CB75 /* MPChartboostRouter.h in Headers */,
 				0161786B1B72675500F92420 /* UIWebView+MPAdditions.h in Headers */,
@@ -1424,6 +1459,7 @@
 				016178221B72675500F92420 /* MPLogEventRecorder.h in Headers */,
 				016178A31B72675500F92420 /* MPMoPubNativeCustomEvent.h in Headers */,
 				016178421B72675500F92420 /* MPInstanceProvider.h in Headers */,
+				7FB0C0DB1D509EC200984F19 /* OperaInterstitialCustomEvent.h in Headers */,
 				016178491B72675500F92420 /* MPMRAIDInterstitialViewController.h in Headers */,
 				016178931B72675500F92420 /* MPInterstitialAdController.h in Headers */,
 				016177F41B72675500F92420 /* MPBaseBannerAdapter.h in Headers */,
@@ -1432,8 +1468,10 @@
 				0161780F1B72675500F92420 /* MPEnhancedDeeplinkRequest.h in Headers */,
 				016178751B72675500F92420 /* MPIdentityProvider.h in Headers */,
 				6D8D410B1B219E9A00401572 /* IMBanner.h in Headers */,
+				7FB0C0D11D509EC200984F19 /* AdMarvelView.h in Headers */,
 				016178C71B72675500F92420 /* MPNativeAdSource.h in Headers */,
 				016178E21B72675600F92420 /* MPRewardedVideoReward.h in Headers */,
+				7FB0C0D81D509EC200984F19 /* OMWCustomRewardDelegate.h in Headers */,
 				016178391B72675500F92420 /* MPInterstitialCustomEventAdapter.h in Headers */,
 				016178CA1B72675500F92420 /* MPNativeCustomEvent.h in Headers */,
 				016178911B72675500F92420 /* MPConstants.h in Headers */,
@@ -1456,6 +1494,7 @@
 				0161788C1B72675500F92420 /* MPAdView.h in Headers */,
 				016178B61B72675500F92420 /* MPCollectionViewAdPlacer.h in Headers */,
 				016178A11B72675500F92420 /* MPMoPubNativeAdAdapter.h in Headers */,
+				7FB0C0D71D509EC200984F19 /* OMWCustomReward.h in Headers */,
 				016178671B72675500F92420 /* NSJSONSerialization+MPAdditions.h in Headers */,
 				016178011B72675500F92420 /* MPAdBrowserController.h in Headers */,
 				016178D91B72675600F92420 /* MPRewardedVideoAdManager.h in Headers */,
@@ -1472,6 +1511,7 @@
 				016178CC1B72675500F92420 /* MPNativeCustomEventDelegate.h in Headers */,
 				016178C31B72675500F92420 /* MPNativeAdRequest.h in Headers */,
 				016178971B72675500F92420 /* MPInterstitialCustomEventDelegate.h in Headers */,
+				7FB0C0D51D509EC200984F19 /* OMWCustomInterstitial.h in Headers */,
 				0161784B1B72675500F92420 /* MRBridge.h in Headers */,
 				6D8D410D1B219E9A00401572 /* IMConstants.h in Headers */,
 				0161782C1B72675500F92420 /* MPAdWebViewAgent.h in Headers */,
@@ -1485,6 +1525,7 @@
 				016178AE1B72675500F92420 /* MPNativePositionSource.h in Headers */,
 				016177EE1B72675500F92420 /* FABKitProtocol.h in Headers */,
 				349B4DC01946F1CE00184794 /* InMobiInterstitialCustomEvent.h in Headers */,
+				7FB0C0D91D509EC200984F19 /* OperaBannerCustomEvent.h in Headers */,
 				016178831B72675500F92420 /* MPTimer.h in Headers */,
 				016178871B72675500F92420 /* MoPub-Bridging-Header.h in Headers */,
 				48A468A81966C60600171565 /* AdColonyInterstitialCustomEvent.h in Headers */,
@@ -1509,6 +1550,8 @@
 				0161789B1B72675500F92420 /* MPAdPlacerInvocation.h in Headers */,
 				0161788A1B72675500F92420 /* MPAdConversionTracker.h in Headers */,
 				016178AA1B72675500F92420 /* MPNativeCache.h in Headers */,
+				7FB0C0D31D509EC200984F19 /* OMWCustomBanner.h in Headers */,
+				7FB0C0D41D509EC200984F19 /* OMWCustomBannerDelegate.h in Headers */,
 				6D8D410E1B219E9A00401572 /* IMError.h in Headers */,
 				016178DC1B72675600F92420 /* MPRewardedVideo.h in Headers */,
 				016178B01B72675500F92420 /* MPTableViewCellImpressionTracker.h in Headers */,
@@ -1518,6 +1561,7 @@
 				6D8D41151B219E9A00401572 /* InMobiAnalytics.h in Headers */,
 				016177F61B72675500F92420 /* MPLegacyBannerCustomEventAdapter.h in Headers */,
 				016178D11B72675500F92420 /* MPStreamAdPlacer.h in Headers */,
+				7FB0C0D01D509EC200984F19 /* AdMarvelRewardDelegate.h in Headers */,
 				016178D31B72675500F92420 /* MPTableViewAdManager.h in Headers */,
 				016178731B72675500F92420 /* MPGlobal.h in Headers */,
 				016178BF1B72675500F92420 /* MPNativeAdDelegate.h in Headers */,
@@ -1527,11 +1571,13 @@
 				016178511B72675500F92420 /* MRCommand.h in Headers */,
 				016178261B72675500F92420 /* MPQRunLoopOperation.h in Headers */,
 				016178361B72675500F92420 /* MPInterstitialAdManager.h in Headers */,
+				7FB0C0CD1D509EC200984F19 /* AdMarvelNativeAd.h in Headers */,
 				016178A81B72675500F92420 /* MPNativeAdUtils.h in Headers */,
 				016174DB1B5909D900F92420 /* MPGoogleAdMobBannerCustomEvent.h in Headers */,
 				0161781E1B72675500F92420 /* MPLogEvent.h in Headers */,
 				016178631B72675500F92420 /* MRVideoPlayerManager.h in Headers */,
 				016178A51B72675500F92420 /* MPNativeAd+Internal.h in Headers */,
+				7FB0C0CC1D509EC200984F19 /* AdMarvelDelegate.h in Headers */,
 				016177FF1B72675500F92420 /* MPActivityViewControllerHelper.h in Headers */,
 				016178DB1B72675600F92420 /* MPMediationSettingsProtocol.h in Headers */,
 				016178771B72675500F92420 /* MPInternalUtils.h in Headers */,
@@ -1587,7 +1633,7 @@
 		79A6D47F1636C14C009DA60A /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0500;
+				LastUpgradeCheck = 0640;
 				ORGANIZATIONNAME = "Richard Lord";
 			};
 			buildConfigurationList = 79A6D4821636C14C009DA60A /* Build configuration list for PBXProject "MoPubIosExtension" */;
@@ -1617,6 +1663,7 @@
 				0161783C1B72675500F92420 /* MPInterstitialViewController.m in Sources */,
 				016178A01B72675500F92420 /* MPImageDownloadQueue.m in Sources */,
 				0161783E1B72675500F92420 /* MPLegacyInterstitialCustomEventAdapter.m in Sources */,
+				7FB0C0DC1D509EC200984F19 /* OperaInterstitialCustomEvent.m in Sources */,
 				016178D01B72675500F92420 /* MPStreamAdPlacementData.m in Sources */,
 				015BF4E11AC05F5000B304B5 /* MoPubCustomEventClassData.m in Sources */,
 				016178C61B72675500F92420 /* MPNativeAdRequestTargeting.m in Sources */,
@@ -1650,6 +1697,7 @@
 				79A6D5351636E4A9009DA60A /* MoPubBanner.m in Sources */,
 				016177F31B72675500F92420 /* MPBannerCustomEventAdapter.m in Sources */,
 				0161782F1B72675500F92420 /* MPHTMLBannerCustomEvent.m in Sources */,
+				7FB0C0DA1D509EC200984F19 /* OperaBannerCustomEvent.m in Sources */,
 				016178D41B72675500F92420 /* MPTableViewAdManager.m in Sources */,
 				0161787C1B72675500F92420 /* MPLogProvider.m in Sources */,
 				0161783A1B72675500F92420 /* MPInterstitialCustomEventAdapter.m in Sources */,
@@ -1822,11 +1870,12 @@
 					"$(PROJECT_DIR)/Mobvious/SDK",
 					"$(PROJECT_DIR)/AdMobConversionTracking/SDK",
 					"$(PROJECT_DIR)/SmartAdServer/SDK",
+					"$(PROJECT_DIR)/Opera/AdMarvelSDK",
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos8.1;
+				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALID_ARCHS = "armv7 arm64 armv7s";
@@ -1858,11 +1907,12 @@
 					"$(PROJECT_DIR)/Mobvious/SDK",
 					"$(PROJECT_DIR)/AdMobConversionTracking/SDK",
 					"$(PROJECT_DIR)/SmartAdServer/SDK",
+					"$(PROJECT_DIR)/Opera/AdMarvelSDK",
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos8.1;
+				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALID_ARCHS = "armv7 arm64 armv7s";

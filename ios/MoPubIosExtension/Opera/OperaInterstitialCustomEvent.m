@@ -1,8 +1,7 @@
 //
-//  InMobiInterstitialCustomEvent.m
-//  MoPub
+//  OperaInterstitialCustomEvent.m
 //
-//  Copyright (c) 2013 MoPub, Inc. All rights reserved.
+//  Copyright (c) 2016 Voodoo.,0 All rights reserved.
 //
 
 #import "OperaInterstitialCustomEvent.h"
@@ -102,7 +101,8 @@
     self.rootViewController = nil;
     self.partnerId = nil;
     self.siteId = nil;
-
+    
+    [super dealloc];
 }
 
 @end
