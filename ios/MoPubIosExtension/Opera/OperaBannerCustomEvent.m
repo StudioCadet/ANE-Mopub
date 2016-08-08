@@ -31,7 +31,7 @@
     self.partnerId = info[@"pid"];
     self.siteId = info[@"sid"];
 
-    if(!self.partnerId || self.siteId) {
+    if(!self.partnerId || !self.siteId) {
         MPLogError(@"Invalid partnerId (%@) or siteId (%@)!", self.partnerId, self.siteId);
         [self.delegate bannerCustomEvent:self didFailToLoadAdWithError:nil];
     }
@@ -63,26 +63,28 @@
     return nil;
 }
 
-- (CGRect)AdMarvelViewFrame:(AdMarvelView *)adMarvelView {
+- (CGRect)adMarvelViewFrame:(AdMarvelView *)adMarvelView {
     return CGRectMake(0, 0, self.bannerSize.width, self.bannerSize.height);
 }
 
-- (BOOL) testingMode:(AdMarvelView*)adMarvelView {
-    return YES;
+
+- (BOOL)testingEnabled:(AdMarvelView *)adMarvelView {
+    return NO;
 }
 
+
 - (void) fullScreenWebViewActivated:(AdMarvelView *)adMarvelView {
-    MPLogInfo(@"InMobi banner will present modal");
+    MPLogInfo(@"Opera Mediaworks banner will present modal");
     [self.delegate bannerCustomEventWillBeginAction:self];
 }
 
 - (void) fullScreenWebViewClosed:(AdMarvelView *)adMarvelView {
-    MPLogInfo(@"adViewDidDismissScreen");
+    MPLogInfo(@"Opera Madiaworks banner did close");
     [self.delegate bannerCustomEventDidFinishAction:self];
 }
 
 - (void) getAdSucceeded:(AdMarvelView *)adMarvelView {
-    MPLogInfo(@"InMobi banner did load");
+    MPLogInfo(@"Opera Mediaworks banner did load");
     [self.delegate trackImpression];
     [self.delegate bannerCustomEvent:self didLoadAd:adMarvelView];
 }
@@ -93,20 +95,20 @@
 }
 
 - (void) adDidExpand:(AdMarvelView *)adMarvelView {
-    NSLog(@"AdMarvelBannerDemoViewController: adDidExpand!");
+    NSLog(@"Opera Mediaworks ad did expand!");
 }
 
 - (void) adDidCollapse:(AdMarvelView *)adMarvelView {
-    NSLog(@"AdMarvelBannerDemoViewController: adDidCollapse!");
+    NSLog(@"Opera Mediaworks banner ad did collapse!");
 }
 
 - (void) adMarvelViewWasClicked:(AdMarvelView *)adMarvelView {
-    MPLogInfo(@"InMobi banner was clicked");
+    MPLogInfo(@"Opera Mediaworks banner was clicked");
     [self.delegate trackClick];
 }
 
 - (void) handleAdMarvelSDKClick:(NSString *)urlString forAdMarvelView:(AdMarvelView *)adMarvelView {
-    MPLogInfo(@"InMobi banner was clicked");
+    MPLogInfo(@"Opera Mediaworks banner was clicked");
     [self.delegate trackClick];
 }
 
@@ -119,7 +121,6 @@
 
     self.partnerId = nil;
     self.siteId = nil;
-    [super dealloc];
 }
 
 @end

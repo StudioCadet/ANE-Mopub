@@ -29,7 +29,7 @@
     self.partnerId = info[@"pid"];
     self.siteId = info[@"sid"];
 
-    if(!self.partnerId || self.siteId) {
+    if(!self.partnerId || !self.siteId) {
         MPLogError(@"Invalid partnerId (%@) or siteId (%@)!", self.partnerId, self.siteId);
         [self.delegate interstitialCustomEvent:self didFailToLoadAdWithError:nil];
     }
@@ -59,9 +59,10 @@
     return self.rootViewController;
 }
 
-- (BOOL) testingMode:(AdMarvelView*)adMarvelView {
-    return YES;
+- (BOOL)testingEnabled:(AdMarvelView *)adMarvelView {
+    return NO;
 }
+
 
 - (void) getInterstitialAdSucceeded:(AdMarvelView *)adMarvelView {
     MPLogInfo(@"Opera Mediaworks interstitial did load");
@@ -101,8 +102,6 @@
     self.rootViewController = nil;
     self.partnerId = nil;
     self.siteId = nil;
-    
-    [super dealloc];
 }
 
 @end
