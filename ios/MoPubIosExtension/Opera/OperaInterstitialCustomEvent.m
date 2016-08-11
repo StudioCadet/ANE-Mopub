@@ -60,7 +60,7 @@
 }
 
 - (BOOL)testingEnabled:(AdMarvelView *)adMarvelView {
-    return NO;
+    return YES;
 }
 
 

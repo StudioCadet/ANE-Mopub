@@ -39,7 +39,7 @@
 	    -->
 		
 		<copy todir="../bin/ios">
-            <fileset dir="../ios/MoPubIosExtension/AdColony/SDK"/>
+            <!--<fileset dir="../ios/MoPubIosExtension/AdColony/SDK"/>-->
             <fileset dir="../ios/MoPubIosExtension/AdMob/SDK" />
             <fileset dir="../ios/MoPubIosExtension/Chartboost/SDK" />
             <fileset dir="../ios/MoPubIosExtension/InMobi/SDK" />

@@ -45,7 +45,7 @@
 	</linkerOptions>
 
     <packagedDependencies>
-        <packagedDependency>AdColony.framework</packagedDependency>
+        <!--<packagedDependency>AdColony.framework</packagedDependency>-->
         <packagedDependency>GoogleMobileAds.framework</packagedDependency>
         <packagedDependency>Chartboost.framework</packagedDependency>
     </packagedDependencies>
