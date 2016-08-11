@@ -31,7 +31,6 @@
 		<option>-framework SystemConfiguration</option>
 		<option>-framework UIKit</option>
         <option>-framework CoreMotion</option>
-        <option>-framework iAd</option>
 		<option>-weak_framework WebKit</option>
         <option>-framework CoreLocation</option>
         <option>-framework GoogleMobileAds</option>
