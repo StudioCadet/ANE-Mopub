@@ -69,7 +69,7 @@
 
 
 - (BOOL)testingEnabled:(AdMarvelView *)adMarvelView {
-    return YES;
+    return NO;
 }
 
 
@@ -121,6 +121,8 @@
 
     self.partnerId = nil;
     self.siteId = nil;
+    
+    [super dealloc];
 }
 
 @end

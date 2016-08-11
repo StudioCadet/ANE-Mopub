@@ -30,7 +30,6 @@
 		<option>-framework StoreKit</option>
 		<option>-framework SystemConfiguration</option>
 		<option>-framework UIKit</option>
-        <option>-framework AdColony</option>
         <option>-framework CoreMotion</option>
         <option>-framework iAd</option>
 		<option>-weak_framework WebKit</option>
@@ -45,7 +44,6 @@
 	</linkerOptions>
 
     <packagedDependencies>
-        <!--<packagedDependency>AdColony.framework</packagedDependency>-->
         <packagedDependency>GoogleMobileAds.framework</packagedDependency>
         <packagedDependency>Chartboost.framework</packagedDependency>
     </packagedDependencies>

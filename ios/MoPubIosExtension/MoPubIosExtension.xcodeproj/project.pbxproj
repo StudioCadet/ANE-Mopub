@@ -289,7 +289,6 @@
 		48E89B0B199CEC68007C857D /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48E89B0A199CEC68007C857D /* Accelerate.framework */; };
 		6D247CC719E6630500F579CB /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D247CC619E6630500F579CB /* CoreMedia.framework */; };
 		6D5AFBD719E6846900D5C9A2 /* libz.1.2.5.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D247CC819E6634000F579CB /* libz.1.2.5.dylib */; settings = {ATTRIBUTES = (Required, ); }; };
-		6D8D40FD1B219E8800401572 /* AdColony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D8D40FC1B219E8800401572 /* AdColony.framework */; };
 		6D8D410B1B219E9A00401572 /* IMBanner.h in Headers */ = {isa = PBXBuildFile; fileRef = 6D8D40FF1B219E9A00401572 /* IMBanner.h */; };
 		6D8D410C1B219E9A00401572 /* IMBannerDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 6D8D41001B219E9A00401572 /* IMBannerDelegate.h */; };
 		6D8D410D1B219E9A00401572 /* IMConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 6D8D41011B219E9A00401572 /* IMConstants.h */; };
@@ -660,7 +659,6 @@
 		48E89B0A199CEC68007C857D /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		6D247CC619E6630500F579CB /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		6D247CC819E6634000F579CB /* libz.1.2.5.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.2.5.dylib; path = usr/lib/libz.1.2.5.dylib; sourceTree = SDKROOT; };
-		6D8D40FC1B219E8800401572 /* AdColony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AdColony.framework; sourceTree = "<group>"; };
 		6D8D40FF1B219E9A00401572 /* IMBanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMBanner.h; sourceTree = "<group>"; };
 		6D8D41001B219E9A00401572 /* IMBannerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMBannerDelegate.h; sourceTree = "<group>"; };
 		6D8D41011B219E9A00401572 /* IMConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMConstants.h; sourceTree = "<group>"; };
@@ -762,7 +760,6 @@
 				483B182419FFEE8900660DCC /* CoreLocation.framework in Frameworks */,
 				6D5AFBD719E6846900D5C9A2 /* libz.1.2.5.dylib in Frameworks */,
 				48E89B0B199CEC68007C857D /* Accelerate.framework in Frameworks */,
-				6D8D40FD1B219E8800401572 /* AdColony.framework in Frameworks */,
 				79F87D2E177B41AC0047359B /* AddressBook.framework in Frameworks */,
 				79F87D2F177B41AC0047359B /* AddressBookUI.framework in Frameworks */,
 				7FB0C0D21D509EC200984F19 /* libAdMarvelSDK.a in Frameworks */,
@@ -1265,19 +1262,10 @@
 		48A468A31966C60600171565 /* AdColony */ = {
 			isa = PBXGroup;
 			children = (
-				6D8D40FB1B219E8800401572 /* SDK */,
 				48A468A41966C60600171565 /* AdColonyInterstitialCustomEvent.h */,
 				48A468A51966C60600171565 /* AdColonyInterstitialCustomEvent.m */,
 			);
 			path = AdColony;
-			sourceTree = "<group>";
-		};
-		6D8D40FB1B219E8800401572 /* SDK */ = {
-			isa = PBXGroup;
-			children = (
-				6D8D40FC1B219E8800401572 /* AdColony.framework */,
-			);
-			path = SDK;
 			sourceTree = "<group>";
 		};
 		6D8D40FE1B219E9A00401572 /* SDK */ = {
