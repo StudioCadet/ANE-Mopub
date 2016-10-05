@@ -10,6 +10,9 @@
 		<packagedDependency>inmobi.jar</packagedDependency>
 		<packagedDependency>mopub-volley-1.1.0.jar</packagedDependency>
 		<packagedDependency>SmartAdServer-Android-SDK-6.1.jar</packagedDependency>
+		<packagedDependency>dagger-2.4.jar</packagedDependency>
+		<packagedDependency>javax.inject-1.jar</packagedDependency>
+		<packagedDependency>vungle-publisher-adaptive-id-4.0.2.jar</packagedDependency>
     </packagedDependencies> 
 	
     <packagedResources>

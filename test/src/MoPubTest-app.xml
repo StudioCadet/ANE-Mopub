@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
-<application xmlns="http://ns.adobe.com/air/application/16.0">
+<application xmlns="http://ns.adobe.com/air/application/18.0">
 
 <!-- Adobe AIR Application Descriptor File Template.
 
@@ -327,6 +327,14 @@
 							  android:configChanges="keyboardHidden|orientation|screenSize"
 							  android:theme="@android:style/Theme.Translucent.NoTitleBar"
 							  android:excludeFromRecents="true" />
+					
+					<!-- MoPub : Vungle mediation -->
+					<activity android:name="com.vungle.publisher.VideoFullScreenAdActivity"
+							  android:configChanges="keyboardHidden|orientation|screenSize"
+							  android:theme="@android:style/Theme.NoTitleBar.Fullscreen"/>
+					<activity android:name="com.vungle.publisher.MraidFullScreenAdActivity"
+							  android:configChanges="keyboardHidden|orientation|screenSize"
+							  android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen"/>
 					
 			    </application>
 			    
