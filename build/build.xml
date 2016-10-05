@@ -113,6 +113,7 @@
 				<pathelement location="../android/libs/dagger-2.4.jar"/>
 				<pathelement location="../android/libs/javax.inject-1.jar"/>
 				<pathelement location="../android/libs/vungle-publisher-adaptive-id-4.0.2.jar"/>
+				<pathelement location="../android/libs/unity-ads-2.0.5.jar"/>
 			</classpath>
 		</javac>
 		<jar basedir="../bin/android/temp/classes" destfile="../bin/android/${name}.jar"/>

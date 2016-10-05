@@ -13,6 +13,7 @@
 		<packagedDependency>dagger-2.4.jar</packagedDependency>
 		<packagedDependency>javax.inject-1.jar</packagedDependency>
 		<packagedDependency>vungle-publisher-adaptive-id-4.0.2.jar</packagedDependency>
+		<packagedDependency>unity-ads-2.0.5.jar</packagedDependency>
     </packagedDependencies> 
 	
     <packagedResources>

@@ -21,6 +21,8 @@ For instructions, see https://bugbase.adobe.com/index.cfm?event=bug&id=3846188
 
 - Vungle Android SDK version : 4.0.2
 
+- Unity Ads Android SDK version : 2.0.5
+
 - Google Play Services Android SDK : 7.8.95
 
 
