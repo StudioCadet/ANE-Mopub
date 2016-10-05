@@ -16,7 +16,7 @@ static FREContext staticContext;
 {
 }
 @property (nonatomic, assign)FREContext context;
-@property (nonatomic, assign)MPInterstitialAdController* interstitial;
+@property (nonatomic, weak)MPInterstitialAdController* interstitial;
 
 @end
 
@@ -43,7 +43,6 @@ static FREContext staticContext;
 {
     self.interstitial.delegate = nil;
     self.interstitial = nil;
-    [super dealloc];
 }
 
 - (BOOL) getIsReady

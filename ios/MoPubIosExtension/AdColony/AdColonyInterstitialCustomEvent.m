@@ -18,7 +18,7 @@
 
 @interface MPAdColonyRouter : NSObject <AdColonyDelegate>
 
-@property (nonatomic, retain) NSMutableDictionary *events;
+@property (nonatomic, strong) NSMutableDictionary *events;
 
 + (MPAdColonyRouter *)sharedRouter;
 
@@ -42,7 +42,7 @@
     return [self singletonForClass:[MPAdColonyRouter class]
                           provider:^id
             {
-                return [[[MPAdColonyRouter alloc] init] autorelease];
+                return [[MPAdColonyRouter alloc] init];
             }];
 }
 
@@ -61,12 +61,6 @@
 
 @synthesize zoneId = _zoneId;
 
-- (void)dealloc
-{
-    self.zoneId = nil;
-    
-    [super dealloc];
-}
 
 #pragma mark - MPInterstitialCustomEvent Subclass Methods
 
@@ -183,12 +177,6 @@
     return self;
 }
 
-- (void)dealloc
-{
-    self.events = nil;
-    
-    [super dealloc];
-}
 
 - (void)addEvent:(AdColonyInterstitialCustomEvent *)event forZone:(NSString *)zone
 {

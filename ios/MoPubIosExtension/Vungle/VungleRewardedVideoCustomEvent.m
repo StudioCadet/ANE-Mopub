@@ -21,9 +21,7 @@
 
 - (void)dealloc
 {
-    [[MPVungleRouter sharedRouter] clearDelegate:self];
-    [super dealloc];
-}
+    [[MPVungleRouter sharedRouter] clearDelegate:self];}
 
 - (void)requestRewardedVideoWithCustomEventInfo:(NSDictionary *)info
 {

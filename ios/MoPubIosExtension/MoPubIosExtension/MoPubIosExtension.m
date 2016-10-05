@@ -252,15 +252,14 @@ DEFINE_ANE_FUNCTION( mopub_initialiseBanner )
     }
     
     MoPubBanner* banner = [[MoPubBanner alloc] initWithContext:context adUnitId:adUnitId size:adType];
-    [banner retain];
-    FRESetContextNativeData( context, banner );
+    FRESetContextNativeData( context, (void*)&banner );
     return NULL;
 }
 
 DEFINE_ANE_FUNCTION( mopub_setAutorefresh )
 {
     MoPubBanner* banner;
-    FREGetContextNativeData( context, (void**)&banner );
+    FREGetContextNativeData( context, (void*)&banner );
     if( banner != nil )
     {
         uint32_t autoRefresh;
@@ -273,7 +272,7 @@ DEFINE_ANE_FUNCTION( mopub_setAutorefresh )
 DEFINE_ANE_FUNCTION( mopub_setTestMode )
 {
     MoPubBanner* banner;
-    FREGetContextNativeData( context, (void**)&banner );
+    FREGetContextNativeData( context, (void*)&banner );
     if( banner != nil )
     {
         uint32_t testing;
@@ -286,7 +285,7 @@ DEFINE_ANE_FUNCTION( mopub_setTestMode )
 DEFINE_ANE_FUNCTION( mopub_setAdUnitId )
 {
     MoPubBanner* banner;
-    FREGetContextNativeData( context, (void**)&banner );
+    FREGetContextNativeData( context, (void*)&banner );
     if( banner != nil )
     {
         NSString* adUnitId;
@@ -299,7 +298,7 @@ DEFINE_ANE_FUNCTION( mopub_setAdUnitId )
 DEFINE_ANE_FUNCTION( mopub_lockNativeAdsToOrientation )
 {
     MoPubBanner* banner;
-    FREGetContextNativeData( context, (void**)&banner );
+    FREGetContextNativeData( context, (void*)&banner );
     if( banner != nil )
     {
         int32_t orientation;
@@ -323,7 +322,7 @@ DEFINE_ANE_FUNCTION( mopub_lockNativeAdsToOrientation )
 DEFINE_ANE_FUNCTION( mopub_getPositionX )
 {
     MoPubBanner* banner;
-    FREGetContextNativeData( context, (void**)&banner );
+    FREGetContextNativeData( context, (void*)&banner );
     if( banner != nil )
     {
         int32_t pos = [banner getPositionX];
@@ -339,7 +338,7 @@ DEFINE_ANE_FUNCTION( mopub_getPositionX )
 DEFINE_ANE_FUNCTION( mopub_getPositionY )
 {
     MoPubBanner* banner;
-    FREGetContextNativeData( context, (void**)&banner );
+    FREGetContextNativeData( context, (void*)&banner );
     if( banner != nil )
     {
         int32_t pos = [banner getPositionY];
@@ -355,7 +354,7 @@ DEFINE_ANE_FUNCTION( mopub_getPositionY )
 DEFINE_ANE_FUNCTION( mopub_getWidth )
 {
     MoPubBanner* banner;
-    FREGetContextNativeData( context, (void**)&banner );
+    FREGetContextNativeData( context, (void*)&banner );
     if( banner != nil )
     {
         int32_t width = [banner getFrameWidth];
@@ -371,7 +370,7 @@ DEFINE_ANE_FUNCTION( mopub_getWidth )
 DEFINE_ANE_FUNCTION( mopub_getHeight )
 {
     MoPubBanner* banner;
-    FREGetContextNativeData( context, (void**)&banner );
+    FREGetContextNativeData( context, (void*)&banner );
     if( banner != nil )
     {
         int32_t height = [banner getFrameHeight];
@@ -387,7 +386,7 @@ DEFINE_ANE_FUNCTION( mopub_getHeight )
 DEFINE_ANE_FUNCTION( mopub_setPositionX )
 {
     MoPubBanner* banner;
-    FREGetContextNativeData( context, (void**)&banner );
+    FREGetContextNativeData( context, (void*)&banner );
     if( banner != nil )
     {
         int32_t posX;
@@ -400,7 +399,7 @@ DEFINE_ANE_FUNCTION( mopub_setPositionX )
 DEFINE_ANE_FUNCTION( mopub_setPositionY )
 {
     MoPubBanner* banner;
-    FREGetContextNativeData( context, (void**)&banner );
+    FREGetContextNativeData( context, (void*)&banner );
     if( banner != nil )
     {
         int32_t posY;
@@ -413,7 +412,7 @@ DEFINE_ANE_FUNCTION( mopub_setPositionY )
 DEFINE_ANE_FUNCTION( mopub_setWidth )
 {
     MoPubBanner* banner;
-    FREGetContextNativeData( context, (void**)&banner );
+    FREGetContextNativeData( context, (void*)&banner );
     if( banner != nil )
     {
         int32_t width;
@@ -426,7 +425,7 @@ DEFINE_ANE_FUNCTION( mopub_setWidth )
 DEFINE_ANE_FUNCTION( mopub_setHeight )
 {
     MoPubBanner* banner;
-    FREGetContextNativeData( context, (void**)&banner );
+    FREGetContextNativeData( context, (void*)&banner );
     if( banner != nil )
     {
         int32_t height;
@@ -439,7 +438,7 @@ DEFINE_ANE_FUNCTION( mopub_setHeight )
 DEFINE_ANE_FUNCTION( mopub_setSize )
 {
     MoPubBanner* banner;
-    FREGetContextNativeData( context, (void**)&banner );
+    FREGetContextNativeData( context, (void*)&banner );
     if( banner != nil )
     {
         int32_t size;
@@ -452,7 +451,7 @@ DEFINE_ANE_FUNCTION( mopub_setSize )
 DEFINE_ANE_FUNCTION( mopub_getCreativeWidth )
 {
     MoPubBanner* banner;
-    FREGetContextNativeData( context, (void**)&banner );
+    FREGetContextNativeData( context, (void*)&banner );
     if( banner != nil )
     {
         int32_t width = [banner getCreativeWidth];
@@ -468,7 +467,7 @@ DEFINE_ANE_FUNCTION( mopub_getCreativeWidth )
 DEFINE_ANE_FUNCTION( mopub_getCreativeHeight )
 {
     MoPubBanner* banner;
-    FREGetContextNativeData( context, (void**)&banner );
+    FREGetContextNativeData( context, (void*)&banner );
     if( banner != nil )
     {
         int32_t height = [banner getCreativeHeight];
@@ -484,7 +483,7 @@ DEFINE_ANE_FUNCTION( mopub_getCreativeHeight )
 DEFINE_ANE_FUNCTION( mopub_loadBanner )
 {
     MoPubBanner* banner;
-    FREGetContextNativeData( context, (void**)&banner );
+    FREGetContextNativeData( context, (void*)&banner );
     if( banner != nil )
     {
         [banner loadBanner];
@@ -495,7 +494,7 @@ DEFINE_ANE_FUNCTION( mopub_loadBanner )
 DEFINE_ANE_FUNCTION( mopub_showBanner )
 {
     MoPubBanner* banner;
-    FREGetContextNativeData( context, (void**)&banner );
+    FREGetContextNativeData( context, (void*)&banner );
     if( banner != nil )
     {
         [banner showBanner];
@@ -506,7 +505,7 @@ DEFINE_ANE_FUNCTION( mopub_showBanner )
 DEFINE_ANE_FUNCTION( mopub_removeBanner )
 {
     MoPubBanner* banner;
-    FREGetContextNativeData( context, (void**)&banner );
+    FREGetContextNativeData( context, (void*)&banner );
     if( banner != nil )
     {
         [banner removeBanner];
@@ -517,12 +516,11 @@ DEFINE_ANE_FUNCTION( mopub_removeBanner )
 DEFINE_ANE_FUNCTION( mopub_disposeBanner )
 {
     MoPubBanner* banner;
-    FREGetContextNativeData( context, (void**)&banner );
+    FREGetContextNativeData( context, (void*)&banner );
     if( banner != nil )
     {
         NSLog(@"Disposing banner...");
         [banner removeFromSuperview];
-        [banner release];
     }
     
     return NULL;
@@ -540,15 +538,14 @@ DEFINE_ANE_FUNCTION( mopub_initialiseInterstitial )
     if( [mopubConverter FREGetObject:argv[0] asString:&adUnitId] != FRE_OK ) return NULL;
     
     MoPubInterstitial* interstitial = [[MoPubInterstitial alloc] initWithContext:context adUnitId:adUnitId];
-    [interstitial retain];
-    FRESetContextNativeData( context, interstitial );
+    FRESetContextNativeData( context, (void*)&interstitial );
     return NULL;
 }
 
 DEFINE_ANE_FUNCTION( mopub_setInterstitialTestMode )
 {
     MoPubInterstitial* interstitial;
-    FREGetContextNativeData( context, (void**)&interstitial );
+    FREGetContextNativeData( context, (void*)&interstitial );
     if( interstitial != nil )
     {
         uint32_t testing;
@@ -561,7 +558,7 @@ DEFINE_ANE_FUNCTION( mopub_setInterstitialTestMode )
 DEFINE_ANE_FUNCTION( mopub_getInterstitialReady )
 {
     MoPubInterstitial* interstitial;
-    FREGetContextNativeData( context, (void**)&interstitial );
+    FREGetContextNativeData( context, (void*)&interstitial );
     if( interstitial != nil )
     {
         BOOL ready = [interstitial getIsReady];
@@ -577,7 +574,7 @@ DEFINE_ANE_FUNCTION( mopub_getInterstitialReady )
 DEFINE_ANE_FUNCTION( mopub_loadInterstitial )
 {
     MoPubInterstitial* interstitial;
-    FREGetContextNativeData( context, (void**)&interstitial );
+    FREGetContextNativeData( context, (void*)&interstitial );
     if( interstitial != nil )
     {        
         [interstitial loadInterstitial];
@@ -588,7 +585,7 @@ DEFINE_ANE_FUNCTION( mopub_loadInterstitial )
 DEFINE_ANE_FUNCTION( mopub_showInterstitial )
 {
     MoPubInterstitial* interstitial;
-    FREGetContextNativeData( context, (void**)&interstitial );
+    FREGetContextNativeData( context, (void*)&interstitial );
     if( interstitial != nil )
     {
         BOOL success = [interstitial showInterstitial];
@@ -605,11 +602,7 @@ DEFINE_ANE_FUNCTION( mopub_showInterstitial )
 DEFINE_ANE_FUNCTION( mopub_disposeInterstitial )
 {
     MoPubInterstitial* interstitial;
-    FREGetContextNativeData( context, (void**)&interstitial );
-    if( interstitial != nil )
-    {
-        [interstitial release];
-    }
+    FREGetContextNativeData( context, (void*)&interstitial );
     
     return NULL;
 }
@@ -699,17 +692,15 @@ void MoPubContextInitializer( void* extData, const uint8_t* ctxType, FREContext 
 void MoPubContextFinalizer( FREContext ctx )
 {
     id banner;
-    FREGetContextNativeData( ctx, (void**)&banner );
+    FREGetContextNativeData( ctx, (void*)&banner );
     if( banner != nil )
     {
         if( [banner isKindOfClass:[MoPubBanner class] ] )
         {
             [banner removeFromSuperview];
-            [banner release];
         }
         else if( [banner isKindOfClass:[MoPubInterstitial class] ] )
         {
-            [banner release];
         }
     }
 	return;
@@ -721,11 +712,10 @@ void MoPubExtensionInitializer( void** extDataToSet, FREContextInitializer* ctxI
     *ctxInitializerToSet = &MoPubContextInitializer;
     *ctxFinalizerToSet = &MoPubContextFinalizer;
     
-    mopubConverter = [[[MoPub_TypeConversion alloc] init] retain];
+    mopubConverter = [[MoPub_TypeConversion alloc] init];
 }
 
 void MoPubExtensionFinalizer()
 {
-    [mopubConverter release];
     return;
 }

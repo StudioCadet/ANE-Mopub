@@ -26,7 +26,6 @@ static NSString *const kUnityAdsOptionZoneIdKey = @"zoneId";
 - (void)dealloc
 {
     [[MPUnityRouter sharedRouter] clearDelegate:self];
-    [super dealloc];
 }
 
 - (void)requestRewardedVideoWithCustomEventInfo:(NSDictionary *)info

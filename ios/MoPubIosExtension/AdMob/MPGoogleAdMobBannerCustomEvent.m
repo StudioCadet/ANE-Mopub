@@ -58,7 +58,6 @@
 {
     self.adBannerView.delegate = nil;
     
-    [super dealloc];
 }
 
 - (void)requestAdWithSize:(CGSize)size customEventInfo:(NSDictionary *)info

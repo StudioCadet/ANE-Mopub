@@ -48,7 +48,6 @@
 - (void)dealloc
 {
     [[MPVungleRouter sharedRouter] clearDelegate:self];
-    [super dealloc];
 }
 
 - (void)invalidate

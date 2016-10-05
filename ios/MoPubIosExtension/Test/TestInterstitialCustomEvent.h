@@ -3,6 +3,6 @@
 
 @interface TestInterstitialCustomEvent : MPInterstitialCustomEvent
 
-@property (nonatomic, retain) SASInterstitialCustomEvent *interstitialCustomEvent;
+@property (nonatomic, strong) SASInterstitialCustomEvent *interstitialCustomEvent;
 
 @end

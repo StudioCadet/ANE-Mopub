@@ -3,6 +3,6 @@
 
 @interface TestBannerCustomEvent : MPBannerCustomEvent
 
-@property (nonatomic, retain) SASBannerCustomEvent *bannerCustomEvent;
+@property (nonatomic, strong) SASBannerCustomEvent *bannerCustomEvent;
 
 @end

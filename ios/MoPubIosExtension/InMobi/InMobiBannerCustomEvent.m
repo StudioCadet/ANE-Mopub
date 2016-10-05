@@ -23,12 +23,12 @@
 
 - (IMBanner *)buildIMBannerWithFrame:(CGRect)frame appId:(NSString *)appId adSize:(int)adSize
 {
-    return [[[IMBanner alloc] initWithFrame:frame appId:appId adSize:adSize] autorelease];
+    return [[IMBanner alloc] initWithFrame:frame appId:appId adSize:adSize];
 }
 
 - (IMBanner *)buildIMBannerWithSlotIdAndFrame:(CGRect)frame slotId:(long long)slotId
 {
-    return [[[IMBanner alloc] initWithFrame:frame slotId:slotId] autorelease];
+    return [[IMBanner alloc] initWithFrame:frame slotId:slotId];
 }
 
 @end
@@ -37,7 +37,7 @@
 
 @interface InMobiBannerCustomEvent ()
 
-@property (nonatomic, retain) IMBanner *inMobiBanner;
+@property (nonatomic, strong) IMBanner *inMobiBanner;
 
 - (int)imAdSizeConstantForCGSize:(CGSize)size;
 
@@ -106,8 +106,6 @@
 - (void)dealloc
 {
     [self.inMobiBanner setDelegate:nil];
-    self.inMobiBanner = nil;
-    [super dealloc];
 }
 
 #pragma mark - IMBannerDelegate

@@ -37,7 +37,4 @@
     return [self.mopubWebsiteData objectForKey:propertyKey];
 }
 
-- (void)dealloc {
-    [super dealloc];
-}
 @end

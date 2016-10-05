@@ -40,9 +40,4 @@
     return [self.interstitialCustomEvent enableAutomaticImpressionAndClickTracking];
 }
 
--(void) dealloc {
-    self.interstitialCustomEvent = nil;
-    
-    [super dealloc];
-}
 @end
