@@ -39,9 +39,10 @@
 	    -->
 		
 		<copy todir="../bin/ios">
-            <fileset dir="../ios/MoPubIosExtension/AdColony/SDK"/>
             <fileset dir="../ios/MoPubIosExtension/AdMob/SDK" />
             <fileset dir="../ios/MoPubIosExtension/Chartboost/SDK" />
+            <fileset dir="../ios/MoPubIosExtension/InMobi/SDK" />
+            <fileset dir="../ios/MoPubIosExtension/Opera/AdMarvelSDK" />
 			<fileset dir="../ios/MoPubIosExtension/SmartAdServer/SDK">
 				<include name="sas.bundle/**" />
 			</fileset>
@@ -110,6 +111,8 @@
 				<pathelement location="../android/libs/inmobi.jar"/>
 				<pathelement location="../android/libs/mopub-volley-1.1.0.jar"/>
 				<pathelement location="../android/libs/SmartAdServer-Android-SDK-6.1.jar"/>
+				<pathelement location="../android/libs/admarvel-android-sdk-core-adcolony.jar"/>
+				<pathelement location="../android/libs/operamediaworks-android-sdk-mopub-adapter.jar"/>
 			</classpath>
 		</javac>
 		<jar basedir="../bin/android/temp/classes" destfile="../bin/android/${name}.jar"/>
