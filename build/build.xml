@@ -45,11 +45,15 @@
 			<fileset dir="../ios/MoPubIosExtension/SmartAdServer/SDK">
 				<include name="sas.bundle/**" />
 			</fileset>
+			<fileset dir="../ios/MoPubIosExtension/UnityAds/SDK" />
+			<fileset dir="../ios/MoPubIosExtension/Vungle/SDK" />
 		</copy>
 		
 		<delete dir="../bin/ios/AdColony.framework/Versions"/>
 		<delete dir="../bin/ios/GoogleMobileAds.framework/Versions"/>
 		<delete dir="../bin/ios/Chartboost.framework/Versions"/>
+		<delete dir="../bin/ios/UnityAds.framework/Versions"/>
+		<delete dir="../bin/ios/VungleSDK.framework/Versions"/>
 
 
 		<exec executable="ibtool" failonerror="true">

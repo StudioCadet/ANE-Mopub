@@ -25,6 +25,8 @@
         <option>-framework CoreLocation</option>
         <option>-framework GoogleMobileAds</option>
         <option>-framework Chartboost</option>
+        <option>-framework VungleSDK</option>
+        <option>-framework UnityAds</option>
 
 		<option>-lsqlite3</option>
 		<option>-lz</option>
@@ -35,6 +37,8 @@
         <packagedDependency>AdColony.framework</packagedDependency>
         <packagedDependency>GoogleMobileAds.framework</packagedDependency>
         <packagedDependency>Chartboost.framework</packagedDependency>
+        <packagedDependency>VungleSDK.framework</packagedDependency>
+        <packagedDependency>UnityAds.framework</packagedDependency>
     </packagedDependencies>
 
 </platform>
