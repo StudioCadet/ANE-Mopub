@@ -5,6 +5,7 @@ import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
 
+import com.sticksports.nativeExtensions.mopub.MoPubExtension;
 import com.vungle.publisher.EventListener;
 import com.vungle.publisher.VunglePub;
 
@@ -55,7 +56,9 @@ public class VungleInterstitial extends CustomEventInterstitial implements Event
         } else {
             appId = DEFAULT_VUNGLE_APP_ID;
         }
-
+        
+        MoPubExtension.log("Loading a Vungle interstitial for app ID " + appId + " ...");
+        
         // init clears the event listener.
         mVunglePub.init(context, appId);
         mVunglePub.setEventListeners(this);
@@ -71,7 +74,7 @@ public class VungleInterstitial extends CustomEventInterstitial implements Event
         if (mVunglePub.isAdPlayable()) {
             mVunglePub.playAd();
         } else {
-            Log.d("MoPub", "Tried to show a Vungle interstitial ad before it finished loading. Please try again.");
+            MoPubExtension.log("Tried to show a Vungle interstitial ad before it finished loading. Please try again.");
         }
     }
 
@@ -86,7 +89,7 @@ public class VungleInterstitial extends CustomEventInterstitial implements Event
     }
 
     private void notifyAdAvailable() {
-        Log.d("MoPub", "Vungle interstitial ad successfully loaded.");
+    	MoPubExtension.log("Vungle interstitial ad successfully loaded.");
         mIsLoading = false;
         mHandler.post(new Runnable() {
             @Override
@@ -103,7 +106,7 @@ public class VungleInterstitial extends CustomEventInterstitial implements Event
     @Override
     public void onVideoView(final boolean isCompletedView, final int watchedMillis, final int videoDurationMillis) {
         final double watchedPercent = (double) watchedMillis / videoDurationMillis * 100;
-        Log.d("MoPub", String.format("%.1f%% of Vungle video watched.", watchedPercent));
+        MoPubExtension.log(String.format("%.1f%% of Vungle video watched.", watchedPercent));
     }
 
     @Override
@@ -111,7 +114,7 @@ public class VungleInterstitial extends CustomEventInterstitial implements Event
         mHandler.post(new Runnable() {
             @Override
             public void run() {
-                Log.d("MoPub", "Showing Vungle interstitial ad.");
+            	MoPubExtension.log("Showing Vungle interstitial ad.");
                 mCustomEventInterstitialListener.onInterstitialShown();
             }
         });
@@ -122,11 +125,8 @@ public class VungleInterstitial extends CustomEventInterstitial implements Event
         mHandler.post(new Runnable() {
             @Override
             public void run() {
-                Log.d("MoPub", "Vungle interstitial ad dismissed (successful view ? " + wasSuccessfulView + ", clicked ? " + wasCallToActionClicked + ".");
-                if(wasSuccessfulView)
-                	mCustomEventInterstitialListener.onInterstitialShown();
-                else
-                	mCustomEventInterstitialListener.onInterstitialDismissed();
+            	MoPubExtension.log("Vungle interstitial ad dismissed (successful view ? " + wasSuccessfulView + ", clicked ? " + wasCallToActionClicked + ").");
+                mCustomEventInterstitialListener.onInterstitialDismissed();
                 if(wasCallToActionClicked)
                     mCustomEventInterstitialListener.onInterstitialClicked();
             }

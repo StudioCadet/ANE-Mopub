@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.text.TextUtils;
 
 import com.mopub.common.MoPub;
+import com.sticksports.nativeExtensions.mopub.MoPubExtension;
 import com.unity3d.ads.IUnityAdsListener;
 import com.unity3d.ads.UnityAds;
 import com.unity3d.ads.metadata.MediationMetaData;
@@ -22,10 +23,12 @@ public class UnityRouter {
         if (serverExtras.containsKey(GAME_ID_KEY)) {
             gameId = serverExtras.get(GAME_ID_KEY);
             if (TextUtils.isEmpty(gameId)) {
+            	MoPubExtension.logE("Empty " + GAME_ID_KEY + " provided in server extras !");
                 onInitFailed.run();
                 return false;
             }
         } else {
+        	MoPubExtension.logE("No " + GAME_ID_KEY + " provided in server extras !");
             onInitFailed.run();
             return false;
         }
@@ -35,6 +38,7 @@ public class UnityRouter {
         mediationMetaData.setVersion(MoPub.SDK_VERSION);
         mediationMetaData.commit();
 
+        MoPubExtension.log("Initializing UnityAds SDK with game ID " + gameId);
         UnityAds.initialize(launcherActivity, gameId, unityAdsListener);
         return true;
     }

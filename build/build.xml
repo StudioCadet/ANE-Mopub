@@ -85,8 +85,8 @@
 		<property name="android.support.annotations" value="${android.sdk}/extras/android/support/annotations/android-support-annotations.jar"/>
 		<property name="android.supportV7.recyclerview" value="${android.sdk}/extras/android/support/v7/recyclerview/libs/android-support-v7-recyclerview.jar"/>
 		<property name="android.supportV7.recyclerview.res" value="${android.sdk}/extras/android/support/v7/recyclerview/res"/>
-		<property name="android.gps.jar" value="${android.sdk}/extras/google/google_play_services/libproject/google-play-services_lib/libs/google-play-services.jar"/>
-		<property name="android.gps.res" value="${android.sdk}/extras/google/google_play_services/libproject/google-play-services_lib/res"/>
+		<property name="android.gps.jar" value="${android.sdk}/extras/google/google-play-services/libproject/google-play-services_lib/libs/google-play-services.jar"/>
+		<property name="android.gps.res" value="${android.sdk}/extras/google/google-play-services/libproject/google-play-services_lib/res"/>
 		
 		<delete>
 			<fileset dir="../bin/android" excludes="library.swf"/>

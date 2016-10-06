@@ -4,8 +4,11 @@ import android.app.Activity;
 import android.content.Context;
 import android.text.TextUtils;
 
+import com.mopub.common.MoPub;
+import com.sticksports.nativeExtensions.mopub.MoPubExtension;
 import com.unity3d.ads.IUnityAdsListener;
 import com.unity3d.ads.UnityAds;
+import com.unity3d.ads.UnityAds.FinishState;
 
 import java.util.Map;
 
@@ -18,7 +21,10 @@ public class UnityInterstitial extends CustomEventInterstitial implements IUnity
 
     @Override
     protected void loadInterstitial(Context context, CustomEventInterstitialListener customEventInterstitialListener, Map<String, Object> localExtras, Map<String, String> serverExtras) {
-        if (sInitialized) {
+        MoPubExtension.log("Trying to load a UnityAds interstitial ad ...");
+    	
+    	if (sInitialized) {
+        	MoPubExtension.log("UnityAds is already initialized, skipping init.");
             return;
         }
 
@@ -32,6 +38,7 @@ public class UnityInterstitial extends CustomEventInterstitial implements IUnity
 
         if (!UnityRouter.initUnityAds(serverExtras, mLauncherActivity, this, new Runnable() {
             public void run() {
+            	MoPubExtension.logE("Failed to initialize UnityAds SDK.");
                 mCustomEventInterstitialListener.onInterstitialFailed(MoPubErrorCode.NETWORK_INVALID_STATE);
             }
         })) {
@@ -39,12 +46,16 @@ public class UnityInterstitial extends CustomEventInterstitial implements IUnity
         }
 
         mPlacementId = UnityRouter.placementIdForServerExtras(serverExtras);
+        
+        MoPubExtension.log("Initializing UnityAds placement with ID " + mPlacementId + " ...");
         UnityRouter.initPlacement(mPlacementId, new Runnable() {
             public void run() {
+            	MoPubExtension.log("UnityAds interstitial failed to init placement!");
                 mCustomEventInterstitialListener.onInterstitialFailed(MoPubErrorCode.NETWORK_INVALID_STATE);
             }
         }, new Runnable() {
             public void run() {
+            	MoPubExtension.log("UnityAds interstitial loaded.");
                 mCustomEventInterstitialListener.onInterstitialLoaded();
             }
         });
@@ -55,8 +66,11 @@ public class UnityInterstitial extends CustomEventInterstitial implements IUnity
     @Override
     protected void showInterstitial() {
         if (UnityAds.isReady(mPlacementId) && mLauncherActivity != null) {
+        	MoPubExtension.log("Showing a UnityAds interstitial ad ...");
             UnityAds.show(mLauncherActivity, mPlacementId);
         }
+        else
+        	MoPubExtension.logW("UnityAds interstitial is not ready yet!");
     }
 
     @Override
@@ -66,22 +80,25 @@ public class UnityInterstitial extends CustomEventInterstitial implements IUnity
 
     @Override
     public void onUnityAdsReady(String s) {
+    	MoPubExtension.log("UnityAds interstitial loaded.");
         mCustomEventInterstitialListener.onInterstitialLoaded();
     }
 
     @Override
     public void onUnityAdsStart(String s) {
+    	MoPubExtension.log("UnityAds interstitial showing.");
         mCustomEventInterstitialListener.onInterstitialShown();
     }
 
     @Override
     public void onUnityAdsFinish(String s, UnityAds.FinishState finishState) {
-        mCustomEventInterstitialListener.onInterstitialDismissed();
+    	MoPubExtension.log("UnityAds interstitial ad displayed successfully. State :" + finishState + ".");
+    	mCustomEventInterstitialListener.onInterstitialDismissed();
     }
 
     @Override
     public void onUnityAdsError(UnityAds.UnityAdsError unityAdsError, String s) {
-        MoPubErrorCode errorCode;
+    	MoPubErrorCode errorCode;
         switch (unityAdsError) {
             case VIDEO_PLAYER_ERROR:
                 errorCode = MoPubErrorCode.VIDEO_PLAYBACK_ERROR;
@@ -93,6 +110,7 @@ public class UnityInterstitial extends CustomEventInterstitial implements IUnity
                 errorCode = MoPubErrorCode.NETWORK_INVALID_STATE;
                 break;
         }
+        MoPubExtension.logW("Error with UnityAds interstitial : " + unityAdsError + ", " + s);
         mCustomEventInterstitialListener.onInterstitialFailed(errorCode);
     }
 }
