@@ -45,8 +45,9 @@ static NSDate *lastImpressionFailedAt = nil;
 -(void)adViewDidDisappear:(SASAdView *)adView {
     if (adView == self.mpCustomEvent.interstitial) {
         NSLog(@"Ad view did disappear.");
-        [self.mpCustomEvent.interstitial.delegate dismissViewControllerAnimated:YES completion:^{[self dismissViewControllerAnimated:YES completion:nil];}];
-        [self.mpCustomEvent.interstitial.delegate removeFromParentViewController];
+        UIViewController *delegate = (UIViewController *) self.mpCustomEvent.interstitial.delegate;
+        [delegate dismissViewControllerAnimated:YES completion:^{[self dismissViewControllerAnimated:YES completion:nil];}];
+        [delegate removeFromParentViewController];
         [self.mpCustomEvent.delegate interstitialCustomEventWillDisappear:self.mpCustomEvent];
         [self.mpCustomEvent.delegate interstitialCustomEventDidDisappear:self.mpCustomEvent];
     }
