@@ -294,7 +294,6 @@
 		228F62D71DA5597D004AC26E /* VungleInterstitialCustomEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 228F62BE1DA5597D004AC26E /* VungleInterstitialCustomEvent.m */; };
 		228F62D81DA5597D004AC26E /* VungleRewardedVideoCustomEvent.h in Headers */ = {isa = PBXBuildFile; fileRef = 228F62BF1DA5597D004AC26E /* VungleRewardedVideoCustomEvent.h */; };
 		228F62D91DA5597D004AC26E /* VungleRewardedVideoCustomEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 228F62C01DA5597D004AC26E /* VungleRewardedVideoCustomEvent.m */; };
-		229A32101DA67DFC00CEDA54 /* GoogleMobileAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 229A320F1DA67DFC00CEDA54 /* GoogleMobileAds.framework */; };
 		349B4DBE1946F1CE00184794 /* InMobiBannerCustomEvent.h in Headers */ = {isa = PBXBuildFile; fileRef = 349B4DB91946F1CE00184794 /* InMobiBannerCustomEvent.h */; };
 		349B4DBF1946F1CE00184794 /* InMobiBannerCustomEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 349B4DBA1946F1CE00184794 /* InMobiBannerCustomEvent.m */; };
 		349B4DC01946F1CE00184794 /* InMobiInterstitialCustomEvent.h in Headers */ = {isa = PBXBuildFile; fileRef = 349B4DBB1946F1CE00184794 /* InMobiInterstitialCustomEvent.h */; };
@@ -350,9 +349,16 @@
 		79F87D2F177B41AC0047359B /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79F87D21177B41950047359B /* AddressBookUI.framework */; };
 		79F87D30177B41AC0047359B /* EventKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79F87D22177B41950047359B /* EventKit.framework */; };
 		79F87D31177B41AC0047359B /* EventKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79F87D23177B41950047359B /* EventKitUI.framework */; };
-		7F770A1B1DA6A606009420AF /* LICENSE.md in Sources */ = {isa = PBXBuildFile; fileRef = 7F770A111DA6A606009420AF /* LICENSE.md */; };
-		7F770A1C1DA6A606009420AF /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 7F770A121DA6A606009420AF /* README.md */; };
-		7F770A1D1DA6A606009420AF /* VungleSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F770A1A1DA6A606009420AF /* VungleSDK.framework */; };
+		7F329C141DA7D39500E7B42B /* FirebaseAnalytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F329C0D1DA7D39500E7B42B /* FirebaseAnalytics.framework */; };
+		7F329C151DA7D39500E7B42B /* FirebaseCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F329C0E1DA7D39500E7B42B /* FirebaseCore.framework */; };
+		7F329C161DA7D39500E7B42B /* FirebaseInstanceID.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F329C0F1DA7D39500E7B42B /* FirebaseInstanceID.framework */; };
+		7F329C171DA7D39500E7B42B /* GoogleInterchangeUtilities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F329C101DA7D39500E7B42B /* GoogleInterchangeUtilities.framework */; };
+		7F329C181DA7D39500E7B42B /* GoogleMobileAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F329C111DA7D39500E7B42B /* GoogleMobileAds.framework */; };
+		7F329C191DA7D39500E7B42B /* GoogleSymbolUtilities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F329C121DA7D39500E7B42B /* GoogleSymbolUtilities.framework */; };
+		7F329C1A1DA7D39500E7B42B /* GoogleUtilities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F329C131DA7D39500E7B42B /* GoogleUtilities.framework */; };
+		7F770A2C1DA79897009420AF /* LICENSE.md in Sources */ = {isa = PBXBuildFile; fileRef = 7F770A291DA79897009420AF /* LICENSE.md */; };
+		7F770A2D1DA79897009420AF /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 7F770A2A1DA79897009420AF /* README.md */; };
+		7F770A2E1DA79897009420AF /* VungleSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F770A2B1DA79897009420AF /* VungleSDK.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -671,7 +677,6 @@
 		228F62BE1DA5597D004AC26E /* VungleInterstitialCustomEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VungleInterstitialCustomEvent.m; sourceTree = "<group>"; };
 		228F62BF1DA5597D004AC26E /* VungleRewardedVideoCustomEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VungleRewardedVideoCustomEvent.h; sourceTree = "<group>"; };
 		228F62C01DA5597D004AC26E /* VungleRewardedVideoCustomEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VungleRewardedVideoCustomEvent.m; sourceTree = "<group>"; };
-		229A320F1DA67DFC00CEDA54 /* GoogleMobileAds.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMobileAds.framework; sourceTree = "<group>"; };
 		349B4DB91946F1CE00184794 /* InMobiBannerCustomEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InMobiBannerCustomEvent.h; sourceTree = "<group>"; };
 		349B4DBA1946F1CE00184794 /* InMobiBannerCustomEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InMobiBannerCustomEvent.m; sourceTree = "<group>"; };
 		349B4DBB1946F1CE00184794 /* InMobiInterstitialCustomEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InMobiInterstitialCustomEvent.h; sourceTree = "<group>"; };
@@ -733,15 +738,22 @@
 		79F87D23177B41950047359B /* EventKitUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKitUI.framework; path = System/Library/Frameworks/EventKitUI.framework; sourceTree = SDKROOT; };
 		79F87D24177B41950047359B /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		79F87D25177B41950047359B /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
-		7F770A111DA6A606009420AF /* LICENSE.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = LICENSE.md; sourceTree = "<group>"; };
-		7F770A121DA6A606009420AF /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		7F770A141DA6A606009420AF /* __vungle.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = __vungle.db; sourceTree = "<group>"; };
-		7F770A151DA6A606009420AF /* vg_close.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vg_close.png; sourceTree = "<group>"; };
-		7F770A161DA6A606009420AF /* vg_cta.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vg_cta.png; sourceTree = "<group>"; };
-		7F770A171DA6A606009420AF /* vg_mute_off.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vg_mute_off.png; sourceTree = "<group>"; };
-		7F770A181DA6A606009420AF /* vg_mute_on.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vg_mute_on.png; sourceTree = "<group>"; };
-		7F770A191DA6A606009420AF /* vg_privacy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vg_privacy.png; sourceTree = "<group>"; };
-		7F770A1A1DA6A606009420AF /* VungleSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = VungleSDK.framework; sourceTree = "<group>"; };
+		7F329C0D1DA7D39500E7B42B /* FirebaseAnalytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FirebaseAnalytics.framework; sourceTree = "<group>"; };
+		7F329C0E1DA7D39500E7B42B /* FirebaseCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FirebaseCore.framework; sourceTree = "<group>"; };
+		7F329C0F1DA7D39500E7B42B /* FirebaseInstanceID.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FirebaseInstanceID.framework; sourceTree = "<group>"; };
+		7F329C101DA7D39500E7B42B /* GoogleInterchangeUtilities.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleInterchangeUtilities.framework; sourceTree = "<group>"; };
+		7F329C111DA7D39500E7B42B /* GoogleMobileAds.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMobileAds.framework; sourceTree = "<group>"; };
+		7F329C121DA7D39500E7B42B /* GoogleSymbolUtilities.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleSymbolUtilities.framework; sourceTree = "<group>"; };
+		7F329C131DA7D39500E7B42B /* GoogleUtilities.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleUtilities.framework; sourceTree = "<group>"; };
+		7F770A231DA79897009420AF /* __vungle.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = __vungle.db; sourceTree = "<group>"; };
+		7F770A241DA79897009420AF /* vg_close.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vg_close.png; sourceTree = "<group>"; };
+		7F770A251DA79897009420AF /* vg_cta.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vg_cta.png; sourceTree = "<group>"; };
+		7F770A261DA79897009420AF /* vg_mute_off.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vg_mute_off.png; sourceTree = "<group>"; };
+		7F770A271DA79897009420AF /* vg_mute_on.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vg_mute_on.png; sourceTree = "<group>"; };
+		7F770A281DA79897009420AF /* vg_privacy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vg_privacy.png; sourceTree = "<group>"; };
+		7F770A291DA79897009420AF /* LICENSE.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = LICENSE.md; sourceTree = "<group>"; };
+		7F770A2A1DA79897009420AF /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		7F770A2B1DA79897009420AF /* VungleSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = VungleSDK.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -752,13 +764,16 @@
 				21691A1A1BB291A800E1CF84 /* libSmartAdServer.a in Frameworks */,
 				483B182619FFEEC300660DCC /* iAd.framework in Frameworks */,
 				483B182419FFEE8900660DCC /* CoreLocation.framework in Frameworks */,
-				229A32101DA67DFC00CEDA54 /* GoogleMobileAds.framework in Frameworks */,
 				6D5AFBD719E6846900D5C9A2 /* libz.1.2.5.dylib in Frameworks */,
+				7F329C191DA7D39500E7B42B /* GoogleSymbolUtilities.framework in Frameworks */,
 				6D247CC719E6630500F579CB /* CoreMedia.framework in Frameworks */,
 				48A15D6119E3CF6000E725A7 /* CoreMotion.framework in Frameworks */,
 				48E89B0B199CEC68007C857D /* Accelerate.framework in Frameworks */,
 				6D8D40FD1B219E8800401572 /* AdColony.framework in Frameworks */,
+				7F329C141DA7D39500E7B42B /* FirebaseAnalytics.framework in Frameworks */,
+				7F329C171DA7D39500E7B42B /* GoogleInterchangeUtilities.framework in Frameworks */,
 				34FBB5A6190FE406005402C5 /* Security.framework in Frameworks */,
+				7F329C151DA7D39500E7B42B /* FirebaseCore.framework in Frameworks */,
 				79F87D2E177B41AC0047359B /* AddressBook.framework in Frameworks */,
 				79F87D2F177B41AC0047359B /* AddressBookUI.framework in Frameworks */,
 				79F66B1B1652882800E917FB /* AdSupport.framework in Frameworks */,
@@ -770,16 +785,19 @@
 				79F87D30177B41AC0047359B /* EventKit.framework in Frameworks */,
 				79F87D31177B41AC0047359B /* EventKitUI.framework in Frameworks */,
 				79A6D48C1636C14D009DA60A /* Foundation.framework in Frameworks */,
+				7F329C1A1DA7D39500E7B42B /* GoogleUtilities.framework in Frameworks */,
 				79BF9899174A1DDA0038F1F1 /* MediaPlayer.framework in Frameworks */,
 				79BF9893174A1DC50038F1F1 /* MessageUI.framework in Frameworks */,
 				79BF989B174A1DE50038F1F1 /* MobileCoreServices.framework in Frameworks */,
 				79F87A48177B35DA0047359B /* PassKit.framework in Frameworks */,
 				79BF989D174A1DEC0038F1F1 /* QuartzCore.framework in Frameworks */,
-				7F770A1D1DA6A606009420AF /* VungleSDK.framework in Frameworks */,
+				7F770A2E1DA79897009420AF /* VungleSDK.framework in Frameworks */,
 				6D8D41161B219E9A00401572 /* libInMobi-4.5.3.a in Frameworks */,
 				79F87A49177B35DC0047359B /* Social.framework in Frameworks */,
 				79A6D5301636DFB1009DA60A /* StoreKit.framework in Frameworks */,
+				7F329C181DA7D39500E7B42B /* GoogleMobileAds.framework in Frameworks */,
 				79BF989F174A1DF60038F1F1 /* SystemConfiguration.framework in Frameworks */,
+				7F329C161DA7D39500E7B42B /* FirebaseInstanceID.framework in Frameworks */,
 				79A6D5321636DFE1009DA60A /* UIKit.framework in Frameworks */,
 				228F62C61DA5597D004AC26E /* UnityAds.framework in Frameworks */,
 			);
@@ -1197,7 +1215,7 @@
 		01A470A31AB996000047DA2C /* AdMob */ = {
 			isa = PBXGroup;
 			children = (
-				229A320E1DA67DFC00CEDA54 /* SDK */,
+				7F329C0C1DA7D39500E7B42B /* SDK */,
 				01A470A71AB996400047DA2C /* MPGoogleAdMobInterstitialCustomEvent.h */,
 				01A470A91AB9966C0047DA2C /* MPGoogleAdMobInterstitialCustomEvent.m */,
 				016174D91B5909D900F92420 /* MPGoogleAdMobBannerCustomEvent.h */,
@@ -1272,7 +1290,7 @@
 		228F62AA1DA5597D004AC26E /* Vungle */ = {
 			isa = PBXGroup;
 			children = (
-				7F770A101DA6A606009420AF /* SDK */,
+				7F770A211DA79897009420AF /* SDK */,
 				228F62AB1DA5597D004AC26E /* MPInstanceProvider+Vungle.h */,
 				228F62AC1DA5597D004AC26E /* MPInstanceProvider+Vungle.m */,
 				228F62AD1DA5597D004AC26E /* MPVungleRouter.h */,
@@ -1285,14 +1303,6 @@
 				228F62C01DA5597D004AC26E /* VungleRewardedVideoCustomEvent.m */,
 			);
 			path = Vungle;
-			sourceTree = "<group>";
-		};
-		229A320E1DA67DFC00CEDA54 /* SDK */ = {
-			isa = PBXGroup;
-			children = (
-				229A320F1DA67DFC00CEDA54 /* GoogleMobileAds.framework */,
-			);
-			path = SDK;
 			sourceTree = "<group>";
 		};
 		349B4DB81946F1CE00184794 /* InMobi */ = {
@@ -1441,28 +1451,42 @@
 			path = "../../gitignore/mopub-ios-sdk/AdNetworkSupport";
 			sourceTree = "<group>";
 		};
-		7F770A101DA6A606009420AF /* SDK */ = {
+		7F329C0C1DA7D39500E7B42B /* SDK */ = {
 			isa = PBXGroup;
 			children = (
-				7F770A111DA6A606009420AF /* LICENSE.md */,
-				7F770A121DA6A606009420AF /* README.md */,
-				7F770A131DA6A606009420AF /* Resources */,
-				7F770A1A1DA6A606009420AF /* VungleSDK.framework */,
+				7F329C0D1DA7D39500E7B42B /* FirebaseAnalytics.framework */,
+				7F329C0E1DA7D39500E7B42B /* FirebaseCore.framework */,
+				7F329C0F1DA7D39500E7B42B /* FirebaseInstanceID.framework */,
+				7F329C101DA7D39500E7B42B /* GoogleInterchangeUtilities.framework */,
+				7F329C111DA7D39500E7B42B /* GoogleMobileAds.framework */,
+				7F329C121DA7D39500E7B42B /* GoogleSymbolUtilities.framework */,
+				7F329C131DA7D39500E7B42B /* GoogleUtilities.framework */,
 			);
 			path = SDK;
 			sourceTree = "<group>";
 		};
-		7F770A131DA6A606009420AF /* Resources */ = {
+		7F770A211DA79897009420AF /* SDK */ = {
 			isa = PBXGroup;
 			children = (
-				7F770A141DA6A606009420AF /* __vungle.db */,
-				7F770A151DA6A606009420AF /* vg_close.png */,
-				7F770A161DA6A606009420AF /* vg_cta.png */,
-				7F770A171DA6A606009420AF /* vg_mute_off.png */,
-				7F770A181DA6A606009420AF /* vg_mute_on.png */,
-				7F770A191DA6A606009420AF /* vg_privacy.png */,
+				7F770A221DA79897009420AF /* Assets */,
+				7F770A291DA79897009420AF /* LICENSE.md */,
+				7F770A2A1DA79897009420AF /* README.md */,
+				7F770A2B1DA79897009420AF /* VungleSDK.framework */,
 			);
-			path = Resources;
+			path = SDK;
+			sourceTree = "<group>";
+		};
+		7F770A221DA79897009420AF /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				7F770A231DA79897009420AF /* __vungle.db */,
+				7F770A241DA79897009420AF /* vg_close.png */,
+				7F770A251DA79897009420AF /* vg_cta.png */,
+				7F770A261DA79897009420AF /* vg_mute_off.png */,
+				7F770A271DA79897009420AF /* vg_mute_on.png */,
+				7F770A281DA79897009420AF /* vg_privacy.png */,
+			);
+			path = Assets;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1723,7 +1747,7 @@
 				016178431B72675500F92420 /* MPInstanceProvider.m in Sources */,
 				016178501B72675500F92420 /* MRCalendarManager.m in Sources */,
 				0161788B1B72675500F92420 /* MPAdConversionTracker.m in Sources */,
-				7F770A1B1DA6A606009420AF /* LICENSE.md in Sources */,
+				7F770A2C1DA79897009420AF /* LICENSE.md in Sources */,
 				016177FA1B72675500F92420 /* MPAdAlertGestureRecognizer.m in Sources */,
 				21691A151BB2906300E1CF84 /* SASInterstitialCustomEvent.m in Sources */,
 				016178521B72675500F92420 /* MRCommand.m in Sources */,
@@ -1737,7 +1761,7 @@
 				016177F31B72675500F92420 /* MPBannerCustomEventAdapter.m in Sources */,
 				0161782F1B72675500F92420 /* MPHTMLBannerCustomEvent.m in Sources */,
 				016178D41B72675500F92420 /* MPTableViewAdManager.m in Sources */,
-				7F770A1C1DA6A606009420AF /* README.md in Sources */,
+				7F770A2D1DA79897009420AF /* README.md in Sources */,
 				0161787C1B72675500F92420 /* MPLogProvider.m in Sources */,
 				0161783A1B72675500F92420 /* MPInterstitialCustomEventAdapter.m in Sources */,
 				016178601B72675500F92420 /* MRPictureManager.m in Sources */,
