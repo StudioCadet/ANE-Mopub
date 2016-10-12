@@ -15,14 +15,13 @@ static FREContext staticContext;
 @interface MoPubInterstitial ()
 {
 }
-@property (nonatomic, assign)FREContext context;
-@property (nonatomic, weak)MPInterstitialAdController* interstitial;
+@property (nonatomic, strong)MPInterstitialAdController *interstitial;
 
 @end
 
-@implementation MoPubInterstitial
-
-@synthesize context, interstitial;
+@implementation MoPubInterstitial {
+    FREContext context;
+}
 
 - (id) initWithContext:(FREContext)extensionContext adUnitId:(NSString*)adUnitId
 {
@@ -32,7 +31,7 @@ static FREContext staticContext;
     
     if( self )
     {
-        self.context = extensionContext;
+        context = extensionContext;
         self.interstitial = [MPInterstitialAdController interstitialAdControllerForAdUnitId:adUnitId];
         self.interstitial.delegate = self;
     }

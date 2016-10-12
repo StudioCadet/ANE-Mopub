@@ -1,0 +1,336 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<!-- Adobe AIR Application Descriptor File Template.
+     Specifies parameters for identifying, installing, and launching AIR applications.
+
+     xmlns - The Adobe AIR namespace: http://ns.adobe.com/air/application/23.0.
+     The last segment of the namespace specifies the version of the AIR runtime required for this application to run.
+
+     minimumPatchLevel - The minimum patch level of the AIR runtime required to run the application. Optional. -->
+
+<application xmlns="http://ns.adobe.com/air/application/23.0">
+
+    <!-- A universally unique application identifier. Must be unique across all AIR applications.
+         Using a reverse DNS-style name as the id is recommended. (Eg. com.example.ExampleApplication.) Required. -->
+    <id>com.voodoo.quizrun</id>
+
+    <!-- Used as the filename for the application. Required. -->
+    <filename>MoPubTest</filename>
+
+    <!-- The name that is displayed in the AIR application installer. May have multiple values for each language. See samples or xsd schema file. Optional. -->
+    <name>MoPubTest</name>
+
+    <!-- A string value of the format <0-999>.<0-999>.<0-999> that represents application version which can be used to check for application upgrade.
+         Values can also be 1-part or 2-part. It is not necessary to have a 3-part value.
+         An updated version of application must have a versionNumber value higher than the previous version. Required for namespace >= 2.5. -->
+    <versionNumber>0.0.0</versionNumber>
+
+    <!-- A string value (such as "v1", "2.5", or "Alpha 1") that represents the version of the application, as it should be shown to users. Optional. -->
+    <!--<versionLabel></versionLabel>-->
+
+    <!-- An application version designator (such as "v1", "2.5", or "Alpha 1"). Required for namespace < 2.5. -->
+    <!--<version>0.0.0</version>-->
+
+    <!-- Description, displayed in the AIR application installer. May have multiple values for each language. See samples or xsd schema file. Optional. -->
+    <!--<description></description>-->
+
+    <!-- Copyright information. Optional -->
+    <!--<copyright></copyright>-->
+
+    <!-- Publisher ID. Used if you're updating an application created prior to 1.5.3 -->
+    <!--<publisherID></publisherID>-->
+
+    <!-- Identifies the ActionScript extensions used by an application. -->
+    <extensions>
+        <extensionID>com.sticksports.nativeExtensions.MoPub</extensionID>
+    </extensions>
+
+    <!-- Settings for the application's initial window. Required. -->
+    <initialWindow>
+        <!-- The main SWF or HTML file of the application. Required. -->
+        <content>SWF file name is set automatically at compile time</content>
+
+        <!-- The title of the main window. Optional. -->
+        <!--<title></title>-->
+
+        <!-- The type of system chrome to use (either "standard" or "none"). Optional. Default standard. -->
+        <!--<systemChrome></systemChrome>-->
+
+        <!-- Whether the window is transparent. Only applicable when systemChrome is none. Optional. Default false. -->
+        <!--<transparent></transparent>-->
+
+        <!-- Whether the window is initially visible. Optional. Default false. -->
+        <visible>true</visible>
+
+        <!-- Whether the user can minimize the window. Optional. Default true. -->
+        <!--<minimizable></minimizable>-->
+
+        <!-- Whether the user can maximize the window. Optional. Default true. -->
+        <!--<maximizable></maximizable>-->
+
+        <!-- Whether the user can resize the window. Optional. Default true. -->
+        <!--<resizable></resizable>-->
+
+        <!-- The window's initial width in pixels. Optional. -->
+        <!--<width></width>-->
+
+        <!-- The window's initial height in pixels. Optional. -->
+        <!--<height></height>-->
+
+        <!-- The window's initial x position. Optional. -->
+        <!--<x></x>-->
+
+        <!-- The window's initial y position. Optional. -->
+        <!--<y></y>-->
+
+        <!-- The window's minimum size, specified as a width/height pair in pixels, such as "400 200". Optional. -->
+        <!--<minSize></minSize>-->
+
+        <!-- The window's initial maximum size, specified as a width/height pair in pixels, such as "1600 1200". Optional. -->
+        <!--<maxSize></maxSize>-->
+
+        <!-- The aspect ratio of the app ("portrait" or "landscape" or "any"). Optional. Mobile only. Default is the natural orientation of the device -->
+        <!--<aspectRatio></aspectRatio>-->
+
+        <!-- Whether the app will begin auto-orienting on launch. Optional. Mobile only. Default false -->
+        <autoOrients>false</autoOrients>
+
+        <!-- Whether the app launches in full screen. Optional. Mobile only. Default false -->
+        <fullScreen>true</fullScreen>
+
+        <!-- The render mode for the app (either auto, cpu, gpu, or direct). Optional. Default auto -->
+        <!--<renderMode></renderMode>-->
+
+        <!-- Whether the default direct mode rendering context allocates storage for depth and stencil buffers.  Optional.  Default false. -->
+        <!--<depthAndStencil></depthAndStencil>-->
+
+        <!-- Whether or not to pan when a soft keyboard is raised or lowered (either "pan" or "none").  Optional.  Defaults "pan." -->
+        <!--<softKeyboardBehavior></softKeyboardBehavior>-->
+
+        <!-- Display Resolution for the app (either "standard" or "high"). Optional, OSX-only. Default "standard" -->
+        <!-- <requestedDisplayResolution></requestedDisplayResolution> -->
+    </initialWindow>
+
+    <!-- We recommend omitting the supportedProfiles element, which in turn permits your application to be deployed to all devices supported by AIR.
+         If you wish to restrict deployment (i.e., to only mobile devices) then add this element and list only the profiles which your application does support. -->
+    <!--<supportedProfiles>desktop extendedDesktop mobileDevice extendedMobileDevice</supportedProfiles>-->
+
+    <!-- Languages supported by application. Only these languages can be specified -->
+    <!--<supportedLanguages>en de cs es fr it ja ko nl pl pt ru sv tr zh</supportedLanguages>-->
+
+    <!-- The subpath of the standard default installation location to use. Optional. -->
+    <!--<installFolder></installFolder>-->
+
+    <!-- The subpath of the Programs menu to use. (Ignored on operating systems without a Programs menu.) Optional. -->
+    <!--<programMenuFolder></programMenuFolder>-->
+
+    <!-- The icon the system uses for the application. For at least one resolution, specify the path to a PNG file included in the AIR package. Optional. -->
+    <!--<icon>
+        <image16x16></image16x16>
+        <image29x29></image29x29>
+        <image32x32></image32x32>
+        <image36x36></image36x36>
+        <image40x40></image40x40>
+        <image48x48></image48x48>
+        <image50x50></image50x50>
+        <image57x57></image57x57>
+        <image58x58></image58x58>
+        <image60x60></image60x60>
+        <image72x72></image72x72>
+        <image76x76></image76x76>
+        <image80x80></image80x80>
+        <image96x96></image96x96>
+        <image100x100></image100x100>
+        <image114x114></image114x114>
+        <image120x120></image120x120>
+        <image128x128></image128x128>
+        <image144x144></image144x144>
+        <image152x152></image152x152>
+        <image512x512></image512x512>
+        <image732x412></image732x412>
+        <image1024x1024></image1024x1024>
+    </icon>-->
+
+    <!-- Whether the application handles the update when a user double-clicks an update version of the AIR file (true),
+         or the default AIR application installer handles the update (false). Optional. Default false. -->
+    <!--<customUpdateUI></customUpdateUI>-->
+
+    <!-- Whether the application can be launched when the user clicks a link in a web browser. Optional. Default false. -->
+    <!--<allowBrowserInvocation></allowBrowserInvocation>-->
+
+    <!-- Listing of file types for which the application can register. Optional. -->
+    <!--<fileTypes>-->
+    <!-- Defines one file type. Optional. -->
+    <!--<fileType>-->
+    <!-- The name that the system displays for the registered file type. Required. -->
+    <!--<name></name>-->
+    <!-- The extension to register. Required. -->
+    <!--<extension></extension>-->
+    <!-- The description of the file type. Optional. -->
+    <!--<description></description>-->
+    <!-- The MIME content type. -->
+    <!--<contentType></contentType>-->
+    <!-- The icon to display for the file type. Optional. -->
+    <!--<icon>
+        <image16x16></image16x16>
+        <image32x32></image32x32>
+        <image48x48></image48x48>
+        <image128x128></image128x128>
+    </icon>-->
+    <!--</fileType>-->
+    <!--</fileTypes>-->
+
+    <!-- iOS specific capabilities -->
+    <iPhone>
+        <!-- A list of plist key/value pairs to be added to the application Info.plist -->
+        <InfoAdditions>
+            <![CDATA[
+
+                <key>UIDeviceFamily</key>
+                <array>
+                    <string>1</string>
+                    <string>2</string>
+                </array>
+
+                <!-- MoPub iOS 9 -->
+                <key>NSAppTransportSecurity</key>
+                <dict>
+                    <key>NSAllowsArbitraryLoads</key>
+                    <true/>
+                </dict>
+
+                <!-- MoPub : InMobi mediation -->
+                <key>IN_MOBI_PROPERTY_ID</key><string>0e9b68e0a02b493c8fc81f3b816d9795</string>
+
+                <!-- MoPub : Chartboost mediation -->
+                <key>CHARTBOOST_APP_ID</key><string>530f145f2d42da3e6e213c26</string>
+                <key>CHARTBOOST_APP_SIGNATURE</key><string>6dbe46fc9262f1eb835648eb349c56d75eb873c8</string>
+
+                <!-- SmartAdServer/Mobvious -->
+                <key>CFBundleAllowMixedLocalizations</key><true/>
+                <key>MOBVIOUS_SITE_ID</key><string>64713</string>
+                <key>MOBVIOUS_BASE_URL</key><string>http://mobile.smartadserver.com</string>
+
+            ]]>
+        </InfoAdditions>
+
+        <!-- A list of plist key/value pairs to be added to the application Entitlements.plist -->
+        <!--<Entitlements>
+            <![CDATA[
+            <key>keychain-access-groups</key>
+            <array>
+                <string></string>
+                <string></string>
+            </array>
+            ]]>
+        </Entitlements>-->
+
+        <!-- Display Resolution for the app (either "standard" or "high"). Optional. Default "standard" -->
+        <requestedDisplayResolution>high</requestedDisplayResolution>
+        <!-- Forcing Render Mode CPU for the devices mentioned. Optional  -->
+        <!--<forceCPURenderModeForDevices></forceCPURenderModeForDevices> -->
+        <!-- File containing line separated list of external swf paths. These swfs won't be packaged inside the application
+        and corresponding stripped swfs will be output in externalStrippedSwfs folder. -->
+        <!--<externalSwfs></externalSwfs> -->
+    </iPhone>
+
+    <!-- Android specific tags that get passed to AndroidManifest.xml file. -->
+    <android>
+        <manifestAdditions>
+            <![CDATA[
+
+            <manifest android:installLocation="auto">
+
+                <uses-sdk android:minSdkVersion="13" android:targetSdkVersion="20" />
+
+                <!-- MoPub -->
+                <uses-permission android:name="android.permission.INTERNET" />
+                <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+                <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+                <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+                <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+                <uses-permission android:name="android.permission.VIBRATE"/>
+                <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+
+                <application>
+
+                    <!-- MoPub -->
+                    <activity android:name="com.mopub.mobileads.MoPubActivity" android:configChanges="keyboardHidden|orientation|screenSize"/>
+                    <activity android:name="com.mopub.mobileads.MraidActivity" android:configChanges="keyboardHidden|orientation|screenSize"/>
+                    <activity android:name="com.mopub.common.MoPubBrowser" android:configChanges="keyboardHidden|orientation|screenSize"/>
+                    <activity android:name="com.mopub.mobileads.MraidVideoPlayerActivity" android:configChanges="keyboardHidden|orientation|screenSize"/>
+                    <meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version" />
+
+                    <!-- MoPub : InMobi mediation -->
+                    <meta-data android:name="IN_MOBI_PROPERTY_ID" android:value="eea9feccefe944e9859b03c6b82e9f76" />
+                    <activity android:name="com.inmobi.androidsdk.IMBrowserActivity"
+                              android:configChanges="keyboardHidden|orientation|keyboard|smallestScreenSize|screenSize"
+                              android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen"
+                              android:hardwareAccelerated="true"/>
+                    <receiver android:name="com.inmobi.commons.analytics.androidsdk.IMAdTrackerReceiver" android:enabled="true" android:exported="true" >
+                        <intent-filter>
+                            <action android:name="com.android.vending.INSTALL_REFERRER" />
+                            <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+                            <action android:name="com.inmobi.share.id" />
+                        </intent-filter>
+                    </receiver>
+
+                    <!-- MoPub : AdMob mediation -->
+                    <activity android:name="com.google.android.gms.ads.AdActivity"
+                              android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize" />
+
+                    <!-- MoPub : Adcolony mediation -->
+                    <meta-data android:name="AD_COLONY_APP_ID" android:value="appd1be74c48c1b4ff28d" />
+                    <meta-data android:name="AD_COLONY_ZONE_IDS" android:value="vz8efc58bf67ea42e3a7,vz2c92a67b1cd9427f81" />
+                    <activity android:name="com.jirbo.adcolony.AdColonyOverlay"
+                              android:configChanges="keyboardHidden|orientation|screenSize"
+                              android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen" />
+
+                    <activity android:name="com.jirbo.adcolony.AdColonyFullscreen"
+                              android:configChanges="keyboardHidden|orientation|screenSize"
+                              android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen" />
+
+                    <activity android:name="com.jirbo.adcolony.AdColonyBrowser"
+                              android:configChanges="keyboardHidden|orientation|screenSize"
+                              android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen" />
+
+                    <!-- MoPub : Chartboost mediation -->
+                    <meta-data android:name="CHARTBOOST_APP_ID" android:value="530f1a622d42da3e6d6af64e" />
+                    <meta-data android:name="CHARTBOOST_APP_SIGNATURE" android:value="a277d4207d27188961c65b3af98000a610888d45" />
+                    <activity android:name="com.chartboost.sdk.CBImpressionActivity"
+                              android:configChanges="keyboardHidden|orientation|screenSize"
+                              android:theme="@android:style/Theme.Translucent.NoTitleBar"
+                              android:excludeFromRecents="true" />
+
+                    <!-- MoPub : Vungle mediation -->
+                    <activity android:name="com.vungle.publisher.VideoFullScreenAdActivity"
+                              android:configChanges="keyboardHidden|orientation|screenSize"
+                              android:theme="@android:style/Theme.NoTitleBar.Fullscreen"/>
+                    <activity android:name="com.vungle.publisher.MraidFullScreenAdActivity"
+                              android:configChanges="keyboardHidden|orientation|screenSize"
+                              android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen"/>
+
+                    <!-- MoPub : Unity Ads mediation -->
+                    <activity android:name="com.unity3d.ads.adunit.AdUnitActivity"
+                              android:configChanges="fontScale|keyboard|keyboardHidden|locale|mnc|mcc|navigation|orientation|screenLayout|screenSize|smallestScreenSize|uiMode|touchscreen"
+                              android:hardwareAccelerated="true"
+                              android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
+                    <activity android:name="com.unity3d.ads.adunit.AdUnitSoftwareActivity"
+                              android:configChanges="fontScale|keyboard|keyboardHidden|locale|mnc|mcc|navigation|orientation|screenLayout|screenSize|smallestScreenSize|uiMode|touchscreen"
+                              android:hardwareAccelerated="false"
+                              android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
+
+                </application>
+
+            </manifest>
+
+            ]]>
+        </manifestAdditions>
+
+        <!-- Color depth for the app (either "32bit" or "16bit"). Optional. Default 16bit before namespace 3.0, 32bit after -->
+        <!--<colorDepth></colorDepth>-->
+        <!-- Indicates if the app contains video or not. Necessary for ordering of video planes with graphics plane, especially in Jellybean - if you app does video this must be set to true - valid values are true or false -->
+        <!-- <containsVideo></containsVideo> -->
+    </android>
+
+</application>

@@ -39,3 +39,6 @@ Thumbs.db
 /test/.actionScriptProperties
 /test/.settings/org.eclipse.core.resources.prefs
 /test/bin-debug
+test/.idea
+test/out
+test/test.iml

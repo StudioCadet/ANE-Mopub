@@ -5,7 +5,7 @@
 
 #import <UIKit/UIKit.h>
 
-@protocol MPNativeAdAdapter;
+@protocol MPNativeAdAdapter, MPNativeAdRendering;
 
 /**
  * Classes that conform to the `MPNativeAdAdapter` protocol can have an
@@ -23,6 +23,27 @@
  * @return A view controller that should be used for presenting modal content.
  */
 - (UIViewController *)viewControllerForPresentingModalView;
+
+/**
+ * You should call this method when your adapter's modal is about to be presented.
+ *
+ * @param adapter The adapter that will present the modal.
+ */
+- (void)nativeAdWillPresentModalForAdapter:(id<MPNativeAdAdapter>)adapter;
+
+/**
+ * You should call this method when your adapter's modal has been dismissed.
+ *
+ * @param adapter The adapter that dismissed the modal.
+ */
+- (void)nativeAdDidDismissModalForAdapter:(id<MPNativeAdAdapter>)adapter;
+
+/**
+ * You should call this method when your the user will leave the application due to interaction with the ad.
+ *
+ * @param adapter The adapter that represents the ad that caused the user to leave the application.
+ */
+- (void)nativeAdWillLeaveApplicationFromAdapter:(id<MPNativeAdAdapter>)adapter;
 
 @optional
 
@@ -93,25 +114,12 @@
  *
  * @param URL The URL to be opened.
  * @param controller The view controller that should be used to present the modal view controller.
- * @param completionBlock The block to be executed when the action defined by the URL has been
- * completed, returning control to the application.
  *
  * Your implementation of this method should either forward the request to the underlying
  * third-party ad object (if it has built-in support for handling ad interactions), or open an
  * in-application modal web browser or a modal App Store controller.
  */
-- (void)displayContentForURL:(NSURL *)URL
-          rootViewController:(UIViewController *)controller
-                  completion:(void (^)(BOOL success, NSError *error))completionBlock;
-
-/**
- * Determines whether MPNativeAd should track impressions
- *
- * If not implemented, this will be assumed to return NO, and MPNativeAd will track impressions.
- * If this returns YES, then MPNativeAd will defer to the MPNativeAdAdapterDelegate callbacks to
- * track impressions.
- */
-- (BOOL)enableThirdPartyImpressionTracking;
+- (void)displayContentForURL:(NSURL *)URL rootViewController:(UIViewController *)controller;
 
 /**
  * Determines whether MPNativeAd should track clicks
@@ -121,14 +129,6 @@
  * track clicks.
  */
 - (BOOL)enableThirdPartyClickTracking;
-
-/**
- * Tracks an impression for this ad.
- *
- * To avoid reporting discrepancies, you should only implement this method if the third-party ad
- * network requires impressions to be reported manually.
- */
-- (void)trackImpression;
 
 /**
  * Tracks a click for this ad.
@@ -147,17 +147,6 @@
  */
 @property (nonatomic, weak) id<MPNativeAdAdapterDelegate> delegate;
 
-/**
- * Specifies how long your ad must be on screen before an impression is tracked.
- *
- * When a view containing a native ad is rendered and presented, the MoPub SDK begins tracking the
- * amount of time the view has been visible on-screen in order to automatically record impressions.
- * This value represents the time required for an impression to be tracked.
- *
- * The default value is `kDefaultRequiredSecondsForImpression`.
- */
-@property (nonatomic, readonly) NSTimeInterval requiredSecondsForImpression;
-
 /** @name Responding to an Ad Being Attached to a View */
 
 /**
@@ -169,15 +158,28 @@
  * of this event.
  */
 - (void)willAttachToView:(UIView *)view;
+- (void)willAttachToView:(UIView *)view withMPView:(UIView<MPNativeAdRendering>*)mpView;
 
 /**
- * This method will be called when your ad's content is removed from a view.
- *
- * @param view A view that did contain the ad content.
- *
- * You should implement this method if the underlying third-party ad object needs to be informed
- * of this event while not invalidating the ad.
+ * This method will be called if your implementation provides a DAA icon through the properties dictionary
+ * and the user has tapped the icon.
  */
--  (void)didDetachFromView:(UIView *)view;
+- (void)displayContentForDAAIconTap;
+
+/**
+ * Return your ad's privacy information icon view.
+ *
+ * You should implement this method if your ad supplies its own view for its privacy information icon.
+ */
+- (UIView *)privacyInformationIconView;
+
+/**
+ * Return your ad's main media view.
+ *
+ * You should implement this method if your ad supplies its own view for the main media view which is typically
+ * an image or video. If you implement this method, the SDK will not make any other attempts at retrieving
+ * the main media asset.
+ */
+- (UIView *)mainMediaView;
 
 @end

@@ -185,11 +185,26 @@ NSString *MPResourcePathForResource(NSString *resourceName)
 #endif
 }
 
+NSArray *MPConvertStringArrayToURLArray(NSArray *strArray)
+{
+    NSMutableArray *urls = [NSMutableArray array];
+
+    for (NSObject *str in strArray) {
+        if ([str isKindOfClass:[NSString class]]) {
+            NSURL *url = [NSURL URLWithString:(NSString *)str];
+            if (url) {
+                [urls addObject:url];
+            }
+        }
+    }
+
+    return urls;
+}
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
 @implementation NSString (MPAdditions)
 
-- (NSString *)URLEncodedString
+- (NSString *)mp_URLEncodedString
 {
     NSString *result = (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(NULL,
                                                                            (CFStringRef)self,
@@ -205,7 +220,7 @@ NSString *MPResourcePathForResource(NSString *resourceName)
 
 @implementation UIDevice (MPAdditions)
 
-- (NSString *)hardwareDeviceName
+- (NSString *)mp_hardwareDeviceName
 {
     size_t size;
     sysctlbyname("hw.machine", NULL, &size, NULL, 0);

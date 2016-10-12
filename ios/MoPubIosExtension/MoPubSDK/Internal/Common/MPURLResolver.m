@@ -103,6 +103,13 @@ static NSString * const kResolverErrorDomain = @"com.mopub.resolver";
 {
     MPURLActionInfo *actionInfo = nil;
 
+    if (URL == nil) {
+        if (error) {
+            *error = [NSError errorWithDomain:kResolverErrorDomain code:-1 userInfo:@{NSLocalizedDescriptionKey: @"URL is nil"}];
+        }
+        return nil;
+    }
+
     if ([self storeItemIdentifierForURL:URL]) {
         actionInfo = [MPURLActionInfo infoWithURL:self.originalURL iTunesItemIdentifier:[self storeItemIdentifierForURL:URL] iTunesStoreFallbackURL:URL];
     } else if ([self URLHasDeeplinkPlusScheme:URL]) {
@@ -117,12 +124,7 @@ static NSString * const kResolverErrorDomain = @"com.mopub.resolver";
     } else if ([URL mp_isMoPubShareScheme]) {
         actionInfo = [MPURLActionInfo infoWithURL:self.originalURL shareURL:URL];
     } else if ([self URLShouldOpenInApplication:URL]) {
-        // TODO: in iOS 9, this check will most likely fail. Let's get rid of it.
-        if ([[UIApplication sharedApplication] canOpenURL:URL]) {
-            actionInfo = [MPURLActionInfo infoWithURL:self.originalURL deeplinkURL:URL];
-        } else {
-            *error = [NSError errorWithDomain:kResolverErrorDomain code:-1 userInfo:@{NSLocalizedDescriptionKey: @"Cannot find any application to handle the given URL."}];
-        }
+        actionInfo = [MPURLActionInfo infoWithURL:self.originalURL deeplinkURL:URL];
     }
 
     return actionInfo;

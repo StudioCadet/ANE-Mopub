@@ -20,9 +20,6 @@
 #import <AdSupport/AdSupport.h>
 #endif
 
-#define DEFINE_ANE_FUNCTION(fn) FREObject (fn)(FREContext context, void* functionData, uint32_t argc, FREObject argv[])
-
-#define MAP_FUNCTION(fn, data) { (const uint8_t*)(#fn), (data), &(fn) }
 
 MoPub_TypeConversion* mopubConverter;
 
@@ -30,8 +27,7 @@ MoPub_TypeConversion* mopubConverter;
 /////////////////////////////////////////////////////////////
 // MOPUB
 
-
-DEFINE_ANE_FUNCTION( mopub_init )
+FREObject mopub_init(FREContext context, void* functionData, uint32_t argc, FREObject argv[])
 {
     NSLog(@"Initializing MoPub extension ...");
     
@@ -72,7 +68,7 @@ DEFINE_ANE_FUNCTION( mopub_init )
     return NULL;
 }
 
-DEFINE_ANE_FUNCTION( mopub_trackConversion )
+FREObject mopub_trackConversion(FREContext context, void* functionData, uint32_t argc, FREObject argv[])
 {
     NSString *itunesAppId = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"itunesAppId"];
     
@@ -81,7 +77,7 @@ DEFINE_ANE_FUNCTION( mopub_trackConversion )
     return NULL;
 }
 
-DEFINE_ANE_FUNCTION( mopub_getAppleIDFA )
+FREObject mopub_getAppleIDFA(FREContext context, void* functionData, uint32_t argc, FREObject argv[])
 {
 	if (NSClassFromString(@"ASIdentifierManager")) {
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= MP_IOS_6_0
@@ -98,7 +94,7 @@ DEFINE_ANE_FUNCTION( mopub_getAppleIDFA )
 	return NULL;
 }
 
-DEFINE_ANE_FUNCTION( mopub_getAdScaleFactor )
+FREObject mopub_getAdScaleFactor(FREContext context, void* functionData, uint32_t argc, FREObject argv[])
 {
     double scale = [UIScreen mainScreen].scale;
     FREObject asScale;
@@ -109,7 +105,7 @@ DEFINE_ANE_FUNCTION( mopub_getAdScaleFactor )
     return NULL;
 }
 
-DEFINE_ANE_FUNCTION( mopub_getNativeScreenWidth )
+FREObject mopub_getNativeScreenWidth(FREContext context, void* functionData, uint32_t argc, FREObject argv[])
 {
     double width = [UIScreen mainScreen].bounds.size.width * [UIScreen mainScreen].scale;
     FREObject asWidth;
@@ -120,7 +116,7 @@ DEFINE_ANE_FUNCTION( mopub_getNativeScreenWidth )
     return NULL;
 }
 
-DEFINE_ANE_FUNCTION( mopub_getNativeScreenHeight )
+FREObject mopub_getNativeScreenHeight(FREContext context, void* functionData, uint32_t argc, FREObject argv[])
 {
     double height = [UIScreen mainScreen].bounds.size.height * [UIScreen mainScreen].scale;
     FREObject asHeight;
@@ -131,7 +127,7 @@ DEFINE_ANE_FUNCTION( mopub_getNativeScreenHeight )
     return NULL;
 }
 
-DEFINE_ANE_FUNCTION( mopub_setKeywords )
+FREObject mopub_setKeywords(FREContext context, void* functionData, uint32_t argc, FREObject argv[])
 {
     int age;
     double dateOfBirthTimestamp;
@@ -235,7 +231,7 @@ DEFINE_ANE_FUNCTION( mopub_setKeywords )
 // BANNER
 
 
-DEFINE_ANE_FUNCTION( mopub_initialiseBanner )
+FREObject mopub_initialiseBanner(FREContext context, void* functionData, uint32_t argc, FREObject argv[])
 {
     NSString* adUnitId;
     if( [mopubConverter FREGetObject:argv[0] asString:&adUnitId] != FRE_OK ) return NULL;
@@ -252,14 +248,16 @@ DEFINE_ANE_FUNCTION( mopub_initialiseBanner )
     }
     
     MoPubBanner* banner = [[MoPubBanner alloc] initWithContext:context adUnitId:adUnitId size:adType];
-    FRESetContextNativeData( context, (void*)&banner );
+    FRESetContextNativeData( context, (void *) CFBridgingRetain(banner) );
+    
     return NULL;
 }
 
-DEFINE_ANE_FUNCTION( mopub_setAutorefresh )
+FREObject mopub_setAutorefresh(FREContext context, void* functionData, uint32_t argc, FREObject argv[])
 {
-    MoPubBanner* banner;
-    FREGetContextNativeData( context, (void*)&banner );
+    void *nativeData;
+    FREGetContextNativeData( context, &nativeData );
+    MoPubBanner* banner = (__bridge MoPubBanner *)nativeData;
     if( banner != nil )
     {
         uint32_t autoRefresh;
@@ -269,10 +267,11 @@ DEFINE_ANE_FUNCTION( mopub_setAutorefresh )
     return NULL;
 }
 
-DEFINE_ANE_FUNCTION( mopub_setTestMode )
+FREObject mopub_setTestMode(FREContext context, void* functionData, uint32_t argc, FREObject argv[])
 {
-    MoPubBanner* banner;
-    FREGetContextNativeData( context, (void*)&banner );
+    void *nativeData;
+    FREGetContextNativeData( context, &nativeData );
+    MoPubBanner* banner = (__bridge MoPubBanner *)nativeData;
     if( banner != nil )
     {
         uint32_t testing;
@@ -282,10 +281,11 @@ DEFINE_ANE_FUNCTION( mopub_setTestMode )
     return NULL;
 }
 
-DEFINE_ANE_FUNCTION( mopub_setAdUnitId )
+FREObject mopub_setAdUnitId(FREContext context, void* functionData, uint32_t argc, FREObject argv[])
 {
-    MoPubBanner* banner;
-    FREGetContextNativeData( context, (void*)&banner );
+    void *nativeData;
+    FREGetContextNativeData( context, &nativeData );
+    MoPubBanner* banner = (__bridge MoPubBanner *)nativeData;
     if( banner != nil )
     {
         NSString* adUnitId;
@@ -295,10 +295,11 @@ DEFINE_ANE_FUNCTION( mopub_setAdUnitId )
     return NULL;
 }
 
-DEFINE_ANE_FUNCTION( mopub_lockNativeAdsToOrientation )
+FREObject mopub_lockNativeAdsToOrientation(FREContext context, void* functionData, uint32_t argc, FREObject argv[])
 {
-    MoPubBanner* banner;
-    FREGetContextNativeData( context, (void*)&banner );
+    void *nativeData;
+    FREGetContextNativeData( context, &nativeData );
+    MoPubBanner* banner = (__bridge MoPubBanner *)nativeData;
     if( banner != nil )
     {
         int32_t orientation;
@@ -319,10 +320,11 @@ DEFINE_ANE_FUNCTION( mopub_lockNativeAdsToOrientation )
     return NULL;
 }
 
-DEFINE_ANE_FUNCTION( mopub_getPositionX )
+FREObject mopub_getPositionX(FREContext context, void* functionData, uint32_t argc, FREObject argv[])
 {
-    MoPubBanner* banner;
-    FREGetContextNativeData( context, (void*)&banner );
+    void *nativeData;
+    FREGetContextNativeData( context, &nativeData );
+    MoPubBanner* banner = (__bridge MoPubBanner *)nativeData;
     if( banner != nil )
     {
         int32_t pos = [banner getPositionX];
@@ -335,10 +337,11 @@ DEFINE_ANE_FUNCTION( mopub_getPositionX )
     return NULL;
 }
 
-DEFINE_ANE_FUNCTION( mopub_getPositionY )
+FREObject mopub_getPositionY(FREContext context, void* functionData, uint32_t argc, FREObject argv[])
 {
-    MoPubBanner* banner;
-    FREGetContextNativeData( context, (void*)&banner );
+    void *nativeData;
+    FREGetContextNativeData( context, &nativeData );
+    MoPubBanner* banner = (__bridge MoPubBanner *)nativeData;
     if( banner != nil )
     {
         int32_t pos = [banner getPositionY];
@@ -351,10 +354,11 @@ DEFINE_ANE_FUNCTION( mopub_getPositionY )
     return NULL;
 }
 
-DEFINE_ANE_FUNCTION( mopub_getWidth )
+FREObject mopub_getWidth(FREContext context, void* functionData, uint32_t argc, FREObject argv[])
 {
-    MoPubBanner* banner;
-    FREGetContextNativeData( context, (void*)&banner );
+    void *nativeData;
+    FREGetContextNativeData( context, &nativeData );
+    MoPubBanner* banner = (__bridge MoPubBanner *)nativeData;
     if( banner != nil )
     {
         int32_t width = [banner getFrameWidth];
@@ -367,10 +371,11 @@ DEFINE_ANE_FUNCTION( mopub_getWidth )
     return NULL;
 }
 
-DEFINE_ANE_FUNCTION( mopub_getHeight )
+FREObject mopub_getHeight(FREContext context, void* functionData, uint32_t argc, FREObject argv[])
 {
-    MoPubBanner* banner;
-    FREGetContextNativeData( context, (void*)&banner );
+    void *nativeData;
+    FREGetContextNativeData( context, &nativeData );
+    MoPubBanner* banner = (__bridge MoPubBanner *)nativeData;
     if( banner != nil )
     {
         int32_t height = [banner getFrameHeight];
@@ -383,10 +388,11 @@ DEFINE_ANE_FUNCTION( mopub_getHeight )
     return NULL;
 }
 
-DEFINE_ANE_FUNCTION( mopub_setPositionX )
+FREObject mopub_setPositionX(FREContext context, void* functionData, uint32_t argc, FREObject argv[])
 {
-    MoPubBanner* banner;
-    FREGetContextNativeData( context, (void*)&banner );
+    void *nativeData;
+    FREGetContextNativeData( context, &nativeData );
+    MoPubBanner* banner = (__bridge MoPubBanner *)nativeData;
     if( banner != nil )
     {
         int32_t posX;
@@ -396,10 +402,11 @@ DEFINE_ANE_FUNCTION( mopub_setPositionX )
     return NULL;
 }
 
-DEFINE_ANE_FUNCTION( mopub_setPositionY )
+FREObject mopub_setPositionY(FREContext context, void* functionData, uint32_t argc, FREObject argv[])
 {
-    MoPubBanner* banner;
-    FREGetContextNativeData( context, (void*)&banner );
+    void *nativeData;
+    FREGetContextNativeData( context, &nativeData );
+    MoPubBanner* banner = (__bridge MoPubBanner *)nativeData;
     if( banner != nil )
     {
         int32_t posY;
@@ -409,10 +416,11 @@ DEFINE_ANE_FUNCTION( mopub_setPositionY )
     return NULL;
 }
 
-DEFINE_ANE_FUNCTION( mopub_setWidth )
+FREObject mopub_setWidth(FREContext context, void* functionData, uint32_t argc, FREObject argv[])
 {
-    MoPubBanner* banner;
-    FREGetContextNativeData( context, (void*)&banner );
+    void *nativeData;
+    FREGetContextNativeData( context, &nativeData );
+    MoPubBanner* banner = (__bridge MoPubBanner *)nativeData;
     if( banner != nil )
     {
         int32_t width;
@@ -422,10 +430,11 @@ DEFINE_ANE_FUNCTION( mopub_setWidth )
     return NULL;
 }
 
-DEFINE_ANE_FUNCTION( mopub_setHeight )
+FREObject mopub_setHeight(FREContext context, void* functionData, uint32_t argc, FREObject argv[])
 {
-    MoPubBanner* banner;
-    FREGetContextNativeData( context, (void*)&banner );
+    void *nativeData;
+    FREGetContextNativeData( context, &nativeData );
+    MoPubBanner* banner = (__bridge MoPubBanner *)nativeData;
     if( banner != nil )
     {
         int32_t height;
@@ -435,10 +444,11 @@ DEFINE_ANE_FUNCTION( mopub_setHeight )
     return NULL;
 }
 
-DEFINE_ANE_FUNCTION( mopub_setSize )
+FREObject mopub_setSize(FREContext context, void* functionData, uint32_t argc, FREObject argv[])
 {
-    MoPubBanner* banner;
-    FREGetContextNativeData( context, (void*)&banner );
+    void *nativeData;
+    FREGetContextNativeData( context, &nativeData );
+    MoPubBanner* banner = (__bridge MoPubBanner *)nativeData;
     if( banner != nil )
     {
         int32_t size;
@@ -448,10 +458,11 @@ DEFINE_ANE_FUNCTION( mopub_setSize )
     return NULL;
 }
 
-DEFINE_ANE_FUNCTION( mopub_getCreativeWidth )
+FREObject mopub_getCreativeWidth(FREContext context, void* functionData, uint32_t argc, FREObject argv[])
 {
-    MoPubBanner* banner;
-    FREGetContextNativeData( context, (void*)&banner );
+    void *nativeData;
+    FREGetContextNativeData( context, &nativeData );
+    MoPubBanner* banner = (__bridge MoPubBanner *)nativeData;
     if( banner != nil )
     {
         int32_t width = [banner getCreativeWidth];
@@ -464,10 +475,11 @@ DEFINE_ANE_FUNCTION( mopub_getCreativeWidth )
     return NULL;
 }
 
-DEFINE_ANE_FUNCTION( mopub_getCreativeHeight )
+FREObject mopub_getCreativeHeight(FREContext context, void* functionData, uint32_t argc, FREObject argv[])
 {
-    MoPubBanner* banner;
-    FREGetContextNativeData( context, (void*)&banner );
+    void *nativeData;
+    FREGetContextNativeData( context, &nativeData );
+    MoPubBanner* banner = (__bridge MoPubBanner *)nativeData;
     if( banner != nil )
     {
         int32_t height = [banner getCreativeHeight];
@@ -480,10 +492,11 @@ DEFINE_ANE_FUNCTION( mopub_getCreativeHeight )
     return NULL;
 }
 
-DEFINE_ANE_FUNCTION( mopub_loadBanner )
+FREObject mopub_loadBanner(FREContext context, void* functionData, uint32_t argc, FREObject argv[])
 {
-    MoPubBanner* banner;
-    FREGetContextNativeData( context, (void*)&banner );
+    void *nativeData;
+    FREGetContextNativeData( context, &nativeData );
+    MoPubBanner* banner = (__bridge MoPubBanner *)nativeData;
     if( banner != nil )
     {
         [banner loadBanner];
@@ -491,10 +504,11 @@ DEFINE_ANE_FUNCTION( mopub_loadBanner )
     return NULL;
 }
 
-DEFINE_ANE_FUNCTION( mopub_showBanner )
+FREObject mopub_showBanner(FREContext context, void* functionData, uint32_t argc, FREObject argv[])
 {
-    MoPubBanner* banner;
-    FREGetContextNativeData( context, (void*)&banner );
+    void *nativeData;
+    FREGetContextNativeData( context, &nativeData );
+    MoPubBanner* banner = (__bridge MoPubBanner *)nativeData;
     if( banner != nil )
     {
         [banner showBanner];
@@ -502,10 +516,11 @@ DEFINE_ANE_FUNCTION( mopub_showBanner )
     return NULL;
 }
 
-DEFINE_ANE_FUNCTION( mopub_removeBanner )
+FREObject mopub_removeBanner(FREContext context, void* functionData, uint32_t argc, FREObject argv[])
 {
-    MoPubBanner* banner;
-    FREGetContextNativeData( context, (void*)&banner );
+    void *nativeData;
+    FREGetContextNativeData( context, &nativeData );
+    MoPubBanner* banner = (__bridge MoPubBanner *)nativeData;
     if( banner != nil )
     {
         [banner removeBanner];
@@ -513,10 +528,11 @@ DEFINE_ANE_FUNCTION( mopub_removeBanner )
     return NULL;
 }
 
-DEFINE_ANE_FUNCTION( mopub_disposeBanner )
+FREObject mopub_disposeBanner(FREContext context, void* functionData, uint32_t argc, FREObject argv[])
 {
-    MoPubBanner* banner;
-    FREGetContextNativeData( context, (void*)&banner );
+    void *nativeData;
+    FREGetContextNativeData( context, &nativeData );
+    MoPubBanner* banner = (MoPubBanner *) CFBridgingRelease(nativeData);
     if( banner != nil )
     {
         NSLog(@"Disposing banner...");
@@ -532,20 +548,22 @@ DEFINE_ANE_FUNCTION( mopub_disposeBanner )
 // INTERSTITIAL
 
 
-DEFINE_ANE_FUNCTION( mopub_initialiseInterstitial )
+FREObject mopub_initialiseInterstitial(FREContext context, void* functionData, uint32_t argc, FREObject argv[])
 {
     NSString* adUnitId;
     if( [mopubConverter FREGetObject:argv[0] asString:&adUnitId] != FRE_OK ) return NULL;
     
     MoPubInterstitial* interstitial = [[MoPubInterstitial alloc] initWithContext:context adUnitId:adUnitId];
-    FRESetContextNativeData( context, (void*)&interstitial );
+    FRESetContextNativeData( context, (void *) CFBridgingRetain(interstitial) );
+    
     return NULL;
 }
 
-DEFINE_ANE_FUNCTION( mopub_setInterstitialTestMode )
+FREObject mopub_setInterstitialTestMode(FREContext context, void* functionData, uint32_t argc, FREObject argv[])
 {
-    MoPubInterstitial* interstitial;
-    FREGetContextNativeData( context, (void*)&interstitial );
+    void *nativeData;
+    FREGetContextNativeData(context, &nativeData);
+    MoPubInterstitial* interstitial = (__bridge MoPubInterstitial *) nativeData;
     if( interstitial != nil )
     {
         uint32_t testing;
@@ -555,10 +573,11 @@ DEFINE_ANE_FUNCTION( mopub_setInterstitialTestMode )
     return NULL;
 }
 
-DEFINE_ANE_FUNCTION( mopub_getInterstitialReady )
+FREObject mopub_getInterstitialReady(FREContext context, void* functionData, uint32_t argc, FREObject argv[])
 {
-    MoPubInterstitial* interstitial;
-    FREGetContextNativeData( context, (void*)&interstitial );
+    void *nativeData;
+    FREGetContextNativeData(context, &nativeData);
+    MoPubInterstitial* interstitial = (__bridge MoPubInterstitial *) nativeData;
     if( interstitial != nil )
     {
         BOOL ready = [interstitial getIsReady];
@@ -571,21 +590,23 @@ DEFINE_ANE_FUNCTION( mopub_getInterstitialReady )
     return NULL;
 }
 
-DEFINE_ANE_FUNCTION( mopub_loadInterstitial )
+FREObject mopub_loadInterstitial(FREContext context, void* functionData, uint32_t argc, FREObject argv[])
 {
-    MoPubInterstitial* interstitial;
-    FREGetContextNativeData( context, (void*)&interstitial );
+    void *nativeData;
+    FREGetContextNativeData(context, &nativeData);
+    MoPubInterstitial* interstitial = (__bridge MoPubInterstitial *) nativeData;
     if( interstitial != nil )
-    {        
+    {
         [interstitial loadInterstitial];
     }
     return NULL;
 }
 
-DEFINE_ANE_FUNCTION( mopub_showInterstitial )
+FREObject mopub_showInterstitial(FREContext context, void* functionData, uint32_t argc, FREObject argv[])
 {
-    MoPubInterstitial* interstitial;
-    FREGetContextNativeData( context, (void*)&interstitial );
+    void *nativeData;
+    FREGetContextNativeData(context, &nativeData);
+    MoPubInterstitial* interstitial = (__bridge MoPubInterstitial *) nativeData;
     if( interstitial != nil )
     {
         BOOL success = [interstitial showInterstitial];
@@ -599,10 +620,11 @@ DEFINE_ANE_FUNCTION( mopub_showInterstitial )
     return NULL;
 }
 
-DEFINE_ANE_FUNCTION( mopub_disposeInterstitial )
+FREObject mopub_disposeInterstitial(FREContext context, void* functionData, uint32_t argc, FREObject argv[])
 {
-    MoPubInterstitial* interstitial;
-    FREGetContextNativeData( context, (void*)&interstitial );
+    void *nativeData;
+    FREGetContextNativeData(context, &nativeData);
+    CFBridgingRelease(nativeData);
     
     return NULL;
 }
@@ -616,76 +638,165 @@ DEFINE_ANE_FUNCTION( mopub_disposeInterstitial )
 
 void MoPubContextInitializer( void* extData, const uint8_t* ctxType, FREContext ctx, uint32_t* numFunctionsToSet, const FRENamedFunction** functionsToSet )
 {
+    NSLog(@"Initializing a context with type %@ ...", [[NSString alloc] initWithUTF8String:ctxType]);
+    
     if( strcmp( ctxType, "mopub" ) == 0 )
     {
-        static FRENamedFunction mopubFunctionMap[] =
-        {
-            MAP_FUNCTION( mopub_init, NULL ),
-            
-            MAP_FUNCTION( mopub_getAdScaleFactor, NULL ),
-            
-            MAP_FUNCTION( mopub_getNativeScreenWidth, NULL ),
-            MAP_FUNCTION( mopub_getNativeScreenHeight, NULL ),
-            
-            MAP_FUNCTION( mopub_trackConversion, NULL ),
-            MAP_FUNCTION( mopub_getAppleIDFA, NULL ),
-            MAP_FUNCTION( mopub_setKeywords, NULL )
-        };
+        *numFunctionsToSet = 7;
         
-        *numFunctionsToSet = sizeof( mopubFunctionMap ) / sizeof( FRENamedFunction );
-        *functionsToSet = mopubFunctionMap;
+        FRENamedFunction* func = (FRENamedFunction*) malloc(sizeof(FRENamedFunction) * (*numFunctionsToSet));
+        
+        func[0].name = (const uint8_t*) "mopub_init";
+        func[0].functionData = NULL;
+        func[0].function = &mopub_init;
+        
+        func[1].name = (const uint8_t*) "mopub_getAdScaleFactor";
+        func[1].functionData = NULL;
+        func[1].function = &mopub_getAdScaleFactor;
+        
+        func[2].name = (const uint8_t*) "mopub_getNativeScreenWidth";
+        func[2].functionData = NULL;
+        func[2].function = &mopub_getNativeScreenWidth;
+        
+        func[3].name = (const uint8_t*) "mopub_getNativeScreenHeight";
+        func[3].functionData = NULL;
+        func[3].function = &mopub_getNativeScreenHeight;
+        
+        func[4].name = (const uint8_t*) "mopub_trackConversion";
+        func[4].functionData = NULL;
+        func[4].function = &mopub_trackConversion;
+        
+        func[5].name = (const uint8_t*) "mopub_getAppleIDFA";
+        func[5].functionData = NULL;
+        func[5].function = &mopub_getAppleIDFA;
+        
+        func[6].name = (const uint8_t*) "mopub_setKeywords";
+        func[6].functionData = NULL;
+        func[6].function = &mopub_setKeywords;
+        
+        *functionsToSet = func;
     }
+    
     else if( strcmp( ctxType, "interstitial" ) == 0 )
     {
-        static FRENamedFunction interstitialFunctionMap[] =
-        {
-            MAP_FUNCTION( mopub_initialiseInterstitial, NULL ),
-            
-            MAP_FUNCTION( mopub_setInterstitialTestMode, NULL ),
-            MAP_FUNCTION( mopub_getInterstitialReady, NULL ),
-            
-            MAP_FUNCTION( mopub_loadInterstitial, NULL ),
-            MAP_FUNCTION( mopub_showInterstitial, NULL ),
-            
-            MAP_FUNCTION( mopub_disposeInterstitial, NULL)
-        };
+        *numFunctionsToSet = 6;
         
-        *numFunctionsToSet = sizeof( interstitialFunctionMap ) / sizeof( FRENamedFunction );
-        *functionsToSet = interstitialFunctionMap;
+        FRENamedFunction* func = (FRENamedFunction*) malloc(sizeof(FRENamedFunction) * (*numFunctionsToSet));
+        
+        func[0].name = (const uint8_t*) "mopub_initialiseInterstitial";
+        func[0].functionData = NULL;
+        func[0].function = &mopub_initialiseInterstitial;
+        
+        func[1].name = (const uint8_t*) "mopub_setInterstitialTestMode";
+        func[1].functionData = NULL;
+        func[1].function = &mopub_setInterstitialTestMode;
+        
+        func[2].name = (const uint8_t*) "mopub_getInterstitialReady";
+        func[2].functionData = NULL;
+        func[2].function = &mopub_getInterstitialReady;
+        
+        func[3].name = (const uint8_t*) "mopub_loadInterstitial";
+        func[3].functionData = NULL;
+        func[3].function = &mopub_loadInterstitial;
+        
+        func[4].name = (const uint8_t*) "mopub_showInterstitial";
+        func[4].functionData = NULL;
+        func[4].function = &mopub_showInterstitial;
+        
+        func[5].name = (const uint8_t*) "mopub_disposeInterstitial";
+        func[5].functionData = NULL;
+        func[5].function = &mopub_disposeInterstitial;
+        
+        *functionsToSet = func;
     }
+    
     else
     {
-        static FRENamedFunction bannerFunctionMap[] =
-        {
-            MAP_FUNCTION( mopub_initialiseBanner, NULL ),
-            
-            MAP_FUNCTION( mopub_setAdUnitId, NULL ),
-            MAP_FUNCTION( mopub_setAutorefresh, NULL ),
-            MAP_FUNCTION( mopub_setTestMode, NULL ),
-            MAP_FUNCTION( mopub_lockNativeAdsToOrientation, NULL ),
-            
-            MAP_FUNCTION( mopub_getPositionX, NULL ),
-            MAP_FUNCTION( mopub_setPositionX, NULL ),
-            MAP_FUNCTION( mopub_getPositionY, NULL ),
-            MAP_FUNCTION( mopub_setPositionY, NULL ),
-            MAP_FUNCTION( mopub_getWidth, NULL ),
-            MAP_FUNCTION( mopub_setWidth, NULL ),
-            MAP_FUNCTION( mopub_getHeight, NULL ),
-            MAP_FUNCTION( mopub_setHeight, NULL ),
-            
-            MAP_FUNCTION( mopub_setSize, NULL ),
-            MAP_FUNCTION( mopub_getCreativeWidth, NULL ),
-            MAP_FUNCTION( mopub_getCreativeHeight, NULL ),
-            
-            MAP_FUNCTION( mopub_loadBanner, NULL ),
-            MAP_FUNCTION( mopub_showBanner, NULL ),
-            MAP_FUNCTION( mopub_removeBanner, NULL ),
-            
-            MAP_FUNCTION( mopub_disposeBanner, NULL)
-        };
+        *numFunctionsToSet = 20;
         
-        *numFunctionsToSet = sizeof( bannerFunctionMap ) / sizeof( FRENamedFunction );
-        *functionsToSet = bannerFunctionMap;
+        FRENamedFunction* func = (FRENamedFunction*) malloc(sizeof(FRENamedFunction) * (*numFunctionsToSet));
+        
+        func[0].name = (const uint8_t*) "mopub_initialiseBanner";
+        func[0].functionData = NULL;
+        func[0].function = &mopub_initialiseBanner;
+        
+        func[1].name = (const uint8_t*) "mopub_setAdUnitId";
+        func[1].functionData = NULL;
+        func[1].function = &mopub_setAdUnitId;
+        
+        func[2].name = (const uint8_t*) "mopub_setAutorefresh";
+        func[2].functionData = NULL;
+        func[2].function = &mopub_setAutorefresh;
+        
+        func[3].name = (const uint8_t*) "mopub_setTestMode";
+        func[3].functionData = NULL;
+        func[3].function = &mopub_setTestMode;
+        
+        func[4].name = (const uint8_t*) "mopub_lockNativeAdsToOrientation";
+        func[4].functionData = NULL;
+        func[4].function = &mopub_lockNativeAdsToOrientation;
+        
+        func[5].name = (const uint8_t*) "mopub_getPositionX";
+        func[5].functionData = NULL;
+        func[5].function = &mopub_getPositionX;
+        
+        func[6].name = (const uint8_t*) "mopub_setPositionX";
+        func[6].functionData = NULL;
+        func[6].function = &mopub_setPositionX;
+        
+        func[7].name = (const uint8_t*) "mopub_getPositionY";
+        func[7].functionData = NULL;
+        func[7].function = &mopub_getPositionY;
+        
+        func[8].name = (const uint8_t*) "mopub_setPositionY";
+        func[8].functionData = NULL;
+        func[8].function = &mopub_setPositionY;
+        
+        func[9].name = (const uint8_t*) "mopub_getWidth";
+        func[9].functionData = NULL;
+        func[9].function = &mopub_getWidth;
+        
+        func[10].name = (const uint8_t*) "mopub_setWidth";
+        func[10].functionData = NULL;
+        func[10].function = &mopub_setWidth;
+        
+        func[11].name = (const uint8_t*) "mopub_getHeight";
+        func[11].functionData = NULL;
+        func[11].function = &mopub_getHeight;
+        
+        func[12].name = (const uint8_t*) "mopub_setHeight";
+        func[12].functionData = NULL;
+        func[12].function = &mopub_setHeight;
+        
+        func[13].name = (const uint8_t*) "mopub_setSize";
+        func[13].functionData = NULL;
+        func[13].function = &mopub_setSize;
+        
+        func[14].name = (const uint8_t*) "mopub_getCreativeWidth";
+        func[14].functionData = NULL;
+        func[14].function = &mopub_getCreativeWidth;
+        
+        func[15].name = (const uint8_t*) "mopub_getCreativeHeight";
+        func[15].functionData = NULL;
+        func[15].function = &mopub_getCreativeHeight;
+        
+        func[16].name = (const uint8_t*) "mopub_loadBanner";
+        func[16].functionData = NULL;
+        func[16].function = &mopub_loadBanner;
+        
+        func[17].name = (const uint8_t*) "mopub_showBanner";
+        func[17].functionData = NULL;
+        func[17].function = &mopub_showBanner;
+        
+        func[18].name = (const uint8_t*) "mopub_removeBanner";
+        func[18].functionData = NULL;
+        func[18].function = &mopub_removeBanner;
+        
+        func[19].name = (const uint8_t*) "mopub_disposeBanner";
+        func[19].functionData = NULL;
+        func[19].function = &mopub_disposeBanner;
+        
+        *functionsToSet = func;
     }
 }
 

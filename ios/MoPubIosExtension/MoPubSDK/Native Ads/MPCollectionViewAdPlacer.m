@@ -10,9 +10,14 @@
 #import "MPInstanceProvider.h"
 #import "MPAdPlacerInvocation.h"
 #import "MPTimer.h"
-#import "MPNativeAdRendering.h"
 #import "MPNativeAdUtils.h"
+#import "MPCollectionViewAdPlacerCell.h"
+#import "MPNativeAdRendererConfiguration.h"
 #import <objc/runtime.h>
+
+static NSString * const kCollectionViewAdPlacerReuseIdentifier = @"MPCollectionViewAdPlacerReuseIdentifier";
+
+@protocol MPNativeAdRenderer;
 
 @interface MPCollectionViewAdPlacer () <UICollectionViewDataSource, UICollectionViewDelegate, MPStreamAdPlacerDelegate, UICollectionViewDelegateFlowLayout>
 
@@ -20,7 +25,6 @@
 @property (nonatomic, strong) UICollectionView *collectionView;
 @property (nonatomic, weak) id<UICollectionViewDataSource> originalDataSource;
 @property (nonatomic, weak) id<UICollectionViewDelegate> originalDelegate;
-@property (nonatomic, assign) Class defaultAdRenderingClass;
 @property (nonatomic, strong) MPTimer *insertionTimer;
 
 @end
@@ -29,24 +33,26 @@
 
 @implementation MPCollectionViewAdPlacer
 
-+ (instancetype)placerWithCollectionView:(UICollectionView *)collectionView viewController:(UIViewController *)controller defaultAdRenderingClass:(Class)defaultAdRenderingClass
++ (instancetype)placerWithCollectionView:(UICollectionView *)collectionView viewController:(UIViewController *)controller rendererConfigurations:(NSArray *)rendererConfigurations
 {
-    return [[self class] placerWithCollectionView:collectionView viewController:controller adPositioning:[MPServerAdPositioning positioning] defaultAdRenderingClass:defaultAdRenderingClass];
+    return [[self class] placerWithCollectionView:collectionView viewController:controller adPositioning:[MPServerAdPositioning positioning] rendererConfigurations:rendererConfigurations];
 }
 
-+ (instancetype)placerWithCollectionView:(UICollectionView *)collectionView viewController:(UIViewController *)controller adPositioning:(MPAdPositioning *)positioning defaultAdRenderingClass:(Class)defaultAdRenderingClass
++ (instancetype)placerWithCollectionView:(UICollectionView *)collectionView viewController:(UIViewController *)controller adPositioning:(MPAdPositioning *)positioning rendererConfigurations:(NSArray *)rendererConfigurations
 {
-    MPCollectionViewAdPlacer *collectionViewAdPlacer = [[MPCollectionViewAdPlacer alloc] initWithCollectionView:collectionView viewController:controller adPositioning:positioning defaultAdRenderingClass:defaultAdRenderingClass];
+    MPCollectionViewAdPlacer *collectionViewAdPlacer = [[MPCollectionViewAdPlacer alloc] initWithCollectionView:collectionView viewController:controller adPositioning:positioning rendererConfigurations:rendererConfigurations];
     return collectionViewAdPlacer;
 }
 
-- (instancetype)initWithCollectionView:(UICollectionView *)collectionView viewController:(UIViewController *)controller adPositioning:(MPAdPositioning *)positioning defaultAdRenderingClass:(Class)defaultAdRenderingClass
+- (instancetype)initWithCollectionView:(UICollectionView *)collectionView viewController:(UIViewController *)controller adPositioning:(MPAdPositioning *)positioning rendererConfigurations:(NSArray *)rendererConfigurations
 {
-    NSAssert([defaultAdRenderingClass isSubclassOfClass:[UICollectionViewCell class]], @"A collection view ad placer must be instantiated with a rendering class that is a UICollectionViewCell");
+    for (id rendererConfiguration in rendererConfigurations) {
+        NSAssert([rendererConfiguration isKindOfClass:[MPNativeAdRendererConfiguration class]], @"A collection view ad placer must be instantiated with rendererConfigurations that are of type MPNativeAdRendererConfiguration.");
+    }
 
     if (self = [super init]) {
         _collectionView = collectionView;
-        _streamAdPlacer = [[MPInstanceProvider sharedProvider] buildStreamAdPlacerWithViewController:controller adPositioning:positioning defaultAdRenderingClass:defaultAdRenderingClass];
+        _streamAdPlacer = [[MPInstanceProvider sharedProvider] buildStreamAdPlacerWithViewController:controller adPositioning:positioning rendererConfigurations:rendererConfigurations];
         _streamAdPlacer.delegate = self;
 
         _insertionTimer = [MPTimer timerWithTimeInterval:kUpdateVisibleCellsInterval target:self selector:@selector(updateVisibleCells) repeats:YES];
@@ -58,8 +64,7 @@
         collectionView.dataSource = self;
         collectionView.delegate = self;
 
-        _defaultAdRenderingClass = defaultAdRenderingClass;
-        [self registerNibOrClass];
+        [_collectionView registerClass:[MPCollectionViewAdPlacerCell class] forCellWithReuseIdentifier:kCollectionViewAdPlacerReuseIdentifier];
 
         [collectionView mp_setAdPlacer:self];
     }
@@ -70,22 +75,6 @@
 - (void)dealloc
 {
     [_insertionTimer invalidate];
-}
-
-- (void)registerNibOrClass
-{
-    // We're only supporting one rendering class right now so we can pass nil for the index path.
-    NSString *adCellReuseIdentifier = [_streamAdPlacer reuseIdentifierForRenderingClassAtIndexPath:nil];
-
-    // First, see if the rendering class provides a nib that we should register on the collection view.
-    if ([_defaultAdRenderingClass respondsToSelector:@selector(nibForAd)]) {
-        UINib *nib = [_defaultAdRenderingClass nibForAd];
-        NSAssert(nib, @"+nibForAd must return a valid UINib object.");
-        [_collectionView registerNib:nib forCellWithReuseIdentifier:adCellReuseIdentifier];
-    } else {
-        // If the rendering class doesn't provide a nib, register the class directly.
-        [_collectionView registerClass:[_defaultAdRenderingClass class] forCellWithReuseIdentifier:adCellReuseIdentifier];
-    }
 }
 
 #pragma mark - Public
@@ -138,6 +127,27 @@
     }];
 }
 
+- (void)nativeAdWillPresentModalForStreamAdPlacer:(MPStreamAdPlacer *)adPlacer
+{
+    if ([self.delegate respondsToSelector:@selector(nativeAdWillPresentModalForCollectionViewAdPlacer:)]) {
+        [self.delegate nativeAdWillPresentModalForCollectionViewAdPlacer:self];
+    }
+}
+
+- (void)nativeAdDidDismissModalForStreamAdPlacer:(MPStreamAdPlacer *)adPlacer
+{
+    if ([self.delegate respondsToSelector:@selector(nativeAdDidDismissModalForCollectionViewAdPlacer:)]) {
+        [self.delegate nativeAdDidDismissModalForCollectionViewAdPlacer:self];
+    }
+}
+
+- (void)nativeAdWillLeaveApplicationFromStreamAdPlacer:(MPStreamAdPlacer *)adPlacer
+{
+    if ([self.delegate respondsToSelector:@selector(nativeAdWillLeaveApplicationFromCollectionViewAdPlacer:)]) {
+        [self.delegate nativeAdWillLeaveApplicationFromCollectionViewAdPlacer:self];
+    }
+}
+
 #pragma mark - <UICollectionViewDataSource>
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
@@ -150,11 +160,10 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     if ([self.streamAdPlacer isAdAtIndexPath:indexPath]) {
-        NSString *identifier = [self.streamAdPlacer reuseIdentifierForRenderingClassAtIndexPath:indexPath];
-        UICollectionViewCell<MPNativeAdRendering> *cell = (UICollectionViewCell<MPNativeAdRendering> *)[collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
+        MPCollectionViewAdPlacerCell *cell = (MPCollectionViewAdPlacerCell *)[collectionView dequeueReusableCellWithReuseIdentifier:kCollectionViewAdPlacerReuseIdentifier forIndexPath:indexPath];
         cell.clipsToBounds = YES;
 
-        [self.streamAdPlacer renderAdAtIndexPath:indexPath inView:cell];
+        [self.streamAdPlacer renderAdAtIndexPath:indexPath inView:cell.contentView];
         return cell;
     }
 
@@ -197,7 +206,7 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     if ([self.streamAdPlacer isAdAtIndexPath:indexPath]) {
-        [self.streamAdPlacer displayContentForAdAtAdjustedIndexPath:indexPath];
+        // The view inside the cell already has a gesture recognizer to handle the tap event.
         [self.collectionView deselectItemAtIndexPath:indexPath animated:NO];
         return;
     }

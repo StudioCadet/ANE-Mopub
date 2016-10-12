@@ -35,7 +35,7 @@ static const NSInteger MAX_CONCURRENT_CONNECTIONS = 1;
     if (self = [super init]) {
         _eventProcessingQueue = dispatch_queue_create("com.mopub.eventProcessingQueue", DISPATCH_QUEUE_SERIAL);
     }
-    
+
     return self;
 }
 
@@ -70,10 +70,10 @@ static const NSInteger MAX_CONCURRENT_CONNECTIONS = 1;
     NSURL *URL = [NSURL URLWithString:kAnalyticsURL];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:URL];
     [request setHTTPMethod:@"POST"];
-    
+
     NSString *POSTBodyString = [self makeParamStringForEvents:events];
     [request setHTTPBody:[POSTBodyString dataUsingEncoding:NSUTF8StringEncoding]];
-    
+
     return request;
 }
 
@@ -84,10 +84,10 @@ static const NSInteger MAX_CONCURRENT_CONNECTIONS = 1;
         [serializedEvents addObject:[event asDictionary]];
     }
     NSData *jsonData = [NSJSONSerialization dataWithJSONObject:serializedEvents options:0 error:nil];
-    
+
     NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
-    NSString *paramString = [NSString stringWithFormat:@"log=%@", [jsonString URLEncodedString]];
-    
+    NSString *paramString = [NSString stringWithFormat:@"log=%@", [jsonString mp_URLEncodedString]];
+
     return paramString;
 }
 

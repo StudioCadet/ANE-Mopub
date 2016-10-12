@@ -15,7 +15,6 @@
 @property (nonatomic, strong) NSTimer *timer;
 @property (nonatomic, copy) NSDate *pauseDate;
 @property (nonatomic, assign) BOOL isPaused;
-@property (nonatomic, assign) NSTimeInterval secondsLeft;
 @end
 
 @interface MPTimer ()
@@ -33,7 +32,6 @@
 @synthesize target = _target;
 @synthesize selector = _selector;
 @synthesize isPaused = _isPaused;
-@synthesize secondsLeft = _secondsLeft;
 
 + (MPTimer *)timerWithTimeInterval:(NSTimeInterval)seconds
                             target:(id)target
@@ -112,6 +110,7 @@
 
 - (BOOL)pause
 {
+    NSTimeInterval secondsLeft;
     if (self.isPaused) {
         MPLogDebug(@"No-op: tried to pause an MPTimer (%p) that was already paused.", self);
         return NO;
@@ -129,12 +128,11 @@
 
     NSDate *fireDate = [self.timer fireDate];
     self.pauseDate = [NSDate date];
-    self.secondsLeft = [fireDate timeIntervalSinceDate:self.pauseDate];
-    if (self.secondsLeft <= 0) {
+    secondsLeft = [fireDate timeIntervalSinceDate:self.pauseDate];
+    if (secondsLeft <= 0) {
         MPLogWarn(@"An MPTimer was somehow paused after it was supposed to fire.");
-        self.secondsLeft = 5;
     } else {
-        MPLogDebug(@"Paused MPTimer (%p) %.1f seconds left before firing.", self, self.secondsLeft);
+        MPLogDebug(@"Paused MPTimer (%p) %.1f seconds left before firing.", self, secondsLeft);
     }
 
     // Pause the timer by setting its fire date far into the future.
@@ -156,10 +154,10 @@
         return NO;
     }
 
-    MPLogDebug(@"Resumed MPTimer (%p), should fire in %.1f seconds.", self, self.secondsLeft);
+    MPLogDebug(@"Resumed MPTimer (%p), should fire in %.1f seconds.", self.timeInterval);
 
     // Resume the timer.
-    NSDate *newFireDate = [NSDate dateWithTimeInterval:self.secondsLeft sinceDate:[NSDate date]];
+    NSDate *newFireDate = [NSDate dateWithTimeInterval:self.timeInterval sinceDate:[NSDate date]];
     [self.timer setFireDate:newFireDate];
 
     if (![self isScheduled]) {

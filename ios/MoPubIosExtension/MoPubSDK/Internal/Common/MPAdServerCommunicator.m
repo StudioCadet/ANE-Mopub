@@ -65,7 +65,7 @@ const NSTimeInterval kRequestTimeoutInterval = 10.0;
     self.URL = URL;
 
     // Start tracking how long it takes to successfully or unsuccessfully retrieve an ad.
-    self.adRequestLatencyEvent = [[MPLogEvent alloc] init];
+    self.adRequestLatencyEvent = [[MPLogEvent alloc] initWithEventCategory:MPLogEventCategoryRequests eventName:MPLogEventNameAdRequest];
     self.adRequestLatencyEvent.requestURI = URL.absoluteString;
 
     self.connection = [NSURLConnection connectionWithRequest:[self adRequestForURL:URL]
@@ -126,12 +126,14 @@ const NSTimeInterval kRequestTimeoutInterval = 10.0;
     MPAdConfiguration *configuration = [[MPAdConfiguration alloc]
                                          initWithHeaders:self.responseHeaders
                                          data:self.responseData];
+    MPAdConfigurationLogEventProperties *logEventProperties =
+        [[MPAdConfigurationLogEventProperties alloc] initWithConfiguration:configuration];
 
     // Do not record ads that are warming up.
     if (configuration.adUnitWarmingUp) {
         self.adRequestLatencyEvent = nil;
     } else {
-        [self.adRequestLatencyEvent setRequestPropertiesWithConfiguration:configuration];
+        [self.adRequestLatencyEvent setLogEventProperties:logEventProperties];
         MPAddLogEvent(self.adRequestLatencyEvent);
     }
 

@@ -17,7 +17,6 @@
 - (MPAdView *)banner;
 - (id<MPAdViewDelegate>)bannerDelegate;
 - (CGSize)containerSize;
-- (BOOL)ignoresAutorefresh;
 - (NSString *)keywords;
 - (CLLocation *)location;
 - (BOOL)isTesting;

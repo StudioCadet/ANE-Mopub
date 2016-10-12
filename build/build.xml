@@ -63,11 +63,11 @@
 			<arg line="--output-format human-readable-text" />
 			<arg line="--sdk ${ios.sdk}" />
 			<arg line="--compile ../bin/ios/MPAdBrowserController.nib" />
-			<arg value="${mopub.ios.sdk}/MoPubSDK/Internal/Common/MPAdBrowserController.xib" />
+			<arg value="../ios/MoPubIosExtension/MoPubSDK/Internal/Common/MPAdBrowserController.xib" />
 		</exec>
 
 		<copy todir="../bin/ios">
-			<fileset dir="${mopub.ios.sdk}/MoPubSDK/Resources"/>
+			<fileset dir="../ios/MoPubIosExtension/MoPubSDK/Resources"/>
 		</copy>
 		
 		<!-- mraid.js was included twice, we'll look into it later. For now, simply duplicate the file. -->
@@ -101,7 +101,7 @@
 			<src path="../android/src" />
 			<src path="${mopub.android.sdk}/mopub-sdk/src/main/java" />
 			<classpath>
-				<pathelement location="${flex.sdk}/lib/android/FlashRuntimeExtensions.jar"/>
+				<pathelement location="${air.sdk}/lib/android/FlashRuntimeExtensions.jar"/>
 				
 				<pathelement location="${android.jar}" />
 				<pathelement location="${android.supportV4}" />
@@ -174,13 +174,13 @@
 			<regexpmapper from=".*src.(.*)\.as" to="\1" />
 		</pathconvert>
 
-		<exec executable="${flex.sdk}/bin/compc${bat.ext}" failonerror="true">
-			<env key="AIR_SDK_HOME" value="${flex.sdk}"/>
+		<exec executable="${air.sdk}/bin/compc${bat.ext}" failonerror="true">
+			<env key="AIR_SDK_HOME" value="${air.sdk}"/>
 			<arg line='-source-path ../actionscript/ios/src' />
 			<arg line='-source-path+=../actionscript/common/src' />
 			<arg line='-output ../bin/actionscript/ios/${name}.swc' />
 			<arg line='-swf-version=${swf.version}' />
-			<arg line='-external-library-path+="${flex.sdk}/frameworks/libs/air/airglobal.swc"' />
+			<arg line='-external-library-path+="${air.sdk}/frameworks/libs/air/airglobal.swc"' />
 			<arg line='-include-classes ${classlist.ios}' />
 		</exec>
 		<echo message="Done."/>
@@ -198,13 +198,13 @@
 			<regexpmapper from=".*src.(.*)\.as" to="\1" />
 		</pathconvert>
 
-		<exec executable="${flex.sdk}/bin/compc${bat.ext}" failonerror="true">
-			<env key="AIR_SDK_HOME" value="${flex.sdk}"/>
+		<exec executable="${air.sdk}/bin/compc${bat.ext}" failonerror="true">
+			<env key="AIR_SDK_HOME" value="${air.sdk}"/>
 			<arg line='-source-path ../actionscript/android/src' />
 			<arg line='-source-path+=../actionscript/common/src' />
 			<arg line='-output ../bin/actionscript/android/${name}.swc' />
 			<arg line='-swf-version=${swf.version}' />
-			<arg line='-external-library-path+="${flex.sdk}/frameworks/libs/air/airglobal.swc"' />
+			<arg line='-external-library-path+="${air.sdk}/frameworks/libs/air/airglobal.swc"' />
 			<arg line='-include-classes ${classlist.android}' />
 		</exec>
 		<echo message="Done."/>
@@ -222,14 +222,14 @@
 			<regexpmapper from=".*src.(.*)\.as" to="\1" />
 		</pathconvert>
 
-		<exec executable="${flex.sdk}/bin/compc${bat.ext}" failonerror="true">
-			<env key="AIR_SDK_HOME" value="${flex.sdk}"/>
-			<arg line='-source-path ../actionscript/default/src' />
+		<exec executable="${air.sdk}/bin/compc${bat.ext}" failonerror="true">
+			<env key="AIR_SDK_HOME" value="${air.sdk}"/>
+			<arg line='-source-path ../actionscript/android/src' />
 			<arg line='-source-path+=../actionscript/common/src' />
-			<arg line='-output ../bin/actionscript/default/${name}.swc' />
+			<arg line='-output ../bin/actionscript/android/${name}.swc' />
 			<arg line='-swf-version=${swf.version}' />
-			<arg line='-external-library-path+="${flex.sdk}/frameworks/libs/air/airglobal.swc"' />
-			<arg line='-include-classes ${classlist.default}' />
+			<arg line='-external-library-path+="${air.sdk}/frameworks/libs/air/airglobal.swc"' />
+			<arg line='-include-classes ${classlist.android}' />
 		</exec>
 		<echo message="Done."/>
 	</target>
@@ -260,7 +260,7 @@
 	<!-- Packaging -->
 	<target name="package" description="Create the extension package">
 		<echo message="Packaging the ANE ..."/>
-		<exec executable="${flex.sdk}/bin/adt${bat.ext}" failonerror="true" dir="../bin">
+		<exec executable="${air.sdk}/bin/adt${bat.ext}" failonerror="true" dir="../bin">
             <arg value="-package"/>
             <arg value="-target"/>
             <arg value="ane"/>
