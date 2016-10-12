@@ -13,14 +13,15 @@
 @interface MoPubBanner ()
 {
 }
-@property (nonatomic, assign)FREContext context;
+
 @property (nonatomic, assign)BOOL didDispatchAdClicked;
+@property (nonatomic)BOOL autoRefresh;
 
 @end
 
-@implementation MoPubBanner
-
-@synthesize context;
+@implementation MoPubBanner {
+    FREContext context;
+}
 
 - (id) initWithContext:(FREContext)extensionContext adUnitId:(NSString*)adUnitId size:(CGSize)size
 {
@@ -28,7 +29,8 @@
     
     if( self )
     {
-        self.context = extensionContext;
+        context = extensionContext;
+        self.autoRefresh = YES;
         self.delegate = self;
     }
     return self;
@@ -37,7 +39,6 @@
 - (void)dealloc
 {
     self.delegate = nil;
-    [super dealloc];
 }
 
 - (float) getDisplayDensity
@@ -64,12 +65,17 @@
 
 - (BOOL) getAutorefresh
 {
-    return !self.ignoresAutorefresh;
+    return self.autoRefresh;
 }
 
 - (void) setAutorefresh:(BOOL)value
 {
-    self.ignoresAutorefresh = !value;
+    if(!value)
+        [self stopAutomaticallyRefreshingContents];
+    else
+        [self startAutomaticallyRefreshingContents];
+    
+    self.autoRefresh = value;
 }
 
 - (int) getPositionX

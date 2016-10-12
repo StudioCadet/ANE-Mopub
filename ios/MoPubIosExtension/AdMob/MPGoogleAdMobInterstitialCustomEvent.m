@@ -111,7 +111,6 @@
 - (void)dealloc
 {
     self.interstitial.delegate = nil;
-    [super dealloc];
 }
 
 #pragma mark - GADInterstitialDelegate

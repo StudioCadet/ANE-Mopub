@@ -35,10 +35,22 @@ NSError *MPNativeAdNSErrorForImageDownloadFailure() {
     return [NSError errorWithDomain:MoPubNativeAdsSDKDomain code:MPNativeAdErrorImageDownloadFailed userInfo:@{NSLocalizedDescriptionKey : @"Failed to download images"}];
 }
 
+NSError *MPNativeAdNSErrorForVASTParsingFailure() {
+    return [NSError errorWithDomain:MoPubNativeAdsSDKDomain code:MPNativeAdErrorVASTParsingFailed userInfo:@{NSLocalizedDescriptionKey : @"Failed to parse VAST tag"}];
+}
+
+NSError *MPNativeAdNSErrorForVideoConfigInvalid() {
+    return [NSError errorWithDomain:MoPubNativeAdsSDKDomain code:MPNativeAdErrorVideoConfigInvalid userInfo:@{NSLocalizedDescriptionKey : @"Native Video Config Values in Adserver response are invalid"}];
+}
+
 NSError *MPNativeAdNSErrorForContentDisplayErrorMissingRootController() {
     return [NSError errorWithDomain:MoPubNativeAdsSDKDomain code:MPNativeAdErrorContentDisplayError userInfo:@{NSLocalizedDescriptionKey : @"Cannot display content without a root view controller"}];
 }
 
 NSError *MPNativeAdNSErrorForContentDisplayErrorInvalidURL() {
     return [NSError errorWithDomain:MoPubNativeAdsSDKDomain code:MPNativeAdErrorContentDisplayError userInfo:@{NSLocalizedDescriptionKey : @"Cannot display content without a valid URL"}];
+}
+
+NSError *MPNativeAdNSErrorForRenderValueTypeError() {
+    return [NSError errorWithDomain:MoPubNativeAdsSDKDomain code:MPNativeAdErrorRenderError userInfo:@{NSLocalizedDescriptionKey : @"Native ad property was an incorrect data type"}];
 }

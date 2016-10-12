@@ -33,6 +33,25 @@ extern NSString *const MPLogEventNameAdRequest;
  * Event categories.
  */
 extern NSString *const MPLogEventCategoryRequests;
+extern NSString *const MPLogEventCategoryNativeVideo;
+
+/* MPAdConfigurationLogEventProperties
+ *
+ * Convenience struct class for keeping track of the log event properties
+ * that are parsed off the MPAdConfiguration.
+ */
+@interface MPAdConfigurationLogEventProperties : NSObject
+
+@property (nonatomic, copy) NSString *adType;
+@property (nonatomic, copy) NSString *adCreativeId;
+@property (nonatomic, copy) NSString *adNetworkType;
+@property (nonatomic) CGSize adSize;
+@property (nonatomic, copy) NSString *requestId;
+@property (nonatomic, copy) NSString *adUnitId;
+
+- (instancetype)initWithConfiguration:(MPAdConfiguration *)configuration;
+
+@end
 
 @interface MPLogEvent : NSObject
 
@@ -77,13 +96,13 @@ extern NSString *const MPLogEventCategoryRequests;
 @property (nonatomic, copy) NSString *adCreativeId;
 
 /**
- * Identifier for a class of ad. Examples include "html", "mraid", "interstitial", "json", 
+ * Identifier for a class of ad. Examples include "html", "mraid", "interstitial", "json",
  * "custom", "clear".
  */
 @property (nonatomic, copy) NSString *adType;
 
 /**
- * Identifier for an ad network type. Examples include "admob", "custom", "custom_native", "mojiva", 
+ * Identifier for an ad network type. Examples include "admob", "custom", "custom_native", "mojiva",
  * "huntmads", "millennial".
  */
 @property (nonatomic, copy) NSString *adNetworkType;
@@ -209,6 +228,7 @@ extern NSString *const MPLogEventCategoryRequests;
 
 @property (nonatomic, readonly) BOOL clientDoNotTrack;
 
+- (instancetype)initWithEventCategory:(NSString *)eventCategory eventName:(NSString *)eventName;
 
 - (NSString *)serialize;
 - (NSDictionary *)asDictionary;
@@ -224,11 +244,9 @@ extern NSString *const MPLogEventCategoryRequests;
  */
 - (void)recordEndTime;
 
-
 /**
- * Convenience method to set ad request properties with the configuration response from the adserver.
+ * Convenience method to set common properties with the MPAdConfigurationLogEventProperties.
  */
-- (void)setRequestPropertiesWithConfiguration:(MPAdConfiguration *)configuration;
-
+- (void)setLogEventProperties:(MPAdConfigurationLogEventProperties *)logEventProperties;
 
 @end

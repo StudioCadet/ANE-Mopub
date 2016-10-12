@@ -10,39 +10,47 @@
 #import "MPNativeAdError.h"
 #import "MPNativeAd+Internal.h"
 #import "MPNativeAdRequestTargeting.h"
+#import "MPLogEvent.h"
 #import "MPLogging.h"
 #import "MPImageDownloadQueue.h"
 #import "MPConstants.h"
+#import "MPNativeAdConstants.h"
 #import "MPNativeCustomEventDelegate.h"
 #import "MPNativeCustomEvent.h"
+#import "MOPUBNativeVideoAdConfigValues.h"
+#import "MOPUBNativeVideoCustomEvent.h"
 #import "MPInstanceProvider.h"
 #import "NSJSONSerialization+MPAdditions.h"
 #import "MPAdServerCommunicator.h"
-
+#import "MPNativeAdRenderer.h"
 #import "MPMoPubNativeCustomEvent.h"
+#import "MPNativeAdRendererConfiguration.h"
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
 @interface MPNativeAdRequest () <MPNativeCustomEventDelegate, MPAdServerCommunicatorDelegate>
 
 @property (nonatomic, copy) NSString *adUnitIdentifier;
+@property (nonatomic) NSArray *rendererConfigurations;
 @property (nonatomic, strong) NSURL *URL;
 @property (nonatomic, strong) MPAdServerCommunicator *communicator;
 @property (nonatomic, copy) MPNativeAdRequestHandler completionHandler;
 @property (nonatomic, strong) MPNativeCustomEvent *nativeCustomEvent;
 @property (nonatomic, strong) MPAdConfiguration *adConfiguration;
+@property (nonatomic) id<MPNativeAdRenderer> customEventRenderer;
 @property (nonatomic, assign) BOOL loading;
 
 @end
 
 @implementation MPNativeAdRequest
 
-- (id)initWithAdUnitIdentifier:(NSString *)identifier
+- (id)initWithAdUnitIdentifier:(NSString *)identifier rendererConfigurations:(NSArray *)rendererConfigurations
 {
     self = [super init];
     if (self) {
         _adUnitIdentifier = [identifier copy];
         _communicator = [[MPCoreInstanceProvider sharedProvider] buildMPAdServerCommunicatorWithDelegate:self];
+        _rendererConfigurations = rendererConfigurations;
     }
     return self;
 }
@@ -56,9 +64,9 @@
 
 #pragma mark - Public
 
-+ (MPNativeAdRequest *)requestWithAdUnitIdentifier:(NSString *)identifier
++ (MPNativeAdRequest *)requestWithAdUnitIdentifier:(NSString *)identifier rendererConfigurations:(NSArray *)rendererConfigurations
 {
-    return [[self alloc] initWithAdUnitIdentifier:identifier];
+    return [[self alloc] initWithAdUnitIdentifier:identifier rendererConfigurations:rendererConfigurations];
 }
 
 - (void)startWithCompletionHandler:(MPNativeAdRequestHandler)handler
@@ -135,16 +143,49 @@
         MPLogInfo(@"Looking for custom event class named %@.", configuration.customEventClass);
     }
 
-    // Adserver doesn't return a customEventClass for MoPub native ads
-    if ([configuration.networkType isEqualToString:kAdTypeNative] && configuration.customEventClass == nil) {
-        configuration.customEventClass = [MPMoPubNativeCustomEvent class];
+    // For MoPub native ads, set the classData to be the adResponseData
+    if ((configuration.customEventClass == [MPMoPubNativeCustomEvent class]) || (configuration.customEventClass == [MOPUBNativeVideoCustomEvent class])) {
         NSError *error;
-        NSDictionary *classData = [NSJSONSerialization mp_JSONObjectWithData:configuration.adResponseData options:0 clearNullObjects:YES error:&error];
+        NSMutableDictionary *classData = [NSJSONSerialization mp_JSONObjectWithData:configuration.adResponseData
+                                                                            options:0
+                                                                   clearNullObjects:YES
+                                                                              error:&error];
+        if (configuration.customEventClass == [MOPUBNativeVideoCustomEvent class]) {
+            [classData setObject:[[MOPUBNativeVideoAdConfigValues alloc]
+                                  initWithPlayVisiblePercent:configuration.nativeVideoPlayVisiblePercent
+                                  pauseVisiblePercent:configuration.nativeVideoPauseVisiblePercent
+                                  impressionMinVisiblePercent:configuration.nativeVideoImpressionMinVisiblePercent
+                                  impressionVisible:configuration.nativeVideoImpressionVisible
+                                  maxBufferingTime:configuration.nativeVideoMaxBufferingTime]
+                          forKey:kNativeVideoAdConfigKey];
+            MPAdConfigurationLogEventProperties *logEventProperties =
+                [[MPAdConfigurationLogEventProperties alloc] initWithConfiguration:configuration];
+            [classData setObject:logEventProperties forKey:kLogEventRequestPropertiesKey];
+        }
 
         configuration.customEventClassData = classData;
     }
 
-    self.nativeCustomEvent = [[MPInstanceProvider sharedProvider] buildNativeCustomEventFromCustomClass:configuration.customEventClass delegate:self];
+    // See if we have a renderer that we can use for the custom event now so we can fail early.
+    NSString *customEventClassName = NSStringFromClass(configuration.customEventClass);
+    MPNativeAdRendererConfiguration *customEventRendererConfig = nil;
+
+    for (MPNativeAdRendererConfiguration *rendererConfig in self.rendererConfigurations) {
+        NSArray *supportedCustomEvents = rendererConfig.supportedCustomEvents;
+
+        if ([supportedCustomEvents containsObject:customEventClassName]) {
+            customEventRendererConfig = rendererConfig;
+            break;
+        }
+    }
+
+    if (customEventRendererConfig) {
+        // Create a renderer from the config.
+        self.customEventRenderer = [[customEventRendererConfig.rendererClass alloc] initWithRendererSettings:customEventRendererConfig.rendererSettings];
+        self.nativeCustomEvent = [[MPInstanceProvider sharedProvider] buildNativeCustomEventFromCustomClass:configuration.customEventClass delegate:self];
+    } else {
+        MPLogError(@"Could not find renderer configuration for custom event class: %@", NSStringFromClass(configuration.customEventClass));
+    }
 
     if (self.nativeCustomEvent) {
         [self.nativeCustomEvent requestAdWithCustomEventInfo:configuration.customEventClassData];
@@ -159,6 +200,8 @@
 - (void)completeAdRequestWithAdObject:(MPNativeAd *)adObject error:(NSError *)error
 {
     self.loading = NO;
+
+    adObject.renderer = self.customEventRenderer;
 
     if (!error) {
         MPLogInfo(@"Successfully loaded native ad.");
@@ -205,16 +248,18 @@
 
 - (void)nativeCustomEvent:(MPNativeCustomEvent *)event didLoadAd:(MPNativeAd *)adObject
 {
-    // Take the click tracking URL from the header if the ad object doesn't already have one.
-    [adObject setEngagementTrackingURL:(adObject.engagementTrackingURL ? : self.adConfiguration.clickTrackingURL)];
-
-    // Add the impression tracker from the header to our set.
-    if (self.adConfiguration.impressionTrackingURL) {
-        [adObject.impressionTrackers addObject:[self.adConfiguration.impressionTrackingURL absoluteString]];
+    // Add the click tracker url from the header to our set.
+    if (self.adConfiguration.clickTrackingURL) {
+        [adObject.clickTrackerURLs addObject:self.adConfiguration.clickTrackingURL];
     }
 
-    // Error if we don't have click tracker or impression trackers.
-    if (!adObject.engagementTrackingURL || adObject.impressionTrackers.count < 1) {
+    // Add the impression tracker url from the header to our set.
+    if (self.adConfiguration.impressionTrackingURL) {
+        [adObject.impressionTrackerURLs addObject:self.adConfiguration.impressionTrackingURL];
+    }
+
+    // Error if we don't have click trackers or impression trackers.
+    if (adObject.clickTrackerURLs.count < 1 || adObject.impressionTrackerURLs.count < 1) {
         [self completeAdRequestWithAdObject:nil error:MPNativeAdNSErrorForInvalidAdServerResponse(@"Invalid ad trackers")];
     } else {
         [self completeAdRequestWithAdObject:adObject error:nil];

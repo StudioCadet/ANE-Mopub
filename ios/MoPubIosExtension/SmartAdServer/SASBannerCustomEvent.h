@@ -4,18 +4,18 @@
 
 @interface SASBannerCustomEvent : MPBannerCustomEvent
 
-@property (nonatomic, retain) UINavigationController *navigationController;
-@property (nonatomic, retain) UIWindow *window;
+@property (nonatomic, strong) UINavigationController *navigationController;
+@property (nonatomic, strong) UIWindow *window;
 
 @property NSInteger formatId;
 @property (nonatomic, copy) NSString* pageId;
 @property float timeOut;
 
-@property (nonatomic, retain) SASBannerView *banner;
+@property (nonatomic, strong) SASBannerView *banner;
 @property (nonatomic) Boolean isFetch;
 
 @end
 
 @interface BannerRootViewController : UIViewController <UITableViewDelegate, SASAdViewDelegate>
-@property (nonatomic, retain) SASBannerCustomEvent *mpCustomEvent;
+@property (nonatomic, strong) SASBannerCustomEvent *mpCustomEvent;
 @end

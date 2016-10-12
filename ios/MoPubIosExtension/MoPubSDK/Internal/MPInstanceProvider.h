@@ -72,6 +72,7 @@
 @class MPStreamAdPlacementData;
 @class MPStreamAdPlacer;
 @class MPAdPositioning;
+@protocol MPNativeAdRenderer;
 
 @interface MPInstanceProvider : NSObject
 
@@ -132,6 +133,6 @@
 - (MPNativeAdSource *)buildNativeAdSourceWithDelegate:(id<MPNativeAdSourceDelegate>)delegate;
 - (MPNativePositionSource *)buildNativePositioningSource;
 - (MPStreamAdPlacementData *)buildStreamAdPlacementDataWithPositioning:(MPAdPositioning *)positioning;
-- (MPStreamAdPlacer *)buildStreamAdPlacerWithViewController:(UIViewController *)controller adPositioning:(MPAdPositioning *)positioning defaultAdRenderingClass:defaultAdRenderingClass;
+- (MPStreamAdPlacer *)buildStreamAdPlacerWithViewController:(UIViewController *)controller adPositioning:(MPAdPositioning *)positioning rendererConfigurations:(NSArray *)rendererConfigurations;
 
 @end

@@ -13,7 +13,11 @@
 #import "MPNativeAdRendering.h"
 #import "MPNativeAdUtils.h"
 #import "MPGlobal.h"
+#import "MPNativeAdRendererConfiguration.h"
+#import "MPTableViewAdPlacerCell.h"
 #import <objc/runtime.h>
+
+static NSString * const kTableViewAdPlacerReuseIdentifier = @"MPTableViewAdPlacerReuseIdentifier";
 
 @interface MPTableViewAdPlacer () <UITableViewDataSource, UITableViewDelegate, MPStreamAdPlacerDelegate>
 
@@ -21,9 +25,7 @@
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, weak) id<UITableViewDataSource> originalDataSource;
 @property (nonatomic, weak) id<UITableViewDelegate> originalDelegate;
-@property (nonatomic, assign) Class defaultAdRenderingClass;
 @property (nonatomic, strong) MPTimer *insertionTimer;
-@property (nonatomic, assign) BOOL didRegisterNibOrClassForCells;
 
 @end
 
@@ -31,24 +33,26 @@
 
 @implementation MPTableViewAdPlacer
 
-+ (instancetype)placerWithTableView:(UITableView *)tableView viewController:(UIViewController *)controller defaultAdRenderingClass:(Class)defaultAdRenderingClass
++ (instancetype)placerWithTableView:(UITableView *)tableView viewController:(UIViewController *)controller rendererConfigurations:(NSArray *)rendererConfigurations
 {
-    return [[self class] placerWithTableView:tableView viewController:controller adPositioning:[MPServerAdPositioning positioning] defaultAdRenderingClass:defaultAdRenderingClass];
+    return [[self class] placerWithTableView:tableView viewController:controller adPositioning:[MPServerAdPositioning positioning] rendererConfigurations:rendererConfigurations];
 }
 
-+ (instancetype)placerWithTableView:(UITableView *)tableView viewController:(UIViewController *)controller adPositioning:(MPAdPositioning *)positioning defaultAdRenderingClass:(Class)defaultAdRenderingClass
++ (instancetype)placerWithTableView:(UITableView *)tableView viewController:(UIViewController *)controller adPositioning:(MPAdPositioning *)positioning rendererConfigurations:(NSArray *)rendererConfigurations
 {
-    MPTableViewAdPlacer *tableViewAdPlacer = [[MPTableViewAdPlacer alloc] initWithTableView:tableView viewController:controller adPositioning:positioning defaultAdRenderingClass:defaultAdRenderingClass];
+    MPTableViewAdPlacer *tableViewAdPlacer = [[MPTableViewAdPlacer alloc] initWithTableView:tableView viewController:controller adPositioning:positioning rendererConfigurations:rendererConfigurations];
     return tableViewAdPlacer;
 }
 
-- (instancetype)initWithTableView:(UITableView *)tableView viewController:(UIViewController *)controller adPositioning:(MPAdPositioning *)positioning defaultAdRenderingClass:(Class)defaultAdRenderingClass
+- (instancetype)initWithTableView:(UITableView *)tableView viewController:(UIViewController *)controller adPositioning:(MPAdPositioning *)positioning rendererConfigurations:(NSArray *)rendererConfigurations
 {
-    NSAssert([defaultAdRenderingClass isSubclassOfClass:[UITableViewCell class]], @"A table view ad placer must be instantiated with a rendering class that is a UITableViewCell");
+    for (id rendererConfiguration in rendererConfigurations) {
+        NSAssert([rendererConfiguration isKindOfClass:[MPNativeAdRendererConfiguration class]], @"A table view ad placer must be instantiated with rendererConfigurations that are of type MPNativeAdRendererConfiguration.");
+    }
 
     if (self = [super init]) {
         _tableView = tableView;
-        _streamAdPlacer = [[MPInstanceProvider sharedProvider] buildStreamAdPlacerWithViewController:controller adPositioning:positioning defaultAdRenderingClass:defaultAdRenderingClass];
+        _streamAdPlacer = [[MPInstanceProvider sharedProvider] buildStreamAdPlacerWithViewController:controller adPositioning:positioning rendererConfigurations:rendererConfigurations];
         _streamAdPlacer.delegate = self;
 
         _originalDataSource = tableView.dataSource;
@@ -56,8 +60,7 @@
         tableView.dataSource = self;
         tableView.delegate = self;
 
-        _defaultAdRenderingClass = defaultAdRenderingClass;
-        [self registerNibOrClassIfNecessary];
+        [self.tableView registerClass:[MPTableViewAdPlacerCell class] forCellReuseIdentifier:kTableViewAdPlacerReuseIdentifier];
 
         [tableView mp_setAdPlacer:self];
     }
@@ -67,28 +70,6 @@
 - (void)dealloc
 {
     [_insertionTimer invalidate];
-}
-
-- (void)registerNibOrClassIfNecessary
-{
-    // We're only supporting one rendering class right now so we can pass nil for the index path.
-    NSString *adCellReuseIdentifier = [_streamAdPlacer reuseIdentifierForRenderingClassAtIndexPath:nil];
-
-    // First, see if the rendering class provides a nib that we should register on the table view.
-    if ([_defaultAdRenderingClass respondsToSelector:@selector(nibForAd)]) {
-        UINib *nib = [_defaultAdRenderingClass nibForAd];
-        NSAssert(nib, @"+nibForAd must return a valid UINib object.");
-
-        [_tableView registerNib:nib forCellReuseIdentifier:adCellReuseIdentifier];
-        _didRegisterNibOrClassForCells = YES;
-
-        // If the rendering class doesn't provide a nib, try to register the class directly.
-    } else if ([_tableView respondsToSelector:@selector(registerClass:forCellReuseIdentifier:)]) {
-#if __IPHONE_OS_VERSION_MAX_ALLOWED >= MP_IOS_6_0
-        [_tableView registerClass:[_defaultAdRenderingClass class] forCellReuseIdentifier:adCellReuseIdentifier];
-        _didRegisterNibOrClassForCells = YES;
-#endif
-    }
 }
 
 #pragma mark - Public
@@ -144,6 +125,27 @@
     [UIView setAnimationsEnabled:originalAnimationsEnabled];
 }
 
+- (void)nativeAdWillPresentModalForStreamAdPlacer:(MPStreamAdPlacer *)adPlacer
+{
+    if ([self.delegate respondsToSelector:@selector(nativeAdWillPresentModalForTableViewAdPlacer:)]) {
+        [self.delegate nativeAdWillPresentModalForTableViewAdPlacer:self];
+    }
+}
+
+- (void)nativeAdDidDismissModalForStreamAdPlacer:(MPStreamAdPlacer *)adPlacer
+{
+    if ([self.delegate respondsToSelector:@selector(nativeAdDidDismissModalForTableViewAdPlacer:)]) {
+        [self.delegate nativeAdDidDismissModalForTableViewAdPlacer:self];
+    }
+}
+
+- (void)nativeAdWillLeaveApplicationFromStreamAdPlacer:(MPStreamAdPlacer *)adPlacer
+{
+    if ([self.delegate respondsToSelector:@selector(nativeAdWillLeaveApplicationFromTableViewAdPlacer:)]) {
+        [self.delegate nativeAdWillLeaveApplicationFromTableViewAdPlacer:self];
+    }
+}
+
 #pragma mark - <UITableViewDataSource>
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -156,25 +158,10 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if ([self.streamAdPlacer isAdAtIndexPath:indexPath]) {
-        NSString *identifier = [self.streamAdPlacer reuseIdentifierForRenderingClassAtIndexPath:indexPath];
-        UITableViewCell<MPNativeAdRendering> *cell = nil;
-
-        if (self.didRegisterNibOrClassForCells && [self.tableView respondsToSelector:@selector(dequeueReusableCellWithIdentifier:forIndexPath:)]) {
-#if __IPHONE_OS_VERSION_MAX_ALLOWED >= MP_IOS_6_0
-            cell = (UITableViewCell<MPNativeAdRendering> *)[tableView dequeueReusableCellWithIdentifier:identifier forIndexPath:indexPath];
-#endif
-        }
-
-        if (!cell) {
-            cell = (UITableViewCell<MPNativeAdRendering> *)[tableView dequeueReusableCellWithIdentifier:identifier];
-        }
-
-        if (!cell) {
-            cell = [[self.streamAdPlacer.defaultAdRenderingClass alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
-        }
-
+        MPTableViewAdPlacerCell *cell = (MPTableViewAdPlacerCell *)[tableView dequeueReusableCellWithIdentifier:kTableViewAdPlacerReuseIdentifier forIndexPath:indexPath];
         cell.clipsToBounds = YES;
-        [self.streamAdPlacer renderAdAtIndexPath:indexPath inView:cell];
+
+        [self.streamAdPlacer renderAdAtIndexPath:indexPath inView:cell.contentView];
         return cell;
     }
     NSIndexPath *originalIndexPath = [self.streamAdPlacer originalIndexPathForAdjustedIndexPath:indexPath];
@@ -314,7 +301,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if ([self.streamAdPlacer isAdAtIndexPath:indexPath]) {
-        [self.streamAdPlacer displayContentForAdAtAdjustedIndexPath:indexPath];
+        // The view inside the cell already has a gesture recognizer to handle the tap event.
         [self.tableView deselectRowAtIndexPath:indexPath animated:NO];
         return;
     }

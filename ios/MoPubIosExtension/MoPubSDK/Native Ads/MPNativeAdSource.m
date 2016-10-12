@@ -46,11 +46,11 @@ static NSTimeInterval const kCacheTimeoutInterval = 900; //15 minutes
 
 #pragma mark - Ad Source Interface
 
-- (void)loadAdsWithAdUnitIdentifier:(NSString *)identifier andTargeting:(MPNativeAdRequestTargeting *)targeting
+- (void)loadAdsWithAdUnitIdentifier:(NSString *)identifier rendererConfigurations:(NSArray *)rendererConfigurations andTargeting:(MPNativeAdRequestTargeting *)targeting
 {
     [self deleteCacheForAdUnitIdentifier:identifier];
 
-    MPNativeAdSourceQueue *adQueue = [[MPNativeAdSourceQueue alloc] initWithAdUnitIdentifier:identifier andTargeting:targeting];
+    MPNativeAdSourceQueue *adQueue = [[MPNativeAdSourceQueue alloc] initWithAdUnitIdentifier:identifier rendererConfigurations:rendererConfigurations andTargeting:targeting];
     adQueue.delegate = self;
     [self.adQueueDictionary setObject:adQueue forKey:identifier];
 

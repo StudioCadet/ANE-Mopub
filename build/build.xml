@@ -46,11 +46,15 @@
 			<fileset dir="../ios/MoPubIosExtension/SmartAdServer/SDK">
 				<include name="sas.bundle/**" />
 			</fileset>
+			<fileset dir="../ios/MoPubIosExtension/UnityAds/SDK" />
+			<fileset dir="../ios/MoPubIosExtension/Vungle/SDK" />
 		</copy>
 		
 		<delete dir="../bin/ios/AdColony.framework/Versions"/>
 		<delete dir="../bin/ios/GoogleMobileAds.framework/Versions"/>
 		<delete dir="../bin/ios/Chartboost.framework/Versions"/>
+		<delete dir="../bin/ios/UnityAds.framework/Versions"/>
+		<delete dir="../bin/ios/VungleSDK.framework/Versions"/>
 
 
 		<exec executable="ibtool" failonerror="true">
@@ -60,11 +64,11 @@
 			<arg line="--output-format human-readable-text" />
 			<arg line="--sdk ${ios.sdk}" />
 			<arg line="--compile ../bin/ios/MPAdBrowserController.nib" />
-			<arg value="${mopub.ios.sdk}/MoPubSDK/Internal/Common/MPAdBrowserController.xib" />
+			<arg value="../ios/MoPubIosExtension/MoPubSDK/Internal/Common/MPAdBrowserController.xib" />
 		</exec>
 
 		<copy todir="../bin/ios">
-			<fileset dir="${mopub.ios.sdk}/MoPubSDK/Resources"/>
+			<fileset dir="../ios/MoPubIosExtension/MoPubSDK/Resources"/>
 		</copy>
 		
 		<!-- mraid.js was included twice, we'll look into it later. For now, simply duplicate the file. -->
@@ -82,8 +86,8 @@
 		<property name="android.support.annotations" value="${android.sdk}/extras/android/support/annotations/android-support-annotations.jar"/>
 		<property name="android.supportV7.recyclerview" value="${android.sdk}/extras/android/support/v7/recyclerview/libs/android-support-v7-recyclerview.jar"/>
 		<property name="android.supportV7.recyclerview.res" value="${android.sdk}/extras/android/support/v7/recyclerview/res"/>
-		<property name="android.gps.jar" value="${android.sdk}/extras/google/google_play_services/libproject/google-play-services_lib/libs/google-play-services.jar"/>
-		<property name="android.gps.res" value="${android.sdk}/extras/google/google_play_services/libproject/google-play-services_lib/res"/>
+		<property name="android.gps.jar" value="${android.sdk}/extras/google/google-play-services/libproject/google-play-services_lib/libs/google-play-services.jar"/>
+		<property name="android.gps.res" value="${android.sdk}/extras/google/google-play-services/libproject/google-play-services_lib/res"/>
 		
 		<delete>
 			<fileset dir="../bin/android" excludes="library.swf"/>
@@ -94,11 +98,11 @@
 		
 		<mkdir dir="../bin/android/temp/classes" />
 
-		<javac destdir="../bin/android/temp/classes" includeantruntime="false" target="1.7" source="1.7" fork="yes" executable="${javac.dir}/javac${bin.ext}">
+		<javac destdir="../bin/android/temp/classes" includeantruntime="false" target="1.7" source="1.7" fork="yes">
 			<src path="../android/src" />
 			<src path="${mopub.android.sdk}/mopub-sdk/src/main/java" />
 			<classpath>
-				<pathelement location="${flex.sdk}/lib/android/FlashRuntimeExtensions.jar"/>
+				<pathelement location="${air.sdk}/lib/android/FlashRuntimeExtensions.jar"/>
 				
 				<pathelement location="${android.jar}" />
 				<pathelement location="${android.supportV4}" />
@@ -113,6 +117,10 @@
 				<pathelement location="../android/libs/SmartAdServer-Android-SDK-6.1.jar"/>
 				<pathelement location="../android/libs/admarvel-android-sdk-core-adcolony.jar"/>
 				<pathelement location="../android/libs/operamediaworks-android-sdk-mopub-adapter.jar"/>
+				<pathelement location="../android/libs/dagger-2.4.jar"/>
+				<pathelement location="../android/libs/javax.inject-1.jar"/>
+				<pathelement location="../android/libs/vungle-publisher-adaptive-id-4.0.2.jar"/>
+				<pathelement location="../android/libs/unity-ads-2.0.5.jar"/>
 			</classpath>
 		</javac>
 		<jar basedir="../bin/android/temp/classes" destfile="../bin/android/${name}.jar"/>
@@ -169,13 +177,13 @@
 			<regexpmapper from=".*src.(.*)\.as" to="\1" />
 		</pathconvert>
 
-		<exec executable="${flex.sdk}/bin/compc${bat.ext}" failonerror="true">
-			<env key="AIR_SDK_HOME" value="${flex.sdk}"/>
+		<exec executable="${air.sdk}/bin/compc${bat.ext}" failonerror="true">
+			<env key="AIR_SDK_HOME" value="${air.sdk}"/>
 			<arg line='-source-path ../actionscript/ios/src' />
 			<arg line='-source-path+=../actionscript/common/src' />
 			<arg line='-output ../bin/actionscript/ios/${name}.swc' />
 			<arg line='-swf-version=${swf.version}' />
-			<arg line='-external-library-path+="${flex.sdk}/frameworks/libs/air/airglobal.swc"' />
+			<arg line='-external-library-path+="${air.sdk}/frameworks/libs/air/airglobal.swc"' />
 			<arg line='-include-classes ${classlist.ios}' />
 		</exec>
 		<echo message="Done."/>
@@ -193,13 +201,13 @@
 			<regexpmapper from=".*src.(.*)\.as" to="\1" />
 		</pathconvert>
 
-		<exec executable="${flex.sdk}/bin/compc${bat.ext}" failonerror="true">
-			<env key="AIR_SDK_HOME" value="${flex.sdk}"/>
+		<exec executable="${air.sdk}/bin/compc${bat.ext}" failonerror="true">
+			<env key="AIR_SDK_HOME" value="${air.sdk}"/>
 			<arg line='-source-path ../actionscript/android/src' />
 			<arg line='-source-path+=../actionscript/common/src' />
 			<arg line='-output ../bin/actionscript/android/${name}.swc' />
 			<arg line='-swf-version=${swf.version}' />
-			<arg line='-external-library-path+="${flex.sdk}/frameworks/libs/air/airglobal.swc"' />
+			<arg line='-external-library-path+="${air.sdk}/frameworks/libs/air/airglobal.swc"' />
 			<arg line='-include-classes ${classlist.android}' />
 		</exec>
 		<echo message="Done."/>
@@ -217,13 +225,13 @@
 			<regexpmapper from=".*src.(.*)\.as" to="\1" />
 		</pathconvert>
 
-		<exec executable="${flex.sdk}/bin/compc${bat.ext}" failonerror="true">
-			<env key="AIR_SDK_HOME" value="${flex.sdk}"/>
+		<exec executable="${air.sdk}/bin/compc${bat.ext}" failonerror="true">
+			<env key="AIR_SDK_HOME" value="${air.sdk}"/>
 			<arg line='-source-path ../actionscript/default/src' />
 			<arg line='-source-path+=../actionscript/common/src' />
 			<arg line='-output ../bin/actionscript/default/${name}.swc' />
 			<arg line='-swf-version=${swf.version}' />
-			<arg line='-external-library-path+="${flex.sdk}/frameworks/libs/air/airglobal.swc"' />
+			<arg line='-external-library-path+="${air.sdk}/frameworks/libs/air/airglobal.swc"' />
 			<arg line='-include-classes ${classlist.default}' />
 		</exec>
 		<echo message="Done."/>
@@ -255,7 +263,7 @@
 	<!-- Packaging -->
 	<target name="package" description="Create the extension package">
 		<echo message="Packaging the ANE ..."/>
-		<exec executable="${flex.sdk}/bin/adt${bat.ext}" failonerror="true" dir="../bin">
+		<exec executable="${air.sdk}/bin/adt${bat.ext}" failonerror="true" dir="../bin">
             <arg value="-package"/>
             <arg value="-target"/>
             <arg value="ane"/>

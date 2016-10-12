@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<platform xmlns="http://ns.adobe.com/air/extension/16.0">
+<platform xmlns="http://ns.adobe.com/air/extension/23.0">
 
 	<linkerOptions>
 
 		<option>-ios_version_min 6.0</option>
 
-        <option>-framework Accelerate</option>
-        <option>-framework Accounts</option>
+		<option>-framework Accelerate</option>
+		<option>-framework Accounts</option>
 		<option>-framework AddressBook</option>
 		<option>-framework AddressBookUI</option>
 		<option>-framework AdSupport</option>
@@ -30,11 +30,27 @@
 		<option>-framework StoreKit</option>
 		<option>-framework SystemConfiguration</option>
 		<option>-framework UIKit</option>
-        <option>-framework CoreMotion</option>
+		<option>-framework CoreMotion</option>
 		<option>-weak_framework WebKit</option>
-        <option>-framework CoreLocation</option>
-        <option>-framework GoogleMobileAds</option>
-        <option>-framework Chartboost</option>
+		<option>-framework CoreLocation</option>
+		<option>-framework GoogleMobileAds</option>
+		<option>-framework Chartboost</option>
+		<option>-framework VungleSDK</option>
+		<option>-framework UnityAds</option>
+		<option>-framework SafariServices</option>
+		<option>-framework CoreBluetooth</option>
+		<option>-framework GLKit</option>
+
+		<option>-framework AudioToolbox</option>
+		<option>-framework AVFoundation</option>
+		<option>-framework CFNetwork</option>
+		<option>-framework CoreGraphics</option>
+		<option>-framework CoreMedia</option>
+		<option>-framework Foundation</option>
+		<option>-framework QuartzCore</option>
+		<option>-framework SystemConfiguration</option>
+		<option>-framework UIKit</option>
+		<option>-framework CoreFoundation</option> 
 
 		<option>-lsqlite3</option>
 		<option>-lstdc++</option>
@@ -42,9 +58,11 @@
 
 	</linkerOptions>
 
-    <packagedDependencies>
-        <packagedDependency>GoogleMobileAds.framework</packagedDependency>
-        <packagedDependency>Chartboost.framework</packagedDependency>
-    </packagedDependencies>
+	<packagedDependencies>
+		<packagedDependency>GoogleMobileAds.framework</packagedDependency>
+		<packagedDependency>Chartboost.framework</packagedDependency>
+		<packagedDependency>VungleSDK.framework</packagedDependency>
+		<packagedDependency>UnityAds.framework</packagedDependency>
+	</packagedDependencies>
 
 </platform>

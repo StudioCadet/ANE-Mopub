@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<platform xmlns="http://ns.adobe.com/air/extension/16.0">
+<platform xmlns="http://ns.adobe.com/air/extension/23.0">
     
 	<packagedDependencies>
 		<packagedDependency>adcolony.jar</packagedDependency>
@@ -12,6 +12,10 @@
 		<packagedDependency>SmartAdServer-Android-SDK-6.1.jar</packagedDependency>
 		<packagedDependency>admarvel-android-sdk-core-adcolony.jar</packagedDependency>
 		<packagedDependency>operamediaworks-android-sdk-mopub-adapter.jar</packagedDependency>
+		<packagedDependency>dagger-2.4.jar</packagedDependency>
+		<packagedDependency>javax.inject-1.jar</packagedDependency>
+		<packagedDependency>vungle-publisher-adaptive-id-4.0.2.jar</packagedDependency>
+		<packagedDependency>unity-ads-2.0.5.jar</packagedDependency>
     </packagedDependencies> 
 	
     <packagedResources>

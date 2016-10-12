@@ -14,16 +14,16 @@ package {
 		public static const MP_INTERSTITIAL:String = "AdUnit.MoPub.Interstitial";
 		
 		// MOPUB AD UNITS IDS :
-		private static const BANNER_ANDROID_PHONE:String = "44299f091a53424aae7c0e05065288ee";
-		private static const BANNER_ANDROID_TABLET:String = "e7ce950d4d444cdb9d243d859f016248";
-		private static const INTERSTITIAL_ANDROID_PHONE:String = "b3e4dae0310f464b9d1d0903494dcc5a";
-		private static const INTERSTITIAL_ANDROID_TABLET:String = "f5451b6962de4f4b99df56e4ed47e725";
+		private static const BANNER_ANDROID_PHONE:String = "d155e1925a79445bb9ded7b4ef3494aa";
+		private static const BANNER_ANDROID_TABLET:String = "438aaf74d7704d50b582ae230fe09f9c";
+		private static const INTERSTITIAL_ANDROID_PHONE:String = "7f5741cce07a44579010db133571c629";
+		private static const INTERSTITIAL_ANDROID_TABLET:String = "0766693b7f9b40f09f62529355d197db";
 		
-		private static const BANNER_IOS_PHONE:String = "9ffc32d8454a42bc93effafe5d38ecc2";
-		private static const BANNER_IOS_TABLET:String = "6f1a4bb4590d4d9b968ac47480f94a51";
-		private static const INTERSTITIAL_IOS_PHONE:String = "4f2b794e09674857a06c364b63e4f177";
-		private static const INTERSTITIAL_IOS_TABLET:String = "165c4733c1694b83b7f476c9328581a7";
-		
+		private static const BANNER_IOS_PHONE:String = "3070aeff71fa47629aac248bbc1ce53a";
+		private static const BANNER_IOS_TABLET:String = "e97ac539cd384d37af967aac30656922";
+		private static const INTERSTITIAL_IOS_PHONE:String = "0b31201ae26d49029eedc8a7ae4a266c";
+		private static const INTERSTITIAL_IOS_TABLET:String = "17a4103c976e4083ade956a9d4aac5ff";
+
 		
 		// AD UNIT IDS TO USE :
 		private static var bannerID:String;

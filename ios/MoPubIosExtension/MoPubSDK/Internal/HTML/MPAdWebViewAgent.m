@@ -253,7 +253,7 @@
     if (self.configuration.clickTrackingURL) {
         NSString *path = [NSString stringWithFormat:@"%@&r=%@",
                           self.configuration.clickTrackingURL.absoluteString,
-                          [[URL absoluteString] URLEncodedString]];
+                          [[URL absoluteString] mp_URLEncodedString]];
         redirectedURL = [NSURL URLWithString:path];
     }
 

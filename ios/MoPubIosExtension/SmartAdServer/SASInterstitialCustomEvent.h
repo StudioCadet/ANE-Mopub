@@ -16,5 +16,5 @@
 
 /** A RootViewController implementation that calls appropriate Mopub custom event callbacks on Mobvious ads lifecycle events. */
 @interface InterstitialRootViewController : UIViewController <UITableViewDelegate, SASAdViewDelegate>
-@property (nonatomic, retain) SASInterstitialCustomEvent *mpCustomEvent;
+@property (nonatomic, strong) SASInterstitialCustomEvent *mpCustomEvent;
 @end

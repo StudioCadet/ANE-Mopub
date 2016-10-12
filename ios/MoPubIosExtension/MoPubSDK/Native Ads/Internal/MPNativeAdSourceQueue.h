@@ -14,10 +14,9 @@
 @interface MPNativeAdSourceQueue : NSObject
 
 @property (nonatomic, weak) id <MPNativeAdSourceQueueDelegate> delegate;
-@property (nonatomic, assign) NSUInteger currentSequence;
 
 
-- (instancetype)initWithAdUnitIdentifier:(NSString *)identifier andTargeting:(MPNativeAdRequestTargeting *)targeting;
+- (instancetype)initWithAdUnitIdentifier:(NSString *)identifier rendererConfigurations:(NSArray *)rendererConfigurations andTargeting:(MPNativeAdRequestTargeting *)targeting;
 - (MPNativeAd *)dequeueAdWithMaxAge:(NSTimeInterval)age;
 - (NSUInteger)count;
 - (void)loadAds;

@@ -45,8 +45,9 @@ static NSDate *lastImpressionFailedAt = nil;
 -(void)adViewDidDisappear:(SASAdView *)adView {
     if (adView == self.mpCustomEvent.interstitial) {
         NSLog(@"Ad view did disappear.");
-        [self.mpCustomEvent.interstitial.delegate dismissViewControllerAnimated:YES completion:^{[self dismissModalViewControllerAnimated:YES];}];
-        [self.mpCustomEvent.interstitial.delegate removeFromParentViewController];
+        UIViewController *delegate = (UIViewController *) self.mpCustomEvent.interstitial.delegate;
+        [delegate dismissViewControllerAnimated:YES completion:^{[self dismissViewControllerAnimated:YES completion:nil];}];
+        [delegate removeFromParentViewController];
         [self.mpCustomEvent.delegate interstitialCustomEventWillDisappear:self.mpCustomEvent];
         [self.mpCustomEvent.delegate interstitialCustomEventDidDisappear:self.mpCustomEvent];
     }
@@ -63,8 +64,6 @@ static NSDate *lastImpressionFailedAt = nil;
     self.mpCustomEvent.interstitial.delegate = nil;
     self.mpCustomEvent.interstitial = nil;
     self.mpCustomEvent.rootViewController = nil;
-    self.mpCustomEvent = nil;
-    [super dealloc];
 }
 
 @end
@@ -87,7 +86,6 @@ static NSDate *lastImpressionFailedAt = nil;
     NSLog(@"Preparing next interstitial...");
     SASInterstitialView *interstitial = [[SASInterstitialView alloc] initWithFrame:[[UIScreen mainScreen] bounds] loader:SASLoaderNone];
     self.interstitial = interstitial;
-    [interstitial release];
     
     NSLog(@"Setting interstitial delegate...");
     self.interstitial.delegate = controller;

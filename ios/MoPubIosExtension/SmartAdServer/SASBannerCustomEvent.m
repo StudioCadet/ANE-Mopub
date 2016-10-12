@@ -50,10 +50,6 @@
     }
 }
 
--(void) dealloc {
-    self.mpCustomEvent = nil;
-    [super dealloc];
-}
 @end
 
 @implementation SASBannerCustomEvent
@@ -91,7 +87,6 @@
 
 - (void) dealloc {
     [self.navigationController removeFromParentViewController];
-    [super dealloc];
 }
 
 @end

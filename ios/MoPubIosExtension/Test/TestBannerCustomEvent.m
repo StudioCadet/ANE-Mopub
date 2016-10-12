@@ -45,10 +45,5 @@
     return [self.bannerCustomEvent enableAutomaticImpressionAndClickTracking];
 }
 
-- (void) dealloc {
-    self.bannerCustomEvent = nil;
-    
-    [super dealloc];
-}
 
 @end

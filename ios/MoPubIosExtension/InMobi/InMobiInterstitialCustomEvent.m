@@ -20,12 +20,12 @@
 @implementation MPInstanceProvider (InMobiInterstitials)
 
 - (IMInterstitial *)buildIMInterstitialWithDelegate:(id<IMInterstitialDelegate>)delegate appId:(NSString *)appId {
-    IMInterstitial *inMobiInterstitial = [[[IMInterstitial alloc] initWithAppId:appId] autorelease];
+    IMInterstitial *inMobiInterstitial = [[IMInterstitial alloc] initWithAppId:appId];
     inMobiInterstitial.delegate = delegate;
     return inMobiInterstitial;
 }
 - (IMInterstitial *)buildIMInterstitialWithSlotIdAndDelegate:(id<IMInterstitialDelegate>)delegate slotId:(long long) slotId {
-    IMInterstitial *inMobiInterstitial = [[[IMInterstitial alloc] initWithSlotId:slotId] autorelease];
+    IMInterstitial *inMobiInterstitial = [[IMInterstitial alloc] initWithSlotId:slotId];
     inMobiInterstitial.delegate = delegate;
     return inMobiInterstitial;
 }
@@ -37,7 +37,7 @@
 
 @interface InMobiInterstitialCustomEvent ()
 
-@property (nonatomic, retain) IMInterstitial *inMobiInterstitial;
+@property (nonatomic, strong) IMInterstitial *inMobiInterstitial;
 
 @end
 
@@ -80,8 +80,6 @@
 - (void)dealloc
 {
     [self.inMobiInterstitial setDelegate:nil];
-    self.inMobiInterstitial = nil;
-    [super dealloc];
 }
 
 #pragma mark - IMInterstitialDelegate

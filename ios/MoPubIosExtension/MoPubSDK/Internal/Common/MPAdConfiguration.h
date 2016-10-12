@@ -45,6 +45,7 @@ extern NSString * const kAdTypeInterstitial;
 extern NSString * const kAdTypeMraid;
 extern NSString * const kAdTypeClear;
 extern NSString * const kAdTypeNative;
+extern NSString * const kAdTypeNativeVideo;
 
 @interface MPAdConfiguration : NSObject
 
@@ -72,11 +73,19 @@ extern NSString * const kAdTypeNative;
 @property (nonatomic, strong) NSDate *creationTimestamp;
 @property (nonatomic, copy) NSString *creativeId;
 @property (nonatomic, copy) NSString *headerAdType;
+@property (nonatomic, assign) NSInteger nativeVideoPlayVisiblePercent;
+@property (nonatomic, assign) NSInteger nativeVideoPauseVisiblePercent;
+@property (nonatomic, assign) NSInteger nativeVideoImpressionMinVisiblePercent;
+@property (nonatomic, assign) NSTimeInterval nativeVideoImpressionVisible;
+@property (nonatomic, assign) NSTimeInterval nativeVideoMaxBufferingTime;
 
 - (id)initWithHeaders:(NSDictionary *)headers data:(NSData *)data;
 
 - (BOOL)hasPreferredSize;
 - (NSString *)adResponseHTMLString;
 - (NSString *)clickDetectionURLPrefix;
+
+/** Voodoo */
+- (NSString*)getCustomEventClassName;
 
 @end

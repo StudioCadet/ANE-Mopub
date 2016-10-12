@@ -23,10 +23,4 @@
 - (void)startAutomaticallyRefreshingContents;
 - (void)rotateToOrientation:(UIInterfaceOrientation)orientation;
 
-// Deprecated.
-- (void)customEventDidLoadAd;
-- (void)customEventDidFailToLoadAd;
-- (void)customEventActionWillBegin;
-- (void)customEventActionDidEnd;
-
 @end
