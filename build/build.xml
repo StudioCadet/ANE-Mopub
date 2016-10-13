@@ -147,13 +147,21 @@
 		<mkdir dir="../bin/android/temp"/>
 		<unzip dest="../bin/android/temp" src="../bin/android/google-play-services.jar"/>
 		<delete dir="../bin/android/temp/com/google/android/gms/analytics"/>
+		<!--<delete dir="../bin/android/temp/com/google/android/gms/appindexing"/>-->
+		<!--<delete dir="../bin/android/temp/com/google/android/gms/appinvite"/>-->
+		<!--<delete dir="../bin/android/temp/com/google/android/gms/appstate"/>-->
+		<!--<delete dir="../bin/android/temp/com/google/android/gms/auth"/>-->
 		<delete dir="../bin/android/temp/com/google/android/gms/cast"/>
 		<delete dir="../bin/android/temp/com/google/android/gms/drive"/>
 		<delete dir="../bin/android/temp/com/google/android/gms/fitness"/>
-		<!--<delete dir="../bin/android/temp/com/google/android/gms/games"/>-->
+		<delete dir="../bin/android/temp/com/google/android/gms/games"/>
+		<!--<delete dir="../bin/android/temp/com/google/android/gms/gcm"/>-->
+		<!--<delete dir="../bin/android/temp/com/google/android/gms/iid"/>-->
 		<delete dir="../bin/android/temp/com/google/android/gms/maps"/>
+		<!--<delete dir="../bin/android/temp/com/google/android/gms/nearby"/>-->
 		<delete dir="../bin/android/temp/com/google/android/gms/panorama"/>
 		<delete dir="../bin/android/temp/com/google/android/gms/plus"/>
+		<!--<delete dir="../bin/android/temp/com/google/android/gms/tagmanager"/>-->
 		<delete dir="../bin/android/temp/com/google/android/gms/vision"/>
 		<delete dir="../bin/android/temp/com/google/android/gms/wallet"/>
 		<delete dir="../bin/android/temp/com/google/android/gms/wearable"/>
