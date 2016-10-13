@@ -121,8 +121,6 @@
 
     self.partnerId = nil;
     self.siteId = nil;
-    
-    [super dealloc];
 }
 
 @end

@@ -9,6 +9,14 @@
 	
 	<!-- iOS -->
 	<target name="ios" description="Build iOS Library">
+
+		<delete>
+			<fileset dir="../bin/ios" excludes="library.swf"/>
+		</delete>
+		<delete>
+			<dirset dir="../bin/ios"/>
+		</delete>
+
 		<mkdir dir="../temp/ios/build/" />
 
 		<exec executable="xcodebuild" failonerror="true" dir="../ios/${name}IosExtension">
@@ -18,13 +26,6 @@
 			<arg line='SYMROOT=../../temp/ios/build/' />
 		</exec>
 		
-		<delete>
-			<fileset dir="../bin/ios" excludes="library.swf"/>
-		</delete>
-		<delete>
-			<dirset dir="../bin/ios"/>
-		</delete>
-
 		<copy file="../temp/ios/build/Release-iphoneos/lib${name}IosExtension.a" todir="../bin/ios" overwrite="true" />
 		<!--
 		Ant has a weird behavior with symlinks : by default, fileset copies the original content of a link instead of just copying the link.
@@ -39,23 +40,30 @@
 	    -->
 		
 		<copy todir="../bin/ios">
-            <fileset dir="../ios/MoPubIosExtension/AdMob/SDK" />
-            <fileset dir="../ios/MoPubIosExtension/Chartboost/SDK" />
-            <fileset dir="../ios/MoPubIosExtension/InMobi/SDK" />
-            <fileset dir="../ios/MoPubIosExtension/Opera/AdMarvelSDK" />
+			<fileset dir="../ios/MoPubIosExtension/AdMob/SDK">
+				<include name="*.framework/**" />
+			</fileset>
+			<fileset dir="../ios/MoPubIosExtension/Chartboost/SDK" />
 			<fileset dir="../ios/MoPubIosExtension/SmartAdServer/SDK">
 				<include name="sas.bundle/**" />
 			</fileset>
-			<fileset dir="../ios/MoPubIosExtension/UnityAds/SDK" />
+			<fileset dir="../ios/MoPubIosExtension/UnityAds/SDK">
+				<include name="UnityAds.bundle/**" />
+				<include name="UnityAds.framework/**" />
+			</fileset>
 			<fileset dir="../ios/MoPubIosExtension/Vungle/SDK" />
 		</copy>
-		
-		<delete dir="../bin/ios/AdColony.framework/Versions"/>
-		<delete dir="../bin/ios/GoogleMobileAds.framework/Versions"/>
+
 		<delete dir="../bin/ios/Chartboost.framework/Versions"/>
+		<delete dir="../bin/ios/FirebaseAnalytics.framework/Versions"/>
+		<delete dir="../bin/ios/FirebaseCore.framework/Versions"/>
+		<delete dir="../bin/ios/FirebaseInstanceID.framework/Versions"/>
+		<delete dir="../bin/ios/GoogleInterchangeUtilities.framework/Versions"/>
+		<delete dir="../bin/ios/GoogleMobileAds.framework/Versions"/>
+		<delete dir="../bin/ios/GoogleSymbolUtilities.framework/Versions"/>
+		<delete dir="../bin/ios/GoogleUtilities.framework/Versions"/>
 		<delete dir="../bin/ios/UnityAds.framework/Versions"/>
 		<delete dir="../bin/ios/VungleSDK.framework/Versions"/>
-
 
 		<exec executable="ibtool" failonerror="true">
 			<arg value="--errors" />

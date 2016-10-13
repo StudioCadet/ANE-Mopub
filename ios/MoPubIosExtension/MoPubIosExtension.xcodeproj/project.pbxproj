@@ -37,6 +37,7 @@
 		066F6EEF1DAE3BF000951387 /* OperaBannerCustomEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 066F6EDE1DAE3BF000951387 /* OperaBannerCustomEvent.m */; };
 		066F6EF01DAE3BF000951387 /* OperaInterstitialCustomEvent.h in Headers */ = {isa = PBXBuildFile; fileRef = 066F6EDF1DAE3BF000951387 /* OperaInterstitialCustomEvent.h */; };
 		066F6EF11DAE3BF000951387 /* OperaInterstitialCustomEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 066F6EE01DAE3BF000951387 /* OperaInterstitialCustomEvent.m */; };
+		066F6EFB1DAE9A2400951387 /* VungleSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 066F6EFA1DAE9A2400951387 /* VungleSDK.framework */; };
 		06711DE01DAD24060094E124 /* TestBannerCustomEvent.h in Headers */ = {isa = PBXBuildFile; fileRef = 06711DDF1DAD24060094E124 /* TestBannerCustomEvent.h */; };
 		06711DE21DAD24FE0094E124 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 06711DE11DAD24FE0094E124 /* libsqlite3.dylib */; settings = {ATTRIBUTES = (Weak, ); }; };
 		06711DE41DAD25110094E124 /* libz.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 06711DE31DAD25110094E124 /* libz.1.dylib */; settings = {ATTRIBUTES = (Weak, ); }; };
@@ -463,7 +464,6 @@
 		7F329C181DA7D39500E7B42B /* GoogleMobileAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F329C111DA7D39500E7B42B /* GoogleMobileAds.framework */; };
 		7F329C191DA7D39500E7B42B /* GoogleSymbolUtilities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F329C121DA7D39500E7B42B /* GoogleSymbolUtilities.framework */; };
 		7F329C1A1DA7D39500E7B42B /* GoogleUtilities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F329C131DA7D39500E7B42B /* GoogleUtilities.framework */; };
-		7F770A2E1DA79897009420AF /* VungleSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F770A2B1DA79897009420AF /* VungleSDK.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -511,6 +511,13 @@
 		066F6EDE1DAE3BF000951387 /* OperaBannerCustomEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OperaBannerCustomEvent.m; sourceTree = "<group>"; };
 		066F6EDF1DAE3BF000951387 /* OperaInterstitialCustomEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OperaInterstitialCustomEvent.h; sourceTree = "<group>"; };
 		066F6EE01DAE3BF000951387 /* OperaInterstitialCustomEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OperaInterstitialCustomEvent.m; sourceTree = "<group>"; };
+		066F6EF41DAE9A2400951387 /* __vungle.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = __vungle.db; sourceTree = "<group>"; };
+		066F6EF51DAE9A2400951387 /* vg_close.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vg_close.png; sourceTree = "<group>"; };
+		066F6EF61DAE9A2400951387 /* vg_cta.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vg_cta.png; sourceTree = "<group>"; };
+		066F6EF71DAE9A2400951387 /* vg_mute_off.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vg_mute_off.png; sourceTree = "<group>"; };
+		066F6EF81DAE9A2400951387 /* vg_mute_on.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vg_mute_on.png; sourceTree = "<group>"; };
+		066F6EF91DAE9A2400951387 /* vg_privacy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vg_privacy.png; sourceTree = "<group>"; };
+		066F6EFA1DAE9A2400951387 /* VungleSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = VungleSDK.framework; sourceTree = "<group>"; };
 		06711DDF1DAD24060094E124 /* TestBannerCustomEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TestBannerCustomEvent.h; path = Test/TestBannerCustomEvent.h; sourceTree = "<group>"; };
 		06711DE11DAD24FE0094E124 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = ../../../../../usr/lib/libsqlite3.dylib; sourceTree = "<group>"; };
 		06711DE31DAD25110094E124 /* libz.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.dylib; path = ../../../../../usr/lib/libz.1.dylib; sourceTree = "<group>"; };
@@ -971,15 +978,6 @@
 		7F329C111DA7D39500E7B42B /* GoogleMobileAds.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMobileAds.framework; sourceTree = "<group>"; };
 		7F329C121DA7D39500E7B42B /* GoogleSymbolUtilities.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleSymbolUtilities.framework; sourceTree = "<group>"; };
 		7F329C131DA7D39500E7B42B /* GoogleUtilities.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleUtilities.framework; sourceTree = "<group>"; };
-		7F770A231DA79897009420AF /* __vungle.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = __vungle.db; sourceTree = "<group>"; };
-		7F770A241DA79897009420AF /* vg_close.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vg_close.png; sourceTree = "<group>"; };
-		7F770A251DA79897009420AF /* vg_cta.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vg_cta.png; sourceTree = "<group>"; };
-		7F770A261DA79897009420AF /* vg_mute_off.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vg_mute_off.png; sourceTree = "<group>"; };
-		7F770A271DA79897009420AF /* vg_mute_on.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vg_mute_on.png; sourceTree = "<group>"; };
-		7F770A281DA79897009420AF /* vg_privacy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vg_privacy.png; sourceTree = "<group>"; };
-		7F770A291DA79897009420AF /* LICENSE.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = LICENSE.md; sourceTree = "<group>"; };
-		7F770A2A1DA79897009420AF /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		7F770A2B1DA79897009420AF /* VungleSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = VungleSDK.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1019,13 +1017,13 @@
 				79BF989B174A1DE50038F1F1 /* MobileCoreServices.framework in Frameworks */,
 				79F87A48177B35DA0047359B /* PassKit.framework in Frameworks */,
 				79BF989D174A1DEC0038F1F1 /* QuartzCore.framework in Frameworks */,
-				7F770A2E1DA79897009420AF /* VungleSDK.framework in Frameworks */,
 				6D8D41161B219E9A00401572 /* libInMobi-4.5.3.a in Frameworks */,
 				79F87A49177B35DC0047359B /* Social.framework in Frameworks */,
 				79A6D5301636DFB1009DA60A /* StoreKit.framework in Frameworks */,
 				7F329C181DA7D39500E7B42B /* GoogleMobileAds.framework in Frameworks */,
 				79BF989F174A1DF60038F1F1 /* SystemConfiguration.framework in Frameworks */,
 				7F329C161DA7D39500E7B42B /* FirebaseInstanceID.framework in Frameworks */,
+				066F6EFB1DAE9A2400951387 /* VungleSDK.framework in Frameworks */,
 				79A6D5321636DFE1009DA60A /* UIKit.framework in Frameworks */,
 				228F62C61DA5597D004AC26E /* UnityAds.framework in Frameworks */,
 			);
@@ -1103,6 +1101,28 @@
 				066F6EDC1DAE3BF000951387 /* OMWCustomRewardDelegate.h */,
 			);
 			path = SDKConnectorHeaders;
+			sourceTree = "<group>";
+		};
+		066F6EF21DAE9A2400951387 /* SDK */ = {
+			isa = PBXGroup;
+			children = (
+				066F6EF31DAE9A2400951387 /* VungleAssets */,
+				066F6EFA1DAE9A2400951387 /* VungleSDK.framework */,
+			);
+			path = SDK;
+			sourceTree = "<group>";
+		};
+		066F6EF31DAE9A2400951387 /* VungleAssets */ = {
+			isa = PBXGroup;
+			children = (
+				066F6EF41DAE9A2400951387 /* __vungle.db */,
+				066F6EF51DAE9A2400951387 /* vg_close.png */,
+				066F6EF61DAE9A2400951387 /* vg_cta.png */,
+				066F6EF71DAE9A2400951387 /* vg_mute_off.png */,
+				066F6EF81DAE9A2400951387 /* vg_mute_on.png */,
+				066F6EF91DAE9A2400951387 /* vg_privacy.png */,
+			);
+			path = VungleAssets;
 			sourceTree = "<group>";
 		};
 		06711DE51DAD2ADB0094E124 /* MoPubSDK */ = {
@@ -1695,7 +1715,7 @@
 		228F62AA1DA5597D004AC26E /* Vungle */ = {
 			isa = PBXGroup;
 			children = (
-				7F770A211DA79897009420AF /* SDK */,
+				066F6EF21DAE9A2400951387 /* SDK */,
 				228F62AB1DA5597D004AC26E /* MPInstanceProvider+Vungle.h */,
 				228F62AC1DA5597D004AC26E /* MPInstanceProvider+Vungle.m */,
 				228F62AD1DA5597D004AC26E /* MPVungleRouter.h */,
@@ -1725,11 +1745,11 @@
 		34E1A24B190E3E57001C491E /* Chartboost */ = {
 			isa = PBXGroup;
 			children = (
+				0146A05C1ABB2BB90060CB75 /* SDK */,
 				0146A05E1ABB33C80060CB75 /* MPChartboostRouter.h */,
 				0146A05F1ABB33C80060CB75 /* MPChartboostRouter.m */,
 				0146A0601ABB33C80060CB75 /* MPInstanceProvider+Chartboost.h */,
 				0146A0611ABB33C80060CB75 /* MPInstanceProvider+Chartboost.m */,
-				0146A05C1ABB2BB90060CB75 /* SDK */,
 				34E1A24C190E3E57001C491E /* ChartboostInterstitialCustomEvent.h */,
 				34E1A24D190E3E57001C491E /* ChartboostInterstitialCustomEvent.m */,
 			);
@@ -1859,30 +1879,6 @@
 				7F329C131DA7D39500E7B42B /* GoogleUtilities.framework */,
 			);
 			path = SDK;
-			sourceTree = "<group>";
-		};
-		7F770A211DA79897009420AF /* SDK */ = {
-			isa = PBXGroup;
-			children = (
-				7F770A221DA79897009420AF /* Assets */,
-				7F770A291DA79897009420AF /* LICENSE.md */,
-				7F770A2A1DA79897009420AF /* README.md */,
-				7F770A2B1DA79897009420AF /* VungleSDK.framework */,
-			);
-			path = SDK;
-			sourceTree = "<group>";
-		};
-		7F770A221DA79897009420AF /* Assets */ = {
-			isa = PBXGroup;
-			children = (
-				7F770A231DA79897009420AF /* __vungle.db */,
-				7F770A241DA79897009420AF /* vg_close.png */,
-				7F770A251DA79897009420AF /* vg_cta.png */,
-				7F770A261DA79897009420AF /* vg_mute_off.png */,
-				7F770A271DA79897009420AF /* vg_mute_on.png */,
-				7F770A281DA79897009420AF /* vg_privacy.png */,
-			);
-			path = Assets;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -2448,6 +2444,7 @@
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
 				DSTROOT = /tmp/MoPubIosExtension.dst;
+				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -2489,6 +2486,7 @@
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
 				DSTROOT = /tmp/MoPubIosExtension.dst;
+				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
